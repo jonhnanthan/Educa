@@ -76,6 +76,8 @@ public class DataBase extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_ALUNO);
         db.execSQL(SQL_CREATE_EXERCICIO);
         db.execSQL(SQL_CREATE_PROFESSOR);
+        
+        db.close();
     }
 
     @Override
@@ -84,12 +86,17 @@ public class DataBase extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_EXERCICIO_TABLE);
         db.execSQL(SQL_DELETE_PROFESSOR_TABLE);
         onCreate(db);
+        
+        db.close();
+        
     }
 
     @Override
     public final void onDowngrade(final SQLiteDatabase dbHelper,
             final int oldVersion, final int newVersion) {
         onUpgrade(dbHelper, oldVersion, newVersion);
+        
+        dbHelper.close();
     }
 
     public long addProfessor(String nome, String turmas) {
@@ -165,7 +172,7 @@ public class DataBase extends SQLiteOpenHelper {
         long id = db.insert(TABLE_PROFESSOR, null, values);
 
         db.close();
-
+        
         return id;
     }
 
@@ -185,7 +192,7 @@ public class DataBase extends SQLiteOpenHelper {
         long id = db.delete(TABLE_EXERCICIO, whereClause, null);
 
         db.close();
-
+                
         return id;
     }
 
@@ -229,7 +236,6 @@ public class DataBase extends SQLiteOpenHelper {
                 cursor.moveToNext();
             }
         }
-
         cursor.close();
         db.close();
 
