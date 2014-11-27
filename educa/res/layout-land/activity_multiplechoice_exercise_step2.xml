@@ -21,21 +21,14 @@
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginTop="20dp"
-        android:gravity="left"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp" >
+        android:layout_height="wrap_content">
 
         <RadioButton
             android:id="@+id/rb_answer1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:button="@drawable/selector_right_answer"
-            android:paddingLeft="10dp"
+            android:paddingLeft="50dp"
             android:text="Answer1"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
@@ -46,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:button="@drawable/selector_right_answer"
-            android:paddingLeft="10dp"
+            android:paddingLeft="50dp"
             android:text="Answer2"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
@@ -57,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:button="@drawable/selector_right_answer"
-            android:paddingLeft="10dp"
+            android:paddingLeft="50dp"
             android:text="Answer3"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
@@ -68,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:button="@drawable/selector_right_answer"
-            android:paddingLeft="10dp"
+            android:paddingLeft="50dp"
             android:text="Answer4"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />

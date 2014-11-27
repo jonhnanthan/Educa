@@ -33,7 +33,7 @@
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
         <RadioButton
             android:id="@+id/rb_answer1"
             android:layout_width="match_parent"
@@ -76,7 +76,7 @@
             android:text="Answer4"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
-
+    </RadioGroup>
 
     <LinearLayout
         android:layout_width="fill_parent"
