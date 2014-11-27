@@ -1,14 +1,12 @@
 package com.educa.junit;
 
-import junit.framework.Assert;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import com.educa.entity.ColorMatchExercise;
 import com.educa.entity.Exercise;
 import com.educa.validation.Correction;
 import com.educa.validation.Status;
+import junit.framework.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 public class ColorMatchExerciseTest {
 	
@@ -17,8 +15,8 @@ public class ColorMatchExerciseTest {
 
 	@Before 
     public void inicializa() {
-		colorMatchExercise1 = new ColorMatchExercise("Associação de cor", "Color Match", "13/08/14", Status.NEW.getValue(), Correction.NOT_RATED.getValue(), "Qual o nome dessa cor em inglês?", "Red", "Blue", "Green", "Yellow", "Red", "Red");
-		colorMatchExercise2 = new ColorMatchExercise("Exercício de cores", "Color Match", "13/08/14", Status.NEW.getValue(), Correction.NOT_RATED.getValue(), "Que cor é essa?", "Cinza", "Branco", "Preto", "Rosa", "Cinza", "Cinza");
+		colorMatchExercise1 = new ColorMatchExercise("Associaï¿½ï¿½o de cor", "Color Match", "13/08/14", Status.NEW.getValue(), Correction.NOT_RATED.getValue(), "Qual o nome dessa cor em inglï¿½s?", "Red", "Blue", "Green", "Yellow", "Red", "Red");
+		colorMatchExercise2 = new ColorMatchExercise("Exercï¿½cio de cores", "Color Match", "13/08/14", Status.NEW.getValue(), Correction.NOT_RATED.getValue(), "Que cor ï¿½ essa?", "Cinza", "Branco", "Preto", "Rosa", "Cinza", "Cinza");
 	}
 	
 	@Test
@@ -29,11 +27,11 @@ public class ColorMatchExerciseTest {
 	
 	@Test
 	public void deveAlterarNomeDoExercicio() {
-		Assert.assertEquals("Associação de cor", colorMatchExercise1.getName());
+		Assert.assertEquals("Associaï¿½ï¿½o de cor", colorMatchExercise1.getName());
 		colorMatchExercise1.setName("Atividade de cor");
 		Assert.assertEquals("Atividade de cor", colorMatchExercise1.getName());
 		
-		Assert.assertEquals("Exercício de cores", colorMatchExercise2.getName());
+		Assert.assertEquals("Exercï¿½cio de cores", colorMatchExercise2.getName());
 		colorMatchExercise2.setName("Escolha de cores");
 		Assert.assertEquals("Escolha de cores", colorMatchExercise2.getName());
 	}
@@ -64,13 +62,13 @@ public class ColorMatchExerciseTest {
 	
 	@Test
 	public void deveAlterarNomeDaQuestao(){
-		Assert.assertEquals("Qual o nome dessa cor em inglês?", colorMatchExercise1.getQuestion());
-		colorMatchExercise1.setQuestion("O nome dessa cor, em inglês, é:");
-		Assert.assertEquals("O nome dessa cor, em inglês, é:", colorMatchExercise1.getQuestion());
+		Assert.assertEquals("Qual o nome dessa cor em inglï¿½s?", colorMatchExercise1.getQuestion());
+		colorMatchExercise1.setQuestion("O nome dessa cor, em inglï¿½s, ï¿½:");
+		Assert.assertEquals("O nome dessa cor, em inglï¿½s, ï¿½:", colorMatchExercise1.getQuestion());
 		
-		Assert.assertEquals("Que cor é essa?", colorMatchExercise2.getQuestion());
-		colorMatchExercise2.setQuestion("A cor correspondente é:");
-		Assert.assertEquals("A cor correspondente é:", colorMatchExercise2.getQuestion());
+		Assert.assertEquals("Que cor ï¿½ essa?", colorMatchExercise2.getQuestion());
+		colorMatchExercise2.setQuestion("A cor correspondente ï¿½:");
+		Assert.assertEquals("A cor correspondente ï¿½:", colorMatchExercise2.getQuestion());
 	}
 	
 	@Test
@@ -113,7 +111,7 @@ public class ColorMatchExerciseTest {
 		Assert.assertEquals("It's red", colorMatchExercise1.getRightAnswer());
 		
 		Assert.assertEquals("Cinza", colorMatchExercise2.getRightAnswer());
-		colorMatchExercise2.setRightAnswer("é cinza");
-		Assert.assertEquals("é cinza", colorMatchExercise2.getRightAnswer());
+		colorMatchExercise2.setRightAnswer("ï¿½ cinza");
+		Assert.assertEquals("ï¿½ cinza", colorMatchExercise2.getRightAnswer());
 	}
 }

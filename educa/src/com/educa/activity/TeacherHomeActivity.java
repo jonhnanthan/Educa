@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
-
 import com.educa.R;
 import com.educa.adapter.ExerciseTeacherAdapter;
 import com.educa.entity.Exercise;

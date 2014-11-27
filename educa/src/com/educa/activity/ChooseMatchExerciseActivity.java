@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
-
 import com.educa.R;
 
 public class ChooseMatchExerciseActivity extends Activity {

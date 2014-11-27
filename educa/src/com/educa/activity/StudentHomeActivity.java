@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-
 import com.educa.R;
 import com.educa.adapter.ExerciseStudentAdapter;
 import com.educa.entity.ColorMatchExercise;

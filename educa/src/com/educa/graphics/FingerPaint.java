@@ -1,8 +1,5 @@
 package com.educa.graphics;
 
-import com.educa.R;
-
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.*;
 import android.graphics.Bitmap.Config;
@@ -11,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import com.educa.R;
 
 public class FingerPaint extends GraphicsActivity
         implements ColorPicker.OnColorChangedListener {    

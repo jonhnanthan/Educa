@@ -27,10 +27,9 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="-80dp"
         android:gravity="center_vertical|center_horizontal"
-        android:textAlignment="center"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:text="question"
+        android:text="@string/question"
         android:textColor="#FFFFFF"
         android:textSize="15sp" />
 

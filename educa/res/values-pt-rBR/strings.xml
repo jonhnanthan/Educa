@@ -65,5 +65,6 @@
 	<string name="fragment_help_1">Associe cores a seus nomes em português ou em inglês.</string>
 	<string name="fragment_help_2">Complete as letras ocultas de uma palavra.</string>
 	<string name="fragment_help_3">Escolha a alternativa correta.</string>
-		
+    <string name="question">Questão</string>
+
 </resources>

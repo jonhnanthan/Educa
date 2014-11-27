@@ -1,14 +1,12 @@
 
 package com.educa.validation;
 
+import android.content.Context;
+import android.widget.EditText;
+import com.educa.R;
+
 import java.util.List;
 import java.util.regex.Pattern;
-
-import android.content.Context;
-import android.util.Log;
-import android.widget.EditText;
-
-import com.educa.R;
 
 public class FieldValidation {
     // Context

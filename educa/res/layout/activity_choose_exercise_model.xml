@@ -28,7 +28,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@android:color/transparent"
-                android:src="@drawable/selector_bt_match" />
+                android:src="@drawable/selector_bt_match"
+                android:contentDescription=""/>
 
             <TextView
                 android:id="@+id/textView1"
@@ -38,7 +39,6 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/match"
-                android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="normal" />
@@ -66,7 +66,6 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/complete"
-                android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="normal" />
@@ -101,7 +100,6 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/multiple_choice"
-                android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="normal" />
@@ -128,7 +126,6 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/complete"
-                android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="normal" />

@@ -65,5 +65,6 @@
 	<string name="fragment_help_1">Match colors to their names.</string>
 	<string name="fragment_help_2">Complete the word with the hidden letters.</string>
 	<string name="fragment_help_3">Choose the correct alternative.</string>
-	
+    <string name="question">Question</string>
+
 </resources>

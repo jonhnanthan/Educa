@@ -1,14 +1,12 @@
 package com.educa.junit;
 
-import junit.framework.Assert;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import com.educa.entity.Exercise;
 import com.educa.entity.MultipleChoiceExercise;
 import com.educa.validation.Correction;
 import com.educa.validation.Status;
+import junit.framework.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 public class MultipleChoiceExerciseTest {
 	
@@ -17,8 +15,8 @@ public class MultipleChoiceExerciseTest {
 
 	@Before 
     public void inicializa() {
-    	multipleChoiceExercise1 = new MultipleChoiceExercise("Exercício de Inglês", "Multiple Choice", "13/08/2014", Status.NEW.getValue(), Correction.NOT_RATED.getValue(), "Como se escrevre dois em inglês?", "One", "Two", "Five", "Six", "Two");
-    	multipleChoiceExercise2 = new MultipleChoiceExercise("Exercício de Português", "Multiple Choice", "13/08/2014", Status.NEW.getValue(), Correction.NOT_RATED.getValue(), "Qual o coletivo de cães?", "Alcatéia", "Matilha", "Enxame", "Cães", "Matilha");
+    	multipleChoiceExercise1 = new MultipleChoiceExercise("Exercï¿½cio de Inglï¿½s", "Multiple Choice", "13/08/2014", Status.NEW.getValue(), Correction.NOT_RATED.getValue(), "Como se escrevre dois em inglï¿½s?", "One", "Two", "Five", "Six", "Two");
+    	multipleChoiceExercise2 = new MultipleChoiceExercise("Exercï¿½cio de Portuguï¿½s", "Multiple Choice", "13/08/2014", Status.NEW.getValue(), Correction.NOT_RATED.getValue(), "Qual o coletivo de cï¿½es?", "Alcatï¿½ia", "Matilha", "Enxame", "Cï¿½es", "Matilha");
 	}
 	
 	@Test
@@ -29,13 +27,13 @@ public class MultipleChoiceExerciseTest {
 	
 	@Test
 	public void deveAlterarNomeDoExercicio() {
-		Assert.assertEquals("Exercício de Inglês", multipleChoiceExercise1.getName());
-		multipleChoiceExercise1.setName("Atividade de Inglês");
-		Assert.assertEquals("Atividade de Inglês", multipleChoiceExercise1.getName());
+		Assert.assertEquals("Exercï¿½cio de Inglï¿½s", multipleChoiceExercise1.getName());
+		multipleChoiceExercise1.setName("Atividade de Inglï¿½s");
+		Assert.assertEquals("Atividade de Inglï¿½s", multipleChoiceExercise1.getName());
 		
-		Assert.assertEquals("Exercício de Português", multipleChoiceExercise2.getName());
-		multipleChoiceExercise2.setName("Atividade de Português");
-		Assert.assertEquals("Atividade de Português", multipleChoiceExercise2.getName());
+		Assert.assertEquals("Exercï¿½cio de Portuguï¿½s", multipleChoiceExercise2.getName());
+		multipleChoiceExercise2.setName("Atividade de Portuguï¿½s");
+		Assert.assertEquals("Atividade de Portuguï¿½s", multipleChoiceExercise2.getName());
 	}
 
 	@Test
@@ -65,13 +63,13 @@ public class MultipleChoiceExerciseTest {
 	
 	@Test
 	public void deveAlterarNomeDaQuestao(){
-		Assert.assertEquals("Como se escrevre dois em inglês?", multipleChoiceExercise1.getQuestion());
-		multipleChoiceExercise1.setQuestion("Dois em inglês é:");
-		Assert.assertEquals("Dois em inglês é:", multipleChoiceExercise1.getQuestion());
+		Assert.assertEquals("Como se escrevre dois em inglï¿½s?", multipleChoiceExercise1.getQuestion());
+		multipleChoiceExercise1.setQuestion("Dois em inglï¿½s ï¿½:");
+		Assert.assertEquals("Dois em inglï¿½s ï¿½:", multipleChoiceExercise1.getQuestion());
 		
-		Assert.assertEquals("Qual o coletivo de cães?", multipleChoiceExercise2.getQuestion());
-		multipleChoiceExercise2.setQuestion("Matilha é o coletivo de:");
-		Assert.assertEquals("Matilha é o coletivo de:", multipleChoiceExercise2.getQuestion());
+		Assert.assertEquals("Qual o coletivo de cï¿½es?", multipleChoiceExercise2.getQuestion());
+		multipleChoiceExercise2.setQuestion("Matilha ï¿½ o coletivo de:");
+		Assert.assertEquals("Matilha ï¿½ o coletivo de:", multipleChoiceExercise2.getQuestion());
 	}
 	
 	@Test
@@ -91,20 +89,20 @@ public class MultipleChoiceExerciseTest {
 		Assert.assertEquals("Twelve", multipleChoiceExercise1.getAlternative3());
 		Assert.assertEquals("Two", multipleChoiceExercise1.getAlternative4());
 				
-		Assert.assertEquals("Alcatéia", multipleChoiceExercise2.getAlternative1());
+		Assert.assertEquals("Alcatï¿½ia", multipleChoiceExercise2.getAlternative1());
 		Assert.assertEquals("Matilha", multipleChoiceExercise2.getAlternative2());
 		Assert.assertEquals("Enxame", multipleChoiceExercise2.getAlternative3());
-		Assert.assertEquals("Cães", multipleChoiceExercise2.getAlternative4());
+		Assert.assertEquals("Cï¿½es", multipleChoiceExercise2.getAlternative4());
 		
-		multipleChoiceExercise2.setAlternative1("Cães");
+		multipleChoiceExercise2.setAlternative1("Cï¿½es");
 		multipleChoiceExercise2.setAlternative2("Rebanho");
 		multipleChoiceExercise2.setAlternative3("Manada");
-		multipleChoiceExercise2.setAlternative4("Alcatéia");
+		multipleChoiceExercise2.setAlternative4("Alcatï¿½ia");
 		
-		Assert.assertEquals("Cães", multipleChoiceExercise2.getAlternative1());
+		Assert.assertEquals("Cï¿½es", multipleChoiceExercise2.getAlternative1());
 		Assert.assertEquals("Rebanho", multipleChoiceExercise2.getAlternative2());
 		Assert.assertEquals("Manada", multipleChoiceExercise2.getAlternative3());
-		Assert.assertEquals("Alcatéia", multipleChoiceExercise2.getAlternative4());
+		Assert.assertEquals("Alcatï¿½ia", multipleChoiceExercise2.getAlternative4());
 	}
 	
 	@Test
@@ -114,7 +112,7 @@ public class MultipleChoiceExerciseTest {
 		Assert.assertEquals("It's two", multipleChoiceExercise1.getRightAnswer());
 		
 		Assert.assertEquals("Matilha", multipleChoiceExercise2.getRightAnswer());
-		multipleChoiceExercise2.setRightAnswer("Coletivo é Matilha");
-		Assert.assertEquals("Coletivo é Matilha", multipleChoiceExercise2.getRightAnswer());
+		multipleChoiceExercise2.setRightAnswer("Coletivo ï¿½ Matilha");
+		Assert.assertEquals("Coletivo ï¿½ Matilha", multipleChoiceExercise2.getRightAnswer());
 	}
 }

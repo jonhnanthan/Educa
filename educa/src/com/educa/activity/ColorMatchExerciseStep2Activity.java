@@ -11,7 +11,6 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-
 import com.educa.R;
 import com.educa.validation.FieldValidation;
 

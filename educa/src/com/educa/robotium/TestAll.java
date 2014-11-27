@@ -2,25 +2,8 @@ package com.educa.robotium;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.view.View;
-
 import com.educa.R;
-import com.educa.activity.AnswerCompleteExercise;
-import com.educa.activity.AnswerMultipleChoiceExercise;
-import com.educa.activity.ChooseMatchExerciseActivity;
-import com.educa.activity.ColorMatchExerciseStep1Activity;
-import com.educa.activity.ColorMatchExerciseStep2Activity;
-import com.educa.activity.ColorMatchExerciseStep3Activity;
-import com.educa.activity.ColorMatchExerciseStep4Activity;
-import com.educa.activity.CompleteExerciseStep1Activity;
-import com.educa.activity.CompleteExerciseStep2Activity;
-import com.educa.activity.CompleteExerciseStep3Activity;
-import com.educa.activity.EditMultipleChoiceExerciseActivity;
-import com.educa.activity.MainActivity;
-import com.educa.activity.MultipleChoiceExerciseStep1Activity;
-import com.educa.activity.MultipleChoiceExerciseStep2Activity;
-import com.educa.activity.MultipleChoiceExerciseStep3Activity;
-import com.educa.activity.StudentHomeActivity;
-import com.educa.activity.TeacherHomeActivity;
+import com.educa.activity.*;
 import com.robotium.solo.Solo;
 
 public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
@@ -59,7 +42,7 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 //		solo.waitForActivity(ColorMatchExerciseStep2Activity.class);
 //		solo.assertCurrentActivity("Expected ColorMatchExerciseStep2Activity", ColorMatchExerciseStep2Activity.class); 
 //
-//		solo.enterText(0, "Que cor é essa?");
+//		solo.enterText(0, "Que cor ï¿½ essa?");
 //		solo.enterText(1, "Preta");
 //		solo.enterText(2, "Cinza");
 //		solo.enterText(3, "Marrom");
@@ -79,7 +62,7 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 //		solo.waitForActivity(ColorMatchExerciseStep4Activity.class);
 //		solo.assertCurrentActivity("Expected ColorMatchExerciseStep4Activity", ColorMatchExerciseStep4Activity.class); 
 //
-//		solo.enterText(0, "Exercício de cores");
+//		solo.enterText(0, "Exercï¿½cio de cores");
 //		
 //		solo.clickOnImage(2);
 //		solo.waitForActivity(TeacherHomeActivity.class);
@@ -99,7 +82,7 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 		solo.waitForActivity(CompleteExerciseStep1Activity.class);
 		solo.assertCurrentActivity("Expected CompleteExerciseStep1Activity", CompleteExerciseStep1Activity.class); 
 
-		solo.enterText(0, "Lugar onde você mora");
+		solo.enterText(0, "Lugar onde vocï¿½ mora");
 		solo.enterText(1, "casa");
 		
 		solo.clickOnImage(2);
@@ -112,7 +95,7 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 		solo.waitForActivity(CompleteExerciseStep3Activity.class);
 		solo.assertCurrentActivity("Expected CompleteExerciseStep3Activity", CompleteExerciseStep3Activity.class); 
 
-		solo.enterText(0, "Exercício de completar");
+		solo.enterText(0, "Exercï¿½cio de completar");
 		
 		solo.clickOnImage(2);
 		solo.waitForActivity(TeacherHomeActivity.class);
@@ -130,7 +113,7 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 		solo.waitForActivity(MultipleChoiceExerciseStep1Activity.class);
 		solo.assertCurrentActivity("Expected MultipleChoiceExerciseStep1Activity", MultipleChoiceExerciseStep1Activity.class); 
 		
-		solo.enterText(0, "Qual o último mês do ano?");
+		solo.enterText(0, "Qual o ï¿½ltimo mï¿½s do ano?");
 		solo.enterText(1, "Janeiro");
 		solo.enterText(2, "Novembro");
 		solo.enterText(3, "Dezembro");
@@ -146,7 +129,7 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 		solo.waitForActivity(MultipleChoiceExerciseStep3Activity.class);
 		solo.assertCurrentActivity("Expected MultipleChoiceExerciseStep3Activity", MultipleChoiceExerciseStep3Activity.class); 
 	
-		solo.enterText(0, "Exercício dos meses");
+		solo.enterText(0, "Exercï¿½cio dos meses");
 		
 		solo.clickOnImage(2);
 		solo.waitForActivity(TeacherHomeActivity.class);
@@ -161,7 +144,7 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 		solo.clickOnText(getActivity().getApplicationContext().getString(R.string.student));
 		solo.assertCurrentActivity("Expected MainActivity", MainActivity.class); 
 		
-		solo.clickOnText("Exercício de completar");
+		solo.clickOnText("Exercï¿½cio de completar");
 
 		solo.waitForActivity(AnswerCompleteExercise.class);
 		solo.assertCurrentActivity("Expected AnswerCompleteExercise", AnswerCompleteExercise.class);
@@ -185,7 +168,7 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 		solo.clickOnText(getActivity().getApplicationContext().getString(R.string.student));
 		solo.assertCurrentActivity("Expected MainActivity", MainActivity.class); 
 		
-		solo.clickOnText("Exercício dos meses");
+		solo.clickOnText("Exercï¿½cio dos meses");
 		
 		solo.waitForActivity(AnswerMultipleChoiceExercise.class);
 		solo.assertCurrentActivity("Expected AnswerMultipleChoiceExercise", AnswerMultipleChoiceExercise.class);
@@ -217,10 +200,10 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 		solo.assertCurrentActivity("Expected EditMultipleChoiceExerciseActivity", EditMultipleChoiceExerciseActivity.class); 
 		
 		solo.enterText(0, "");
-		solo.enterText(0, "Qual o mês dos dias das crianças?");
+		solo.enterText(0, "Qual o mï¿½s dos dias das crianï¿½as?");
 		
 		solo.enterText(1, "");
-		solo.enterText(1, "Março");
+		solo.enterText(1, "Marï¿½o");
 		
 		solo.enterText(2, "");
 		solo.enterText(2, "Agosto");

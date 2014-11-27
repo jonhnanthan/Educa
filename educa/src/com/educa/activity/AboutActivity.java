@@ -3,7 +3,6 @@ package com.educa.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
-
 import com.educa.R;
 
 public class AboutActivity extends Activity {

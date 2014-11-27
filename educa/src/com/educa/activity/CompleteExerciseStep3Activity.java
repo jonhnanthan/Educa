@@ -11,7 +11,6 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
 import com.educa.R;
 import com.educa.entity.CompleteExercise;
 import com.educa.entity.Exercise;

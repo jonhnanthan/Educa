@@ -13,7 +13,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
         android:gravity="center_vertical|center_horizontal"
-        android:text="question"
+        android:text="@string/question"
         android:textColor="#FFFFFF"
         android:textSize="18sp" />
 
@@ -43,7 +43,6 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:inputType="none"
                 android:maxLength="1"
-                android:textAlignment="center"
                 android:textColor="#00777777"
                 android:textSize="35sp" />
 
@@ -54,7 +53,6 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="-75dp"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="A"
                 android:textColor="#777777"
                 android:textSize="30sp" />
         </LinearLayout>
@@ -78,7 +76,6 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:inputType="none"
                 android:maxLength="1"
-                android:textAlignment="center"
                 android:textColor="#00777777"
                 android:textSize="35sp" />
 
@@ -89,7 +86,6 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="-75dp"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="B"
                 android:textColor="#777777"
                 android:textSize="30sp" />
         </LinearLayout>
@@ -113,7 +109,6 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:inputType="none"
                 android:maxLength="1"
-                android:textAlignment="center"
                 android:textColor="#00777777"
                 android:textSize="35sp" />
 
@@ -124,7 +119,6 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="-75dp"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="C"
                 android:textColor="#777777"
                 android:textSize="30sp" />
         </LinearLayout>
@@ -157,7 +151,6 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:inputType="none"
                 android:maxLength="1"
-                android:textAlignment="center"
                 android:textColor="#00777777"
                 android:textSize="35sp" />
 
@@ -168,7 +161,6 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="-75dp"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="D"
                 android:textColor="#777777"
                 android:textSize="30sp" />
         </LinearLayout>
@@ -192,7 +184,6 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:inputType="none"
                 android:maxLength="1"
-                android:textAlignment="center"
                 android:textColor="#00777777"
                 android:textSize="35sp" />
 
@@ -203,7 +194,6 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="-75dp"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="E"
                 android:textColor="#777777"
                 android:textSize="30sp" />
         </LinearLayout>
@@ -227,7 +217,6 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:inputType="none"
                 android:maxLength="1"
-                android:textAlignment="center"
                 android:textColor="#00777777"
                 android:textSize="35sp" />
 
@@ -238,7 +227,6 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="-75dp"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="F"
                 android:textColor="#777777"
                 android:textSize="30sp" />
         </LinearLayout>
@@ -270,7 +258,6 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:inputType="none"
                 android:maxLength="1"
-                android:textAlignment="center"
                 android:textColor="#00777777"
                 android:textSize="35sp" />
 
@@ -281,7 +268,6 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="-75dp"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="G"
                 android:textColor="#777777"
                 android:textSize="30sp" />
         </LinearLayout>
@@ -305,7 +291,6 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:inputType="none"
                 android:maxLength="1"
-                android:textAlignment="center"
                 android:textColor="#00777777"
                 android:textSize="35sp" />
 
@@ -316,7 +301,6 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="-75dp"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="H"
                 android:textColor="#777777"
                 android:textSize="30sp" />
         </LinearLayout>
@@ -340,7 +324,6 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:inputType="none"
                 android:maxLength="1"
-                android:textAlignment="center"
                 android:textColor="#00777777"
                 android:textSize="35sp" />
 
@@ -351,7 +334,6 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="-75dp"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="I"
                 android:textColor="#777777"
                 android:textSize="30sp" />
         </LinearLayout>

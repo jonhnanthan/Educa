@@ -28,8 +28,7 @@
         android:text="@string/student"
         android:textColor="#FFFFFF"
         android:textStyle="normal"
-        android:textSize="16sp"
-        android:textAlignment="center" />
+        android:textSize="16sp"/>
 
     <ImageButton
         android:id="@+id/bt_teacher"
@@ -49,6 +48,5 @@
         android:text="@string/teacher"
         android:textColor="#FFFFFF"
         android:textStyle="normal"
-        android:textSize="16sp"
-        android:textAlignment="center" />
+        android:textSize="16sp"/>
 </LinearLayout>

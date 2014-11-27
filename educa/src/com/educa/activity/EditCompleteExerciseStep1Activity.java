@@ -1,7 +1,5 @@
 package com.educa.activity;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +9,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
-
 import com.educa.R;
 import com.educa.validation.FieldValidation;
+
+import java.util.ArrayList;
 
 public class EditCompleteExerciseStep1Activity extends Activity {
 	private EditText question;

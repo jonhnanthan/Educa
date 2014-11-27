@@ -1,14 +1,12 @@
 package com.educa.junit;
 
-import junit.framework.Assert;
-
-import org.junit.Before;
-import org.junit.Test;
-
 import com.educa.entity.CompleteExercise;
 import com.educa.entity.Exercise;
 import com.educa.validation.Correction;
 import com.educa.validation.Status;
+import junit.framework.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 public class CompleteExerciseTest {
 	
@@ -17,8 +15,8 @@ public class CompleteExerciseTest {
 
 	@Before 
     public void inicializa() {
-		completeExercise1 = new CompleteExercise("Completar palavra", "Complete", "15/08/2014", Status.NEW.getValue(), Correction.NOT_RATED.getValue(), "Complete com as letras que estão faltando", "CASA", "2");
-		completeExercise2 = new CompleteExercise("Exercício de completar palavra", "Complete", "15/08/2014", Status.NEW.getValue(), Correction.NOT_RATED.getValue(), "Quais letras estão faltando?", "CARROÇA", "25");
+		completeExercise1 = new CompleteExercise("Completar palavra", "Complete", "15/08/2014", Status.NEW.getValue(), Correction.NOT_RATED.getValue(), "Complete com as letras que estï¿½o faltando", "CASA", "2");
+		completeExercise2 = new CompleteExercise("Exercï¿½cio de completar palavra", "Complete", "15/08/2014", Status.NEW.getValue(), Correction.NOT_RATED.getValue(), "Quais letras estï¿½o faltando?", "CARROï¿½A", "25");
 	}
 	
 	@Test
@@ -33,7 +31,7 @@ public class CompleteExerciseTest {
 		completeExercise1.setName("Atividade de completar palavra");
 		Assert.assertEquals("Atividade de completar palavra", completeExercise1.getName());
 		
-		Assert.assertEquals("Exercício de completar palavra", completeExercise2.getName());
+		Assert.assertEquals("Exercï¿½cio de completar palavra", completeExercise2.getName());
 		completeExercise2.setName("Atividade de completar");
 		Assert.assertEquals("Atividade de completar", completeExercise2.getName());
 	}
@@ -64,13 +62,13 @@ public class CompleteExerciseTest {
 	
 	@Test
 	public void deveAlterarNomeDaQuestao(){
-		Assert.assertEquals("Complete com as letras que estão faltando", completeExercise1.getQuestion());
-		completeExercise1.setQuestion("As letras que faltam é:");
-		Assert.assertEquals("As letras que faltam é:", completeExercise1.getQuestion());
+		Assert.assertEquals("Complete com as letras que estï¿½o faltando", completeExercise1.getQuestion());
+		completeExercise1.setQuestion("As letras que faltam ï¿½:");
+		Assert.assertEquals("As letras que faltam ï¿½:", completeExercise1.getQuestion());
 		
-		Assert.assertEquals("Quais letras estão faltando?", completeExercise2.getQuestion());
-		completeExercise2.setQuestion("As letras que faltam é:");
-		Assert.assertEquals("As letras que faltam é:", completeExercise2.getQuestion());
+		Assert.assertEquals("Quais letras estï¿½o faltando?", completeExercise2.getQuestion());
+		completeExercise2.setQuestion("As letras que faltam ï¿½:");
+		Assert.assertEquals("As letras que faltam ï¿½:", completeExercise2.getQuestion());
 	}
 	
 	@Test
@@ -79,7 +77,7 @@ public class CompleteExerciseTest {
 		Assert.assertTrue(completeExercise1.getWord().contains(letraOculta1));
 		
 		String letraOculta2 = "R";
-		String letraOculta3 = "Ç";
+		String letraOculta3 = "ï¿½";
 		Assert.assertTrue(completeExercise2.getWord().contains(letraOculta2));
 		Assert.assertTrue(completeExercise2.getWord().contains(letraOculta3));
 	}
