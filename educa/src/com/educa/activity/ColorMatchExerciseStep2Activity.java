@@ -44,6 +44,8 @@ public class ColorMatchExerciseStep2Activity extends Activity {
         Intent i = getIntent();
         colorData = i.getCharSequenceArrayListExtra("ColorData");
         colorCode = colorData.get(0).toString();
+        
+        
         layout_color.setBackgroundColor(Integer.parseInt(colorCode));
 
         bt_ok.setOnClickListener(new OnClickListener() {
