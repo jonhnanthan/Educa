@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import com.educa.R;
+import com.educa.database.DataBaseProfessor;
 import com.educa.entity.Exercise;
 import com.educa.entity.MultipleChoiceExercise;
 import com.educa.persistence.DataBaseStorage;
@@ -54,16 +55,15 @@ public class MultipleChoiceExerciseStep3Activity extends Activity {
                     String name = et_name.getText().toString();
                     Date currentDate = new Date();
                     String fDate = new SimpleDateFormat("dd-MM-yyyy").format(currentDate);
-                    MultipleChoiceExercise exercise = new MultipleChoiceExercise(name,
-                            DataBaseStorage.getMultipleChoiceExerciseTypecode(), fDate,
-                            String.valueOf(Status.NEW), String.valueOf(Correction.NOT_RATED),
-                            question, alternative1, alternative2,
-                            alternative3, alternative4, rightAnswer);
+                    
+                    MultipleChoiceExercise exercise = new MultipleChoiceExercise(name, DataBaseStorage.getMultipleChoiceExerciseTypecode(), fDate, String.valueOf(Status.NEW), String.valueOf(Correction.NOT_RATED), question, alternative1, alternative2, alternative3, alternative4, rightAnswer);
                     // exercise.getStatus().setStatus(getApplicationContext().getResources().getString(R.string.status_new));
                     // exercise.getCorrection().setCorrection(getApplicationContext().getResources().getString(R.string.correction_not_rated));
 
                     if (exerciseNameAlreadyExists(exercise)) {
                         MainActivity.teacherDataBaseHelper.addExercise(exercise);
+                    	
+//                    	DataBaseProfessor.getInstance(MultipleChoiceExerciseStep3Activity.this).addActivity(name, DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE, exercise.getJsonTextObject());
 
                         // ExerciseStorage.getListExercise().add(exercise);
                         Intent intent = new Intent(MultipleChoiceExerciseStep3Activity.this,

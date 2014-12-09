@@ -12,8 +12,7 @@ public class Exercise {
     private String status;
     private String correction;
 
-    public Exercise(Integer id, String name, String question, String type, String date,
-            String status, String correction) {
+    public Exercise(Integer id, String name, String question, String type, String date, String status, String correction) {
         this.id = id;
         this.name = name;
         this.question = question;

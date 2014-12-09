@@ -1,18 +1,19 @@
 
 package com.educa.activity;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+
 import com.educa.R;
 import com.educa.adapter.ExerciseTeacherAdapter;
 import com.educa.entity.Exercise;
 import com.educa.persistence.DataBaseStorage;
-
-import java.util.List;
 
 public class TeacherHomeActivity extends Activity {
     private ListView listView;
@@ -25,11 +26,12 @@ public class TeacherHomeActivity extends Activity {
         MainActivity.teacherDataBaseHelper = new DataBaseStorage(getApplicationContext());
         listView = (ListView) findViewById(R.id.lv_exercise);
 
-        //List<Exercise> exercises = ExerciseStorage.getListExercise();
+//        ArrayList<String> exercises1 = DataBaseProfessor.getInstance(TeacherHomeActivity.this).getActivities();
+//        System.out.println(exercises1.size());
         List<Exercise> exercises = MainActivity.teacherDataBaseHelper.getExercises();
 
-        adapter = new ExerciseTeacherAdapter(getApplicationContext(), exercises,
-                MainActivity.teacherDataBaseHelper, TeacherHomeActivity.this);
+        adapter = new ExerciseTeacherAdapter(getApplicationContext(), exercises, MainActivity.teacherDataBaseHelper, TeacherHomeActivity.this);
+//        adapter = new ExerciseTeacherAdapterJSON(getApplicationContext(), exercises1, TeacherHomeActivity.this);
         listView.setAdapter(adapter);
     }
 

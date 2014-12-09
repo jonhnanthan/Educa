@@ -1,6 +1,9 @@
 
 package com.educa.entity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class MultipleChoiceExercise extends Exercise {
     private String alternative1;
@@ -8,6 +11,7 @@ public class MultipleChoiceExercise extends Exercise {
     private String alternative3;
     private String alternative4;
     private String rightAnswer;
+    private JSONObject activityData = new JSONObject();
 
     public MultipleChoiceExercise(String name, String type, String date, String status,
             String correction, String question, String alternative1, String alternative2,
@@ -18,7 +22,30 @@ public class MultipleChoiceExercise extends Exercise {
         this.alternative3 = alternative3;
         this.alternative4 = alternative4;
         this.rightAnswer = rightAnswer;
+        
+        try {
+			activityData.put("name", name);
+			activityData.put("type", type);
+			activityData.put("date", date);
+			activityData.put("status", status);
+			activityData.put("correction", correction);
+			activityData.put("question", question);
+			activityData.put("alternative1", alternative1);
+			activityData.put("alternative2", alternative2);
+			activityData.put("alternative3", alternative3);
+			activityData.put("alternative4", alternative4);
+			activityData.put("answer", rightAnswer);
+			
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
     }
+
+	public String getJsonTextObject() {
+		return activityData.toString();
+	}
+
 
     public String getAlternative1() {
         return alternative1;
