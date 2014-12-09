@@ -105,7 +105,7 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     public ArrayList<String> getActivities(String type){
     	ArrayList<String> activities = new ArrayList<String>();
     	
-    	String sql = "select * from " + TABLE_ATIVIDADES_PROFESSOR + " where '" + COLUNA_PROFESSOR_TIPO_ATIVIDADE + "' = " + type;
+    	String sql = "select * from " + TABLE_ATIVIDADES_PROFESSOR + " where " + COLUNA_PROFESSOR_TIPO_ATIVIDADE + " = '" + type + "'";
     	
     	final SQLiteDatabase db = getWritableDatabase();
     	final Cursor c = db.rawQuery(sql, null);
@@ -123,12 +123,12 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     	return activities;
     }
 
-    public void removeActivity(String jsonActivity){
+    public void removeActivity(String name){
     	
     	final SQLiteDatabase db = getWritableDatabase();
     	
-    	String whereClause = COLUNA_PROFESSOR_ATIVIDADE_JSON + " = '" + jsonActivity + "'";
-    	
+    	String whereClause = COLUNA_PROFESSOR_NOME + " = '" + name + "'";
+
     	db.delete(TABLE_ATIVIDADES_PROFESSOR, whereClause, null);
     	
     	db.close();

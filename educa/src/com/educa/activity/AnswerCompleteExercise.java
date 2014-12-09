@@ -1,6 +1,11 @@
 
 package com.educa.activity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,16 +17,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.*;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.educa.R;
 import com.educa.adapter.ExerciseStudentAdapter;
+import com.educa.database.DataBaseProfessor;
 import com.educa.entity.CompleteExercise;
-import com.educa.entity.Exercise;
 import com.educa.validation.Correction;
 import com.educa.validation.Status;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class AnswerCompleteExercise extends Activity {
     private TextView question;
@@ -46,12 +53,12 @@ public class AnswerCompleteExercise extends Activity {
         listExercise = i.getCharSequenceArrayListExtra("QuestionToAnswerComplete");
 
         question = (TextView) findViewById(R.id.question);
-        question.setText(listExercise.get(1));
+        question.setText(listExercise.get(2));
 
         hiddenIndexes = listExercise.get(3).toString().split("");
 
         indexesToHide = listExercise.get(3).toString();
-        completeWord = listExercise.get(2).toString().replace(" ", "");
+        completeWord = listExercise.get(1).toString().replace(" ", "");
         letters = completeWord.split("");
 
         letterLayouts.add((LinearLayout) findViewById(R.id.layout_letter1));
@@ -95,8 +102,7 @@ public class AnswerCompleteExercise extends Activity {
             letterBoxes.get(Integer.parseInt(hiddenIndexes[j])).setInputType(
                     InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
             letterBoxes.get(Integer.parseInt(hiddenIndexes[j])).setTextColor(Color.WHITE);
-            letterBoxes.get(Integer.parseInt(hiddenIndexes[j])).setBackgroundDrawable(
-                    getResources().getDrawable(R.drawable.bt_letter_selected));
+            letterBoxes.get(Integer.parseInt(hiddenIndexes[j])).setBackgroundDrawable(getResources().getDrawable(R.drawable.bt_letter_selected));
 
         }
 
@@ -114,27 +120,44 @@ public class AnswerCompleteExercise extends Activity {
             @Override
             public void onClick(View v) {
                 if (isCompleted()) {
-//                    List<Exercise> exercises = MainActivity.teacherDataBaseHelper
-//                            .getExercises();
-//
-//                    for (Exercise exerciseOnStorage : exercises) {
-//                        if (exerciseOnStorage instanceof CompleteExercise
-//                                && exerciseOnStorage.getName().equals(listExercise.get(0))) {
-//                            exerciseOnStorage.setStatus(String.valueOf(Status.ANSWERED));
-//                            if (isRight()) {
-//                                exerciseOnStorage.setCorrection(String.valueOf(Correction.RIGHT));
-//                                MainActivity.teacherDataBaseHelper.editExercise(exerciseOnStorage);
-//
-//                                congratulationsAlert();
-//
-//                            } else {
-//                                exerciseOnStorage.setCorrection(String.valueOf(Correction.WRONG));
-//                                MainActivity.teacherDataBaseHelper.editExercise(exerciseOnStorage);
-//
-//                                tryAgainAlert();
-//                            }
-//                        }
-//                    }
+                    String type = DataBaseProfessor.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE;
+                    ArrayList<String> exercisesComplete = DataBaseProfessor.getInstance(getApplicationContext()).getActivities(type);
+                    
+                    for (String string : exercisesComplete) {
+                    	JSONObject exerciseJson;
+                    	CompleteExercise c;
+                    	try {
+                    		exerciseJson = new JSONObject(string);
+                    		if (exerciseJson.getString("name").equals(listExercise.get(0))){
+                    			DataBaseProfessor.getInstance(getApplicationContext()).removeActivity(exerciseJson.getString("name"));
+                    			c = new CompleteExercise(
+                    					exerciseJson.getString("name"),
+                    					exerciseJson.getString("type"),
+                    					exerciseJson.getString("date"),
+                    					exerciseJson.getString("status"),
+                    					exerciseJson.getString("correction"),
+                    					exerciseJson.getString("question"),
+                    					exerciseJson.getString("word"),
+                    					exerciseJson.getString("hiddenIndexes"));
+                    			
+                    			c.setStatus(String.valueOf(Status.ANSWERED));
+                    			
+                    			if (isRight()){
+                    				c.setCorrection(String.valueOf(Correction.RIGHT));
+                    				DataBaseProfessor.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
+                    				congratulationsAlert();
+                    			} else{
+                    				c.setCorrection(String.valueOf(Correction.WRONG));
+                    				DataBaseProfessor.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
+                    				tryAgainAlert();
+                    			}
+                    		}
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+
+                    }
                 } else {
                     Toast.makeText(
                             getApplicationContext(),
@@ -202,18 +225,16 @@ public class AnswerCompleteExercise extends Activity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-//                        try {
-//                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(
-//                                    getApplicationContext(), MainActivity.teacherDataBaseHelper
-//                                            .getExercises(), AnswerCompleteExercise.this));
-//                            StudentHomeActivity.getAdapter().notifyDataSetChanged();
-//
-//                            Intent intent = new Intent(AnswerCompleteExercise.this,
-//                                    StudentHomeActivity.class);
-//                            startActivity(intent);
-//                        } catch (Throwable e) {
-//                            e.printStackTrace();
-//                        }
+                        try {
+                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseProfessor.getInstance(getApplicationContext()).getActivities(), AnswerCompleteExercise.this));
+                            StudentHomeActivity.getAdapter().notifyDataSetChanged();
+
+                            Intent intent = new Intent(AnswerCompleteExercise.this,
+                                    StudentHomeActivity.class);
+                            startActivity(intent);
+                        } catch (Throwable e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
 
@@ -244,18 +265,16 @@ public class AnswerCompleteExercise extends Activity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-//                        try {
-//                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(
-//                                    getApplicationContext(), MainActivity.teacherDataBaseHelper
-//                                            .getExercises(), AnswerCompleteExercise.this));
-//                            StudentHomeActivity.getAdapter().notifyDataSetChanged();
-//
-//                            Intent intent = new Intent(AnswerCompleteExercise.this,
-//                                    StudentHomeActivity.class);
-//                            startActivity(intent);
-//                        } catch (Throwable e) {
-//                            e.printStackTrace();
-//                        }
+                        try {
+                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseProfessor.getInstance(getApplicationContext()).getActivities(), AnswerCompleteExercise.this));
+                            StudentHomeActivity.getAdapter().notifyDataSetChanged();
+
+                            Intent intent = new Intent(AnswerCompleteExercise.this,
+                                    StudentHomeActivity.class);
+                            startActivity(intent);
+                        } catch (Throwable e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
 

@@ -182,8 +182,14 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
     }
 
     public void removeAndNotify(final String json) {
+    	JSONObject exercise;
+		try {
+			exercise = new JSONObject(json);
+			DataBaseProfessor.getInstance(mcontext).removeActivity(exercise.getString("name"));
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
         mListExercise.remove(json);
-        DataBaseProfessor.getInstance(mcontext).removeActivity(json);
         notifyDataSetChanged();
         
     }

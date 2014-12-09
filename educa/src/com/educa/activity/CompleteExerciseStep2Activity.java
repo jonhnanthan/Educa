@@ -20,7 +20,7 @@ public class CompleteExerciseStep2Activity extends Activity {
     private ArrayList<CharSequence> exerciseData;
     private final ArrayList<CheckBox> letterCheckBoxes = new ArrayList<CheckBox>();
 
-    private String question, word;
+    private String word;
     private String[] letters;
     private ImageButton bt_previous_step;
     private ImageButton bt_confirm;
@@ -31,7 +31,6 @@ public class CompleteExerciseStep2Activity extends Activity {
         setContentView(R.layout.activity_complete_exercise_step2);
         Intent intent = getIntent();
         exerciseData = intent.getCharSequenceArrayListExtra("ExerciseData");
-        question = exerciseData.get(0).toString();
         word = exerciseData.get(1).toString().replace(" ", "");
         letters = word.split("");
 

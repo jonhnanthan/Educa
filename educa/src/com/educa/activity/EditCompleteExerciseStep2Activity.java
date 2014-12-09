@@ -195,7 +195,7 @@ public class EditCompleteExerciseStep2Activity extends Activity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                    	DataBaseProfessor.getInstance(getApplicationContext()).removeActivity(exerciseOnStorage.getJsonTextObject());
+                    	DataBaseProfessor.getInstance(getApplicationContext()).removeActivity(exerciseOnStorage.getName());
  
                         completeExercise.setQuestion(question);
                         completeExercise.setStatus(String.valueOf(Status.NEW));

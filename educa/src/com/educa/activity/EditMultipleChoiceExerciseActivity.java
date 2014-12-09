@@ -196,7 +196,7 @@ public class EditMultipleChoiceExerciseActivity extends Activity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                    	DataBaseProfessor.getInstance(getApplicationContext()).removeActivity(exerciseOnStorage.getJsonTextObject());
+                    	DataBaseProfessor.getInstance(getApplicationContext()).removeActivity(exerciseOnStorage.getName());
 
                         multipleChoiseExercise.setQuestion(question.getText().toString());
                         multipleChoiseExercise.setAlternative1(answer1.getText().toString());

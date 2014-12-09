@@ -1,6 +1,10 @@
 
 package com.educa.activity;
 
+import java.util.ArrayList;
+
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -10,16 +14,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.*;
+import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.educa.R;
 import com.educa.adapter.ExerciseStudentAdapter;
-import com.educa.entity.Exercise;
+import com.educa.database.DataBaseProfessor;
 import com.educa.entity.MultipleChoiceExercise;
 import com.educa.validation.Correction;
 import com.educa.validation.Status;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class AnswerMultipleChoiceExercise extends Activity {
     private TextView name;
@@ -71,26 +77,47 @@ public class AnswerMultipleChoiceExercise extends Activity {
                     int radioId = radioGroup.indexOfChild(radioButton);
                     RadioButton btn = (RadioButton) radioGroup.getChildAt(radioId);
                     String rightAnswer = (String) btn.getText();
-
-//                    List<Exercise> exercises = MainActivity.teacherDataBaseHelper.getExercises();
-//                    for (Exercise exerciseOnStorage : exercises) {
-//                        if (exerciseOnStorage instanceof MultipleChoiceExercise
-//                                && exerciseOnStorage.getName().equals(exercise.get(0))) {
-//                            exerciseOnStorage.setStatus(String.valueOf(Status.ANSWERED));
-//                            if (((MultipleChoiceExercise) exerciseOnStorage).getRightAnswer()
-//                                    .equals(rightAnswer)) {
-//                                exerciseOnStorage.setCorrection(String.valueOf(Correction.RIGHT));
-//                                MainActivity.teacherDataBaseHelper.editExercise(exerciseOnStorage);
-//
-//                                congratulationsAlert();
-//                            } else {
-//                                exerciseOnStorage.setCorrection(String.valueOf(Correction.WRONG));
-//                                MainActivity.teacherDataBaseHelper.editExercise(exerciseOnStorage);
-//
-//                                tryAgainAlert();
-//                            }
-//                        }
-//                    }
+                    
+                    String type = DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE;
+                    ArrayList<String> exercisesColor = DataBaseProfessor.getInstance(getApplicationContext()).getActivities(type);
+                    
+                    for (String string : exercisesColor) {
+                    	JSONObject exerciseJson;
+                    	MultipleChoiceExercise c;
+                    	try {
+                    		exerciseJson = new JSONObject(string);
+                    		if (exerciseJson.getString("name").equals(exercise.get(0))){
+                    			DataBaseProfessor.getInstance(getApplicationContext()).removeActivity(exerciseJson.getString("name"));
+                    			c = new MultipleChoiceExercise(
+                    					exerciseJson.getString("name"),
+                    					exerciseJson.getString("type"),
+                    					exerciseJson.getString("date"),
+                    					exerciseJson.getString("status"),
+                    					exerciseJson.getString("correction"),
+                    					exerciseJson.getString("question"),
+                    					exerciseJson.getString("alternative1"),
+                    					exerciseJson.getString("alternative2"),
+                    					exerciseJson.getString("alternative3"),
+                    					exerciseJson.getString("alternative4"),
+                    					exerciseJson.getString("answer"));
+                    			
+                    			c.setStatus(String.valueOf(Status.ANSWERED));
+                    			
+                    			if (c.getRightAnswer().equals(rightAnswer)){
+                    				c.setCorrection(String.valueOf(Correction.RIGHT));
+                    				DataBaseProfessor.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
+                    				congratulationsAlert();
+                    			} else{
+                    				c.setCorrection(String.valueOf(Correction.WRONG));
+                    				DataBaseProfessor.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
+                    				tryAgainAlert();
+                    			}
+                    		}
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
                 } else {
                     Toast.makeText(
                             getApplicationContext(),
@@ -142,18 +169,16 @@ public class AnswerMultipleChoiceExercise extends Activity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-//                        try {
-//                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(
-//                                    getApplicationContext(), MainActivity.teacherDataBaseHelper
-//                                            .getExercises(), AnswerMultipleChoiceExercise.this));
-//                            StudentHomeActivity.getAdapter().notifyDataSetChanged();
-//
-//                            Intent intent = new Intent(AnswerMultipleChoiceExercise.this,
-//                                    StudentHomeActivity.class);
-//                            startActivity(intent);
-//                        } catch (Throwable e) {
-//                            e.printStackTrace();
-//                        }
+                        try {
+                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseProfessor.getInstance(getApplicationContext()).getActivities(), AnswerMultipleChoiceExercise.this));
+                            StudentHomeActivity.getAdapter().notifyDataSetChanged();
+
+                            Intent intent = new Intent(AnswerMultipleChoiceExercise.this,
+                                    StudentHomeActivity.class);
+                            startActivity(intent);
+                        } catch (Throwable e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
 
@@ -184,18 +209,16 @@ public class AnswerMultipleChoiceExercise extends Activity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-//                        try {
-//                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(
-//                                    getApplicationContext(), MainActivity.teacherDataBaseHelper
-//                                            .getExercises(), AnswerMultipleChoiceExercise.this));
-//                            StudentHomeActivity.getAdapter().notifyDataSetChanged();
-//
-//                            Intent intent = new Intent(AnswerMultipleChoiceExercise.this,
-//                                    StudentHomeActivity.class);
-//                            startActivity(intent);
-//                        } catch (Throwable e) {
-//                            e.printStackTrace();
-//                        }
+                        try {
+                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseProfessor.getInstance(getApplicationContext()).getActivities(), AnswerMultipleChoiceExercise.this));
+                            StudentHomeActivity.getAdapter().notifyDataSetChanged();
+
+                            Intent intent = new Intent(AnswerMultipleChoiceExercise.this,
+                                    StudentHomeActivity.class);
+                            startActivity(intent);
+                        } catch (Throwable e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
         AlertDialog alert = builder.create();
