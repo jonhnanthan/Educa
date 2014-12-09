@@ -127,6 +127,7 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
 									listMultipleChoiceExercise.add(exercise.getString("alternative3"));
 									listMultipleChoiceExercise.add(exercise.getString("alternative4"));
 									listMultipleChoiceExercise.add(exercise.getString("answer"));
+									listMultipleChoiceExercise.add(exercise.getString("date"));
 
 									intent.putCharSequenceArrayListExtra("EditMultipleChoiseExercise", listMultipleChoiceExercise);
 									parentActivity.startActivity(intent);
@@ -134,14 +135,15 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
 								if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).COMPLETE_EXERCISE_TYPECODE)) {
 									Intent intent = new Intent(parentActivity, EditCompleteExerciseStep1Activity.class);
 
-									ArrayList<CharSequence> listColorMatchExercise = new ArrayList<CharSequence>();
+									ArrayList<CharSequence> listCmpleteExercise = new ArrayList<CharSequence>();
 
-									listColorMatchExercise.add(exercise.getString("name"));
-									listColorMatchExercise.add(exercise.getString("word"));
-									listColorMatchExercise.add(exercise.getString("question"));
-									listColorMatchExercise.add(exercise.getString("hiddenIndexes"));
+									listCmpleteExercise.add(exercise.getString("name"));
+									listCmpleteExercise.add(exercise.getString("word"));
+									listCmpleteExercise.add(exercise.getString("question"));
+									listCmpleteExercise.add(exercise.getString("hiddenIndexes"));
+									listCmpleteExercise.add(exercise.getString("date"));
 
-									intent.putCharSequenceArrayListExtra("EditCompleteExercise", listColorMatchExercise);
+									intent.putCharSequenceArrayListExtra("EditCompleteExercise", listCmpleteExercise);
 									parentActivity.startActivity(intent);
 								}
 		                        if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).COLOR_MATCH_EXERCISE_TYPECODE)) {
@@ -157,9 +159,9 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
 	                            listColorMatchExercise.add(exercise.getString("alternative3"));
 	                            listColorMatchExercise.add(exercise.getString("alternative4"));
 	                            listColorMatchExercise.add(exercise.getString("answer"));
+	                            listColorMatchExercise.add(exercise.getString("date"));
 	
-	                            intent.putCharSequenceArrayListExtra("EditColorMatchExercise",
-	                                    listColorMatchExercise);
+	                            intent.putCharSequenceArrayListExtra("EditColorMatchExercise", listColorMatchExercise);
 	                            parentActivity.startActivity(intent);
 	                        }
 

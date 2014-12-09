@@ -110,10 +110,8 @@ public class EditColorMatchExerciseActivity extends Activity {
 
                         String rightAnswer = (String) btn.getText();
                         String name = exercise.get(0).toString();
-                        String type = DataBaseStorage.getColorMatchExerciseTypecode();
-                        Date currentDate = new Date();
-                        String fDate = new SimpleDateFormat("dd-MM-yyyy").format(currentDate);
-                        String date = fDate;
+                        String type = DataBaseProfessor.getInstance(getApplicationContext()).COLOR_MATCH_EXERCISE_TYPECODE;
+                        String date = exercise.get(8).toString();
                         String status = String.valueOf(Status.NEW);
                         String correction = String.valueOf(Correction.NOT_RATED);
                         String question = exercise.get(2).toString();

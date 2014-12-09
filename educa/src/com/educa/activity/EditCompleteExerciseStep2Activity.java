@@ -12,8 +12,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 import com.educa.R;
+import com.educa.database.DataBaseProfessor;
 import com.educa.entity.CompleteExercise;
 import com.educa.entity.Exercise;
+import com.educa.entity.MultipleChoiceExercise;
 import com.educa.persistence.DataBaseStorage;
 import com.educa.validation.Correction;
 import com.educa.validation.Status;
@@ -23,13 +25,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class EditCompleteExerciseStep2Activity extends Activity {
     private final List<LinearLayout> letterLayouts = new ArrayList<LinearLayout>();
     private final List<TextView> letterTextViews = new ArrayList<TextView>();
     private ArrayList<CharSequence> exerciseData;
     private final ArrayList<CheckBox> letterCheckBoxes = new ArrayList<CheckBox>();
 
-    private String name, question, word;
+    private String name, question, word, hiddenIndexesOld;
     private String[] letters;
     private ImageButton bt_previous_step;
     private ImageButton bt_save;
@@ -45,6 +50,7 @@ public class EditCompleteExerciseStep2Activity extends Activity {
         question = exerciseData.get(2).toString();
         word = exerciseData.get(1).toString().replace(" ", "");
         letters = word.split("");
+        hiddenIndexesOld = exerciseData.get(3).toString();
 
         letterLayouts.add((LinearLayout) findViewById(R.id.layout_letter1));
         letterLayouts.add((LinearLayout) findViewById(R.id.layout_letter2));
@@ -103,25 +109,35 @@ public class EditCompleteExerciseStep2Activity extends Activity {
                 }
                
                 if (isHidden(letterCheckBoxes)) {
-                    Date currentDate = new Date();
-                    String fDate = new SimpleDateFormat("dd-MM-yyyy").format(currentDate);
                        
-                    CompleteExercise completeExercise = new CompleteExercise(name, DataBaseStorage.getCompleteExerciseTypecode(), fDate, String
-                            .valueOf(Status.NEW), String.valueOf(Correction.NOT_RATED), question, word, hiddenIndexes);
- 
-                    List<Exercise> exercises = MainActivity.teacherDataBaseHelper
-                            .getExercises();
-                    for (Exercise exerciseOnStorage : exercises) {
-                        if (exerciseOnStorage.equals(completeExercise)) {
-                            CompleteExercise newExercise = (CompleteExercise) exerciseOnStorage;
+                    CompleteExercise completeExercise = new CompleteExercise(name, DataBaseProfessor.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE, exerciseData.get(4).toString(), String.valueOf(Status.NEW), String.valueOf(Correction.NOT_RATED), question, word, hiddenIndexesOld);
+                    System.out.println(completeExercise.getJsonTextObject());
+                    ArrayList<String> exercises = DataBaseProfessor.getInstance(getApplicationContext()).getActivities();
+                    for (String string : exercises) {
+						if (string.equals(completeExercise.getJsonTextObject())){
+							CompleteExercise newExercise = null;
+							JSONObject json;
+							try {
+								json = new JSONObject(string);
+								newExercise = new CompleteExercise(
+										json.getString("name"),
+										json.getString("type"),
+										json.getString("date"),
+										json.getString("status"),
+										json.getString("correction"),
+										json.getString("question"),
+										json.getString("word"),
+										json.getString("hiddenIndexes"));
+							} catch (JSONException e) {
+								e.printStackTrace();
+							}
+
                             editAlert(newExercise, completeExercise, hiddenIndexes);
-                        }
+						}
                     }
-                       
+ 
                 } else {
-                    Toast.makeText(getApplicationContext(),
-                            getResources().getString(R.string.need_to_choose_letter),
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.need_to_choose_letter), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -168,8 +184,7 @@ public class EditCompleteExerciseStep2Activity extends Activity {
         return true;
     }
    
-    public void editAlert(final CompleteExercise completeExercise,
-            final Exercise exerciseOnStorage, final String hiddenIndexes) {
+    public void editAlert(final CompleteExercise completeExercise, final CompleteExercise exerciseOnStorage, final String hiddenIndexes) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getResources().getString(R.string.edit_alert_title));
         builder.setMessage(getResources().getString(R.string.edit_alert_message));
@@ -178,7 +193,7 @@ public class EditCompleteExerciseStep2Activity extends Activity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        MainActivity.teacherDataBaseHelper.deleteExercise(exerciseOnStorage);
+                    	DataBaseProfessor.getInstance(getApplicationContext()).removeActivity(exerciseOnStorage.getJsonTextObject());
  
                         completeExercise.setQuestion(question);
                         completeExercise.setStatus(String.valueOf(Status.NEW));
@@ -188,13 +203,10 @@ public class EditCompleteExerciseStep2Activity extends Activity {
                         String fDate = new SimpleDateFormat("dd-MM-yyyy").format(currentDate);
                         completeExercise.setDate(fDate);
                         completeExercise.setHiddenIndexes(hiddenIndexes);                    
-                        
-                        MainActivity.teacherDataBaseHelper
-                                .addExercise(completeExercise);
+
+                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(completeExercise.getName(), DataBaseProfessor.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE, completeExercise.getJsonTextObject());
  
-                        Intent intent = new Intent(
-                                EditCompleteExerciseStep2Activity.this,
-                                TeacherHomeActivity.class);
+                        Intent intent = new Intent(EditCompleteExerciseStep2Activity.this, TeacherHomeActivity.class);
                         startActivity(intent);
                     }
                 });

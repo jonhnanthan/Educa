@@ -47,6 +47,8 @@ public class EditCompleteExerciseStep1Activity extends Activity {
 					exerciseData.add(name);
 					exerciseData.add(word.getText().toString());
 					exerciseData.add(question.getText().toString());
+					exerciseData.add(exercise.get(3));
+					exerciseData.add(exercise.get(4));
 					
 					Intent intent = new Intent(EditCompleteExerciseStep1Activity.this, EditCompleteExerciseStep2Activity.class);
 					intent.putCharSequenceArrayListExtra("EditCompleteExerciseStep1", exerciseData);

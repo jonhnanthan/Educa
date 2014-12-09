@@ -86,9 +86,7 @@ public class EditMultipleChoiceExerciseActivity extends Activity {
                         RadioButton btn = (RadioButton) radioGroup.getChildAt(radioId);
                         String rightAnswer = (String) btn.getText();
 
-                        Date currentDate = new Date();
-                        String fDate = new SimpleDateFormat("dd-MM-yyyy").format(currentDate);
-                        multipleChoiseExercise = new MultipleChoiceExercise(exercise.get(0).toString(), DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE, fDate, String.valueOf(Status.NEW), String.valueOf(Correction.NOT_RATED), exercise.get(1).toString(), exercise.get(2).toString(), exercise.get(3).toString(), exercise.get(4).toString(), exercise.get(5).toString(), exercise.get(6).toString());
+                        multipleChoiseExercise = new MultipleChoiceExercise(exercise.get(0).toString(), DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE, exercise.get(7).toString(), String.valueOf(Status.NEW), String.valueOf(Correction.NOT_RATED), exercise.get(1).toString(), exercise.get(2).toString(), exercise.get(3).toString(), exercise.get(4).toString(), exercise.get(5).toString(), exercise.get(6).toString());
 
                         ArrayList<String> exercises = DataBaseProfessor.getInstance(getApplicationContext()).getActivities();
                         for (String string : exercises) {
