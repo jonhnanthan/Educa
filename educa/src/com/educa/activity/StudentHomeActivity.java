@@ -1,6 +1,11 @@
 
 package com.educa.activity;
 
+import java.util.ArrayList;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,16 +16,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+
 import com.educa.R;
 import com.educa.adapter.ExerciseStudentAdapter;
-import com.educa.entity.ColorMatchExercise;
-import com.educa.entity.CompleteExercise;
-import com.educa.entity.Exercise;
-import com.educa.entity.MultipleChoiceExercise;
-import com.educa.persistence.DataBaseStorage;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.educa.database.DataBaseProfessor;
 
 public class StudentHomeActivity extends Activity {
     private ListView listview;
@@ -33,80 +32,71 @@ public class StudentHomeActivity extends Activity {
 
         listview = (ListView) findViewById(R.id.lv_exercise);
 
-        //List<Exercise> exercises = ExerciseStorage.getListExercise();
-        if (MainActivity.teacherDataBaseHelper == null) {
-            MainActivity.teacherDataBaseHelper = new DataBaseStorage(getApplicationContext());
-        }
-        List<Exercise> exercises = MainActivity.teacherDataBaseHelper.getExercises();
+        ArrayList<String> exercises = DataBaseProfessor.getInstance(getApplicationContext()).getActivities();
 
-        adapter = new ExerciseStudentAdapter(getApplicationContext(), exercises,
-                StudentHomeActivity.this);
+        adapter = new ExerciseStudentAdapter(getApplicationContext(), exercises, StudentHomeActivity.this);
         listview.setAdapter(adapter);
 
         listview.setOnItemClickListener(new OnItemClickListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                    int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.v("EDUCA", "ENTROU NO LISTENER");
 
-                Exercise exercise = adapter.getItem(position);
-                MultipleChoiceExercise multipleChoiceExercise = null;
-                CompleteExercise completeExercise = null;
-                ColorMatchExercise colorMatchExercise = null;
+                String json = adapter.getItem(position);
+                try{
+                JSONObject exercise = new JSONObject(json);
 
-                if (exercise instanceof MultipleChoiceExercise) {
-                    multipleChoiceExercise = (MultipleChoiceExercise) adapter.getItem(position);
-                    ArrayList<CharSequence> listMultipleChoiceExercise = new ArrayList<CharSequence>();
+                if (exercise.getString("type").equals(DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE)) {
+					ArrayList<CharSequence> listMultipleChoiceExercise = new ArrayList<CharSequence>();
 
-                    listMultipleChoiceExercise.add(multipleChoiceExercise.getName());
-                    listMultipleChoiceExercise.add(multipleChoiceExercise.getQuestion());
-                    listMultipleChoiceExercise.add(multipleChoiceExercise.getAlternative1());
-                    listMultipleChoiceExercise.add(multipleChoiceExercise.getAlternative2());
-                    listMultipleChoiceExercise.add(multipleChoiceExercise.getAlternative3());
-                    listMultipleChoiceExercise.add(multipleChoiceExercise.getAlternative4());
-                    listMultipleChoiceExercise.add(multipleChoiceExercise.getRightAnswer());
+					listMultipleChoiceExercise.add(exercise.getString("name"));
+					listMultipleChoiceExercise.add(exercise.getString("question"));
+					listMultipleChoiceExercise.add(exercise.getString("alternative1"));
+					listMultipleChoiceExercise.add(exercise.getString("alternative2"));
+					listMultipleChoiceExercise.add(exercise.getString("alternative3"));
+					listMultipleChoiceExercise.add(exercise.getString("alternative4"));
+					listMultipleChoiceExercise.add(exercise.getString("answer"));
+					listMultipleChoiceExercise.add(exercise.getString("date"));
 
-                    Intent i = new Intent(getApplicationContext(),
-                            AnswerMultipleChoiceExercise.class);
-                    i.putCharSequenceArrayListExtra("QuestionToAnswerMatch",
-                            listMultipleChoiceExercise);
+                    Intent i = new Intent(getApplicationContext(), AnswerMultipleChoiceExercise.class);
+                    i.putCharSequenceArrayListExtra("QuestionToAnswerMatch", listMultipleChoiceExercise);
                     startActivity(i);
                 }
-                if (exercise instanceof CompleteExercise) {
-                    completeExercise = (CompleteExercise) adapter.getItem(position);
-                    ArrayList<CharSequence> listCompleteExercise = new ArrayList<CharSequence>();
+                if (exercise.getString("type").equals(DataBaseProfessor.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE)) {
+					ArrayList<CharSequence> listCompleteExercise = new ArrayList<CharSequence>();
 
-                    listCompleteExercise.add(completeExercise.getName());
-                    listCompleteExercise.add(completeExercise.getQuestion());
-                    listCompleteExercise.add(completeExercise.getWord());
-                    listCompleteExercise.add(completeExercise.getHiddenIndexes());
+					listCompleteExercise.add(exercise.getString("name"));
+					listCompleteExercise.add(exercise.getString("word"));
+					listCompleteExercise.add(exercise.getString("question"));
+					listCompleteExercise.add(exercise.getString("hiddenIndexes"));
+					listCompleteExercise.add(exercise.getString("date"));
 
                     Intent i = new Intent(getApplicationContext(), AnswerCompleteExercise.class);
-                    i.putCharSequenceArrayListExtra("QuestionToAnswerComplete",
-                            listCompleteExercise);
+                    i.putCharSequenceArrayListExtra("QuestionToAnswerComplete", listCompleteExercise);
                     startActivity(i);
                 }
-                if (exercise instanceof ColorMatchExercise) {
-                    colorMatchExercise = (ColorMatchExercise) adapter.getItem(position);
-                    ArrayList<CharSequence> listColorExercise = new ArrayList<CharSequence>();
-
-                    listColorExercise.add(colorMatchExercise.getName());
-                    listColorExercise.add(colorMatchExercise.getColor());
-                    listColorExercise.add(colorMatchExercise.getQuestion());
-                    listColorExercise.add(colorMatchExercise.getAlternative1());
-                    listColorExercise.add(colorMatchExercise.getAlternative2());
-                    listColorExercise.add(colorMatchExercise.getAlternative3());
-                    listColorExercise.add(colorMatchExercise.getAlternative4());
-                    listColorExercise.add(colorMatchExercise.getRightAnswer());
+                if (exercise.getString("type").equals(DataBaseProfessor.getInstance(getApplicationContext()).COLOR_MATCH_EXERCISE_TYPECODE)) {
+                    ArrayList<CharSequence> listColorMatchExercise = new ArrayList<CharSequence>();
+                	
+                    listColorMatchExercise.add(exercise.getString("name"));
+                    listColorMatchExercise.add(exercise.getString("color"));
+                    listColorMatchExercise.add(exercise.getString("question"));
+                    listColorMatchExercise.add(exercise.getString("alternative1"));
+                    listColorMatchExercise.add(exercise.getString("alternative2"));
+                    listColorMatchExercise.add(exercise.getString("alternative3"));
+                    listColorMatchExercise.add(exercise.getString("alternative4"));
+                    listColorMatchExercise.add(exercise.getString("answer"));
+                    listColorMatchExercise.add(exercise.getString("date"));
 
                     Intent i = new Intent(getApplicationContext(), AnswerColorMatchExercise.class);
-                    i.putCharSequenceArrayListExtra("QuestionToAnswerColor", listColorExercise);
+                    i.putCharSequenceArrayListExtra("QuestionToAnswerColor", listColorMatchExercise);
                     startActivity(i);
-                } else {
-
                 }
-            }
+                } catch (JSONException e) {
+					Log.e("STUDENT HOME ERROR", e.getMessage());
+				}
+                }
         });
     }
 

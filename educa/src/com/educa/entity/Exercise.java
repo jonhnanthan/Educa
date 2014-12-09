@@ -1,7 +1,6 @@
 
 package com.educa.entity;
 
-import com.educa.persistence.DataBaseStorage;
 
 public class Exercise {
     private Integer id;
@@ -68,29 +67,6 @@ public class Exercise {
 
     public void setCorrection(String correction) {
         this.correction = correction;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof ColorMatchExercise) {
-            if (getName().equals(((ColorMatchExercise) obj).getName())
-                    && getType().equals(DataBaseStorage.getColorMatchExerciseTypecode())) {
-                return true;
-            }
-        }
-        if (obj instanceof CompleteExercise) {
-            if (getName().equals(((CompleteExercise) obj).getName())
-                    && getType().equals(DataBaseStorage.getCompleteExerciseTypecode())) {
-                return true;
-            }
-        }
-        if (obj instanceof MultipleChoiceExercise) {
-            if (getName().equals(((MultipleChoiceExercise) obj).getName())
-                    && getType().equals(DataBaseStorage.getMultipleChoiceExerciseTypecode())) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public Integer getId() {

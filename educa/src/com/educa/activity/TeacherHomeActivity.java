@@ -13,7 +13,6 @@ import android.widget.ListView;
 import com.educa.R;
 import com.educa.adapter.ExerciseTeacherAdapterJSON;
 import com.educa.database.DataBaseProfessor;
-import com.educa.persistence.DataBaseStorage;
 
 public class TeacherHomeActivity extends Activity {
     private ListView listView;
@@ -23,14 +22,11 @@ public class TeacherHomeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_home);
-        MainActivity.teacherDataBaseHelper = new DataBaseStorage(getApplicationContext());
         listView = (ListView) findViewById(R.id.lv_exercise);
 
         ArrayList<String> exercises1 = DataBaseProfessor.getInstance(TeacherHomeActivity.this).getActivities();
         System.out.println("conta exercicios:"+exercises1.size());
-//        List<Exercise> exercises = MainActivity.teacherDataBaseHelper.getExercises();
 
-//        adapter = new ExerciseTeacherAdapter(getApplicationContext(), exercises, MainActivity.teacherDataBaseHelper, TeacherHomeActivity.this);
         adapter = new ExerciseTeacherAdapterJSON(getApplicationContext(), exercises1, TeacherHomeActivity.this);
         listView.setAdapter(adapter);
     }

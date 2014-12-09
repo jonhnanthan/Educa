@@ -1,6 +1,10 @@
 
 package com.educa.activity;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,19 +15,14 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
 import com.educa.R;
 import com.educa.database.DataBaseProfessor;
 import com.educa.entity.CompleteExercise;
 import com.educa.entity.Exercise;
-import com.educa.persistence.DataBaseStorage;
 import com.educa.validation.Correction;
 import com.educa.validation.FieldValidation;
 import com.educa.validation.Status;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class CompleteExerciseStep3Activity extends Activity {
     private EditText et_name;
@@ -53,24 +52,14 @@ public class CompleteExerciseStep3Activity extends Activity {
                     String name = et_name.getText().toString();
                     Date currentDate = new Date();
                     String fDate = new SimpleDateFormat("dd-MM-yyyy").format(currentDate);
-                    CompleteExercise exercise = new CompleteExercise(name, DataBaseStorage
-                            .getCompleteExerciseTypecode(), fDate, String
-                            .valueOf(Status.NEW),
-                            String.valueOf(Correction.NOT_RATED), question,
-                            word,
-                            hiddenIndexes);
+                    CompleteExercise exercise = new CompleteExercise(name, DataBaseProfessor.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE, fDate, String.valueOf(Status.NEW), String.valueOf(Correction.NOT_RATED), question, word, hiddenIndexes);
 
-                    // exercise.getStatus().setStatus(getApplicationContext().getResources().getString(R.string.status_new));
-                    // exercise.getCorrection().setCorrection(getApplicationContext().getResources().getString(R.string.correction_not_rated));
 
                     if (exerciseNameDontExists(exercise)) {
 
-                        // ExerciseStorage.getListExercise().add(exercise);
-//                        MainActivity.teacherDataBaseHelper.addExercise(exercise);
                         DataBaseProfessor.getInstance(CompleteExerciseStep3Activity.this).addActivity(name, DataBaseProfessor.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE, exercise.getJsonTextObject());
 
-                        Intent intent = new Intent(CompleteExerciseStep3Activity.this,
-                                TeacherHomeActivity.class);
+                        Intent intent = new Intent(CompleteExerciseStep3Activity.this, TeacherHomeActivity.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(

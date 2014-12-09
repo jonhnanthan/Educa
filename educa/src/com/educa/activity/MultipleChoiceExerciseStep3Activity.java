@@ -1,6 +1,10 @@
 
 package com.educa.activity;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,19 +15,14 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
 import com.educa.R;
 import com.educa.database.DataBaseProfessor;
 import com.educa.entity.Exercise;
 import com.educa.entity.MultipleChoiceExercise;
-import com.educa.persistence.DataBaseStorage;
 import com.educa.validation.Correction;
 import com.educa.validation.FieldValidation;
 import com.educa.validation.Status;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class MultipleChoiceExerciseStep3Activity extends Activity {
     private EditText et_name;

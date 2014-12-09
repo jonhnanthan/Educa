@@ -114,27 +114,27 @@ public class AnswerCompleteExercise extends Activity {
             @Override
             public void onClick(View v) {
                 if (isCompleted()) {
-                    List<Exercise> exercises = MainActivity.teacherDataBaseHelper
-                            .getExercises();
-
-                    for (Exercise exerciseOnStorage : exercises) {
-                        if (exerciseOnStorage instanceof CompleteExercise
-                                && exerciseOnStorage.getName().equals(listExercise.get(0))) {
-                            exerciseOnStorage.setStatus(String.valueOf(Status.ANSWERED));
-                            if (isRight()) {
-                                exerciseOnStorage.setCorrection(String.valueOf(Correction.RIGHT));
-                                MainActivity.teacherDataBaseHelper.editExercise(exerciseOnStorage);
-
-                                congratulationsAlert();
-
-                            } else {
-                                exerciseOnStorage.setCorrection(String.valueOf(Correction.WRONG));
-                                MainActivity.teacherDataBaseHelper.editExercise(exerciseOnStorage);
-
-                                tryAgainAlert();
-                            }
-                        }
-                    }
+//                    List<Exercise> exercises = MainActivity.teacherDataBaseHelper
+//                            .getExercises();
+//
+//                    for (Exercise exerciseOnStorage : exercises) {
+//                        if (exerciseOnStorage instanceof CompleteExercise
+//                                && exerciseOnStorage.getName().equals(listExercise.get(0))) {
+//                            exerciseOnStorage.setStatus(String.valueOf(Status.ANSWERED));
+//                            if (isRight()) {
+//                                exerciseOnStorage.setCorrection(String.valueOf(Correction.RIGHT));
+//                                MainActivity.teacherDataBaseHelper.editExercise(exerciseOnStorage);
+//
+//                                congratulationsAlert();
+//
+//                            } else {
+//                                exerciseOnStorage.setCorrection(String.valueOf(Correction.WRONG));
+//                                MainActivity.teacherDataBaseHelper.editExercise(exerciseOnStorage);
+//
+//                                tryAgainAlert();
+//                            }
+//                        }
+//                    }
                 } else {
                     Toast.makeText(
                             getApplicationContext(),
@@ -202,18 +202,18 @@ public class AnswerCompleteExercise extends Activity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        try {
-                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(
-                                    getApplicationContext(), MainActivity.teacherDataBaseHelper
-                                            .getExercises(), AnswerCompleteExercise.this));
-                            StudentHomeActivity.getAdapter().notifyDataSetChanged();
-
-                            Intent intent = new Intent(AnswerCompleteExercise.this,
-                                    StudentHomeActivity.class);
-                            startActivity(intent);
-                        } catch (Throwable e) {
-                            e.printStackTrace();
-                        }
+//                        try {
+//                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(
+//                                    getApplicationContext(), MainActivity.teacherDataBaseHelper
+//                                            .getExercises(), AnswerCompleteExercise.this));
+//                            StudentHomeActivity.getAdapter().notifyDataSetChanged();
+//
+//                            Intent intent = new Intent(AnswerCompleteExercise.this,
+//                                    StudentHomeActivity.class);
+//                            startActivity(intent);
+//                        } catch (Throwable e) {
+//                            e.printStackTrace();
+//                        }
                     }
                 });
 
@@ -244,18 +244,18 @@ public class AnswerCompleteExercise extends Activity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        try {
-                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(
-                                    getApplicationContext(), MainActivity.teacherDataBaseHelper
-                                            .getExercises(), AnswerCompleteExercise.this));
-                            StudentHomeActivity.getAdapter().notifyDataSetChanged();
-
-                            Intent intent = new Intent(AnswerCompleteExercise.this,
-                                    StudentHomeActivity.class);
-                            startActivity(intent);
-                        } catch (Throwable e) {
-                            e.printStackTrace();
-                        }
+//                        try {
+//                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(
+//                                    getApplicationContext(), MainActivity.teacherDataBaseHelper
+//                                            .getExercises(), AnswerCompleteExercise.this));
+//                            StudentHomeActivity.getAdapter().notifyDataSetChanged();
+//
+//                            Intent intent = new Intent(AnswerCompleteExercise.this,
+//                                    StudentHomeActivity.class);
+//                            startActivity(intent);
+//                        } catch (Throwable e) {
+//                            e.printStackTrace();
+//                        }
                     }
                 });
 

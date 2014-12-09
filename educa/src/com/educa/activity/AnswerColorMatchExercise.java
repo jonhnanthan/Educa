@@ -75,25 +75,24 @@ public class AnswerColorMatchExercise extends Activity {
                     RadioButton btn = (RadioButton) radioGroup.getChildAt(radioId);
 
                     String rightAnswer = (String) btn.getText();
-                    List<Exercise> exercises = MainActivity.teacherDataBaseHelper
-                            .getExercises();
-
-                    for (Exercise exerciseOnStorage : exercises) {
-                        if (exerciseOnStorage instanceof ColorMatchExercise
-                                && exerciseOnStorage.getName().equals(exercise.get(0))) {
-                            exerciseOnStorage.setStatus(String.valueOf(Status.ANSWERED));
-                            if (((ColorMatchExercise) exerciseOnStorage).getRightAnswer().equals(
-                                    rightAnswer)) {
-                                exerciseOnStorage.setCorrection(String.valueOf(Correction.RIGHT));
-                                MainActivity.teacherDataBaseHelper.editExercise(exerciseOnStorage);
-                                congratulationsAlert();
-                            } else {
-                                exerciseOnStorage.setCorrection(String.valueOf(Correction.WRONG));
-                                MainActivity.teacherDataBaseHelper.editExercise(exerciseOnStorage);
-                                tryAgainAlert();
-                            }
-                        }
-                    }
+//                    List<Exercise> exercises = MainActivity.teacherDataBaseHelper.getExercises();
+//
+//                    for (Exercise exerciseOnStorage : exercises) {
+//                        if (exerciseOnStorage instanceof ColorMatchExercise
+//                                && exerciseOnStorage.getName().equals(exercise.get(0))) {
+//                            exerciseOnStorage.setStatus(String.valueOf(Status.ANSWERED));
+//                            if (((ColorMatchExercise) exerciseOnStorage).getRightAnswer().equals(
+//                                    rightAnswer)) {
+//                                exerciseOnStorage.setCorrection(String.valueOf(Correction.RIGHT));
+//                                MainActivity.teacherDataBaseHelper.editExercise(exerciseOnStorage);
+//                                congratulationsAlert();
+//                            } else {
+//                                exerciseOnStorage.setCorrection(String.valueOf(Correction.WRONG));
+//                                MainActivity.teacherDataBaseHelper.editExercise(exerciseOnStorage);
+//                                tryAgainAlert();
+//                            }
+//                        }
+//                    }
                 } else {
                     Toast.makeText(
                             getApplicationContext(),
@@ -145,18 +144,18 @@ public class AnswerColorMatchExercise extends Activity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        try {
-                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(
-                                    getApplicationContext(), MainActivity.teacherDataBaseHelper
-                                            .getExercises(), AnswerColorMatchExercise.this));
-                            StudentHomeActivity.getAdapter().notifyDataSetChanged();
-
-                            Intent intent = new Intent(AnswerColorMatchExercise.this,
-                                    StudentHomeActivity.class);
-                            startActivity(intent);
-                        } catch (Throwable e) {
-                            e.printStackTrace();
-                        }
+//                        try {
+//                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(
+//                                    getApplicationContext(), MainActivity.teacherDataBaseHelper
+//                                            .getExercises(), AnswerColorMatchExercise.this));
+//                            StudentHomeActivity.getAdapter().notifyDataSetChanged();
+//
+//                            Intent intent = new Intent(AnswerColorMatchExercise.this,
+//                                    StudentHomeActivity.class);
+//                            startActivity(intent);
+//                        } catch (Throwable e) {
+//                            e.printStackTrace();
+//                        }
                     }
                 });
 
@@ -186,18 +185,18 @@ public class AnswerColorMatchExercise extends Activity {
         builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
-                try {
-                    StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(
-                            getApplicationContext(), MainActivity.teacherDataBaseHelper
-                                    .getExercises(), AnswerColorMatchExercise.this));
-                    StudentHomeActivity.getAdapter().notifyDataSetChanged();
-
-                    Intent intent = new Intent(AnswerColorMatchExercise.this,
-                            StudentHomeActivity.class);
-                    startActivity(intent);
-                } catch (Throwable e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(
+//                            getApplicationContext(), MainActivity.teacherDataBaseHelper
+//                                    .getExercises(), AnswerColorMatchExercise.this));
+//                    StudentHomeActivity.getAdapter().notifyDataSetChanged();
+//
+//                    Intent intent = new Intent(AnswerColorMatchExercise.this,
+//                            StudentHomeActivity.class);
+//                    startActivity(intent);
+//                } catch (Throwable e) {
+//                    e.printStackTrace();
+//                }
             }
         });
 

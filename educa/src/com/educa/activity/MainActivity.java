@@ -9,12 +9,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+
 import com.educa.R;
-import com.educa.persistence.DataBaseStorage;
 
 public class MainActivity extends Activity {
     private ImageButton bt_teacher, bt_student;
-    public static DataBaseStorage teacherDataBaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
