@@ -8,31 +8,31 @@ import org.json.JSONObject;
 public class CompleteExercise extends Exercise {
     private String word;
     private String hiddenIndexes;
-    private JSONObject activityData = new JSONObject();
+    private JSONObject activityData;
 
     public CompleteExercise(String name, String type, String date, String status,
             String correction, String question, String word, String hiddenIndexes) {
         super(null, name, question, type, date, status, correction);
         this.word = word;
         this.hiddenIndexes = hiddenIndexes;
+		
+    }
 
-        try {
-			activityData.put("name", name);
-			activityData.put("type", type);
-			activityData.put("date", date);
-			activityData.put("status", status);
-			activityData.put("correction", correction);
-			activityData.put("question", question);
+	public String getJsonTextObject() {
+		activityData = new JSONObject();
+		try {
+			activityData.put("name", this.getName());
+			activityData.put("type", this.getType());
+			activityData.put("date", this.getDate());
+			activityData.put("status", this.getStatus());
+			activityData.put("correction", this.getCorrection());
+			activityData.put("question", this.getQuestion());
 			activityData.put("word", word);
 			activityData.put("hiddenIndexes", hiddenIndexes);
 			
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		
-    }
-
-	public String getJsonTextObject() {
 		return activityData.toString();
 	}
 

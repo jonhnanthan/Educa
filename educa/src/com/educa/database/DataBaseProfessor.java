@@ -153,4 +153,5 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     	db.close();
 		return activities;
 	}
+	
 }

@@ -12,7 +12,7 @@ public class ColorMatchExercise extends Exercise {
     private String alternative3;
     private String alternative4;
     private String rightAnswer;
-    private JSONObject activityData = new JSONObject();
+    private JSONObject activityData;
 
     public ColorMatchExercise(String name, String type, String date, String status,
             String correction, String question, String alternative1, String alternative2,
@@ -25,13 +25,17 @@ public class ColorMatchExercise extends Exercise {
         this.rightAnswer = rightAnswer;
         this.color = color;
 
+    }
+
+	public String getJsonTextObject() {
+		activityData = new JSONObject();
         try {
-			activityData.put("name", name);
-			activityData.put("type", type);
-			activityData.put("date", date);
-			activityData.put("status", status);
-			activityData.put("correction", correction);
-			activityData.put("question", question);
+			activityData.put("name", this.getName());
+			activityData.put("type", this.getType());
+			activityData.put("date", this.getDate());
+			activityData.put("status", this.getStatus());
+			activityData.put("correction", this.getCorrection());
+			activityData.put("question", this.getQuestion());
 			activityData.put("alternative1", alternative1);
 			activityData.put("alternative2", alternative2);
 			activityData.put("alternative3", alternative3);
@@ -42,10 +46,6 @@ public class ColorMatchExercise extends Exercise {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		
-    }
-
-	public String getJsonTextObject() {
 		return activityData.toString();
 	}
 

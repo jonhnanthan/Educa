@@ -12,8 +12,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 import com.educa.R;
+import com.educa.database.DataBaseProfessor;
 import com.educa.entity.ColorMatchExercise;
 import com.educa.entity.Exercise;
+import com.educa.entity.MultipleChoiceExercise;
 import com.educa.graphics.ColorPickerDialog;
 import com.educa.graphics.ColorPickerDialog.OnMyDialogResult;
 import com.educa.persistence.DataBaseStorage;
@@ -25,6 +27,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class EditColorMatchExerciseActivity extends Activity {
     private EditText question;
@@ -117,21 +122,35 @@ public class EditColorMatchExerciseActivity extends Activity {
                         String alternative3 = exercise.get(5).toString();
                         String alternative4 = exercise.get(6).toString();
 
-                        colorMatchExercise = new ColorMatchExercise(name, type, date, status,
-                                correction, question,
-                                alternative1, alternative2, alternative3, alternative4, exercise
-                                        .get(7).toString(), color);
-                        //colorMatchExercise.getStatus().setStatus(getApplicationContext().getResources().getString(R.string.status_new));
-                        //colorMatchExercise.getCorrection().setCorrection(getApplicationContext().getResources().getString(R.string.correction_not_rated));
-                        List<Exercise> exercises = MainActivity.teacherDataBaseHelper
-                                .getExercises();
+                        colorMatchExercise = new ColorMatchExercise(name, type, date, status, correction, question, alternative1, alternative2, alternative3, alternative4, exercise.get(7).toString(), color);
 
-                        for (Exercise exerciseOnStorage : exercises) {
-                            if (exerciseOnStorage.equals(colorMatchExercise)) {
-                                ColorMatchExercise newExercise = (ColorMatchExercise) exerciseOnStorage;
+                        ArrayList<String> exercises = DataBaseProfessor.getInstance(getApplicationContext()).getActivities();
+                        for (String string : exercises) {
+							if (string.equals(colorMatchExercise.getJsonTextObject())){
+								ColorMatchExercise newExercise = null;
+								JSONObject json;
+								try {
+									json = new JSONObject(string);
+									newExercise = new ColorMatchExercise(
+											json.getString("name"),
+											json.getString("type"),
+											json.getString("date"),
+											json.getString("status"),
+											json.getString("correction"),
+											json.getString("question"),
+											json.getString("alternative1"),
+											json.getString("alternative2"),
+											json.getString("alternative3"),
+											json.getString("alternative4"),
+											json.getString("answer"),
+											json.getString("color"));
+								} catch (JSONException e) {
+									e.printStackTrace();
+								}
+
                                 editAlert(newExercise, colorMatchExercise, rightAnswer);
-                            }
-                        }
+							}
+						}
                     } else {
                         Toast.makeText(
                                 getApplicationContext(),
@@ -205,8 +224,7 @@ public class EditColorMatchExerciseActivity extends Activity {
         return validation.isDuplicated(listEditText);
     }
 
-    public void editAlert(final ColorMatchExercise colorMatchExercise,
-            final Exercise exerciseOnStorage, final String rightAnswer) {
+    public void editAlert(final ColorMatchExercise colorMatchExercise, final ColorMatchExercise exerciseOnStorage, final String rightAnswer) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getResources().getString(R.string.edit_alert_title));
         builder.setMessage(getResources().getString(R.string.edit_alert_message));
@@ -215,9 +233,8 @@ public class EditColorMatchExerciseActivity extends Activity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        MainActivity.teacherDataBaseHelper.deleteExercise(exerciseOnStorage);
+                    	DataBaseProfessor.getInstance(getApplicationContext()).removeActivity(exerciseOnStorage.getJsonTextObject());
 
-                        // ExerciseStorage.removeExercise(exerciseOnStorage);
                         colorMatchExercise.setQuestion(question.getText().toString());
                         colorMatchExercise.setAlternative1(answer1.getText().toString());
                         colorMatchExercise.setAlternative2(answer2.getText().toString());
@@ -231,12 +248,9 @@ public class EditColorMatchExerciseActivity extends Activity {
                         colorMatchExercise.setDate(fDate);
                         colorMatchExercise.setRightAnswer(rightAnswer);
 
-                        //ExerciseStorage.addExercise(colorMatchExercise);
-                        MainActivity.teacherDataBaseHelper.addExercise(colorMatchExercise);
-
-                        Intent intent = new Intent(
-                                EditColorMatchExerciseActivity.this,
-                                TeacherHomeActivity.class);
+                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(colorMatchExercise.getName(), DataBaseProfessor.getInstance(getApplicationContext()).COLOR_MATCH_EXERCISE_TYPECODE, colorMatchExercise.getJsonTextObject());
+                        
+                        Intent intent = new Intent(EditColorMatchExerciseActivity.this, TeacherHomeActivity.class);
                         startActivity(intent);
                     }
                 });
