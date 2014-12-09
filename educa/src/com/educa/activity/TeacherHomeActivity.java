@@ -1,7 +1,7 @@
 
 package com.educa.activity;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,13 +11,13 @@ import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.educa.R;
-import com.educa.adapter.ExerciseTeacherAdapter;
-import com.educa.entity.Exercise;
+import com.educa.adapter.ExerciseTeacherAdapterJSON;
+import com.educa.database.DataBaseProfessor;
 import com.educa.persistence.DataBaseStorage;
 
 public class TeacherHomeActivity extends Activity {
     private ListView listView;
-    private ExerciseTeacherAdapter adapter;
+    private ExerciseTeacherAdapterJSON adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +26,12 @@ public class TeacherHomeActivity extends Activity {
         MainActivity.teacherDataBaseHelper = new DataBaseStorage(getApplicationContext());
         listView = (ListView) findViewById(R.id.lv_exercise);
 
-//        ArrayList<String> exercises1 = DataBaseProfessor.getInstance(TeacherHomeActivity.this).getActivities();
-//        System.out.println(exercises1.size());
-        List<Exercise> exercises = MainActivity.teacherDataBaseHelper.getExercises();
+        ArrayList<String> exercises1 = DataBaseProfessor.getInstance(TeacherHomeActivity.this).getActivities();
+        System.out.println("conta exercicios:"+exercises1.size());
+//        List<Exercise> exercises = MainActivity.teacherDataBaseHelper.getExercises();
 
-        adapter = new ExerciseTeacherAdapter(getApplicationContext(), exercises, MainActivity.teacherDataBaseHelper, TeacherHomeActivity.this);
-//        adapter = new ExerciseTeacherAdapterJSON(getApplicationContext(), exercises1, TeacherHomeActivity.this);
+//        adapter = new ExerciseTeacherAdapter(getApplicationContext(), exercises, MainActivity.teacherDataBaseHelper, TeacherHomeActivity.this);
+        adapter = new ExerciseTeacherAdapterJSON(getApplicationContext(), exercises1, TeacherHomeActivity.this);
         listView.setAdapter(adapter);
     }
 

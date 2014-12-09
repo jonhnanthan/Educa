@@ -1,6 +1,9 @@
 
 package com.educa.entity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class ColorMatchExercise extends Exercise {
 
     private String color;
@@ -9,6 +12,7 @@ public class ColorMatchExercise extends Exercise {
     private String alternative3;
     private String alternative4;
     private String rightAnswer;
+    private JSONObject activityData = new JSONObject();
 
     public ColorMatchExercise(String name, String type, String date, String status,
             String correction, String question, String alternative1, String alternative2,
@@ -20,7 +24,30 @@ public class ColorMatchExercise extends Exercise {
         this.alternative4 = alternative4;
         this.rightAnswer = rightAnswer;
         this.color = color;
+
+        try {
+			activityData.put("name", name);
+			activityData.put("type", type);
+			activityData.put("date", date);
+			activityData.put("status", status);
+			activityData.put("correction", correction);
+			activityData.put("question", question);
+			activityData.put("alternative1", alternative1);
+			activityData.put("alternative2", alternative2);
+			activityData.put("alternative3", alternative3);
+			activityData.put("alternative4", alternative4);
+			activityData.put("answer", rightAnswer);
+			activityData.put("color", color);
+			
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
     }
+
+	public String getJsonTextObject() {
+		return activityData.toString();
+	}
 
     public String getColor() {
         return color;

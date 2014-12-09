@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import com.educa.R;
+import com.educa.database.DataBaseProfessor;
 import com.educa.entity.ColorMatchExercise;
 import com.educa.entity.Exercise;
 import com.educa.persistence.DataBaseStorage;
@@ -56,8 +57,7 @@ public class ColorMatchExerciseStep4Activity extends Activity {
                     Date currentDate = new Date();
                     String fDate = new SimpleDateFormat("dd-MM-yyyy").format(currentDate);
 
-                    ColorMatchExercise exercise = new ColorMatchExercise(name, DataBaseStorage
-                            .getColorMatchExerciseTypecode(), fDate, String.valueOf(Status.NEW),
+                    ColorMatchExercise exercise = new ColorMatchExercise(name, DataBaseProfessor.getInstance(getApplicationContext()).COLOR_MATCH_EXERCISE_TYPECODE, fDate, String.valueOf(Status.NEW),
                             String.valueOf(Correction.NOT_RATED), question, alternative1,
                             alternative2,
                             alternative3, alternative4, rightAnswer, color);
@@ -66,9 +66,11 @@ public class ColorMatchExerciseStep4Activity extends Activity {
                     // exercise.getCorrection().setCorrection(getApplicationContext().getResources().getString(R.string.correction_not_rated));
 
                     if (exerciseNameAlreadyExists(exercise)) {
-                        MainActivity.teacherDataBaseHelper.addExercise(exercise);
+//                        MainActivity.teacherDataBaseHelper.addExercise(exercise);
                         // StudentHomeActivity.studentDataBaseHelper.addExercise(exercise);
 
+                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(name, DataBaseProfessor.getInstance(getApplicationContext()).COLOR_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
+                        
                         // ExerciseStorage.getListExercise().add(exercise);
                         Intent intent = new Intent(ColorMatchExerciseStep4Activity.this,
                                 TeacherHomeActivity.class);
@@ -131,13 +133,14 @@ public class ColorMatchExerciseStep4Activity extends Activity {
     }
 
     private boolean exerciseNameAlreadyExists(Exercise exercise) {
-        List<Exercise> exercises = MainActivity.teacherDataBaseHelper.getExercises();
-
-        for (Exercise exerciseOnStorage : exercises) {
-            if (exerciseOnStorage.getName().equals(exercise.getName())) {
-                return false;
-            }
-        }
+    	ArrayList<String> names = DataBaseProfessor.getInstance(getApplicationContext()).getActivitiesName();
+    	
+    	for (String string : names) {
+    		if (string.equals(exercise.getName())) {
+    			return false;
+    		}
+		}
+    	
         return true;
     }
 }

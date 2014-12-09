@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.MutableContextWrapper;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 import com.educa.R;
+import com.educa.database.DataBaseProfessor;
 import com.educa.entity.Exercise;
 import com.educa.entity.MultipleChoiceExercise;
 import com.educa.persistence.DataBaseStorage;
@@ -23,6 +25,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class EditMultipleChoiceExerciseActivity extends Activity {
     private EditText question;
@@ -82,21 +87,50 @@ public class EditMultipleChoiceExerciseActivity extends Activity {
                         Date currentDate = new Date();
                         String fDate = new SimpleDateFormat("dd-MM-yyyy").format(currentDate);
                         multipleChoiseExercise = new MultipleChoiceExercise(exercise.get(0)
-                                .toString(), DataBaseStorage.getMultipleChoiceExerciseTypecode(),
+                                .toString(), DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE,
                                 fDate, String.valueOf(Status.NEW), String
                                         .valueOf(Correction.NOT_RATED), exercise.get(1)
                                         .toString(), exercise.get(2).toString(), exercise.get(3)
                                         .toString(), exercise.get(4).toString(), exercise.get(5)
                                         .toString(), exercise.get(2).toString());
 
-                        List<Exercise> exercises = MainActivity.teacherDataBaseHelper
-                                .getExercises();
-                        for (Exercise exerciseOnStorage : exercises) {
-                            if (exerciseOnStorage.equals(multipleChoiseExercise)) {
-                                MultipleChoiceExercise newExercise = (MultipleChoiceExercise) exerciseOnStorage;
+                        ArrayList<String> exercises1 = DataBaseProfessor.getInstance(getApplicationContext()).getActivities();
+                        for (String string : exercises1) {
+//                        	System.out.println("string: " + string);
+//                        	System.out.println(multipleChoiseExercise.getJsonTextObject());
+							if (string.equals(multipleChoiseExercise.getJsonTextObject())){
+								MultipleChoiceExercise newExercise = null;
+								JSONObject json;
+								try {
+									json = new JSONObject(string);
+									newExercise = new MultipleChoiceExercise(
+											json.getString("name"),
+											json.getString("type"),
+											json.getString("date"),
+											json.getString("status"),
+											json.getString("correction"),
+											json.getString("question"),
+											json.getString("alternative1"),
+											json.getString("alternative2"),
+											json.getString("alternative3"),
+											json.getString("alternative4"),
+											json.getString("answer"));
+								} catch (JSONException e) {
+									e.printStackTrace();
+								}
+
+								System.out.println("chamei o alerta");
                                 editAlert(newExercise, multipleChoiseExercise, rightAnswer);
-                            }
-                        }
+							}
+						}
+//                        List<Exercise> exercises = MainActivity.teacherDataBaseHelper
+//                                .getExercises();
+//                        for (Exercise exerciseOnStorage : exercises) {
+//                            if (exerciseOnStorage.equals(multipleChoiseExercise)) {
+//                                MultipleChoiceExercise newExercise = (MultipleChoiceExercise) exerciseOnStorage;
+//                                editAlert(newExercise, multipleChoiseExercise, rightAnswer);
+//                            }
+//                        }
                     } else {
                         Toast.makeText(
                                 getApplicationContext(),
@@ -171,8 +205,8 @@ public class EditMultipleChoiceExerciseActivity extends Activity {
     }
 
     public void editAlert(final MultipleChoiceExercise multipleChoiseExercise,
-            final Exercise exerciseOnStorage, final String rightAnswer) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            final MultipleChoiceExercise exerciseOnStorage, final String rightAnswer) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(EditMultipleChoiceExerciseActivity.this);
         builder.setTitle(getResources().getString(R.string.edit_alert_title));
         builder.setMessage(getResources().getString(R.string.edit_alert_message));
 
@@ -180,7 +214,8 @@ public class EditMultipleChoiceExerciseActivity extends Activity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                    	MainActivity.teacherDataBaseHelper.deleteExercise(exerciseOnStorage);
+                    	DataBaseProfessor.getInstance(getApplicationContext()).removeActivity(exerciseOnStorage.getJsonTextObject());
+//                    	MainActivity.teacherDataBaseHelper.deleteExercise(exerciseOnStorage);
 
                         multipleChoiseExercise.setQuestion(question.getText().toString());
                         multipleChoiseExercise.setAlternative1(answer1.getText().toString());
@@ -194,8 +229,8 @@ public class EditMultipleChoiceExerciseActivity extends Activity {
                         multipleChoiseExercise.setDate(fDate);
                         multipleChoiseExercise.setRightAnswer(rightAnswer);
 
-                        MainActivity.teacherDataBaseHelper
-                                .addExercise(multipleChoiseExercise);
+                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(multipleChoiseExercise.getName(), DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE, multipleChoiseExercise.getJsonTextObject());
+//                        MainActivity.teacherDataBaseHelper.addExercise(multipleChoiseExercise);
 
                         Intent intent = new Intent(
                                 EditMultipleChoiceExerciseActivity.this,

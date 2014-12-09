@@ -56,25 +56,20 @@ public class MultipleChoiceExerciseStep3Activity extends Activity {
                     Date currentDate = new Date();
                     String fDate = new SimpleDateFormat("dd-MM-yyyy").format(currentDate);
                     
-                    MultipleChoiceExercise exercise = new MultipleChoiceExercise(name, DataBaseStorage.getMultipleChoiceExerciseTypecode(), fDate, String.valueOf(Status.NEW), String.valueOf(Correction.NOT_RATED), question, alternative1, alternative2, alternative3, alternative4, rightAnswer);
+                    MultipleChoiceExercise exercise = new MultipleChoiceExercise(name, DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE, fDate, String.valueOf(Status.NEW), String.valueOf(Correction.NOT_RATED), question, alternative1, alternative2, alternative3, alternative4, rightAnswer);
                     // exercise.getStatus().setStatus(getApplicationContext().getResources().getString(R.string.status_new));
                     // exercise.getCorrection().setCorrection(getApplicationContext().getResources().getString(R.string.correction_not_rated));
 
-                    if (exerciseNameAlreadyExists(exercise)) {
-                        MainActivity.teacherDataBaseHelper.addExercise(exercise);
+                    if (exerciseNameDontExists(exercise)) {
+//                        MainActivity.teacherDataBaseHelper.addExercise(exercise);
                     	
-//                    	DataBaseProfessor.getInstance(MultipleChoiceExerciseStep3Activity.this).addActivity(name, DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE, exercise.getJsonTextObject());
+                    	DataBaseProfessor.getInstance(MultipleChoiceExerciseStep3Activity.this).addActivity(name, DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE, exercise.getJsonTextObject());
 
                         // ExerciseStorage.getListExercise().add(exercise);
-                        Intent intent = new Intent(MultipleChoiceExerciseStep3Activity.this,
-                                TeacherHomeActivity.class);
+                        Intent intent = new Intent(MultipleChoiceExerciseStep3Activity.this, TeacherHomeActivity.class);
                         startActivity(intent);
                     } else {
-                        Toast.makeText(
-                                getApplicationContext(),
-                                getApplicationContext().getResources().getString(
-                                        R.string.exercise_name_already_exists), Toast.LENGTH_SHORT)
-                                .show();
+                        Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.exercise_name_already_exists), Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -126,13 +121,15 @@ public class MultipleChoiceExerciseStep3Activity extends Activity {
         return ret;
     }
 
-    private boolean exerciseNameAlreadyExists(Exercise exercise) {
-        List<Exercise> exercises = MainActivity.teacherDataBaseHelper.getExercises();
-        for (Exercise exerciseOnStorage : exercises) {
-            if (exerciseOnStorage.getName().equals(exercise.getName())) {
-                return false;
-            }
-        }
+    private boolean exerciseNameDontExists(Exercise exercise) {
+    	ArrayList<String> names = DataBaseProfessor.getInstance(getApplicationContext()).getActivitiesName();
+    	
+    	for (String string : names) {
+    		if (string.equals(exercise.getName())) {
+    			return false;
+    		}
+		}
+    	
         return true;
     }
 }

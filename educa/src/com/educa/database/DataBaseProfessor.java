@@ -72,6 +72,8 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
         values.put(COLUNA_PROFESSOR_TIPO_ATIVIDADE, activityType);
         values.put(COLUNA_PROFESSOR_ATIVIDADE_JSON, activity);
 
+        System.out.println("addActivity: " + name + " " + activityType + " " + activity);
+        
         long id = db.insert(TABLE_ATIVIDADES_PROFESSOR, null, values);
 
         db.close();
@@ -87,14 +89,10 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     	final SQLiteDatabase db = getWritableDatabase();
     	final Cursor c = db.rawQuery(sql, null);
     	
-    	System.out.println("consulta");
     	if (c.getCount() > 0 && c.moveToFirst()){
     		for (int i = 0; i < c.getCount(); i++) {
     			activities.add(c.getString(2));
-    			System.out.println("id: " + c.getString(0)); //id
-    			System.out.println("tipo_atividade: " + c.getString(1)); //tipo_atividade
-    			System.out.println("atividade Json: " + c.getString(2)); //atividade em Json
-    			System.out.println("nome: " + c.getString(3)); //nome
+    			c.moveToNext();
 			}
     	}
     	
@@ -112,14 +110,10 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     	final SQLiteDatabase db = getWritableDatabase();
     	final Cursor c = db.rawQuery(sql, null);
     	
-    	System.out.println("consulta");
     	if (c.getCount() > 0 && c.moveToFirst()){
     		for (int i = 0; i < c.getCount(); i++) {
     			activities.add(c.getString(2));
-    			System.out.println("id: " + c.getString(0)); //id
-    			System.out.println("tipo_atividade: " + c.getString(1)); //tipo_atividade
-    			System.out.println("atividade Json: " + c.getString(2)); //atividade em Json
-    			System.out.println("nome: " + c.getString(3)); //nome
+    			c.moveToNext();
 			}
     	}
     	
@@ -139,4 +133,24 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     	
     	db.close();
     }
+
+	public ArrayList<String> getActivitiesName() {
+    	ArrayList<String> activities = new ArrayList<String>();
+    	
+    	String sql = "select " + COLUNA_PROFESSOR_NOME + " from " + TABLE_ATIVIDADES_PROFESSOR;
+    	
+    	final SQLiteDatabase db = getWritableDatabase();
+    	final Cursor c = db.rawQuery(sql, null);
+    	
+    	if (c.getCount() > 0 && c.moveToFirst()){
+    		for (int i = 0; i < c.getCount(); i++) {
+    			activities.add(c.getString(0));
+    			c.moveToNext();
+			}
+    	}
+    	
+    	c.close();
+    	db.close();
+		return activities;
+	}
 }

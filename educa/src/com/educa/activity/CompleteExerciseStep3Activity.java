@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import com.educa.R;
+import com.educa.database.DataBaseProfessor;
 import com.educa.entity.CompleteExercise;
 import com.educa.entity.Exercise;
 import com.educa.persistence.DataBaseStorage;
@@ -62,10 +63,11 @@ public class CompleteExerciseStep3Activity extends Activity {
                     // exercise.getStatus().setStatus(getApplicationContext().getResources().getString(R.string.status_new));
                     // exercise.getCorrection().setCorrection(getApplicationContext().getResources().getString(R.string.correction_not_rated));
 
-                    if (exerciseNameAlreadyExists(exercise)) {
+                    if (exerciseNameDontExists(exercise)) {
 
                         // ExerciseStorage.getListExercise().add(exercise);
-                        MainActivity.teacherDataBaseHelper.addExercise(exercise);
+//                        MainActivity.teacherDataBaseHelper.addExercise(exercise);
+                        DataBaseProfessor.getInstance(CompleteExerciseStep3Activity.this).addActivity(name, DataBaseProfessor.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE, exercise.getJsonTextObject());
 
                         Intent intent = new Intent(CompleteExerciseStep3Activity.this,
                                 TeacherHomeActivity.class);
@@ -126,14 +128,15 @@ public class CompleteExerciseStep3Activity extends Activity {
         return ret;
     }
 
-    private boolean exerciseNameAlreadyExists(Exercise exercise) {
-        List<Exercise> exercises = MainActivity.teacherDataBaseHelper.getExercises();
-
-        for (Exercise exerciseOnStorage : exercises) {
-            if (exerciseOnStorage.getName().equals(exercise.getName())) {
-                return false;
-            }
-        }
+    private boolean exerciseNameDontExists(Exercise exercise) {
+    	ArrayList<String> names = DataBaseProfessor.getInstance(getApplicationContext()).getActivitiesName();
+    	
+    	for (String string : names) {
+    		if (string.equals(exercise.getName())) {
+    			return false;
+    		}
+		}
+    	
         return true;
     }
 }

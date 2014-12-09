@@ -23,6 +23,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.educa.R;
+import com.educa.activity.EditColorMatchExerciseActivity;
+import com.educa.activity.EditCompleteExerciseStep1Activity;
 import com.educa.activity.EditMultipleChoiceExerciseActivity;
 import com.educa.database.DataBaseProfessor;
 
@@ -112,63 +114,58 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
                     case R.id.edit:
 					JSONObject exercise;
 					try {
-						exercise = new JSONObject(json);
-                        if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).MULTIPLE_CHOICE_EXERCISE_TYPECODE)) {
-                            Intent intent = new Intent(parentActivity, EditMultipleChoiceExerciseActivity.class);
+								exercise = new JSONObject(json);
+								if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).MULTIPLE_CHOICE_EXERCISE_TYPECODE)) {
+									Intent intent = new Intent(parentActivity, EditMultipleChoiceExerciseActivity.class);
 
-                            ArrayList<CharSequence> listMultipleChoiceExercise = new ArrayList<CharSequence>();
+									ArrayList<CharSequence> listMultipleChoiceExercise = new ArrayList<CharSequence>();
 
-                            listMultipleChoiceExercise.add(exercise.getString("name"));
-                            listMultipleChoiceExercise.add(exercise.getString("question"));
-                            listMultipleChoiceExercise.add(exercise.getString("alternative1"));
-                            listMultipleChoiceExercise.add(exercise.getString("alternative2"));
-                            listMultipleChoiceExercise.add(exercise.getString("alternative3"));
-                            listMultipleChoiceExercise.add(exercise.getString("alternative4"));
-                            listMultipleChoiceExercise.add(exercise.getString("answer"));
+									listMultipleChoiceExercise.add(exercise.getString("name"));
+									listMultipleChoiceExercise.add(exercise.getString("question"));
+									listMultipleChoiceExercise.add(exercise.getString("alternative1"));
+									listMultipleChoiceExercise.add(exercise.getString("alternative2"));
+									listMultipleChoiceExercise.add(exercise.getString("alternative3"));
+									listMultipleChoiceExercise.add(exercise.getString("alternative4"));
+									listMultipleChoiceExercise.add(exercise.getString("answer"));
 
-                            intent.putCharSequenceArrayListExtra("EditMultipleChoiseExercise",
-                                    listMultipleChoiceExercise);
-                            parentActivity.startActivity(intent);
-                        }
+									intent.putCharSequenceArrayListExtra("EditMultipleChoiseExercise", listMultipleChoiceExercise);
+									parentActivity.startActivity(intent);
+								}
+								if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).COMPLETE_EXERCISE_TYPECODE)) {
+									Intent intent = new Intent(parentActivity, EditCompleteExerciseStep1Activity.class);
+
+									ArrayList<CharSequence> listColorMatchExercise = new ArrayList<CharSequence>();
+
+									listColorMatchExercise.add(exercise.getString("name"));
+									listColorMatchExercise.add(exercise.getString("word"));
+									listColorMatchExercise.add(exercise.getString("question"));
+									listColorMatchExercise.add(exercise.getString("hiddenIndexes"));
+
+									intent.putCharSequenceArrayListExtra("EditCompleteExercise", listColorMatchExercise);
+									parentActivity.startActivity(intent);
+								}
+		                        if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).COLOR_MATCH_EXERCISE_TYPECODE)) {
+	                            Intent intent = new Intent(parentActivity, EditColorMatchExerciseActivity.class);
+	
+	                            ArrayList<CharSequence> listColorMatchExercise = new ArrayList<CharSequence>();
+	
+	                            listColorMatchExercise.add(exercise.getString("name"));
+	                            listColorMatchExercise.add(exercise.getString("color"));
+	                            listColorMatchExercise.add(exercise.getString("question"));
+	                            listColorMatchExercise.add(exercise.getString("alternative1"));
+	                            listColorMatchExercise.add(exercise.getString("alternative2"));
+	                            listColorMatchExercise.add(exercise.getString("alternative3"));
+	                            listColorMatchExercise.add(exercise.getString("alternative4"));
+	                            listColorMatchExercise.add(exercise.getString("answer"));
+	
+	                            intent.putCharSequenceArrayListExtra("EditColorMatchExercise",
+	                                    listColorMatchExercise);
+	                            parentActivity.startActivity(intent);
+	                        }
+
 					} catch (JSONException e) {
 						Log.e("EDIT ERROR", e.getMessage());
 					}
-//                        if (exercise instanceof ColorMatchExercise) {
-//                            Intent intent = new Intent(parentActivity,
-//                                    EditColorMatchExerciseActivity.class);
-//                            ColorMatchExercise colorMatchExercise = (ColorMatchExercise) exercise;
-//
-//                            ArrayList<CharSequence> listColorMatchExercise = new ArrayList<CharSequence>();
-//
-//                            listColorMatchExercise.add(colorMatchExercise.getName());
-//                            listColorMatchExercise.add(colorMatchExercise.getColor());
-//                            listColorMatchExercise.add(colorMatchExercise.getQuestion());
-//                            listColorMatchExercise.add(colorMatchExercise.getAlternative1());
-//                            listColorMatchExercise.add(colorMatchExercise.getAlternative2());
-//                            listColorMatchExercise.add(colorMatchExercise.getAlternative3());
-//                            listColorMatchExercise.add(colorMatchExercise.getAlternative4());
-//                            listColorMatchExercise.add(colorMatchExercise.getRightAnswer());
-//
-//                            intent.putCharSequenceArrayListExtra("EditColorMatchExercise",
-//                                    listColorMatchExercise);
-//                            parentActivity.startActivity(intent);
-//                        }
-//                        if (exercise instanceof CompleteExercise) {
-//                            Intent intent = new Intent(parentActivity,
-//                                    EditCompleteExerciseStep1Activity.class);
-//                            CompleteExercise completeExercise = (CompleteExercise) exercise;
-//
-//                            ArrayList<CharSequence> listColorMatchExercise = new ArrayList<CharSequence>();
-//
-//                            listColorMatchExercise.add(completeExercise.getName());
-//                            listColorMatchExercise.add(completeExercise.getWord());
-//                            listColorMatchExercise.add(completeExercise.getQuestion());
-//                            listColorMatchExercise.add(completeExercise.getHiddenIndexes());
-//
-//                            intent.putCharSequenceArrayListExtra("EditCompleteExercise",
-//                                    listColorMatchExercise);
-//                            parentActivity.startActivity(intent);
-//                        }
                         return true;
                     case R.id.delete:
                         deleteAlert(json);
