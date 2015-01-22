@@ -1,12 +1,26 @@
 package com.educa.robotium;
 
 import android.test.ActivityInstrumentationTestCase2;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.educa.R;
-import com.educa.activity.*;
+import com.educa.activity.AnswerColorMatchExercise;
+import com.educa.activity.ChooseMatchExerciseActivity;
+import com.educa.activity.ChooseModelActivity;
+import com.educa.activity.ColorMatchExerciseStep1Activity;
+import com.educa.activity.ColorMatchExerciseStep2Activity;
+import com.educa.activity.ColorMatchExerciseStep3Activity;
+import com.educa.activity.ColorMatchExerciseStep4Activity;
+import com.educa.activity.CompleteExerciseStep1Activity;
+import com.educa.activity.CompleteExerciseStep2Activity;
+import com.educa.activity.CompleteExerciseStep3Activity;
+import com.educa.activity.MainActivity;
+import com.educa.activity.MultipleChoiceExerciseStep1Activity;
+import com.educa.activity.MultipleChoiceExerciseStep2Activity;
+import com.educa.activity.MultipleChoiceExerciseStep3Activity;
+import com.educa.activity.StudentHomeActivity;
+import com.educa.activity.TeacherHomeActivity;
 import com.robotium.solo.Solo;
 
 public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
@@ -17,6 +31,7 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 		super(MainActivity.class);
 	}
 
+	@Override
 	public void setUp() throws Exception {
 		solo = new Solo(getInstrumentation(), getActivity());
 	}
@@ -213,10 +228,29 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 		solo.assertCurrentActivity("Expected TeacherHomeActivity", TeacherHomeActivity.class); 
 	}
 
-//	public void test_D_AnswerColorExercise() throws Exception {
-//	
-//	}
-//	
+	public void test_D_AnswerColorExercise() throws Exception {
+		solo.assertCurrentActivity("Expected MainActivity", MainActivity.class); 
+		
+		solo.clickOnText(getActivity().getApplicationContext().getString(R.string.student));
+		solo.waitForActivity(StudentHomeActivity.class);
+		solo.assertCurrentActivity("Expected StudentHomeActivity", StudentHomeActivity.class);
+		
+		solo.clickInList(0);
+		solo.waitForActivity(AnswerColorMatchExercise.class);
+		solo.assertCurrentActivity("Expected AnswerColorMatchActivity", AnswerColorMatchExercise.class);
+		
+		solo.clickOnRadioButton(2);
+		
+		ImageButton imageButon = (ImageButton) solo.getView(R.id.bt_save);
+		solo.clickOnView(imageButon);
+		solo.waitForView(imageButon);
+		
+		solo.clickOnMenuItem(getActivity().getResources().getString(R.string.ok));
+		solo.waitForActivity(StudentHomeActivity.class);
+		solo.assertCurrentActivity("Expected StudentHomeActivity", StudentHomeActivity.class);
+	
+	}
+	
 //	public void test_E_AnswerCompleteExercise() throws Exception {
 //		solo.clickOnText(getActivity().getApplicationContext().getString(R.string.student));
 //		solo.assertCurrentActivity("Expected MainActivity", MainActivity.class); 
