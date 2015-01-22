@@ -6,6 +6,7 @@ import android.widget.ImageButton;
 
 import com.educa.R;
 import com.educa.activity.AnswerColorMatchExercise;
+import com.educa.activity.AnswerCompleteExercise;
 import com.educa.activity.ChooseMatchExerciseActivity;
 import com.educa.activity.ChooseModelActivity;
 import com.educa.activity.ColorMatchExerciseStep1Activity;
@@ -235,7 +236,7 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 		solo.waitForActivity(StudentHomeActivity.class);
 		solo.assertCurrentActivity("Expected StudentHomeActivity", StudentHomeActivity.class);
 		
-		solo.clickInList(0);
+		solo.clickOnText("Exercicio de cores");
 		solo.waitForActivity(AnswerColorMatchExercise.class);
 		solo.assertCurrentActivity("Expected AnswerColorMatchActivity", AnswerColorMatchExercise.class);
 		
@@ -251,30 +252,30 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 	
 	}
 	
-//	public void test_E_AnswerCompleteExercise() throws Exception {
-//		solo.clickOnText(getActivity().getApplicationContext().getString(R.string.student));
-//		solo.assertCurrentActivity("Expected MainActivity", MainActivity.class); 
-//		
-//		solo.clickOnText("Exerc�cio de completar");
-//
-//		solo.waitForActivity(AnswerCompleteExercise.class);
-//		solo.assertCurrentActivity("Expected AnswerCompleteExercise", AnswerCompleteExercise.class);
-//		
-//		solo.enterText(2, "D");
-//		solo.clickOnImage(2);
-//		solo.waitForDialogToOpen();
-//		solo.clickOnText(getActivity().getResources().getString(R.string.yes));
-//		solo.waitForDialogToClose();
-//
-//		solo.enterText(2, "");
-//		solo.enterText(2, "S");
-//		solo.clickOnImage(2);
-//		solo.waitForDialogToOpen();
-//		solo.clickOnText(getActivity().getResources().getString(R.string.ok));
-//		solo.waitForActivity(StudentHomeActivity.class);
-//		solo.assertCurrentActivity("Expected StudentHomeActivity", StudentHomeActivity.class);
-//	}
-//	
+	public void test_E_AnswerCompleteExercise() throws Exception {
+		solo.assertCurrentActivity("Expected MainActivity", MainActivity.class); 
+		
+		solo.clickOnText(getActivity().getApplicationContext().getString(R.string.student));
+		solo.waitForActivity(StudentHomeActivity.class);
+		solo.assertCurrentActivity("Expected StudentHomeActivity", StudentHomeActivity.class);
+		
+		solo.clickOnText("Exercicio de completar");
+		solo.waitForActivity(AnswerCompleteExercise.class);
+		solo.assertCurrentActivity("Expected AnswerCompleteExercise", AnswerCompleteExercise.class);
+		
+		EditText et = (EditText) solo.getView(R.id.bt_letter3);
+		solo.enterText(et, "S");
+		
+		ImageButton imageButton = (ImageButton) solo.getView(R.id.bt_save);
+		solo.clickOnView(imageButton);
+		solo.waitForView(imageButton);
+		
+		solo.clickOnText(getActivity().getResources().getString(R.string.ok));
+
+		solo.waitForActivity(StudentHomeActivity.class);
+		solo.assertCurrentActivity("Expected StudentHomeActivity", StudentHomeActivity.class);
+	}
+	
 //	public void test_F_AnswerMultipleChoiceExercise() throws Exception {
 //		solo.clickOnText(getActivity().getApplicationContext().getString(R.string.student));
 //		solo.assertCurrentActivity("Expected MainActivity", MainActivity.class); 
