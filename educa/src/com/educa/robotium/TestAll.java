@@ -7,6 +7,7 @@ import android.widget.ImageButton;
 import com.educa.R;
 import com.educa.activity.AnswerColorMatchExercise;
 import com.educa.activity.AnswerCompleteExercise;
+import com.educa.activity.AnswerMultipleChoiceExercise;
 import com.educa.activity.ChooseMatchExerciseActivity;
 import com.educa.activity.ChooseModelActivity;
 import com.educa.activity.ColorMatchExerciseStep1Activity;
@@ -276,31 +277,29 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 		solo.assertCurrentActivity("Expected StudentHomeActivity", StudentHomeActivity.class);
 	}
 	
-//	public void test_F_AnswerMultipleChoiceExercise() throws Exception {
-//		solo.clickOnText(getActivity().getApplicationContext().getString(R.string.student));
-//		solo.assertCurrentActivity("Expected MainActivity", MainActivity.class); 
-//		
-//		solo.clickOnText("Exerc�cio dos meses");
-//		
-//		solo.waitForActivity(AnswerMultipleChoiceExercise.class);
-//		solo.assertCurrentActivity("Expected AnswerMultipleChoiceExercise", AnswerMultipleChoiceExercise.class);
-//		
-//		solo.clickOnRadioButton(0);
-//		solo.clickOnImage(2);
-//		solo.waitForDialogToOpen();
-//		solo.clickOnText(getActivity().getResources().getString(R.string.yes));
-//		solo.waitForDialogToClose();
-//		
-//		solo.clickOnRadioButton(2);
-//		solo.clickOnImage(2);
-//		solo.waitForDialogToOpen();
-//		solo.clickOnText(getActivity().getResources().getString(R.string.ok));
-//		solo.waitForDialogToClose();
-//		
-//		solo.waitForActivity(StudentHomeActivity.class);
-//		solo.assertCurrentActivity("Expected StudentHomeActivity", StudentHomeActivity.class);
-//	}
-//	
+	public void test_F_AnswerMultipleChoiceExercise() throws Exception {
+		solo.assertCurrentActivity("Expected MainActivity", MainActivity.class); 
+		
+		solo.clickOnText(getActivity().getApplicationContext().getString(R.string.student));
+		solo.waitForActivity(StudentHomeActivity.class);
+		solo.assertCurrentActivity("Expected StudentHomeActivity", StudentHomeActivity.class);
+		
+		solo.clickOnText("Exercicio dos meses");
+		solo.waitForActivity(AnswerMultipleChoiceExercise.class);
+		solo.assertCurrentActivity("Expected AnswerColorMatchActivity", AnswerMultipleChoiceExercise.class);
+		
+		solo.clickOnRadioButton(2);
+		
+		ImageButton imageButon = (ImageButton) solo.getView(R.id.bt_save);
+		solo.clickOnView(imageButon);
+		solo.waitForView(imageButon);
+		
+		solo.clickOnMenuItem(getActivity().getResources().getString(R.string.ok));
+		solo.waitForActivity(StudentHomeActivity.class);
+		solo.assertCurrentActivity("Expected StudentHomeActivity", StudentHomeActivity.class);
+
+	}
+	
 //	public void test_G_EditMultipleChoiceExercise() throws Exception {
 //		solo.clickOnText(getActivity().getApplicationContext().getString(R.string.teacher));
 //		solo.assertCurrentActivity("Expected MainActivity", MainActivity.class); 
