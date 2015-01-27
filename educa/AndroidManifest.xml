@@ -45,51 +45,33 @@
         </activity>
         <activity
             android:name="com.educa.activity.CompleteExerciseStep1Activity"
-            android:label="@string/complete_exercise_activity"
-            android:parentActivityName="com.educa.activity.ChooseModelActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.educa.activity.ChooseModelActivity" />
+            android:label="@string/complete_exercise_activity" >
+            
         </activity>
         <activity
             android:name="com.educa.activity.CompleteExerciseStep2Activity"
-            android:label="@string/complete_exercise_activity"
-            android:parentActivityName="com.educa.activity.CompleteExerciseStep1Activity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.educa.activity.CompleteExerciseStep1Activity" />
+            android:label="@string/complete_exercise_activity" >
+           
         </activity>
         <activity
             android:name="com.educa.activity.CompleteExerciseStep3Activity"
-            android:label="@string/complete_exercise_activity"
-            android:parentActivityName="com.educa.activity.CompleteExerciseStep2Activity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.educa.activity.CompleteExerciseStep2Activity" />
+            android:label="@string/complete_exercise_activity" >
+            
         </activity>
         <activity
             android:name="com.educa.activity.MultipleChoiceExerciseStep1Activity"
-            android:label="@string/match_exercise_activity"
-            android:parentActivityName="com.educa.activity.ChooseModelActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.educa.activity.ChooseModelActivity" />
+            android:label="@string/match_exercise_activity" >
+            
         </activity>
         <activity
             android:name="com.educa.activity.MultipleChoiceExerciseStep2Activity"
-            android:label="@string/match_exercise_activity"
-            android:parentActivityName="com.educa.activity.MultipleChoiceExerciseStep1Activity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.educa.activity.MatchExerciseActivity" />
+            android:label="@string/match_exercise_activity" >
+            
         </activity>
         <activity
             android:name="com.educa.activity.MultipleChoiceExerciseStep3Activity"
-            android:label="@string/match_exercise_activity"
-            android:parentActivityName="com.educa.activity.MultipleChoiceExerciseStep2Activity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.educa.activity.MultipleChoiceExerciseStep2Activity" />
+            android:label="@string/match_exercise_activity" >
+            
         </activity>
         <activity
             android:name="com.educa.activity.AnswerMultipleChoiceExercise"
