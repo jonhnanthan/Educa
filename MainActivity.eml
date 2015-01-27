@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component jdk="Maven Android API 15 Platform" jdk_type="Android SDK">
+	<output-test url="file://$MODULE_DIR$/target/test-classes"/>
+	<contentEntry url="file://$MODULE_DIR$">
+		<excludeFolder url="file://$MODULE_DIR$/bin/classes"/>
+		<excludeFolder url="file://$MODULE_DIR$/target/generated-sources/aidl"/>
+		<excludeFolder url="file://$MODULE_DIR$/target/generated-sources/r"/>
+	</contentEntry>
+	<lib name="Maven: com.google.android:android:4.0.3" scope="PROVIDED"/>
+	<lib name="Maven: com.google.android:android-test:4.0.3" scope="PROVIDED"/>
+	<levels>
+		<level name="libs" value="project"/>
+		<level name="Maven: com.google.android:android:4.0.3" value="project"/>
+		<level name="Maven: com.google.android:android-test:4.0.3" value="project"/>
+	</levels>
+</component>
