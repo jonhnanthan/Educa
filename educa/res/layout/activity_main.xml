@@ -26,8 +26,8 @@
         android:layout_marginTop="-70dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/student"
-        android:textColor="#FFFFFF"
-        android:textStyle="normal"
+        android:textColor="#ffffffff"
+        android:textStyle="bold"
         android:textSize="16sp"/>
 
     <ImageButton
