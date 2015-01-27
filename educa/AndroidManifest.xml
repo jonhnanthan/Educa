@@ -93,58 +93,42 @@
         </activity>
         <activity
             android:name="com.educa.activity.AnswerMultipleChoiceExercise"
-            android:label="@string/match_exercise_activity"
-            android:parentActivityName="com.educa.activity.StudentHomeActivity" >
+            android:label="@string/match_exercise_activity" >
+            
         </activity>
         <activity
             android:name="com.educa.activity.AnswerCompleteExercise"
-            android:label="@string/match_exercise_activity"
-            android:parentActivityName="com.educa.activity.StudentHomeActivity" >
+            android:label="@string/match_exercise_activity" >
         </activity>
         <activity
             android:name="com.educa.activity.AnswerColorMatchExercise"
-            android:label="@string/match_exercise_activity"
-            android:parentActivityName="com.educa.activity.StudentHomeActivity" >
+            android:label="@string/match_exercise_activity" >
+            
         </activity>
         <activity
             android:name="com.educa.activity.ColorMatchExerciseStep1Activity"
-            android:label="@string/match_exercise_activity"
-            android:parentActivityName="com.educa.activity.ChooseMatchExerciseActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.educa.activity.ChooseMatchExerciseActivity" />
+            android:label="@string/match_exercise_activity" >
+            
         </activity>
         <activity
             android:name="com.educa.activity.ChooseMatchExerciseActivity"
-            android:label="@string/match_exercise_activity"
-            android:parentActivityName="com.educa.activity.ChooseModelActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.educa.activity.ChooseModelActivity" />
+            android:label="@string/match_exercise_activity" >
+            
         </activity>
         <activity
             android:name="com.educa.activity.ColorMatchExerciseStep2Activity"
-            android:label="@string/match_exercise_activity"
-            android:parentActivityName="com.educa.activity.ColorMatchExerciseStep1Activity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.educa.activity.ColorMatchExerciseStep1Activity" />
+            android:label="@string/match_exercise_activity" >
+            
         </activity>
         <activity
             android:name="com.educa.activity.ColorMatchExerciseStep3Activity"
-            android:label="@string/match_exercise_activity"
-            android:parentActivityName="com.educa.activity.ColorMatchExerciseStep2Activity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.educa.activity.ColorMatchExerciseStep2Activity" />
+            android:label="@string/match_exercise_activity" >
+            
         </activity>
         <activity
             android:name="com.educa.activity.ColorMatchExerciseStep4Activity"
-            android:label="@string/match_exercise_activity"
-            android:parentActivityName="com.educa.activity.ColorMatchExerciseStep3Activity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.educa.activity.ColorMatchExerciseStep3Activity" />
+            android:label="@string/match_exercise_activity" >
+            
         </activity>
         <activity
             android:name="com.educa.activity.EditMultipleChoiceExerciseActivity"
