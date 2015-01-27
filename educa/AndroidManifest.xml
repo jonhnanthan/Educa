@@ -41,11 +41,7 @@
         </activity>
         <activity
             android:name="com.educa.activity.ChooseModelActivity"
-            android:label="@string/choose_model_activity"
-            android:parentActivityName="com.educa.activity.TeacherHomeActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.educa.activity.TeacherHomeActivity" />
+            android:label="@string/choose_model_activity" >
         </activity>
         <activity
             android:name="com.educa.activity.CompleteExerciseStep1Activity"
@@ -58,10 +54,6 @@
         <activity
             android:name="com.educa.activity.CompleteExerciseStep2Activity"
             android:label="@string/complete_exercise_activity"
-            
-            
-            
-            
             android:parentActivityName="com.educa.activity.CompleteExerciseStep1Activity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -156,35 +148,20 @@
         </activity>
         <activity
             android:name="com.educa.activity.EditMultipleChoiceExerciseActivity"
-            android:label="@string/match_exercise_activity"
-            android:parentActivityName="com.educa.activity.TeacherHomeActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.educa.activity.EditMultipleChoiceExerciseActivity" />
+            android:label="@string/match_exercise_activity" >
         </activity>
         <activity
             android:name="com.educa.activity.EditColorMatchExerciseActivity"
-            android:label="@string/color_match"
-            android:parentActivityName="com.educa.activity.TeacherHomeActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.educa.activity.EditColorMatchExerciseActivity" />
+            android:label="@string/color_match" >
         </activity>
         <activity
             android:name="com.educa.activity.EditCompleteExerciseStep1Activity"
-            android:label="@string/complete_exercise_activity"
-            android:parentActivityName="com.educa.activity.TeacherHomeActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.educa.activity.TeacherHomeActivity" />
+            android:label="@string/complete_exercise_activity" >
         </activity>
         <activity
             android:name="com.educa.activity.EditCompleteExerciseStep2Activity"
-            android:label="@string/complete_exercise_activity"
-            android:parentActivityName="com.educa.activity.EditCompleteExerciseStep1Activity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.educa.activity.EditCompleteExerciseStep1Activity" />
+            android:label="@string/complete_exercise_activity" >
+
         </activity>
         <activity
             android:name="com.educa.activity.AboutActivity"
