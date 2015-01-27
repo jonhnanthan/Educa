@@ -31,19 +31,13 @@
         </activity>
         <activity
             android:name="com.educa.activity.StudentHomeActivity"
-            android:label="@string/student_home_activity"
-            android:parentActivityName="com.educa.activity.MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.educa.activity.MainActivity" />
+            android:label="@string/student_home_activity" >
+             
         </activity>
         <activity
             android:name="com.educa.activity.TeacherHomeActivity"
-            android:label="@string/teacher_home_activity"
-            android:parentActivityName="com.educa.activity.MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.educa.activity.MainActivity" />
+            android:label="@string/teacher_home_activity" >
+            
         </activity>
         <activity
             android:name="com.educa.activity.ChooseModelActivity"
@@ -64,6 +58,10 @@
         <activity
             android:name="com.educa.activity.CompleteExerciseStep2Activity"
             android:label="@string/complete_exercise_activity"
+            
+            
+            
+            
             android:parentActivityName="com.educa.activity.CompleteExerciseStep1Activity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
