@@ -66,5 +66,6 @@
 	<string name="fragment_help_2">Complete the word with the hidden letters.</string>
 	<string name="fragment_help_3">Choose the correct alternative.</string>
     <string name="question">Question</string>
+	<string name="exercise_name">Exercise Name</string>
 
 </resources>
