@@ -48,6 +48,9 @@ public class ChooseMatchExerciseActivity extends Activity {
                 Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
                 startActivity(intent);
             case R.id.help:
+            	Intent help = new Intent(getApplicationContext(), HelpActivity.class);
+                startActivity(help);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
