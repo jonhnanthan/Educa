@@ -67,6 +67,7 @@ public class ChooseModelActivity extends Activity {
             case R.id.about:
                 Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
                 startActivity(intent);
+                return true;
             case R.id.help:
             	Intent help = new Intent(getApplicationContext(), HelpActivity.class);
                 startActivity(help);

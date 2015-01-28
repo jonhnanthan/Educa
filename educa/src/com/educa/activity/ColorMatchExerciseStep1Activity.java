@@ -34,7 +34,7 @@ public class ColorMatchExerciseStep1Activity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 colorSelected = (Integer) gridViewColors.getAdapter().getItem(position);
-                tv_choose.setText("Color Selected");
+                tv_choose.setText("Cor Selecionada");
                 LinearLayout layout_choose = (LinearLayout) findViewById(R.id.layout_choose);
                 layout_choose.setBackgroundColor(colorSelected);
                 layout_choose.setAlpha((float) 0.8);
