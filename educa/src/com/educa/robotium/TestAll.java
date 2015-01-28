@@ -108,7 +108,7 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 		solo.assertCurrentActivity("Expected ColorMatchExerciseStep4Activity", ColorMatchExerciseStep4Activity.class); 
 
 		final EditText et5 = (EditText) solo.getView(R.id.et_name);
-		assertEquals("Exercise Name", et5.getHint());
+		assertEquals(solo.getString(R.string.exercise_name), et5.getHint());
 		solo.enterText(et5, "Exercicio de cores");
 		
 		final ImageButton imageButton6 = (ImageButton) solo.getView(R.id.bt_save);
@@ -159,7 +159,7 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 		solo.assertCurrentActivity("Expected CompleteExerciseStep3Activity", CompleteExerciseStep3Activity.class); 
 
 		final EditText et2 = (EditText) solo.getView(R.id.et_name);
-		assertEquals("Exercise Name", et2.getHint());
+		assertEquals(solo.getString(R.string.exercise_name), et2.getHint());
 		solo.enterText(et2, "Exercicio de completar");
 		
 		final ImageButton imageButton4 = (ImageButton) solo.getView(R.id.bt_save);
@@ -218,7 +218,7 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 		solo.assertCurrentActivity("Expected MultipleChoiceExerciseStep3Activity", MultipleChoiceExerciseStep3Activity.class); 
 	
 		final EditText et5 = (EditText) solo.getView(R.id.et_name);
-		assertEquals("Exercise Name", et5.getHint());
+		assertEquals(solo.getString(R.string.exercise_name), et5.getHint());
 		solo.enterText(et5, "Exercicio dos meses");
 		
 		final ImageButton imageButton4 = (ImageButton) solo.getView(R.id.bt_save);
