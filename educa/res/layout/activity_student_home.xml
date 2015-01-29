@@ -19,8 +19,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:text="@string/my_exercises"
-        android:textColor="#ff6d6d6d"
-        android:textStyle="bold"
+        android:textColor="#ff636363"
+        android:textStyle="normal"
         android:textSize="25sp" />
 
     <ListView
