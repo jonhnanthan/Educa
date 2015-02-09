@@ -14,19 +14,19 @@ import com.educa.activity.ColorMatchExerciseStep4Activity;
 import com.educa.activity.CompleteExerciseStep1Activity;
 import com.educa.activity.CompleteExerciseStep2Activity;
 import com.educa.activity.CompleteExerciseStep3Activity;
-import com.educa.activity.MainActivity;
 import com.educa.activity.MultipleChoiceExerciseStep1Activity;
 import com.educa.activity.MultipleChoiceExerciseStep2Activity;
 import com.educa.activity.MultipleChoiceExerciseStep3Activity;
 import com.educa.activity.TeacherHomeActivity;
 import com.robotium.solo.Solo;
 
-public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
+public class TestAll extends
+		ActivityInstrumentationTestCase2<TeacherHomeActivity> {
 
 	private Solo solo;
 
 	public TestAll() {
-		super(MainActivity.class);
+		super(TeacherHomeActivity.class);
 	}
 
 	@Override
@@ -35,7 +35,6 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 	}
 
 	public void test_A_CreateColorExercise() throws Exception {
-		solo.assertCurrentActivity("Expected MainActivity", MainActivity.class);
 
 		solo.clickOnText(getActivity().getApplicationContext().getString(
 				R.string.teacher));
@@ -130,7 +129,6 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 	}
 
 	public void test_B_CreateCompleteExercise() throws Exception {
-		solo.assertCurrentActivity("Expected MainActivity", MainActivity.class);
 
 		solo.clickOnText(getActivity().getApplicationContext().getString(
 				R.string.teacher));
@@ -192,7 +190,6 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 	}
 
 	public void test_C_CreateMultipleChoiceExercise() throws Exception {
-		solo.assertCurrentActivity("Expected MainActivity", MainActivity.class);
 
 		solo.clickOnText(getActivity().getApplicationContext().getString(
 				R.string.teacher));
@@ -267,7 +264,6 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 	}
 
 	public void test_D_AnswerColorExercise() throws Exception {
-		solo.assertCurrentActivity("Expected MainActivity", MainActivity.class);
 
 		solo.clickOnText(getActivity().getApplicationContext().getString(
 				R.string.student));
@@ -286,7 +282,6 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 	}
 
 	public void test_E_AnswerCompleteExercise() throws Exception {
-		solo.assertCurrentActivity("Expected MainActivity", MainActivity.class);
 
 		solo.clickOnText(getActivity().getApplicationContext().getString(
 				R.string.student));
@@ -305,7 +300,6 @@ public class TestAll extends ActivityInstrumentationTestCase2<MainActivity> {
 	}
 
 	public void test_F_AnswerMultipleChoiceExercise() throws Exception {
-		solo.assertCurrentActivity("Expected MainActivity", MainActivity.class);
 
 		solo.clickOnText(getActivity().getApplicationContext().getString(
 				R.string.student));

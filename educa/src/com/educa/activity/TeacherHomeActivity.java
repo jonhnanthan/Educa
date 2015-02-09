@@ -57,12 +57,12 @@ public class TeacherHomeActivity extends Activity {
         return true;
     }
 
-    @Override
+    /**@Override
     public void onBackPressed() {
         Intent intent = new Intent(getApplicationContext(),
                 MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-    }
+    }**/
 
 }
