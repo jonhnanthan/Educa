@@ -4,12 +4,16 @@ package com.educa.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.LinearLayout.LayoutParams;
+
 import com.educa.R;
 import com.educa.graphics.ColorPickerAdapter;
 
@@ -28,7 +32,10 @@ public class ColorMatchExerciseStep1Activity extends Activity {
         tv_choose = (TextView) findViewById(R.id.tv_choose);
 
         final GridView gridViewColors = (GridView) findViewById(R.id.gridViewColors);
-        gridViewColors.setAdapter(new ColorPickerAdapter(getApplicationContext()));
+        ColorPickerAdapter adapter = new ColorPickerAdapter(getApplicationContext());
+        gridViewColors.setAdapter(adapter);
+        
+        adjustridLayout(adapter, gridViewColors);
 
         gridViewColors.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -64,5 +71,19 @@ public class ColorMatchExerciseStep1Activity extends Activity {
             }
         });
     }
+
+    @SuppressWarnings("deprecation")
+	private void adjustridLayout(ColorPickerAdapter adapter,
+			GridView gridViewColors) {
+		Display display = getWindowManager().getDefaultDisplay(); 
+		int width = display.getWidth();
+		int height = display.getHeight();
+		
+		final View item = adapter.getView(0, null, gridViewColors);
+		item.measure(0, 0);
+		final LayoutParams params = new LayoutParams(width, (int) (height/2.5));
+		gridViewColors.setLayoutParams(params);
+		adapter.notifyDataSetChanged();
+	}
 
 }
