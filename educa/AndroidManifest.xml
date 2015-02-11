@@ -21,23 +21,13 @@
         <uses-library android:name="android.test.runner" />
 
         <activity
-            android:name="com.educa.activity.MainActivity"
-            android:label="@string/app_name" >
+            android:name="com.educa.activity.TeacherHomeActivity"
+            android:label="@string/teacher_home_activity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name="com.educa.activity.StudentHomeActivity"
-            android:label="@string/student_home_activity" >
-             
-        </activity>
-        <activity
-            android:name="com.educa.activity.TeacherHomeActivity"
-            android:label="@string/teacher_home_activity" >
-            
         </activity>
         <activity
             android:name="com.educa.activity.ChooseModelActivity"
@@ -46,71 +36,46 @@
         <activity
             android:name="com.educa.activity.CompleteExerciseStep1Activity"
             android:label="@string/complete_exercise_activity" >
-            
         </activity>
         <activity
             android:name="com.educa.activity.CompleteExerciseStep2Activity"
             android:label="@string/complete_exercise_activity" >
-           
         </activity>
         <activity
             android:name="com.educa.activity.CompleteExerciseStep3Activity"
             android:label="@string/complete_exercise_activity" >
-            
         </activity>
         <activity
             android:name="com.educa.activity.MultipleChoiceExerciseStep1Activity"
             android:label="@string/multiple_choice" >
-            
         </activity>
         <activity
             android:name="com.educa.activity.MultipleChoiceExerciseStep2Activity"
             android:label="@string/multiple_choice" >
-            
         </activity>
         <activity
             android:name="com.educa.activity.MultipleChoiceExerciseStep3Activity"
             android:label="@string/multiple_choice" >
-            
-        </activity>
-        <activity
-            android:name="com.educa.activity.AnswerMultipleChoiceExercise"
-            android:label="@string/multiple_choice" >
-            
-        </activity>
-        <activity
-            android:name="com.educa.activity.AnswerCompleteExercise"
-            android:label="@string/match_exercise_activity" >
-        </activity>
-        <activity
-            android:name="com.educa.activity.AnswerColorMatchExercise"
-            android:label="@string/match_exercise_activity" >
-            
         </activity>
         <activity
             android:name="com.educa.activity.ColorMatchExerciseStep1Activity"
             android:label="@string/match_exercise_activity" >
-            
         </activity>
         <activity
             android:name="com.educa.activity.ChooseMatchExerciseActivity"
             android:label="@string/match_exercise_activity" >
-            
         </activity>
         <activity
             android:name="com.educa.activity.ColorMatchExerciseStep2Activity"
             android:label="@string/match_exercise_activity" >
-            
         </activity>
         <activity
             android:name="com.educa.activity.ColorMatchExerciseStep3Activity"
             android:label="@string/match_exercise_activity" >
-            
         </activity>
         <activity
             android:name="com.educa.activity.ColorMatchExerciseStep4Activity"
             android:label="@string/match_exercise_activity" >
-            
         </activity>
         <activity
             android:name="com.educa.activity.EditMultipleChoiceExerciseActivity"
@@ -127,7 +92,6 @@
         <activity
             android:name="com.educa.activity.EditCompleteExerciseStep2Activity"
             android:label="@string/complete_exercise_activity" >
-
         </activity>
         <activity
             android:name="com.educa.activity.AboutActivity"
