@@ -31,9 +31,7 @@ public class StudentHomeActivity extends Activity {
         listview = (ListView) findViewById(R.id.lv_exercise);
 
         DataBaseAluno db = DataBaseAluno.getInstance(getApplicationContext());
-        ArrayList<String> exercises = null;
-        if (db != null)
-        exercises = db.getActivities();
+        ArrayList<String> exercises = db.getActivities();
 
         adapter = new ExerciseStudentAdapter(getApplicationContext(), exercises, StudentHomeActivity.this);
         listview.setAdapter(adapter);

@@ -2,6 +2,9 @@ package com.educa.database;
 
 import java.util.ArrayList;
 
+import com.educa.entity.CompleteExercise;
+
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -63,6 +66,8 @@ public class DataBaseAluno extends SQLiteOpenHelper{
     }
     
     public ArrayList<String> getActivities(){
+    	populateDataBase();
+    	
     	ArrayList<String> activities = new ArrayList<String>();
     	
     	String sql = "select * from " + TABLE_ATIVIDADES_ALUNO;
@@ -125,6 +130,35 @@ public class DataBaseAluno extends SQLiteOpenHelper{
     	db.close();
 		return activities;
 	}
+
+	private void populateDataBase(){
+//		{"hiddenIndexes":"1","status":"NEW","name":"jxffk","correction":"NOT_RATED","word":"jfkfkf","question":"kfkfkd","date":"11-02-2015","type":"COMPLETE_EXERCISE"}
+		
+		CompleteExercise c = new CompleteExercise("Teste", COMPLETE_EXERCISE_TYPECODE, "11-02-2015", "NEW", "NOT_RATED", "Pergunta Teste", "Word", "1");
+		CompleteExercise c1 = new CompleteExercise("Teste1", COMPLETE_EXERCISE_TYPECODE, "11-02-2015", "NEW", "NOT_RATED", "Pergunta Teste1", "Worda", "2");
+		
+		addActivity("Teste", COMPLETE_EXERCISE_TYPECODE, c.getJsonTextObject());
+		addActivity("Teste1", COMPLETE_EXERCISE_TYPECODE, c1.getJsonTextObject());
+		
+	}
 	
+    private final long addActivity(String name, String activityType, String activity) {
+
+        final SQLiteDatabase db = getWritableDatabase();
+        final ContentValues values = new ContentValues();
+
+        values.put(COLUNA_ALUNO_NOME, name);
+        values.put(COLUNA_ALUNO_TIPO_ATIVIDADE, activityType);
+        values.put(COLUNA_ALUNO_ATIVIDADE_JSON, activity);
+
+        System.out.println("addActivity: " + name + " " + activityType + " " + activity);
+        
+        long id = db.insert(TABLE_ATIVIDADES_ALUNO, null, values);
+
+        db.close();
+        
+        return id;
+    }
+
 
 }
