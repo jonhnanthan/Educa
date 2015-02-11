@@ -23,7 +23,7 @@ import android.widget.Toast;
 
 import com.educa.R;
 import com.educa.adapter.ExerciseStudentAdapter;
-import com.educa.database.DataBaseProfessor;
+import com.educa.database.DataBaseAluno;
 import com.educa.entity.ColorMatchExercise;
 import com.educa.validation.Correction;
 import com.educa.validation.Status;
@@ -41,7 +41,6 @@ public class AnswerColorMatchExercise extends Activity {
 
     private ArrayList<CharSequence> exercise;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_color_match_exercise_answer);
@@ -83,8 +82,8 @@ public class AnswerColorMatchExercise extends Activity {
 
                     String rightAnswer = (String) btn.getText();
                     
-                    String type = DataBaseProfessor.getInstance(getApplicationContext()).COLOR_MATCH_EXERCISE_TYPECODE;
-                    ArrayList<String> exercisesColor = DataBaseProfessor.getInstance(getApplicationContext()).getActivities(type);
+                    String type = DataBaseAluno.getInstance(getApplicationContext()).COLOR_MATCH_EXERCISE_TYPECODE;
+                    ArrayList<String> exercisesColor = DataBaseAluno.getInstance(getApplicationContext()).getActivities(type);
                     
                     for (String string : exercisesColor) {
                     	JSONObject exerciseJson;
@@ -92,7 +91,7 @@ public class AnswerColorMatchExercise extends Activity {
                     	try {
                     		exerciseJson = new JSONObject(string);
                     		if (exerciseJson.getString("name").equals(exercise.get(0))){
-                    			DataBaseProfessor.getInstance(getApplicationContext()).removeActivity(exerciseJson.getString("name"));
+//                    			DataBaseAluno.getInstance(getApplicationContext()).removeActivity(exerciseJson.getString("name"));
                     			c = new ColorMatchExercise(
                     					exerciseJson.getString("name"),
                     					exerciseJson.getString("type"),
@@ -111,11 +110,11 @@ public class AnswerColorMatchExercise extends Activity {
                     			
                     			if (c.getRightAnswer().equals(rightAnswer)){
                     				c.setCorrection(String.valueOf(Correction.RIGHT));
-                    				DataBaseProfessor.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
+//                    				DataBaseAluno.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
                     				congratulationsAlert();
                     			} else{
                     				c.setCorrection(String.valueOf(Correction.WRONG));
-                    				DataBaseProfessor.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
+//                    				DataBaseAluno.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
                     				tryAgainAlert();
                     			}
                     		}
@@ -152,7 +151,7 @@ public class AnswerColorMatchExercise extends Activity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         try {
-                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseProfessor.getInstance(getApplicationContext()).getActivities(), AnswerColorMatchExercise.this));
+                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerColorMatchExercise.this));
                             StudentHomeActivity.getAdapter().notifyDataSetChanged();
 
                             Intent intent = new Intent(AnswerColorMatchExercise.this, StudentHomeActivity.class);
@@ -190,7 +189,7 @@ public class AnswerColorMatchExercise extends Activity {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
                 try {
-                    StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseProfessor.getInstance(getApplicationContext()).getActivities(), AnswerColorMatchExercise.this));
+                    StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerColorMatchExercise.this));
                     StudentHomeActivity.getAdapter().notifyDataSetChanged();
 
                     Intent intent = new Intent(AnswerColorMatchExercise.this,

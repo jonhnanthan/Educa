@@ -13,25 +13,25 @@ import android.widget.ImageButton;
 import com.educa.R;
 
 public class MainActivity extends Activity {
-    private ImageButton bt_teacher, bt_student;
+  private ImageButton bt_student;
 
-    @Override
+  
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bt_teacher = (ImageButton) findViewById(R.id.bt_teacher);
+        //bt_teacher = (ImageButton) findViewById(R.id.bt_teacher);
         bt_student = (ImageButton) findViewById(R.id.bt_student);
 
-        bt_teacher.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent intentTeacher = new Intent(getApplicationContext(),
-                        TeacherHomeActivity.class);
-                startActivity(intentTeacher);
-            }
-        });
+//        bt_teacher.setOnClickListener(new OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                Intent intentTeacher = new Intent(getApplicationContext(),
+//                        TeacherHomeActivity.class);
+//                startActivity(intentTeacher);
+//            }
+//        });
 
         bt_student.setOnClickListener(new OnClickListener() {
 

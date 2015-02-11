@@ -45,6 +45,7 @@ public class ColorPickerAdapter extends BaseAdapter {
 		}
 	}
 
+	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ImageView imageView;
 
@@ -64,14 +65,17 @@ public class ColorPickerAdapter extends BaseAdapter {
 		return imageView;
 	}
 
+	@Override
 	public int getCount() {
 		return colorList.size();
 	}
 
+	@Override
 	public Integer getItem(int position) {
 		return colorList.get(position);
 	}
 
+	@Override
 	public long getItemId(int position) {
 		return 0;
 	}

@@ -25,7 +25,7 @@ import android.widget.Toast;
 
 import com.educa.R;
 import com.educa.adapter.ExerciseStudentAdapter;
-import com.educa.database.DataBaseProfessor;
+import com.educa.database.DataBaseAluno;
 import com.educa.entity.CompleteExercise;
 import com.educa.validation.Correction;
 import com.educa.validation.Status;
@@ -120,44 +120,44 @@ public class AnswerCompleteExercise extends Activity {
             @Override
             public void onClick(View v) {
                 if (isCompleted()) {
-                    String type = DataBaseProfessor.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE;
-                    ArrayList<String> exercisesComplete = DataBaseProfessor.getInstance(getApplicationContext()).getActivities(type);
+//                    String type = DataBaseProfessor.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE;
+//                    ArrayList<String> exercisesComplete = DataBaseProfessor.getInstance(getApplicationContext()).getActivities(type);
                     
-                    for (String string : exercisesComplete) {
-                    	JSONObject exerciseJson;
-                    	CompleteExercise c;
-                    	try {
-                    		exerciseJson = new JSONObject(string);
-                    		if (exerciseJson.getString("name").equals(listExercise.get(0))){
-                    			DataBaseProfessor.getInstance(getApplicationContext()).removeActivity(exerciseJson.getString("name"));
-                    			c = new CompleteExercise(
-                    					exerciseJson.getString("name"),
-                    					exerciseJson.getString("type"),
-                    					exerciseJson.getString("date"),
-                    					exerciseJson.getString("status"),
-                    					exerciseJson.getString("correction"),
-                    					exerciseJson.getString("question"),
-                    					exerciseJson.getString("word"),
-                    					exerciseJson.getString("hiddenIndexes"));
-                    			
-                    			c.setStatus(String.valueOf(Status.ANSWERED));
-                    			
-                    			if (isRight()){
-                    				c.setCorrection(String.valueOf(Correction.RIGHT));
-                    				DataBaseProfessor.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
-                    				congratulationsAlert();
-                    			} else{
-                    				c.setCorrection(String.valueOf(Correction.WRONG));
-                    				DataBaseProfessor.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
-                    				tryAgainAlert();
-                    			}
-                    		}
-							
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
+//                    for (String string : exercisesComplete) {
+//                    	JSONObject exerciseJson;
+//                    	CompleteExercise c;
+//                    	try {
+//                    		exerciseJson = new JSONObject(string);
+//                    		if (exerciseJson.getString("name").equals(listExercise.get(0))){
+//                    			DataBaseProfessor.getInstance(getApplicationContext()).removeActivity(exerciseJson.getString("name"));
+//                    			c = new CompleteExercise(
+//                    					exerciseJson.getString("name"),
+//                    					exerciseJson.getString("type"),
+//                    					exerciseJson.getString("date"),
+//                    					exerciseJson.getString("status"),
+//                    					exerciseJson.getString("correction"),
+//                    					exerciseJson.getString("question"),
+//                    					exerciseJson.getString("word"),
+//                    					exerciseJson.getString("hiddenIndexes"));
+//                    			
+//                    			c.setStatus(String.valueOf(Status.ANSWERED));
+//                    			
+//                    			if (isRight()){
+//                    				c.setCorrection(String.valueOf(Correction.RIGHT));
+//                    				DataBaseProfessor.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
+//                    				congratulationsAlert();
+//                    			} else{
+//                    				c.setCorrection(String.valueOf(Correction.WRONG));
+//                    				DataBaseProfessor.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
+//                    				tryAgainAlert();
+//                    			}
+//                    		}
+//							
+//						} catch (Exception e) {
+//							e.printStackTrace();
+//						}
 
-                    }
+//                    }
                 } else {
                     Toast.makeText(
                             getApplicationContext(),
@@ -206,7 +206,7 @@ public class AnswerCompleteExercise extends Activity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         try {
-                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseProfessor.getInstance(getApplicationContext()).getActivities(), AnswerCompleteExercise.this));
+                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerCompleteExercise.this));
                             StudentHomeActivity.getAdapter().notifyDataSetChanged();
 
                             Intent intent = new Intent(AnswerCompleteExercise.this,
@@ -246,7 +246,7 @@ public class AnswerCompleteExercise extends Activity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         try {
-                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseProfessor.getInstance(getApplicationContext()).getActivities(), AnswerCompleteExercise.this));
+                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerCompleteExercise.this));
                             StudentHomeActivity.getAdapter().notifyDataSetChanged();
 
                             Intent intent = new Intent(AnswerCompleteExercise.this,

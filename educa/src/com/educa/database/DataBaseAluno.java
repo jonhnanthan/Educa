@@ -27,6 +27,10 @@ public class DataBaseAluno extends SQLiteOpenHelper{
     
     private static final String SQL_DELETE_ALUNO_TABLE = "DROP TABLE IF EXISTS Aluno";
     
+    public final String COLOR_MATCH_EXERCISE_TYPECODE = "COLOR_MATCH_EXERCISE";
+    public final String MULTIPLE_CHOICE_EXERCISE_TYPECODE = "MULTIPLE_CHOICE_EXERCISE";
+    public final String COMPLETE_EXERCISE_TYPECODE = "COMPLETE_EXERCISE";
+    
     private DataBaseAluno(Context context) {
         super(context, "educaNew.db", null, 1);
     }

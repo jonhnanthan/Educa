@@ -10,8 +10,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -19,7 +17,7 @@ import android.widget.ListView;
 
 import com.educa.R;
 import com.educa.adapter.ExerciseStudentAdapter;
-import com.educa.database.DataBaseProfessor;
+import com.educa.database.DataBaseAluno;
 
 public class StudentHomeActivity extends Activity {
     private ListView listview;
@@ -32,7 +30,10 @@ public class StudentHomeActivity extends Activity {
 
         listview = (ListView) findViewById(R.id.lv_exercise);
 
-        ArrayList<String> exercises = DataBaseProfessor.getInstance(getApplicationContext()).getActivities();
+        DataBaseAluno db = DataBaseAluno.getInstance(getApplicationContext());
+        ArrayList<String> exercises = null;
+        if (db != null)
+        exercises = db.getActivities();
 
         adapter = new ExerciseStudentAdapter(getApplicationContext(), exercises, StudentHomeActivity.this);
         listview.setAdapter(adapter);
@@ -47,7 +48,7 @@ public class StudentHomeActivity extends Activity {
                 try{
                 JSONObject exercise = new JSONObject(json);
 
-                if (exercise.getString("type").equals(DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE)) {
+                if (exercise.getString("type").equals(DataBaseAluno.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE)) {
 					ArrayList<CharSequence> listMultipleChoiceExercise = new ArrayList<CharSequence>();
 
 					listMultipleChoiceExercise.add(exercise.getString("name"));
@@ -63,7 +64,7 @@ public class StudentHomeActivity extends Activity {
                     i.putCharSequenceArrayListExtra("QuestionToAnswerMatch", listMultipleChoiceExercise);
                     startActivity(i);
                 }
-                if (exercise.getString("type").equals(DataBaseProfessor.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE)) {
+                if (exercise.getString("type").equals(DataBaseAluno.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE)) {
 					ArrayList<CharSequence> listCompleteExercise = new ArrayList<CharSequence>();
 
 					listCompleteExercise.add(exercise.getString("name"));
@@ -76,7 +77,7 @@ public class StudentHomeActivity extends Activity {
                     i.putCharSequenceArrayListExtra("QuestionToAnswerComplete", listCompleteExercise);
                     startActivity(i);
                 }
-                if (exercise.getString("type").equals(DataBaseProfessor.getInstance(getApplicationContext()).COLOR_MATCH_EXERCISE_TYPECODE)) {
+                if (exercise.getString("type").equals(DataBaseAluno.getInstance(getApplicationContext()).COLOR_MATCH_EXERCISE_TYPECODE)) {
                     ArrayList<CharSequence> listColorMatchExercise = new ArrayList<CharSequence>();
                 	
                     listColorMatchExercise.add(exercise.getString("name"));

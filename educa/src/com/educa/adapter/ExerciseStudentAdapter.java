@@ -24,7 +24,7 @@ import com.educa.R;
 import com.educa.activity.AnswerColorMatchExercise;
 import com.educa.activity.AnswerCompleteExercise;
 import com.educa.activity.AnswerMultipleChoiceExercise;
-import com.educa.database.DataBaseProfessor;
+import com.educa.database.DataBaseAluno;
 
 public class ExerciseStudentAdapter extends BaseAdapter {
 
@@ -79,11 +79,11 @@ public class ExerciseStudentAdapter extends BaseAdapter {
 	        tv_exercise_correction.setText(exercise.getString("correction"));
 	        tv_exercise_date.setText(exercise.getString("date"));
 
-	        if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).COLOR_MATCH_EXERCISE_TYPECODE)) {
+	        if (exercise.getString("type").equals(DataBaseAluno.getInstance(mcontext).COLOR_MATCH_EXERCISE_TYPECODE)) {
 	            icon.setImageResource(R.drawable.colorthumb);
-	        } else if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).MULTIPLE_CHOICE_EXERCISE_TYPECODE)) {
+	        } else if (exercise.getString("type").equals(DataBaseAluno.getInstance(mcontext).MULTIPLE_CHOICE_EXERCISE_TYPECODE)) {
 	            icon.setImageResource(R.drawable.multiplethumb);
-	        } else if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).COMPLETE_EXERCISE_TYPECODE)) {
+	        } else if (exercise.getString("type").equals(DataBaseAluno.getInstance(mcontext).COMPLETE_EXERCISE_TYPECODE)) {
 	            icon.setImageResource(R.drawable.completethumb);
 	        }
 		} catch (JSONException e) {
@@ -115,7 +115,7 @@ public class ExerciseStudentAdapter extends BaseAdapter {
                     	JSONObject exercise;
                     	try {
 							exercise = new JSONObject(json);
-							if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).MULTIPLE_CHOICE_EXERCISE_TYPECODE)) {
+							if (exercise.getString("type").equals(DataBaseAluno.getInstance(mcontext).MULTIPLE_CHOICE_EXERCISE_TYPECODE)) {
 								ArrayList<CharSequence> listMultipleChoiceExercise = new ArrayList<CharSequence>();
 
 								listMultipleChoiceExercise.add(exercise.getString("name"));
@@ -131,7 +131,7 @@ public class ExerciseStudentAdapter extends BaseAdapter {
                             i.putCharSequenceArrayListExtra("QuestionToAnswerMatch", listMultipleChoiceExercise);
                             parentActivity.startActivity(i);
                         }
-                        if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).COMPLETE_EXERCISE_TYPECODE)) {
+                        if (exercise.getString("type").equals(DataBaseAluno.getInstance(mcontext).COMPLETE_EXERCISE_TYPECODE)) {
 							ArrayList<CharSequence> listCompleteExercise = new ArrayList<CharSequence>();
 
 							listCompleteExercise.add(exercise.getString("name"));
@@ -144,7 +144,7 @@ public class ExerciseStudentAdapter extends BaseAdapter {
                             i.putCharSequenceArrayListExtra("QuestionToAnswerComplete", listCompleteExercise);
                             parentActivity.startActivity(i);
                         }
-                        if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).COLOR_MATCH_EXERCISE_TYPECODE)) {
+                        if (exercise.getString("type").equals(DataBaseAluno.getInstance(mcontext).COLOR_MATCH_EXERCISE_TYPECODE)) {
                             ArrayList<CharSequence> listColorMatchExercise = new ArrayList<CharSequence>();
                         	
                             listColorMatchExercise.add(exercise.getString("name"));
