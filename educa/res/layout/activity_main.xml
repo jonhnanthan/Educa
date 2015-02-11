@@ -10,15 +10,6 @@
     tools:context="com.educa.activity.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-    <ImageButton
-        android:id="@+id/bt_student"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@android:color/transparent"
-        android:src="@drawable/selector_bt_main"
-        android:contentDescription="@string/student"/>
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -26,10 +17,9 @@
         android:layout_gravity="center_horizontal|center_vertical"
         android:layout_marginTop="-70dp"
         android:gravity="center_horizontal|center_vertical"
-        android:text="@string/student"
         android:textColor="#ffffffff"
-        android:textStyle="normal|bold"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:textStyle="normal|bold" />
 
     <ImageButton
         android:id="@+id/bt_teacher"
@@ -38,8 +28,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/selector_bt_main"
-        android:contentDescription="@string/teacher"/>
+        android:contentDescription="@string/teacher"
+        android:src="@drawable/selector_bt_main" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -49,6 +40,7 @@
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/teacher"
         android:textColor="#ffffffff"
-        android:textStyle="normal|bold"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="normal|bold" />
+
 </LinearLayout>
