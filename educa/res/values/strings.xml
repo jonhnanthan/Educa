@@ -54,5 +54,10 @@
     <string name="fragment_help_3">Choose the correct alternative.</string>
     <string name="question">Question</string>
     <string name="exercise_name">Exercise Name</string>
+    <string name="send">Send</string>
+    <string name="send_alert_title">Send Exercise</string>
+    <string name="send_alert_message">Do you want to send the Exercise?</string>
+    <string name="fileSent">File Sent!</string>
+    <string name="ErrorSend">Error sending the file.</string>
 
 </resources>
