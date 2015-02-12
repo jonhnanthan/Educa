@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">educa</string>
+    <string name="student_home_activity">Student - Home</string>
+    <string name="teacher_home_activity">Teacher - Home</string>
+    <string name="choose_model_activity">Choose Model</string>
+    <string name="match_exercise_activity">Match Exercise</string>
+    <string name="complete_exercise_activity">Complete Exercise</string>
+    <string name="action_new_exercise">New Exercise</string>
+    <string name="student">I\'m a Student</string>
+    <string name="teacher">I\'m a Teacher</string>
+    <string name="match">Match</string>
+    <string name="color_match">Color Match</string>
+    <string name="multiple_choice">Multiple Choice</string>
+    <string name="complete">Complete</string>
+    <string name="calligraphy">Calligraphy</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+<<<<<<< HEAD:src/main/res/values/strings.xml
+    <string name="required">Required</string>
+    <string name="duplicated">Duplicated</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="answer">Answer</string>
+    <string name="about">About</string>
+    <string name="help">Help</string>
+    <string name="congratulations_alert_title">Congratulations!</string>
+    <string name="congratulations_alert_message">You are right!</string>
+    <string name="fail_alert_title">You are wrong!</string>
+    <string name="fail_alert_message">Let\'s try again?</string>
+    <string name="edit_alert_title">Edit Exercise</string>
+    <string name="delete_alert_title">Delete Exercise</string>
+    <string name="edit_alert_message">Are you sure you want to edit this Exercise?</string>
+    <string name="delete_alert_message">Are you sure you want to delete this Exercise?</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="status_new">New</string>
+    <string name="status_answered">Answered</string>
+    <string name="status_submitted">Submitted</string>
+    <string name="correction_not_rated">Not Rated</string>
+    <string name="correction_right">Right Answer</string>
+    <string name="correction_wrong">Wrong Answer</string>
+    <string name="created_exercises">Created Exercises</string>
+    <string name="my_exercises">My Exercises</string>
+    <string name="choose_the_right_answer">Choose the right answer</string>
+    <string name="choose_a_color">Choose a color</string>
+    <string name="exercise_name_already_exists">Exercise name already exists. Choose other name</string>
+    <string name="need_to_choose_letter">Need to choose at least one letter</string>
+    <string name="developers">Developers</string>
+    <string name="fragment_help_1">Match colors to their names.</string>
+    <string name="fragment_help_2">Complete the word with the hidden letters.</string>
+    <string name="fragment_help_3">Choose the correct alternative.</string>
+    <string name="question">Question</string>
+    <string name="exercise_name">Exercise Name</string>
+    <string name="send">Send</string>
+    <string name="send_alert_title">Send Exercise</string>
+    <string name="send_alert_message">Do you want to send the Exercise?</string>
+    <string name="fileSent">File Sent!</string>
+    <string name="ErrorSend">Error sending the file.</string>
+=======
+
+	<string name="required">Required</string>
+	<string name="duplicated">Duplicated</string>
+	
+	<string name="edit">Edit</string>
+	<string name="delete">Delete</string>
+	<string name="answer">Answer</string>
+	<string name="about">About</string>
+	<string name="help">Help</string>
+		
+	<string name="congratulations_alert_title">Congratulations!</string>
+	<string name="congratulations_alert_message">You are right!</string>
+	<string name="fail_alert_title">You are wrong!</string>
+	<string name="fail_alert_message">Let\'s try again?</string>
+	
+	<string name="edit_alert_title">Edit Exercise</string>
+	<string name="delete_alert_title">Delete Exercise</string>
+	<string name="edit_alert_message">Are you sure you want to edit this Exercise?</string>
+	<string name="delete_alert_message">Are you sure you want to delete this Exercise?</string>
+	<string name="cancel">Cancel</string>
+	<string name="ok">OK</string>
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
+		
+	
+	<string name="status_new">New</string>   
+	<string name="status_answered">Answered</string>
+	<string name="status_submitted">Submitted</string>
+	<string name="correction_not_rated">Not Rated</string>
+	<string name="correction_right">Right Answer</string>
+	<string name="correction_wrong">Wrong Answer</string>
+					
+	<string name="created_exercises">Created Exercises</string>
+	<string name="my_exercises">My Exercises</string>
+	<string name="choose_the_right_answer">Choose the right answer</string>
+	<string name="choose_a_color">Choose a color</string>
+	<string name="exercise_name_already_exists">Exercise name already exists. Choose other name</string>
+	<string name="need_to_choose_letter">Need to choose at least one letter</string>
+	
+	<string name="developers">Developers</string>
+	<string name="fragment_help_1">Match colors to their names.</string>
+	<string name="fragment_help_2">Complete the word with the hidden letters.</string>
+	<string name="fragment_help_3">Choose the correct alternative.</string>
+    <string name="question">Question</string>
+	<string name="exercise_name">Exercise Name</string>
+>>>>>>> e47e20dcea95c01bf50a19f05b5a37560d001c51:app_aluno/src/main/res/values/strings.xml
+
+</resources>

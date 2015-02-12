@@ -1,14 +1,3 @@
-Android educa_maven
-============
-educa_maven apk
-
-使用说明
----------------------
-请使用android模拟器，运行educa_maven
-
-依赖库
----------------------
-* [destinyd/android-archetypes][android-archetypes]
-
-
-[android-archetypes]: https://github.com/destinyd/android-archetypes
+# Educales142
+Branch for run Maven
+Repositório para a disciplina de LES turma 20142
