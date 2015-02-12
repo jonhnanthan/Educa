@@ -1,21 +1,14 @@
 
 package com.educa.activity;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
 import com.educa.R;
 import com.educa.database.DataBaseProfessor;
 import com.educa.entity.ColorMatchExercise;
@@ -24,17 +17,20 @@ import com.educa.validation.Correction;
 import com.educa.validation.FieldValidation;
 import com.educa.validation.Status;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 public class ColorMatchExerciseStep4Activity extends Activity {
     private EditText et_name;
-    private ImageButton bt_save, bt_back;
     private ArrayList<CharSequence> exerciseData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiplechoice_exercise_step3);
-        bt_save = (ImageButton) findViewById(R.id.bt_save);
-        bt_back = (ImageButton) findViewById(R.id.bt_previous_step);
+        ImageButton bt_save = (ImageButton) findViewById(R.id.bt_save);
+        ImageButton bt_back = (ImageButton) findViewById(R.id.bt_previous_step);
         et_name = (EditText) findViewById(R.id.et_name);
 
         Intent i = getIntent();
@@ -69,7 +65,7 @@ public class ColorMatchExerciseStep4Activity extends Activity {
                         // StudentHomeActivity.studentDataBaseHelper.addExercise(exercise);
 
                         DataBaseProfessor.getInstance(getApplicationContext()).addActivity(name, DataBaseProfessor.getInstance(getApplicationContext()).COLOR_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
-                        
+
                         // ExerciseStorage.getListExercise().add(exercise);
                         Intent intent = new Intent(ColorMatchExerciseStep4Activity.this,
                                 TeacherHomeActivity.class);
@@ -95,27 +91,7 @@ public class ColorMatchExerciseStep4Activity extends Activity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        switch (item.getItemId()) {
-            case R.id.about:
-                Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
-                startActivity(intent);
-            case R.id.help:
-        }
-        return super.onOptionsItemSelected(item);
-    }
+    
 
     @Override
     public void onBackPressed() {

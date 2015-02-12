@@ -5,9 +5,9 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.educa</groupId>
-    <artifactId>educa_maven</artifactId>
+    <artifactId>educa_maven_professor</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>educa_maven</name>
+    <name>educa_maven_professor</name>
     <packaging>apk</packaging>
 
     <properties>

@@ -1,21 +1,14 @@
 
 package com.educa.activity;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
 import com.educa.R;
 import com.educa.database.DataBaseProfessor;
 import com.educa.entity.Exercise;
@@ -24,17 +17,20 @@ import com.educa.validation.Correction;
 import com.educa.validation.FieldValidation;
 import com.educa.validation.Status;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 public class MultipleChoiceExerciseStep3Activity extends Activity {
     private EditText et_name;
-    private ImageButton bt_save, bt_back;
     private ArrayList<CharSequence> exerciseData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiplechoice_exercise_step3);
-        bt_save = (ImageButton) findViewById(R.id.bt_save);
-        bt_back = (ImageButton) findViewById(R.id.bt_previous_step);
+        ImageButton bt_save = (ImageButton) findViewById(R.id.bt_save);
+        ImageButton bt_back = (ImageButton) findViewById(R.id.bt_previous_step);
         et_name = (EditText) findViewById(R.id.et_name);
 
         Intent i = getIntent();
@@ -54,15 +50,15 @@ public class MultipleChoiceExerciseStep3Activity extends Activity {
                     String name = et_name.getText().toString();
                     Date currentDate = new Date();
                     String fDate = new SimpleDateFormat("dd-MM-yyyy").format(currentDate);
-                    
+
                     MultipleChoiceExercise exercise = new MultipleChoiceExercise(name, DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE, fDate, String.valueOf(Status.NEW), String.valueOf(Correction.NOT_RATED), question, alternative1, alternative2, alternative3, alternative4, rightAnswer);
                     // exercise.getStatus().setStatus(getApplicationContext().getResources().getString(R.string.status_new));
                     // exercise.getCorrection().setCorrection(getApplicationContext().getResources().getString(R.string.correction_not_rated));
 
                     if (exerciseNameDontExists(exercise)) {
 //                        MainActivity.teacherDataBaseHelper.addExercise(exercise);
-                    	
-                    	DataBaseProfessor.getInstance(MultipleChoiceExerciseStep3Activity.this).addActivity(name, DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE, exercise.getJsonTextObject());
+
+                        DataBaseProfessor.getInstance(MultipleChoiceExerciseStep3Activity.this).addActivity(name, DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE, exercise.getJsonTextObject());
 
                         // ExerciseStorage.getListExercise().add(exercise);
                         Intent intent = new Intent(MultipleChoiceExerciseStep3Activity.this, TeacherHomeActivity.class);
@@ -84,27 +80,7 @@ public class MultipleChoiceExerciseStep3Activity extends Activity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        switch (item.getItemId()) {
-            case R.id.about:
-                Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
-                startActivity(intent);
-            case R.id.help:
-        }
-        return super.onOptionsItemSelected(item);
-    }
+    
 
     @Override
     public void onBackPressed() {

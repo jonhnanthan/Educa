@@ -4,8 +4,6 @@ package com.educa.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
@@ -20,19 +18,14 @@ public class CompleteExerciseStep2Activity extends Activity {
     private ArrayList<CharSequence> exerciseData;
     private final ArrayList<CheckBox> letterCheckBoxes = new ArrayList<CheckBox>();
 
-    private String word;
-    private String[] letters;
-    private ImageButton bt_previous_step;
-    private ImageButton bt_confirm;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complete_exercise_step2);
         Intent intent = getIntent();
         exerciseData = intent.getCharSequenceArrayListExtra("ExerciseData");
-        word = exerciseData.get(1).toString().replace(" ", "");
-        letters = word.split("");
+        String word = exerciseData.get(1).toString().replace(" ", "");
+        String[] letters = word.split("");
 
         letterLayouts.add((LinearLayout) findViewById(R.id.layout_letter1));
         letterLayouts.add((LinearLayout) findViewById(R.id.layout_letter2));
@@ -70,14 +63,14 @@ public class CompleteExerciseStep2Activity extends Activity {
             letterTextViews.get(i).setText(letters[i + 1].toUpperCase());
         }
 
-        bt_previous_step = (ImageButton) findViewById(R.id.bt_previous_step);
+        ImageButton bt_previous_step = (ImageButton) findViewById(R.id.bt_previous_step);
         bt_previous_step.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-        bt_confirm = (ImageButton) findViewById(R.id.confirm);
+        ImageButton bt_confirm = (ImageButton) findViewById(R.id.confirm);
         bt_confirm.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -105,28 +98,7 @@ public class CompleteExerciseStep2Activity extends Activity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        switch (item.getItemId()) {
-            case R.id.about:
-                Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
-                startActivity(intent);
-            case R.id.help:
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
+    
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -134,15 +106,12 @@ public class CompleteExerciseStep2Activity extends Activity {
 
     public boolean isHidden(ArrayList<CheckBox> letterCheckBoxes) {
         int cont = 0;
-        for (int i = 0; i < letterCheckBoxes.size(); i++) {
-            if (letterCheckBoxes.get(i).isChecked()) {
+        for (CheckBox letterCheckBoxe : letterCheckBoxes) {
+            if (letterCheckBoxe.isChecked()) {
                 cont++;
             }
         }
-        if (cont == 0) {
-            return false;
-        }
-        return true;
+        return cont != 0;
     }
 
 }

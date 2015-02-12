@@ -28,6 +28,7 @@
 	
 	<string name="edit">Editar</string>
 	<string name="delete">Excluir</string>
+    <string name="send">Enviar</string>
 	<string name="answer">Responder</string>
 	<string name="about">Sobre</string>
 	<string name="help">Ajuda</string>
@@ -54,7 +55,7 @@
 	<string name="correction_right">Resposta Certa</string>
 	<string name="correction_wrong">Resposta Errada</string>
 					
-	<string name="created_exercies">Exercícios Criados</string>
+	<string name="created_exercises">Exercícios Criados</string>
 	<string name="my_exercises">Meus Exercícios</string>
 	<string name="choose_the_right_answer">Escolha a alternativa correta</string>
 	<string name="choose_a_color">Escolha uma cor</string>
@@ -66,5 +67,11 @@
 	<string name="fragment_help_2">Complete as letras ocultas de uma palavra.</string>
 	<string name="fragment_help_3">Escolha a alternativa correta.</string>
     <string name="question">Questão</string>
+	<string name="exercise_name">Nome do Exercício</string>
+    <string name="send_alert_title">Enviar Exercício</string>
+    <string name="send_alert_message">Você deseja enviar este exercício?</string>
+    <string name="fileSent">Arquivo Enviado!</string>
+    <string name="ErrorSend">Erro ao enviar o arquivo.</string>
+
 
 </resources>

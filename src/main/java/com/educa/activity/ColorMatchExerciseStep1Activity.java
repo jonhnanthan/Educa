@@ -4,12 +4,12 @@ package com.educa.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.LinearLayout.LayoutParams;
 import com.educa.R;
 import com.educa.graphics.ColorPickerAdapter;
 
@@ -28,13 +28,16 @@ public class ColorMatchExerciseStep1Activity extends Activity {
         tv_choose = (TextView) findViewById(R.id.tv_choose);
 
         final GridView gridViewColors = (GridView) findViewById(R.id.gridViewColors);
-        gridViewColors.setAdapter(new ColorPickerAdapter(getApplicationContext()));
+        ColorPickerAdapter adapter = new ColorPickerAdapter(getApplicationContext());
+        gridViewColors.setAdapter(adapter);
+        
+        adjustridLayout(adapter, gridViewColors);
 
         gridViewColors.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 colorSelected = (Integer) gridViewColors.getAdapter().getItem(position);
-                tv_choose.setText("Color Selected");
+                tv_choose.setText("Cor Selecionada");
                 LinearLayout layout_choose = (LinearLayout) findViewById(R.id.layout_choose);
                 layout_choose.setBackgroundColor(colorSelected);
                 layout_choose.setAlpha((float) 0.8);
@@ -65,26 +68,18 @@ public class ColorMatchExerciseStep1Activity extends Activity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        switch (item.getItemId()) {
-            case R.id.about:
-                Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
-                startActivity(intent);
-            case R.id.help:
-        }
-        return super.onOptionsItemSelected(item);
-    }
+    @SuppressWarnings("deprecation")
+	private void adjustridLayout(ColorPickerAdapter adapter,
+			GridView gridViewColors) {
+		Display display = getWindowManager().getDefaultDisplay(); 
+		int width = display.getWidth();
+		int height = display.getHeight();
+		
+		final View item = adapter.getView(0, null, gridViewColors);
+		item.measure(0, 0);
+		final LayoutParams params = new LayoutParams(width, (int) (height/2.5));
+		gridViewColors.setLayoutParams(params);
+		adapter.notifyDataSetChanged();
+	}
 
 }

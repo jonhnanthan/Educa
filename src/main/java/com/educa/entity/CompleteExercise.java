@@ -1,14 +1,15 @@
 
 package com.educa.entity;
 
+import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
 public class CompleteExercise extends Exercise {
+    private static final String LOG = "LOGs";
     private String word;
     private String hiddenIndexes;
-    private JSONObject activityData;
 
     public CompleteExercise(String name, String type, String date, String status,
             String correction, String question, String word, String hiddenIndexes) {
@@ -19,7 +20,7 @@ public class CompleteExercise extends Exercise {
     }
 
 	public String getJsonTextObject() {
-		activityData = new JSONObject();
+        JSONObject activityData = new JSONObject();
 		try {
 			activityData.put("name", this.getName());
 			activityData.put("type", this.getType());
@@ -31,7 +32,7 @@ public class CompleteExercise extends Exercise {
 			activityData.put("hiddenIndexes", hiddenIndexes);
 			
 		} catch (JSONException e) {
-			e.printStackTrace();
+            Log.e(LOG, e.getMessage());
 		}
 		return activityData.toString();
 	}

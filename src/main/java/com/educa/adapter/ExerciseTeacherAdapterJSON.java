@@ -1,11 +1,6 @@
 
 package com.educa.adapter;
 
-import java.util.ArrayList;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,17 +12,17 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.PopupMenu;
-import android.widget.TextView;
-
+import android.widget.*;
 import com.educa.R;
 import com.educa.activity.EditColorMatchExerciseActivity;
 import com.educa.activity.EditCompleteExerciseStep1Activity;
 import com.educa.activity.EditMultipleChoiceExerciseActivity;
 import com.educa.database.DataBaseProfessor;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.FileOutputStream;
+import java.util.ArrayList;
 public class ExerciseTeacherAdapterJSON extends BaseAdapter {
 
     private static ArrayList<String> mListExercise;
@@ -172,6 +167,9 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
                     case R.id.delete:
                         deleteAlert(json);
                         break;
+                    case R.id.send:
+                        sendAlert(json);
+                        break;
                     default:
                         break;
                 }
@@ -193,6 +191,59 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
         notifyDataSetChanged();
         
     }
+    public void sendAndNotify(final String json) {
+        JSONObject exercise;
+        try {
+            exercise = new JSONObject(json);
+            getAlbumStorageDir(mcontext,exercise.getString("name"), json);
+
+    } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getAlbumStorageDir(Context context, String exerciseName, String json) {
+//        File file = new File(context.getFilesDir(), exerciseName);
+        FileOutputStream outputStream = null;
+        String caminhoAbsolutoDoArquivo;
+
+        try {
+            caminhoAbsolutoDoArquivo = mcontext.getApplicationContext().getFilesDir().getPath() + "/" +exerciseName;
+            outputStream = new FileOutputStream(caminhoAbsolutoDoArquivo);
+            outputStream.write(json.getBytes());
+            Log.v("LOGS", context.getFilesDir().getAbsolutePath() );
+            outputStream.close();
+            Toast.makeText(mcontext,context.getString(R.string.fileSent),
+                    Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.e("LOGS", e.getMessage());
+            Toast.makeText(mcontext,context.getString(R.string.ErrorSend),
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void sendAlert(final String json){
+        AlertDialog.Builder builder = new AlertDialog.Builder(parentActivity);
+        builder.setTitle(parentActivity.getResources().getString(R.string.send_alert_title));
+        builder.setMessage(parentActivity.getResources().getString(R.string.send_alert_message));
+        builder.setPositiveButton(parentActivity.getResources().getString(R.string.ok),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        sendAndNotify(json);
+                    }
+                });
+
+        builder.setNegativeButton(R.string.cancel,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                    }
+                });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 
     public void deleteAlert(final String json) {
         AlertDialog.Builder builder = new AlertDialog.Builder(parentActivity);
@@ -211,11 +262,7 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        try {
-                            finalize();
-                        } catch (Throwable e) {
-                            e.printStackTrace();
-                        }
+
                     }
                 });
 

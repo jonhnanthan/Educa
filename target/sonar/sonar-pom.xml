@@ -3,10 +3,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.educa</groupId>
-  <artifactId>educa_maven</artifactId>
+  <artifactId>educa_maven_professor</artifactId>
   <version>2.0-SNAPSHOT</version>
   <packaging>apk</packaging>
-  <name>educa_maven</name>
+  <name>educa_maven_professor</name>
   <properties>
     <android.version>4.1.1.4</android.version>
     <compatibility-v4.version>19.1.0</compatibility-v4.version>
@@ -66,23 +66,23 @@
     </pluginRepository>
   </pluginRepositories>
   <build>
-    <sourceDirectory>/home/leonardo/Workspace/educa_maven/src</sourceDirectory>
-    <scriptSourceDirectory>/home/leonardo/Workspace/educa_maven/src/main/scripts</scriptSourceDirectory>
-    <testSourceDirectory>/home/leonardo/Workspace/educa_maven/test/educa/junit</testSourceDirectory>
-    <outputDirectory>/home/leonardo/Workspace/educa_maven/bin/classes</outputDirectory>
-    <testOutputDirectory>/home/leonardo/Workspace/educa_maven/target/test-classes</testOutputDirectory>
+    <sourceDirectory>/home/leonardo/Workspace/educa_maven/app_professor/src</sourceDirectory>
+    <scriptSourceDirectory>/home/leonardo/Workspace/educa_maven/app_professor/src/main/scripts</scriptSourceDirectory>
+    <testSourceDirectory>/home/leonardo/Workspace/educa_maven/app_professor/test/educa/junit</testSourceDirectory>
+    <outputDirectory>/home/leonardo/Workspace/educa_maven/app_professor/bin/classes</outputDirectory>
+    <testOutputDirectory>/home/leonardo/Workspace/educa_maven/app_professor/target/test-classes</testOutputDirectory>
     <resources>
       <resource>
-        <directory>/home/leonardo/Workspace/educa_maven/src/main/resources</directory>
+        <directory>/home/leonardo/Workspace/educa_maven/app_professor/src/main/resources</directory>
       </resource>
     </resources>
     <testResources>
       <testResource>
-        <directory>/home/leonardo/Workspace/educa_maven/src/test/resources</directory>
+        <directory>/home/leonardo/Workspace/educa_maven/app_professor/src/test/resources</directory>
       </testResource>
     </testResources>
-    <directory>/home/leonardo/Workspace/educa_maven/target</directory>
-    <finalName>educa_maven</finalName>
+    <directory>/home/leonardo/Workspace/educa_maven/app_professor/target</directory>
+    <finalName>educa_maven_professor</finalName>
     <pluginManagement>
       <plugins>
         <plugin>
@@ -136,57 +136,6 @@
         <extensions>true</extensions>
         <executions>
           <execution>
-            <id>default-internal-integration-test</id>
-            <phase>integration-test</phase>
-            <goals>
-              <goal>internal-integration-test</goal>
-            </goals>
-            <configuration>
-              <sdk>
-                <platform>15</platform>
-                <platform>16</platform>
-                <platform>17</platform>
-                <platform>18</platform>
-                <platform>19</platform>
-                <platform>20</platform>
-              </sdk>
-            </configuration>
-          </execution>
-          <execution>
-            <id>default-generate-sources</id>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>generate-sources</goal>
-            </goals>
-            <configuration>
-              <sdk>
-                <platform>15</platform>
-                <platform>16</platform>
-                <platform>17</platform>
-                <platform>18</platform>
-                <platform>19</platform>
-                <platform>20</platform>
-              </sdk>
-            </configuration>
-          </execution>
-          <execution>
-            <id>default-internal-pre-integration-test</id>
-            <phase>pre-integration-test</phase>
-            <goals>
-              <goal>internal-pre-integration-test</goal>
-            </goals>
-            <configuration>
-              <sdk>
-                <platform>15</platform>
-                <platform>16</platform>
-                <platform>17</platform>
-                <platform>18</platform>
-                <platform>19</platform>
-                <platform>20</platform>
-              </sdk>
-            </configuration>
-          </execution>
-          <execution>
             <id>default-emma</id>
             <phase>prepare-package</phase>
             <goals>
@@ -221,6 +170,57 @@
             </configuration>
           </execution>
           <execution>
+            <id>default-apk</id>
+            <phase>package</phase>
+            <goals>
+              <goal>apk</goal>
+            </goals>
+            <configuration>
+              <sdk>
+                <platform>15</platform>
+                <platform>16</platform>
+                <platform>17</platform>
+                <platform>18</platform>
+                <platform>19</platform>
+                <platform>20</platform>
+              </sdk>
+            </configuration>
+          </execution>
+          <execution>
+            <id>default-internal-integration-test</id>
+            <phase>integration-test</phase>
+            <goals>
+              <goal>internal-integration-test</goal>
+            </goals>
+            <configuration>
+              <sdk>
+                <platform>15</platform>
+                <platform>16</platform>
+                <platform>17</platform>
+                <platform>18</platform>
+                <platform>19</platform>
+                <platform>20</platform>
+              </sdk>
+            </configuration>
+          </execution>
+          <execution>
+            <id>default-internal-pre-integration-test</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>internal-pre-integration-test</goal>
+            </goals>
+            <configuration>
+              <sdk>
+                <platform>15</platform>
+                <platform>16</platform>
+                <platform>17</platform>
+                <platform>18</platform>
+                <platform>19</platform>
+                <platform>20</platform>
+              </sdk>
+            </configuration>
+          </execution>
+          <execution>
             <id>default-proguard</id>
             <phase>process-classes</phase>
             <goals>
@@ -238,10 +238,10 @@
             </configuration>
           </execution>
           <execution>
-            <id>default-apk</id>
-            <phase>package</phase>
+            <id>default-generate-sources</id>
+            <phase>generate-sources</phase>
             <goals>
-              <goal>apk</goal>
+              <goal>generate-sources</goal>
             </goals>
             <configuration>
               <sdk>
@@ -381,39 +381,6 @@
         </executions>
       </plugin>
       <plugin>
-        <artifactId>maven-install-plugin</artifactId>
-        <version>2.5.2</version>
-        <executions>
-          <execution>
-            <id>default-install</id>
-            <phase>install</phase>
-            <goals>
-              <goal>install</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>2.7</version>
-        <executions>
-          <execution>
-            <id>default-resources</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>resources</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>default-testResources</id>
-            <phase>process-test-resources</phase>
-            <goals>
-              <goal>testResources</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <artifactId>maven-jar-plugin</artifactId>
         <version>2.5</version>
         <executions>
@@ -440,6 +407,39 @@
         </executions>
       </plugin>
       <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.7</version>
+        <executions>
+          <execution>
+            <id>default-testResources</id>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>testResources</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>default-resources</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>resources</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>2.5.2</version>
+        <executions>
+          <execution>
+            <id>default-install</id>
+            <phase>install</phase>
+            <goals>
+              <goal>install</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <artifactId>maven-site-plugin</artifactId>
         <version>3.0</version>
         <executions>
@@ -450,7 +450,7 @@
               <goal>site</goal>
             </goals>
             <configuration>
-              <outputDirectory>/home/leonardo/Workspace/educa_maven/target/site</outputDirectory>
+              <outputDirectory>/home/leonardo/Workspace/educa_maven/app_professor/target/site</outputDirectory>
               <reportPlugins>
                 <reportPlugin>
                   <groupId>org.apache.maven.plugins</groupId>
@@ -466,7 +466,7 @@
               <goal>deploy</goal>
             </goals>
             <configuration>
-              <outputDirectory>/home/leonardo/Workspace/educa_maven/target/site</outputDirectory>
+              <outputDirectory>/home/leonardo/Workspace/educa_maven/app_professor/target/site</outputDirectory>
               <reportPlugins>
                 <reportPlugin>
                   <groupId>org.apache.maven.plugins</groupId>
@@ -477,7 +477,7 @@
           </execution>
         </executions>
         <configuration>
-          <outputDirectory>/home/leonardo/Workspace/educa_maven/target/site</outputDirectory>
+          <outputDirectory>/home/leonardo/Workspace/educa_maven/app_professor/target/site</outputDirectory>
           <reportPlugins>
             <reportPlugin>
               <groupId>org.apache.maven.plugins</groupId>
@@ -489,6 +489,6 @@
     </plugins>
   </build>
   <reporting>
-    <outputDirectory>/home/leonardo/Workspace/educa_maven/target/site</outputDirectory>
+    <outputDirectory>/home/leonardo/Workspace/educa_maven/app_professor/target/site</outputDirectory>
   </reporting>
 </project>
