@@ -1,34 +1,26 @@
 
 package com.educa.activity;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.CheckBox;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
 import com.educa.R;
 import com.educa.database.DataBaseProfessor;
 import com.educa.entity.CompleteExercise;
 import com.educa.validation.Correction;
 import com.educa.validation.Status;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class EditCompleteExerciseStep2Activity extends Activity {
     private final List<LinearLayout> letterLayouts = new ArrayList<LinearLayout>();
@@ -37,9 +29,6 @@ public class EditCompleteExerciseStep2Activity extends Activity {
     private final ArrayList<CheckBox> letterCheckBoxes = new ArrayList<CheckBox>();
 
     private String name, question, word, hiddenIndexesOld;
-    private String[] letters;
-    private ImageButton bt_previous_step;
-    private ImageButton bt_save;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +40,7 @@ public class EditCompleteExerciseStep2Activity extends Activity {
         name = exerciseData.get(0).toString();
         question = exerciseData.get(2).toString();
         word = exerciseData.get(1).toString().replace(" ", "");
-        letters = word.split("");
+        String[] letters = word.split("");
         hiddenIndexesOld = exerciseData.get(3).toString();
 
         letterLayouts.add((LinearLayout) findViewById(R.id.layout_letter1));
@@ -90,7 +79,7 @@ public class EditCompleteExerciseStep2Activity extends Activity {
             letterTextViews.get(i).setText(letters[i + 1].toUpperCase());
         }
 
-        bt_previous_step = (ImageButton) findViewById(R.id.bt_previous_step);
+        ImageButton bt_previous_step = (ImageButton) findViewById(R.id.bt_previous_step);
         bt_previous_step.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,9 +87,9 @@ public class EditCompleteExerciseStep2Activity extends Activity {
             }
         });
 
-        bt_save = (ImageButton) findViewById(R.id.bt_save);
+        ImageButton bt_save = (ImageButton) findViewById(R.id.bt_save);
         bt_save.setOnClickListener(new OnClickListener() {
-        	 
+
             @Override
             public void onClick(View v) {
                 String hiddenIndexes = "";
@@ -109,35 +98,35 @@ public class EditCompleteExerciseStep2Activity extends Activity {
                         hiddenIndexes = hiddenIndexes + i;
                     }
                 }
-               
+
                 if (isHidden(letterCheckBoxes)) {
-                       
+
                     CompleteExercise completeExercise = new CompleteExercise(name, DataBaseProfessor.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE, exerciseData.get(4).toString(), String.valueOf(Status.NEW), String.valueOf(Correction.NOT_RATED), question, word, hiddenIndexesOld);
                     System.out.println(completeExercise.getJsonTextObject());
                     ArrayList<String> exercises = DataBaseProfessor.getInstance(getApplicationContext()).getActivities();
                     for (String string : exercises) {
-						if (string.equals(completeExercise.getJsonTextObject())){
-							CompleteExercise newExercise = null;
-							JSONObject json;
-							try {
-								json = new JSONObject(string);
-								newExercise = new CompleteExercise(
-										json.getString("name"),
-										json.getString("type"),
-										json.getString("date"),
-										json.getString("status"),
-										json.getString("correction"),
-										json.getString("question"),
-										json.getString("word"),
-										json.getString("hiddenIndexes"));
-							} catch (JSONException e) {
-								e.printStackTrace();
-							}
+                        if (string.equals(completeExercise.getJsonTextObject())) {
+                            CompleteExercise newExercise = null;
+                            JSONObject json;
+                            try {
+                                json = new JSONObject(string);
+                                newExercise = new CompleteExercise(
+                                        json.getString("name"),
+                                        json.getString("type"),
+                                        json.getString("date"),
+                                        json.getString("status"),
+                                        json.getString("correction"),
+                                        json.getString("question"),
+                                        json.getString("word"),
+                                        json.getString("hiddenIndexes"));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
 
                             editAlert(newExercise, completeExercise, hiddenIndexes);
-						}
+                        }
                     }
- 
+
                 } else {
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.need_to_choose_letter), Toast.LENGTH_SHORT).show();
                 }
@@ -154,15 +143,12 @@ public class EditCompleteExerciseStep2Activity extends Activity {
 
     public boolean isHidden(ArrayList<CheckBox> letterCheckBoxes) {
         int cont = 0;
-        for (int i = 0; i < letterCheckBoxes.size(); i++) {
-            if (letterCheckBoxes.get(i).isChecked()) {
+        for (CheckBox letterCheckBoxe : letterCheckBoxes) {
+            if (letterCheckBoxe.isChecked()) {
                 cont++;
             }
         }
-        if (cont == 0) {
-            return false;
-        }
-        return true;
+        return cont != 0;
     }
    
     public void editAlert(final CompleteExercise completeExercise, final CompleteExercise exerciseOnStorage, final String hiddenIndexes) {
@@ -191,16 +177,12 @@ public class EditCompleteExerciseStep2Activity extends Activity {
                         startActivity(intent);
                     }
                 });
- 
+
         builder.setNegativeButton(R.string.cancel,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        try {
-                            finalize();
-                        } catch (Throwable e) {
-                            e.printStackTrace();
-                        }
+
                     }
                 });
  

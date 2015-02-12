@@ -1,21 +1,14 @@
 
 package com.educa.activity;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
 import com.educa.R;
 import com.educa.database.DataBaseProfessor;
 import com.educa.entity.CompleteExercise;
@@ -24,18 +17,21 @@ import com.educa.validation.Correction;
 import com.educa.validation.FieldValidation;
 import com.educa.validation.Status;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 public class CompleteExerciseStep3Activity extends Activity {
     private EditText et_name;
-    private ImageButton bt_save, bt_back;
     private ArrayList<CharSequence> exerciseData;
-    private String question, word, hiddenIndexes;;
+    private String question, word, hiddenIndexes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complete_exercise_step3);
-        bt_save = (ImageButton) findViewById(R.id.bt_save);
-        bt_back = (ImageButton) findViewById(R.id.bt_previous_step);
+        ImageButton bt_save = (ImageButton) findViewById(R.id.bt_save);
+        ImageButton bt_back = (ImageButton) findViewById(R.id.bt_previous_step);
         et_name = (EditText) findViewById(R.id.et_name);
 
         Intent i = getIntent();

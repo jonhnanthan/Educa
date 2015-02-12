@@ -1,14 +1,6 @@
 
 package com.educa.adapter;
 
-import java.io.*;
-import java.util.ArrayList;
-
-import android.os.Environment;
-import android.widget.*;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -20,23 +12,23 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.*;
 import com.educa.R;
 import com.educa.activity.EditColorMatchExerciseActivity;
 import com.educa.activity.EditCompleteExerciseStep1Activity;
 import com.educa.activity.EditMultipleChoiceExerciseActivity;
 import com.educa.database.DataBaseProfessor;
-import android.util.Log;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.FileOutputStream;
+import java.util.ArrayList;
 public class ExerciseTeacherAdapterJSON extends BaseAdapter {
 
     private static ArrayList<String> mListExercise;
     private LayoutInflater mInflater;
     private Context mcontext;
     private Activity parentActivity;
-
-    public ExerciseTeacherAdapterJSON() {
-
-    }
 
     public ExerciseTeacherAdapterJSON(Context context, ArrayList<String> listExercise, Activity parentActivity) {
         mListExercise = listExercise;
@@ -173,6 +165,7 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
                         break;
                     case R.id.send:
                         sendAlert(json);
+                        break;
                     default:
                         break;
                 }
@@ -240,11 +233,7 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        try {
-                            finalize();
-                        } catch (Throwable e) {
-                            e.printStackTrace();
-                        }
+
                     }
                 });
 
@@ -269,11 +258,7 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        try {
-                            finalize();
-                        } catch (Throwable e) {
-                            e.printStackTrace();
-                        }
+
                     }
                 });
 

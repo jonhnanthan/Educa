@@ -12,10 +12,11 @@ import android.widget.ImageButton;
 import com.educa.R;
 
 public class ChooseModelActivity extends Activity {
-    private ImageButton bt_multiple_choice, bt_complete, bt_match;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ImageButton bt_multiple_choice, bt_complete, bt_match;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_exercise_model);
         bt_multiple_choice = (ImageButton) findViewById(R.id.bt_multiplechoice);

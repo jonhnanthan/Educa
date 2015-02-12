@@ -1,34 +1,31 @@
 package com.educa.activity;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
-
 import com.educa.R;
 import com.educa.adapter.ExerciseTeacherAdapterJSON;
 import com.educa.database.DataBaseProfessor;
 
-public class TeacherHomeActivity extends Activity {
-	private ListView listView;
-	private ExerciseTeacherAdapterJSON adapter;
+import java.util.ArrayList;
 
-	@Override
+public class TeacherHomeActivity extends Activity {
+
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_teacher_home);
-		listView = (ListView) findViewById(R.id.lv_exercise);
+        ListView listView = (ListView) findViewById(R.id.lv_exercise);
 
 		ArrayList<String> exercises1 = DataBaseProfessor.getInstance(
 				TeacherHomeActivity.this).getActivities();
 		System.out.println("conta exercicios:" + exercises1.size());
 
-		adapter = new ExerciseTeacherAdapterJSON(getApplicationContext(),
-				exercises1, TeacherHomeActivity.this);
+        ExerciseTeacherAdapterJSON adapter = new ExerciseTeacherAdapterJSON(getApplicationContext(),
+                exercises1, TeacherHomeActivity.this);
 		listView.setAdapter(adapter);
 	}
 

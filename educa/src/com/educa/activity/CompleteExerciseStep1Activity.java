@@ -4,8 +4,6 @@ package com.educa.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -18,8 +16,6 @@ import java.util.ArrayList;
 public class CompleteExerciseStep1Activity extends Activity {
     private EditText question;
     private EditText word;
-    private ImageButton bt_next_step;
-    private ImageButton bt_previous_step;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +23,7 @@ public class CompleteExerciseStep1Activity extends Activity {
         setContentView(R.layout.activity_complete_exercise_step1);
         question = (EditText) findViewById(R.id.question);
         word = (EditText) findViewById(R.id.word);
-        bt_next_step = (ImageButton) findViewById(R.id.bt_next_step);
+        ImageButton bt_next_step = (ImageButton) findViewById(R.id.bt_next_step);
 
         bt_next_step.setOnClickListener(new OnClickListener() {
 
@@ -46,7 +42,7 @@ public class CompleteExerciseStep1Activity extends Activity {
                 }
             }
         });
-        bt_previous_step = (ImageButton) findViewById(R.id.bt_previous_step);
+        ImageButton bt_previous_step = (ImageButton) findViewById(R.id.bt_previous_step);
         bt_previous_step.setOnClickListener(new OnClickListener() {
 
             @Override
