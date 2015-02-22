@@ -11,9 +11,11 @@
     <string name="student">I\'m a Student</string>
     <string name="teacher">I\'m a Teacher</string>
     <string name="match">Match</string>
+    <string name="image_match">ImageMatch</string>
     <string name="color_match">Color Match</string>
     <string name="multiple_choice">Multiple Choice</string>
     <string name="complete">Complete</string>
+    <string name="image">Imagens</string>
     <string name="calligraphy">Calligraphy</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

@@ -98,6 +98,10 @@
             android:name="com.educa.activity.EditCompleteExerciseStep2Activity"
             android:label="@string/complete_exercise_activity" >
         </activity>
+        <activity 
+            android:name="com.educa.activity.ImageMatchExerciseStep1"
+            android:label="@string/image_match"
+            ></activity>
         <activity
             android:name="com.educa.activity.AboutActivity"
             android:label="@string/about" >

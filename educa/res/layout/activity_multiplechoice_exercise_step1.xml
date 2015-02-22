@@ -16,12 +16,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/selector_et"
+        android:ems="10"
         android:hint="Pergunta"
         android:paddingLeft="10dp"
         android:singleLine="true"
         android:textColor="#777777"
         android:textColorHint="#AAAAAA"
-        android:textCursorDrawable="@drawable/cursor" />
+        android:textCursorDrawable="@drawable/cursor" >
+
+        <requestFocus />
+    </EditText>
 
     <EditText
         android:id="@+id/answer1_match"

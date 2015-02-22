@@ -108,11 +108,12 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
+            android:visibility="visible"
             android:layout_marginLeft="25dp"
             android:orientation="vertical" >
 
             <ImageButton
+                android:id="@+id/bt_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -125,7 +126,7 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="5dp"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="@string/complete"
+                android:text="@string/image"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="normal" />
