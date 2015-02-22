@@ -4,8 +4,6 @@ package com.educa.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -18,31 +16,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ColorMatchExerciseStep2Activity extends Activity {
-    private ArrayList<CharSequence> colorData;
     private String colorCode;
-    private LinearLayout layout_color;
     private EditText question;
     private EditText answer1;
     private EditText answer2;
     private EditText answer3;
     private EditText answer4;
-    private ImageButton bt_ok;
-    private ImageButton bt_previous_step;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_color_match_exercise_step2);
-        layout_color = (LinearLayout) findViewById(R.id.layout_color);
+        LinearLayout layout_color = (LinearLayout) findViewById(R.id.layout_color);
         question = (EditText) findViewById(R.id.question_match);
         answer1 = (EditText) findViewById(R.id.answer1_match);
         answer2 = (EditText) findViewById(R.id.answer2_match);
         answer3 = (EditText) findViewById(R.id.answer3_match);
         answer4 = (EditText) findViewById(R.id.answer4_match);
-        bt_ok = (ImageButton) findViewById(R.id.bt_ok_match);
+        ImageButton bt_ok = (ImageButton) findViewById(R.id.bt_ok_match);
 
         Intent i = getIntent();
-        colorData = i.getCharSequenceArrayListExtra("ColorData");
+        ArrayList<CharSequence> colorData = i.getCharSequenceArrayListExtra("ColorData");
         colorCode = colorData.get(0).toString();
         
         
@@ -72,7 +66,7 @@ public class ColorMatchExerciseStep2Activity extends Activity {
             }
         });
 
-        bt_previous_step = (ImageButton) findViewById(R.id.bt_previous_step);
+        ImageButton bt_previous_step = (ImageButton) findViewById(R.id.bt_previous_step);
         bt_previous_step.setOnClickListener(new OnClickListener() {
 
             @Override

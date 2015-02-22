@@ -8,28 +8,26 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
-
 import com.educa.R;
 
 public class MainActivity extends Activity {
-	private ImageButton bt_teacher;
 
-	@Override
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		bt_teacher = (ImageButton) findViewById(R.id.bt_teacher);
+        ImageButton bt_teacher = (ImageButton) findViewById(R.id.bt_teacher);
 
 		bt_teacher.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				Intent intentTeacher = new Intent(getApplicationContext(),
-						TeacherHomeActivity.class);
-				startActivity(intentTeacher);
-			}
-		});
+            @Override
+            public void onClick(View v) {
+                Intent intentTeacher = new Intent(getApplicationContext(),
+                        TeacherHomeActivity.class);
+                startActivity(intentTeacher);
+            }
+        });
 
 	}
 

@@ -4,8 +4,6 @@ package com.educa.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
@@ -14,28 +12,26 @@ import com.educa.R;
 import java.util.ArrayList;
 
 public class ColorMatchExerciseStep3Activity extends Activity {
-    private TextView tv_question;
-    private RadioButton answer1, answer2, answer3, answer4;
+
     private RadioGroup radioGroup;
-    private ImageButton bt_ok, bt_back;
-    private LinearLayout color;
     private ArrayList<CharSequence> answersList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        RadioButton answer1, answer2, answer3, answer4;
         setContentView(R.layout.activity_color_match_exercise_step3);
-        bt_ok = (ImageButton) findViewById(R.id.confirm);
-        bt_back = (ImageButton) findViewById(R.id.bt_previous_step);
+        ImageButton bt_ok = (ImageButton) findViewById(R.id.confirm);
+        ImageButton bt_back = (ImageButton) findViewById(R.id.bt_previous_step);
 
-        tv_question = (TextView) findViewById(R.id.tv_question);
+        TextView tv_question = (TextView) findViewById(R.id.tv_question);
 
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         answer1 = (RadioButton) findViewById(R.id.rb_answer1);
         answer2 = (RadioButton) findViewById(R.id.rb_answer2);
         answer3 = (RadioButton) findViewById(R.id.rb_answer3);
         answer4 = (RadioButton) findViewById(R.id.rb_answer4);
-        color = (LinearLayout) findViewById(R.id.color);
+        LinearLayout color = (LinearLayout) findViewById(R.id.color);
 
         Intent i = getIntent();
         answersList = i.getCharSequenceArrayListExtra("AnswersStep2Color");

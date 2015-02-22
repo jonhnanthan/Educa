@@ -40,6 +40,7 @@ public class ChooseModelActivity extends Activity {
 			}
 		});
 
+
 		bt_match.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
