@@ -22,9 +22,11 @@ public class ImageAdapter extends BaseAdapter {
 		this.context = context;
 		imageGridColumnWidth = 150;
 
-		Integer imagens[][] = { { R.drawable.sample_0, R.drawable.sample_0,
-				R.drawable.sample_0, R.drawable.sample_0, R.drawable.sample_0,
-				R.drawable.sample_0, R.drawable.sample_0, R.drawable.sample_0 } };
+		Integer imagens[][] = { { R.drawable.abacaxi, R.drawable.abelha,
+				R.drawable.arvore, R.drawable.elefante, R.drawable.escada,
+				R.drawable.estrela, R.drawable.igreja, R.drawable.ima,
+				R.drawable.olho, R.drawable.osso, R.drawable.ovo,
+				R.drawable.urso, R.drawable.uva, R.drawable.um } };
 
 		imageList = new ArrayList<Integer>();
 

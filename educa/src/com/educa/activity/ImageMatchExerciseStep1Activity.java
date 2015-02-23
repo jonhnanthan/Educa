@@ -20,7 +20,7 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout.LayoutParams;
 
-public class ImageMatchExerciseStep1 extends Activity {
+public class ImageMatchExerciseStep1Activity extends Activity {
 	ImageButton bt_next_step;
 	Integer ImageSelected;
 	TextView tv_choose;
@@ -60,7 +60,7 @@ public class ImageMatchExerciseStep1 extends Activity {
 					exerciseData.add(ImageSelected.toString());
 
 					Intent intent = new Intent(getApplicationContext(),
-							ColorMatchExerciseStep2Activity.class);
+							ImageMatchExerciseStep2Activity.class);
 					intent.putCharSequenceArrayListExtra("ColorData",
 							exerciseData);
 

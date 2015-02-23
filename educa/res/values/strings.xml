@@ -61,5 +61,7 @@
     <string name="send_alert_message">Do you want to send the Exercise?</string>
     <string name="fileSent">File Sent!</string>
     <string name="ErrorSend">Error sending the file.</string>
+    <string name="choose_a_image">Escolha a imagem</string>
+    
 
 </resources>

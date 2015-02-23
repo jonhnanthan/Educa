@@ -55,7 +55,7 @@ public class ChooseModelActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getApplicationContext(),
-						ImageMatchExerciseStep1.class);
+						ImageMatchExerciseStep1Activity.class);
 				startActivity(intent);
 			}
 		});
