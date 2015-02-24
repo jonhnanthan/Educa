@@ -24,6 +24,7 @@ public class ImageMatchExerciseStep1Activity extends Activity {
 	ImageButton bt_next_step;
 	Integer ImageSelected;
 	TextView tv_choose;
+	int iSelected;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +45,14 @@ public class ImageMatchExerciseStep1Activity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
 				ImageSelected = (Integer) gridViewImages.getAdapter().getItem(position);
-                tv_choose.setText("Imagem Selecionada");
-                LinearLayout layout_choose = (LinearLayout) findViewById(R.id.layout_choose);
-                //layout_choose.setBackgroundColor(ImageSelected);
-                layout_choose.setAlpha((float) 0.8);
+				tv_choose.setText("Imagem Selecionada");
+				Toast.makeText(ImageMatchExerciseStep1Activity.this, "" + position,
+						Toast.LENGTH_SHORT).show();
+			
+				LinearLayout layout_choose = (LinearLayout) findViewById(R.id.layout_choose);
+				// layout_choose.setBackgroundColor(ImageSelected);
+				layout_choose.setBackgroundResource(ImageSelected);
+				layout_choose.setAlpha((float) 0.8);
 			}
 		});
 
