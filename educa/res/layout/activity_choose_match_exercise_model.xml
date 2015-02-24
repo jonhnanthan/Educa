@@ -47,12 +47,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
-            android:visibility="invisible"
+            android:visibility="visible"
             android:clickable="false"
             android:orientation="vertical" >
 
             <ImageButton
-                android:id="@+id/bt_complete"
+                android:id="@+id/bt_numero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -60,13 +60,13 @@
                 android:src="@drawable/selector_bt_complete" />
 
             <TextView
-                android:id="@+id/textView2"
+                
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginTop="5dp"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="@string/complete"
+                android:text="@string/numero"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="normal" />

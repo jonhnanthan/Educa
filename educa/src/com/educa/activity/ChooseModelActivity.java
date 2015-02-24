@@ -21,6 +21,7 @@ public class ChooseModelActivity extends Activity {
 		bt_complete = (ImageButton) findViewById(R.id.bt_complete);
 		bt_match = (ImageButton) findViewById(R.id.bt_match);
 		bt_image = (ImageButton) findViewById(R.id.bt_image);
+		
 
 		bt_complete.setOnClickListener(new OnClickListener() {
 			@Override
@@ -59,6 +60,7 @@ public class ChooseModelActivity extends Activity {
 				startActivity(intent);
 			}
 		});
+		
 	}
 
 	@Override

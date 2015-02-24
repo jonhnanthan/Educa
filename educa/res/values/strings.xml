@@ -12,6 +12,8 @@
     <string name="teacher">I\'m a Teacher</string>
     <string name="match">Match</string>
     <string name="image_match">ImageMatch</string>
+    <string name="image_num_match">Qual o numero</string>
+    <string name="numero">Numeros</string>
     <string name="color_match">Color Match</string>
     <string name="multiple_choice">Multiple Choice</string>
     <string name="complete">Complete</string>
@@ -62,6 +64,7 @@
     <string name="fileSent">File Sent!</string>
     <string name="ErrorSend">Error sending the file.</string>
     <string name="choose_a_image">Escolha a imagem</string>
+    <string name="choose_a_numero">Escolha o numero</string>
     
 
 </resources>
