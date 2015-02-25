@@ -30,8 +30,8 @@ public class ImageAdapter extends BaseAdapter {
 				R.drawable.urso, R.drawable.uva, R.drawable.um} };
 		
 		
-		Integer numeros [] [] = {{  R.drawable.num1,
-			R.drawable.num2, R.drawable.num3, R.drawable.num4, R.drawable.num5}};
+		//Integer numeros [] [] = {{  R.drawable.num1,
+			//R.drawable.num2, R.drawable.num3, R.drawable.num4, R.drawable.num5}};
 		
 
 		imageList = new ArrayList<Integer>();
@@ -44,11 +44,11 @@ public class ImageAdapter extends BaseAdapter {
 			}
 		}
 		
-		for (int i = 0; i < numeros.length; i++) {
-			for (int j = 0; j < numeros[i].length; j++) {
-				numerosList.add(numeros[i][j]);
-			}
-		}
+		//for (int i = 0; i < numeros.length; i++) {
+			//for (int j = 0; j < numeros[i].length; j++) {
+				//numerosList.add(numeros[i][j]);
+			//}
+		//}
 		
 	}
 
