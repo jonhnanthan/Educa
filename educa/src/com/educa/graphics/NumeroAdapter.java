@@ -23,7 +23,8 @@ public class NumeroAdapter extends BaseAdapter {
 			imageGridColumnWidth = 150;
 			
 			Integer numeros [] [] = {{  R.drawable.num1,
-				R.drawable.num2, R.drawable.num3, R.drawable.num4, R.drawable.num5}};
+				R.drawable.num2, R.drawable.num3, R.drawable.num4, R.drawable.num5,
+				R.drawable.num6, R.drawable.num7, R.drawable.num8, R.drawable.num9}};
 			
 			numerosList = new ArrayList<Integer>();
 			
