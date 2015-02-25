@@ -68,7 +68,7 @@ public class NumMatchExerciseStep1Activity extends Activity{
 					exerciseData.add(ImageSelected.toString());
 
 					Intent intent = new Intent(getApplicationContext(),
-							ImageMatchExerciseStep2Activity.class);
+							NumMatchExerciseStep2Activity.class);
 					intent.putCharSequenceArrayListExtra("ColorData",
 							exerciseData);
 

@@ -20,7 +20,7 @@ public class NumMatchExerciseStep2Activity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_complete_exercise_step1);
+		setContentView(R.layout.activity_num_match_exercise_step2);
 		question = (EditText) findViewById(R.id.question);
 		word = (EditText) findViewById(R.id.word);
 		ImageButton bt_next_step = (ImageButton) findViewById(R.id.bt_next_step);

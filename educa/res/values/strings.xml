@@ -12,7 +12,7 @@
     <string name="teacher">I\'m a Teacher</string>
     <string name="match">Match</string>
     <string name="image_match">ImageMatch</string>
-    <string name="image_num_match">Qual o numero</string>
+    <string name="image_num_match">NumeroMatch</string>
     <string name="numero">Numeros</string>
     <string name="color_match">Color Match</string>
     <string name="multiple_choice">Multiple Choice</string>
