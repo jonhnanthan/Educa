@@ -11,7 +11,7 @@
     tools:ignore="MergeRootFrame" >
 
     <TextView
-        android:id="@+id/imageSelected"
+        android:id="@+id/imSel"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:gravity="right"

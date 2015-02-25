@@ -108,6 +108,10 @@
             android:name="com.educa.activity.ImageMatchExerciseStep2Activity"
             android:label="@string/image_match" >
         </activity>
+        <activity
+            android:name="com.educa.activity.ImageMatchExerciseStep3Activity"
+            android:label="@string/image_match" >
+        </activity>
         
         <activity
             android:name="com.educa.activity.NumMatchExerciseStep1Activity"

@@ -2,10 +2,13 @@ package com.educa.activity;
 
 import java.util.ArrayList;
 
+import org.apache.http.protocol.RequestContent;
+
 import com.educa.R;
 import com.educa.graphics.ImageAdapter;
 
 import android.app.Activity;
+import android.app.DownloadManager.Request;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Display;
@@ -26,6 +29,7 @@ public class ImageMatchExerciseStep1Activity extends Activity {
 	TextView tv_choose;
 	int iSelected;
 	TextView bt_imageselected;
+	ArrayList<Integer> exerciseData = new ArrayList<Integer>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +37,7 @@ public class ImageMatchExerciseStep1Activity extends Activity {
 		setContentView(R.layout.activity_image_match_exercise_step1);
 		bt_next_step = (ImageButton) findViewById(R.id.bt_next_step);
 		tv_choose = (TextView) findViewById(R.id.tv_choose);
-		bt_imageselected = (TextView) findViewById(R.id.imageSelected);
+		bt_imageselected = (TextView) findViewById(R.id.imSel);
 
 		final GridView gridViewImages = (GridView) findViewById(R.id.gridViewImages);
 
@@ -51,9 +55,9 @@ public class ImageMatchExerciseStep1Activity extends Activity {
 				//tv_choose.setBackgroundResource(ImageSelected);		
 				bt_imageselected.setBackgroundResource(ImageSelected);
 				LinearLayout layout_choose = (LinearLayout) findViewById(R.id.layout_choose);
-				// layout_choose.setBackgroundColor(ImageSelected);
-				//layout_choose.setBackgroundResource(ImageSelected);
 				layout_choose.setAlpha((float) 0.8);
+				
+                  exerciseData.add(ImageSelected);
 			}
 		});
 
@@ -61,24 +65,22 @@ public class ImageMatchExerciseStep1Activity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				if (ImageSelected != null) {
-					ArrayList<CharSequence> exerciseData = new ArrayList<CharSequence>();
-					exerciseData.add(ImageSelected.toString());
+				 if (ImageSelected != null) {
+	                  
 
-					Intent intent = new Intent(getApplicationContext(),
-							ImageMatchExerciseStep2Activity.class);
-					intent.putCharSequenceArrayListExtra("ImageData",
-							exerciseData);
+	                    Intent intent = new Intent(getApplicationContext(),
+	                            ImageMatchExerciseStep2Activity.class);
+	                    intent.putIntegerArrayListExtra("ColorData", exerciseData);
 
-					startActivity(intent);
-				} else {
-					Toast.makeText(
-							getApplicationContext(),
-							getApplicationContext().getResources().getString(
-									R.string.choose_a_image),
-							Toast.LENGTH_SHORT).show();
-				}
-			}
+	                    startActivity(intent);
+	                } else {
+	                    Toast.makeText(
+	                            getApplicationContext(),
+	                            getApplicationContext().getResources().getString(
+	                                    R.string.choose_a_color),
+	                            Toast.LENGTH_SHORT).show();
+	                }
+	            }
 		});
 	}
 
