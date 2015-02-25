@@ -18,22 +18,24 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout.LayoutParams;
 
 import com.educa.R;
+import com.educa.graphics.ImageAdapter;
 import com.educa.graphics.NumeroAdapter;
 
 public class NumMatchExerciseStep1Activity extends Activity{
 	
-	
 	ImageButton bt_next_step;
 	Integer ImageSelected;
 	TextView tv_choose;
+	int iSelected;
+	TextView bt_numselected;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_num_match_exercise_step1);
 		bt_next_step = (ImageButton) findViewById(R.id.bt_next_step);
 		tv_choose = (TextView) findViewById(R.id.tv_choose);
+		bt_numselected = (TextView) findViewById(R.id.numSelected);
 
 		final GridView gridViewImages = (GridView) findViewById(R.id.gridViewImages);
 
@@ -47,10 +49,13 @@ public class NumMatchExerciseStep1Activity extends Activity{
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
 				ImageSelected = (Integer) gridViewImages.getAdapter().getItem(position);
-                tv_choose.setText("Numero Selecionado");
-                LinearLayout layout_choose = (LinearLayout) findViewById(R.id.layout_choose);
-                //layout_choose.setBackgroundColor(ImageSelected);
-                layout_choose.setAlpha((float) 0.8);
+				tv_choose.setText("Numero Selecionado");
+				//tv_choose.setBackgroundResource(ImageSelected);		
+				bt_numselected.setBackgroundResource(ImageSelected);
+				LinearLayout layout_choose = (LinearLayout) findViewById(R.id.layout_choose);
+				// layout_choose.setBackgroundColor(ImageSelected);
+				//layout_choose.setBackgroundResource(ImageSelected);
+				layout_choose.setAlpha((float) 0.8);
 			}
 		});
 

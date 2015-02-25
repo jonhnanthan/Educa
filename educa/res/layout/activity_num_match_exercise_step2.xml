@@ -11,44 +11,42 @@
     tools:ignore="MergeRootFrame" >
 
     <TextView
-        android:id="@+id/numSelected"
+        android:id="@+id/imageSelected"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:gravity="right"
+        android:gravity="center_vertical"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <LinearLayout
-        android:id="@+id/layout_choose"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:background="#00FFFFFF"
-        android:orientation="vertical" >
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_choose"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="-50dp"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="@string/choose_a_image"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp" />
-
-    <GridView
-        android:id="@+id/gridViewImages"
+    <EditText
+        android:id="@+id/question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:horizontalSpacing="4dp"
-        android:layout_marginTop="5dp"
-        android:numColumns="2"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="4dp" >
-    </GridView>
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_et"
+        android:hint="Numero"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:textColor="#777777"
+        android:textColorHint="#AAAAAA"
+        android:textCursorDrawable="@drawable/cursor" />
+
+    <EditText
+        android:id="@+id/word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/selector_et"
+        android:hint="Palavra"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:textAllCaps="true"
+        android:maxLength="9"
+        android:textColor="#777777"
+        android:textColorHint="#AAAAAA"
+        android:textCursorDrawable="@drawable/cursor" />
+
+   
 
     <LinearLayout
         android:layout_width="fill_parent"

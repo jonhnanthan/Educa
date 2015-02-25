@@ -14,44 +14,46 @@ import com.educa.R;
 import com.educa.validation.FieldValidation;
 
 public class NumMatchExerciseStep2Activity extends Activity {
-    private EditText question;
-    private EditText word;
+	private EditText question;
+	private EditText word;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_complete_exercise_step1);
-        question = (EditText) findViewById(R.id.question);
-        word = (EditText) findViewById(R.id.word);
-        ImageButton bt_next_step = (ImageButton) findViewById(R.id.bt_next_step);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_complete_exercise_step1);
+		question = (EditText) findViewById(R.id.question);
+		word = (EditText) findViewById(R.id.word);
+		ImageButton bt_next_step = (ImageButton) findViewById(R.id.bt_next_step);
 
-        bt_next_step.setOnClickListener(new OnClickListener() {
+		bt_next_step.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                if (checkValidation()) {
-                    ArrayList<CharSequence> exerciseData = new ArrayList<CharSequence>();
-                    exerciseData.add(question.getText().toString());
-                    exerciseData.add(word.getText().toString());
+			@Override
+			public void onClick(View v) {
+				if (checkValidation()) {
+					ArrayList<CharSequence> exerciseData = new ArrayList<CharSequence>();
+					exerciseData.add(question.getText().toString());
+					exerciseData.add(word.getText().toString());
 
-                    Intent intent = new Intent(NumMatchExerciseStep2Activity.this,
-                            CompleteExerciseStep2Activity.class);
-                    intent.putCharSequenceArrayListExtra("ExerciseData", exerciseData);
+					Intent intent = new Intent(
+							NumMatchExerciseStep2Activity.this,
+							CompleteExerciseStep2Activity.class);
+					intent.putCharSequenceArrayListExtra("ExerciseData",
+							exerciseData);
 
-                    startActivity(intent);
-                }
-            }
-        });
-        ImageButton bt_previous_step = (ImageButton) findViewById(R.id.bt_previous_step);
-        bt_previous_step.setOnClickListener(new OnClickListener() {
+					startActivity(intent);
+				}
+			}
+		});
 
-            @Override
-            public void onClick(View v) {
-            }
-        });
+		ImageButton bt_previous_step = (ImageButton) findViewById(R.id.bt_previous_step);
+		bt_previous_step.setOnClickListener(new OnClickListener() {
 
-    }
+			@Override
+			public void onClick(View v) {
+			}
+		});
 
+	}
 
     private boolean checkValidation() {
         boolean ret = true;

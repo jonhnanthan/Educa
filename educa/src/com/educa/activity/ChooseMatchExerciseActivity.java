@@ -31,9 +31,9 @@ public class ChooseMatchExerciseActivity extends Activity {
 		bt_numero.setOnClickListener(new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			//Intent intent = new Intent(getApplicationContext(),
-				//	NumMatchExerciseStep1Activity.class);
-			//startActivity(intent);
+			Intent intent = new Intent(getApplicationContext(),
+					NumMatchExerciseStep1Activity.class);
+			startActivity(intent);
 			}
 		});
     }

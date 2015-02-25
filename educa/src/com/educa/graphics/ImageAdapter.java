@@ -16,7 +16,6 @@ import android.widget.ImageView;
 public class ImageAdapter extends BaseAdapter {
 	private Context context;
 	private List<Integer> imageList = new ArrayList<Integer>();
-	private List<Integer> numerosList = new ArrayList<Integer>();
 	private int imageGridColumnWidth;
 
 	public ImageAdapter(Context context) {
@@ -30,12 +29,9 @@ public class ImageAdapter extends BaseAdapter {
 				R.drawable.urso, R.drawable.uva, R.drawable.um} };
 		
 		
-		//Integer numeros [] [] = {{  R.drawable.num1,
-			//R.drawable.num2, R.drawable.num3, R.drawable.num4, R.drawable.num5}};
 		
 
 		imageList = new ArrayList<Integer>();
-		numerosList = new ArrayList<Integer>();
 
 		// add the color array to the list
 		for (int i = 0; i < imagens.length; i++) {
@@ -43,12 +39,6 @@ public class ImageAdapter extends BaseAdapter {
 				imageList.add(imagens[i][j]);
 			}
 		}
-		
-		//for (int i = 0; i < numeros.length; i++) {
-			//for (int j = 0; j < numeros[i].length; j++) {
-				//numerosList.add(numeros[i][j]);
-			//}
-		//}
 		
 	}
 
