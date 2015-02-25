@@ -24,6 +24,8 @@ public class ImageMatchExerciseStep1Activity extends Activity {
 	ImageButton bt_next_step;
 	Integer ImageSelected;
 	TextView tv_choose;
+	int iSelected;
+	TextView bt_imageselected;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class ImageMatchExerciseStep1Activity extends Activity {
 		setContentView(R.layout.activity_image_match_exercise_step1);
 		bt_next_step = (ImageButton) findViewById(R.id.bt_next_step);
 		tv_choose = (TextView) findViewById(R.id.tv_choose);
+		bt_imageselected = (TextView) findViewById(R.id.imageSelected);
 
 		final GridView gridViewImages = (GridView) findViewById(R.id.gridViewImages);
 
@@ -44,10 +47,13 @@ public class ImageMatchExerciseStep1Activity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
 				ImageSelected = (Integer) gridViewImages.getAdapter().getItem(position);
-                tv_choose.setText("Imagem Selecionada");
-                LinearLayout layout_choose = (LinearLayout) findViewById(R.id.layout_choose);
-                //layout_choose.setBackgroundColor(ImageSelected);
-                layout_choose.setAlpha((float) 0.8);
+				tv_choose.setText("Imagem Selecionada");
+				//tv_choose.setBackgroundResource(ImageSelected);		
+				bt_imageselected.setBackgroundResource(ImageSelected);
+				LinearLayout layout_choose = (LinearLayout) findViewById(R.id.layout_choose);
+				// layout_choose.setBackgroundColor(ImageSelected);
+				//layout_choose.setBackgroundResource(ImageSelected);
+				layout_choose.setAlpha((float) 0.8);
 			}
 		});
 
@@ -61,7 +67,7 @@ public class ImageMatchExerciseStep1Activity extends Activity {
 
 					Intent intent = new Intent(getApplicationContext(),
 							ImageMatchExerciseStep2Activity.class);
-					intent.putCharSequenceArrayListExtra("ColorData",
+					intent.putCharSequenceArrayListExtra("ImageData",
 							exerciseData);
 
 					startActivity(intent);
@@ -69,7 +75,7 @@ public class ImageMatchExerciseStep1Activity extends Activity {
 					Toast.makeText(
 							getApplicationContext(),
 							getApplicationContext().getResources().getString(
-									R.string.choose_a_color),
+									R.string.choose_a_image),
 							Toast.LENGTH_SHORT).show();
 				}
 			}
