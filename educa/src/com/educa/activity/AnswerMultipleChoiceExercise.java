@@ -4,11 +4,14 @@ package com.educa.activity;
 
 import java.util.ArrayList;
 
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
@@ -22,6 +25,9 @@ import android.widget.Toast;
 import com.educa.R;
 import com.educa.adapter.ExerciseStudentAdapter;
 import com.educa.database.DataBaseAluno;
+import com.educa.entity.MultipleChoiceExercise;
+import com.educa.validation.Correction;
+import com.educa.validation.Status;
 
 
 public class AnswerMultipleChoiceExercise extends Activity {
@@ -68,53 +74,53 @@ public class AnswerMultipleChoiceExercise extends Activity {
             @Override
             public void onClick(View v) {
                 int id = radioGroup.getCheckedRadioButtonId();
-
+                
                 if (id != -1) {
                     View radioButton = radioGroup.findViewById(id);
                     int radioId = radioGroup.indexOfChild(radioButton);
                     RadioButton btn = (RadioButton) radioGroup.getChildAt(radioId);
                     String rightAnswer = (String) btn.getText();
                     
-//                    String type = DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE;
-//                    ArrayList<String> exercisesColor = DataBaseProfessor.getInstance(getApplicationContext()).getActivities(type);
-//                    
-//                    for (String string : exercisesColor) {
-//                    	JSONObject exerciseJson;
-//                    	MultipleChoiceExercise c;
-//                    	try {
-//                    		exerciseJson = new JSONObject(string);
-//                    		if (exerciseJson.getString("name").equals(exercise.get(0))){
+                    String type = DataBaseAluno.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE;
+                    ArrayList<String> exercisesColor = DataBaseAluno.getInstance(getApplicationContext()).getActivities(type);
+                    
+                    for (String string : exercisesColor) {
+                    	JSONObject exerciseJson;
+                    	MultipleChoiceExercise c;
+                    	try {
+                    		exerciseJson = new JSONObject(string);
+                    		if (exerciseJson.getString("name").equals(exercise.get(0))){
 //                    			DataBaseProfessor.getInstance(getApplicationContext()).removeActivity(exerciseJson.getString("name"));
-//                    			c = new MultipleChoiceExercise(
-//                    					exerciseJson.getString("name"),
-//                    					exerciseJson.getString("type"),
-//                    					exerciseJson.getString("date"),
-//                    					exerciseJson.getString("status"),
-//                    					exerciseJson.getString("correction"),
-//                    					exerciseJson.getString("question"),
-//                    					exerciseJson.getString("alternative1"),
-//                    					exerciseJson.getString("alternative2"),
-//                    					exerciseJson.getString("alternative3"),
-//                    					exerciseJson.getString("alternative4"),
-//                    					exerciseJson.getString("answer"));
-//                    			
-//                    			c.setStatus(String.valueOf(Status.ANSWERED));
-//                    			
-//                    			if (c.getRightAnswer().equals(rightAnswer)){
-//                    				c.setCorrection(String.valueOf(Correction.RIGHT));
+                    			c = new MultipleChoiceExercise(
+                    					exerciseJson.getString("name"),
+                    					exerciseJson.getString("type"),
+                    					exerciseJson.getString("date"),
+                    					exerciseJson.getString("status"),
+                    					exerciseJson.getString("correction"),
+                    					exerciseJson.getString("question"),
+                    					exerciseJson.getString("alternative1"),
+                    					exerciseJson.getString("alternative2"),
+                    					exerciseJson.getString("alternative3"),
+                    					exerciseJson.getString("alternative4"),
+                    					exerciseJson.getString("answer"));
+                    			
+                    			c.setStatus(String.valueOf(Status.ANSWERED));
+                    			
+                    			if (c.getRightAnswer().equals(rightAnswer)){
+                    				c.setCorrection(String.valueOf(Correction.RIGHT));
 //                    				DataBaseProfessor.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
-//                    				congratulationsAlert();
-//                    			} else{
-//                    				c.setCorrection(String.valueOf(Correction.WRONG));
+                    				congratulationsAlert();
+                    			} else{
+                    				c.setCorrection(String.valueOf(Correction.WRONG));
 //                    				DataBaseProfessor.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
-//                    				tryAgainAlert();
-//                    			}
-//                    		}
-//							
-//						} catch (Exception e) {
-//							e.printStackTrace();
-//						}
-//					}
+                    				tryAgainAlert();
+                    			}
+                    		}
+							
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
                 } else {
                     Toast.makeText(
                             getApplicationContext(),
