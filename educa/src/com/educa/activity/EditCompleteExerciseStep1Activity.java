@@ -11,11 +11,12 @@ import com.educa.R;
 import com.educa.validation.FieldValidation;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EditCompleteExerciseStep1Activity extends Activity {
 	private EditText question;
 	private EditText word;
-    private ArrayList<CharSequence> exercise;
+    private List<CharSequence> exercise;
     private String name;
     
     @Override
@@ -39,7 +40,7 @@ public class EditCompleteExerciseStep1Activity extends Activity {
             @Override
             public void onClick(View v) {
                 if (checkValidation()) {
-                    ArrayList<CharSequence> exerciseData = new ArrayList<CharSequence>();
+                    List<CharSequence> exerciseData = new ArrayList<CharSequence>();
                     exerciseData.add(name);
                     exerciseData.add(word.getText().toString());
                     exerciseData.add(question.getText().toString());
@@ -47,7 +48,7 @@ public class EditCompleteExerciseStep1Activity extends Activity {
                     exerciseData.add(exercise.get(4));
 
                     Intent intent = new Intent(EditCompleteExerciseStep1Activity.this, EditCompleteExerciseStep2Activity.class);
-                    intent.putCharSequenceArrayListExtra("EditCompleteExerciseStep1", exerciseData);
+                    intent.putCharSequenceArrayListExtra("EditCompleteExerciseStep1", (ArrayList<CharSequence>) exerciseData);
 
                     startActivity(intent);
                 }

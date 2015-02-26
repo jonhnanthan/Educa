@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
@@ -26,12 +27,13 @@ import java.util.Date;
 import java.util.List;
 
 public class EditColorMatchExerciseActivity extends Activity {
+    private static final String LOG = "LOGs";
     private EditText question;
     public EditText answer1;
     private EditText answer2;
     private EditText answer3;
     private EditText answer4;
-    private ArrayList<CharSequence> exercise;
+    private List<CharSequence> exercise;
     private ColorMatchExercise colorMatchExercise;
     public static LinearLayout color_layout;
     public static String color;
@@ -114,7 +116,7 @@ public class EditColorMatchExerciseActivity extends Activity {
 
                         colorMatchExercise = new ColorMatchExercise(name, type, date, status, correction, question, alternative1, alternative2, alternative3, alternative4, exercise.get(7).toString(), color);
 
-                        ArrayList<String> exercises = DataBaseProfessor.getInstance(getApplicationContext()).getActivities();
+                        List<String> exercises = DataBaseProfessor.getInstance(getApplicationContext()).getActivities();
                         for (String string : exercises) {
                             if (string.equals(colorMatchExercise.getJsonTextObject())) {
                                 ColorMatchExercise newExercise = null;
@@ -135,7 +137,7 @@ public class EditColorMatchExerciseActivity extends Activity {
                                             json.getString("answer"),
                                             json.getString("color"));
                                 } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    Log.e(LOG, e.getMessage());
                                 }
 
                                 editAlert(newExercise, colorMatchExercise, rightAnswer);

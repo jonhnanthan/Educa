@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
@@ -23,9 +24,10 @@ import java.util.Date;
 import java.util.List;
 
 public class EditCompleteExerciseStep2Activity extends Activity {
+    private static final String LOG = "LOGs";
     private final List<LinearLayout> letterLayouts = new ArrayList<LinearLayout>();
     private final List<TextView> letterTextViews = new ArrayList<TextView>();
-    private ArrayList<CharSequence> exerciseData;
+    private List<CharSequence> exerciseData;
     private final ArrayList<CheckBox> letterCheckBoxes = new ArrayList<CheckBox>();
 
     private String name, question, word, hiddenIndexesOld;
@@ -103,7 +105,7 @@ public class EditCompleteExerciseStep2Activity extends Activity {
 
                     CompleteExercise completeExercise = new CompleteExercise(name, DataBaseProfessor.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE, exerciseData.get(4).toString(), String.valueOf(Status.NEW), String.valueOf(Correction.NOT_RATED), question, word, hiddenIndexesOld);
                     System.out.println(completeExercise.getJsonTextObject());
-                    ArrayList<String> exercises = DataBaseProfessor.getInstance(getApplicationContext()).getActivities();
+                    List<String> exercises = DataBaseProfessor.getInstance(getApplicationContext()).getActivities();
                     for (String string : exercises) {
                         if (string.equals(completeExercise.getJsonTextObject())) {
                             CompleteExercise newExercise = null;
@@ -120,7 +122,7 @@ public class EditCompleteExerciseStep2Activity extends Activity {
                                         json.getString("word"),
                                         json.getString("hiddenIndexes"));
                             } catch (JSONException e) {
-                                e.printStackTrace();
+                                Log.e(LOG, e.getMessage());
                             }
 
                             editAlert(newExercise, completeExercise, hiddenIndexes);

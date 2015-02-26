@@ -1,13 +1,14 @@
 
 package com.educa.database;
 
-import java.util.ArrayList;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataBaseProfessor extends SQLiteOpenHelper {
 
@@ -29,11 +30,11 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     private static final String SQL_DELETE_PROFESSOR_TABLE = "DROP TABLE IF EXISTS Professor";
 
 
-    public final String COLOR_MATCH_EXERCISE_TYPECODE = "COLOR_MATCH_EXERCISE";
-    public final String MULTIPLE_CHOICE_EXERCISE_TYPECODE = "MULTIPLE_CHOICE_EXERCISE";
-    public final String COMPLETE_EXERCISE_TYPECODE = "COMPLETE_EXERCISE";
-    public final String IMAGE_MATCH_EXERCISE_TYPECODE = "IMAGE_MATCH_EXERCISE";
-    public final String NUM_MATCH_EXERCISE_TYPECODE = "NUM_MATCH_EXERCISE";
+    public static final String COLOR_MATCH_EXERCISE_TYPECODE = "COLOR_MATCH_EXERCISE";
+    public static final String MULTIPLE_CHOICE_EXERCISE_TYPECODE = "MULTIPLE_CHOICE_EXERCISE";
+    public static final String COMPLETE_EXERCISE_TYPECODE = "COMPLETE_EXERCISE";
+    public static final String IMAGE_MATCH_EXERCISE_TYPECODE = "IMAGE_MATCH_EXERCISE";
+    public static final String NUM_MATCH_EXERCISE_TYPECODE = "NUM_MATCH_EXERCISE";
 
     private DataBaseProfessor(Context context) {
         super(context, "educaNew.db", null, 1);
@@ -84,8 +85,8 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
         return id;
     }
     
-    public ArrayList<String> getActivities(){
-    	ArrayList<String> activities = new ArrayList<String>();
+    public List<String> getActivities(){
+    	List<String> activities = new ArrayList<String>();
     	
     	String sql = "select * from " + TABLE_ATIVIDADES_PROFESSOR;
     	
@@ -105,8 +106,8 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     	return activities;
     }
     
-    public ArrayList<String> getActivities(String type){
-    	ArrayList<String> activities = new ArrayList<String>();
+    public List<String> getActivities(String type){
+    	List<String> activities = new ArrayList<String>();
     	
     	String sql = "select * from " + TABLE_ATIVIDADES_PROFESSOR + " where " + COLUNA_PROFESSOR_TIPO_ATIVIDADE + " = '" + type + "'";
     	
@@ -137,8 +138,8 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     	db.close();
     }
 
-	public ArrayList<String> getActivitiesName() {
-    	ArrayList<String> activities = new ArrayList<String>();
+	public List<String> getActivitiesName() {
+    	List<String> activities = new ArrayList<String>();
     	
     	String sql = "select " + COLUNA_PROFESSOR_NOME + " from " + TABLE_ATIVIDADES_PROFESSOR;
     	

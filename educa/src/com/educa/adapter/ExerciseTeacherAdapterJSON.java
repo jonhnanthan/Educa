@@ -23,14 +23,17 @@ import org.json.JSONObject;
 
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.List;
+
 public class ExerciseTeacherAdapterJSON extends BaseAdapter {
 
-    private static ArrayList<String> mListExercise;
+    private static final String LOG = "LOGs";
+    private static List<String> mListExercise;
     private LayoutInflater mInflater;
     private Context mcontext;
     private Activity parentActivity;
 
-    public ExerciseTeacherAdapterJSON(Context context, ArrayList<String> listExercise, Activity parentActivity) {
+    public ExerciseTeacherAdapterJSON(Context context, List<String> listExercise, Activity parentActivity) {
         mListExercise = listExercise;
         mInflater = LayoutInflater.from(context);
         mcontext = context;
@@ -109,7 +112,7 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
 								if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).MULTIPLE_CHOICE_EXERCISE_TYPECODE)) {
 									Intent intent = new Intent(parentActivity, EditMultipleChoiceExerciseActivity.class);
 
-									ArrayList<CharSequence> listMultipleChoiceExercise = new ArrayList<CharSequence>();
+									List<CharSequence> listMultipleChoiceExercise = new ArrayList<CharSequence>();
 
 									listMultipleChoiceExercise.add(exercise.getString("name"));
 									listMultipleChoiceExercise.add(exercise.getString("question"));
@@ -120,13 +123,13 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
 									listMultipleChoiceExercise.add(exercise.getString("answer"));
 									listMultipleChoiceExercise.add(exercise.getString("date"));
 
-									intent.putCharSequenceArrayListExtra("EditMultipleChoiseExercise", listMultipleChoiceExercise);
+									intent.putCharSequenceArrayListExtra("EditMultipleChoiseExercise", (ArrayList<CharSequence>) listMultipleChoiceExercise);
 									parentActivity.startActivity(intent);
 								}
 								if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).COMPLETE_EXERCISE_TYPECODE)) {
 									Intent intent = new Intent(parentActivity, EditCompleteExerciseStep1Activity.class);
 
-									ArrayList<CharSequence> listCmpleteExercise = new ArrayList<CharSequence>();
+									List<CharSequence> listCmpleteExercise = new ArrayList<CharSequence>();
 
 									listCmpleteExercise.add(exercise.getString("name"));
 									listCmpleteExercise.add(exercise.getString("word"));
@@ -134,13 +137,13 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
 									listCmpleteExercise.add(exercise.getString("hiddenIndexes"));
 									listCmpleteExercise.add(exercise.getString("date"));
 
-									intent.putCharSequenceArrayListExtra("EditCompleteExercise", listCmpleteExercise);
+									intent.putCharSequenceArrayListExtra("EditCompleteExercise", (ArrayList<CharSequence>) listCmpleteExercise);
 									parentActivity.startActivity(intent);
 								}
 		                        if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).COLOR_MATCH_EXERCISE_TYPECODE)) {
 	                            Intent intent = new Intent(parentActivity, EditColorMatchExerciseActivity.class);
 	
-	                            ArrayList<CharSequence> listColorMatchExercise = new ArrayList<CharSequence>();
+	                            List<CharSequence> listColorMatchExercise = new ArrayList<CharSequence>();
 	
 	                            listColorMatchExercise.add(exercise.getString("name"));
 	                            listColorMatchExercise.add(exercise.getString("color"));
@@ -152,7 +155,7 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
 	                            listColorMatchExercise.add(exercise.getString("answer"));
 	                            listColorMatchExercise.add(exercise.getString("date"));
 	
-	                            intent.putCharSequenceArrayListExtra("EditColorMatchExercise", listColorMatchExercise);
+	                            intent.putCharSequenceArrayListExtra("EditColorMatchExercise", (ArrayList<CharSequence>) listColorMatchExercise);
 	                            parentActivity.startActivity(intent);
 	                        }
 
@@ -181,7 +184,7 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
 			exercise = new JSONObject(json);
 			DataBaseProfessor.getInstance(mcontext).removeActivity(exercise.getString("name"));
 		} catch (JSONException e) {
-			e.printStackTrace();
+			Log.e(LOG, e.getMessage());
 		}
         mListExercise.remove(json);
         notifyDataSetChanged();
@@ -194,13 +197,13 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
             getAlbumStorageDir(mcontext,exercise.getString("name"), json);
 
     } catch (JSONException e) {
-            e.printStackTrace();
+            Log.e(LOG, e.getMessage());
         }
     }
 
     public void getAlbumStorageDir(Context context, String exerciseName, String json) {
 //        File file = new File(context.getFilesDir(), exerciseName);
-        FileOutputStream outputStream = null;
+        FileOutputStream outputStream;
         String caminhoAbsolutoDoArquivo;
 
         try {

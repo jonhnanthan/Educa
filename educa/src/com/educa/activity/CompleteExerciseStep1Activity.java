@@ -12,6 +12,7 @@ import com.educa.R;
 import com.educa.validation.FieldValidation;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CompleteExerciseStep1Activity extends Activity {
     private EditText question;
@@ -30,13 +31,13 @@ public class CompleteExerciseStep1Activity extends Activity {
             @Override
             public void onClick(View v) {
                 if (checkValidation()) {
-                    ArrayList<CharSequence> exerciseData = new ArrayList<CharSequence>();
+                    List<CharSequence> exerciseData = new ArrayList<CharSequence>();
                     exerciseData.add(question.getText().toString());
                     exerciseData.add(word.getText().toString());
 
                     Intent intent = new Intent(CompleteExerciseStep1Activity.this,
                             CompleteExerciseStep2Activity.class);
-                    intent.putCharSequenceArrayListExtra("ExerciseData", exerciseData);
+                    intent.putCharSequenceArrayListExtra("ExerciseData", (ArrayList<CharSequence>) exerciseData);
 
                     startActivity(intent);
                 }

@@ -20,6 +20,7 @@ import com.educa.validation.Status;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ImageMatchExerciseStep3Activity extends Activity {
     private EditText et_name;
@@ -37,7 +38,7 @@ public class ImageMatchExerciseStep3Activity extends Activity {
        
 
         Intent i = getIntent();
-		ArrayList<CharSequence> exerciseData = i.getCharSequenceArrayListExtra("AnswersStep2Color");
+		List<CharSequence> exerciseData = i.getCharSequenceArrayListExtra("AnswersStep2Color");
 		colorCode = exerciseData.get(0).toString();
 		question = exerciseData.get(1).toString();
 		rightAnswer = exerciseData.get(2).toString();
@@ -102,7 +103,7 @@ public class ImageMatchExerciseStep3Activity extends Activity {
     }
 
     private boolean exerciseNameAlreadyExists(Exercise exercise) {
-    	ArrayList<String> names = DataBaseProfessor.getInstance(getApplicationContext()).getActivitiesName();
+    	List<String> names = DataBaseProfessor.getInstance(getApplicationContext()).getActivitiesName();
     	
     	for (String string : names) {
     		if (string.equals(exercise.getName())) {

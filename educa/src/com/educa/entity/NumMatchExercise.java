@@ -1,9 +1,8 @@
 package com.educa.entity;
 
+import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import android.util.Log;
 
 public class NumMatchExercise  extends Exercise {
     private static final String LOG = "LOGs";

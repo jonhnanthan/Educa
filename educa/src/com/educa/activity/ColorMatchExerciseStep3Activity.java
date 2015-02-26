@@ -10,11 +10,12 @@ import android.widget.*;
 import com.educa.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ColorMatchExerciseStep3Activity extends Activity {
 
     private RadioGroup radioGroup;
-    private ArrayList<CharSequence> answersList;
+    private List<CharSequence> answersList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,7 @@ public class ColorMatchExerciseStep3Activity extends Activity {
                     answersList.add(rightAnswer);
                     Intent intent = new Intent(ColorMatchExerciseStep3Activity.this,
                             ColorMatchExerciseStep4Activity.class);
-                    intent.putCharSequenceArrayListExtra("AnswersStep3Color", answersList);
+                    intent.putCharSequenceArrayListExtra("AnswersStep3Color", (ArrayList<CharSequence>) answersList);
 
                     startActivity(intent);
                 } else {

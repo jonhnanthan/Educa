@@ -11,55 +11,54 @@ import android.widget.ImageButton;
 import com.educa.R;
 
 public class ChooseModelActivity extends Activity {
-	private ImageButton bt_multiple_choice, bt_complete, bt_match, bt_image;
 
-	@Override
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choose_exercise_model);
-		bt_multiple_choice = (ImageButton) findViewById(R.id.bt_multiplechoice);
-		bt_complete = (ImageButton) findViewById(R.id.bt_complete);
-		bt_match = (ImageButton) findViewById(R.id.bt_match);
-		bt_image = (ImageButton) findViewById(R.id.bt_image);
+        ImageButton bt_multiple_choice = (ImageButton) findViewById(R.id.bt_multiplechoice);
+        ImageButton bt_complete = (ImageButton) findViewById(R.id.bt_complete);
+        ImageButton bt_match = (ImageButton) findViewById(R.id.bt_match);
+        ImageButton bt_image = (ImageButton) findViewById(R.id.bt_image);
 		
 
 		bt_complete.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intentComplete = new Intent(getApplicationContext(),
-						CompleteExerciseStep1Activity.class);
-				startActivity(intentComplete);
-			}
-		});
+            @Override
+            public void onClick(View v) {
+                Intent intentComplete = new Intent(getApplicationContext(),
+                        CompleteExerciseStep1Activity.class);
+                startActivity(intentComplete);
+            }
+        });
 
 		bt_multiple_choice.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(getApplicationContext(),
-						MultipleChoiceExerciseStep1Activity.class);
-				startActivity(intent);
-			}
-		});
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),
+                        MultipleChoiceExerciseStep1Activity.class);
+                startActivity(intent);
+            }
+        });
 
 
 		bt_match.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(getApplicationContext(),
-						ChooseMatchExerciseActivity.class);
-				startActivity(intent);
-			}
-		});
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),
+                        ChooseMatchExerciseActivity.class);
+                startActivity(intent);
+            }
+        });
 
 		bt_image.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(getApplicationContext(),
-						ImageMatchExerciseStep1Activity.class);
-				startActivity(intent);
-			}
-		});
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),
+                        ImageMatchExerciseStep1Activity.class);
+                startActivity(intent);
+            }
+        });
 		
 	}
 

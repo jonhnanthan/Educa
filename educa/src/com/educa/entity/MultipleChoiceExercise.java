@@ -12,7 +12,7 @@ public class MultipleChoiceExercise extends Exercise {
     private String alternative3;
     private String alternative4;
     private String rightAnswer;
-    final private String LOG = "LOGs";
+
     public MultipleChoiceExercise(String name, String type, String date, String status,
             String correction, String question, String alternative1, String alternative2,
             String alternative3, String alternative4, String rightAnswer) {
@@ -41,6 +41,7 @@ public class MultipleChoiceExercise extends Exercise {
 			activityData.put("answer", rightAnswer);
 			
 		} catch (JSONException e) {
+            String LOG = "LOGs";
             Log.e(LOG, e.getMessage());
         }
 

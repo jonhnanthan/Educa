@@ -14,6 +14,7 @@ import com.educa.R;
 import com.educa.graphics.ColorPickerAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ColorMatchExerciseStep1Activity extends Activity {
     ImageButton bt_next_step;
@@ -49,12 +50,12 @@ public class ColorMatchExerciseStep1Activity extends Activity {
             @Override
             public void onClick(View v) {
                 if (colorSelected != null) {
-                    ArrayList<CharSequence> exerciseData = new ArrayList<CharSequence>();
+                    List<CharSequence> exerciseData = new ArrayList<CharSequence>();
                     exerciseData.add(colorSelected.toString());
 
                     Intent intent = new Intent(getApplicationContext(),
                             ColorMatchExerciseStep2Activity.class);
-                    intent.putCharSequenceArrayListExtra("ColorData", exerciseData);
+                    intent.putCharSequenceArrayListExtra("ColorData", (ArrayList<CharSequence>) exerciseData);
 
                     startActivity(intent);
                 } else {

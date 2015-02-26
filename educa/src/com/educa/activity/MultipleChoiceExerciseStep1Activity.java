@@ -37,7 +37,7 @@ public class MultipleChoiceExerciseStep1Activity extends Activity {
             @Override
             public void onClick(View v) {
                 if (checkValidation()) {
-                    ArrayList<CharSequence> answerslist = new ArrayList<CharSequence>();
+                    List<CharSequence> answerslist = new ArrayList<CharSequence>();
                     answerslist.add(question.getText().toString());
                     answerslist.add(answer1.getText().toString());
                     answerslist.add(answer2.getText().toString());
@@ -48,7 +48,7 @@ public class MultipleChoiceExerciseStep1Activity extends Activity {
                             MultipleChoiceExerciseStep1Activity.this,
                             MultipleChoiceExerciseStep2Activity.class);
                     confirmAnswersIntent.putCharSequenceArrayListExtra("AnswersStep1Match",
-                            answerslist);
+                            (ArrayList<CharSequence>) answerslist);
 
                     startActivity(confirmAnswersIntent);
                 }

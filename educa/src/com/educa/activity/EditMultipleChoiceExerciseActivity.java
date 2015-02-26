@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
@@ -24,12 +25,13 @@ import java.util.Date;
 import java.util.List;
 
 public class EditMultipleChoiceExerciseActivity extends Activity {
+    private static final String LOG = "LOGs";
     private EditText question;
     private EditText answer1;
     private EditText answer2;
     private EditText answer3;
     private EditText answer4;
-    private ArrayList<CharSequence> exercise;
+    private List<CharSequence> exercise;
     private MultipleChoiceExercise multipleChoiseExercise;
 
     private RadioButton rb_answer1, rb_answer2, rb_answer3, rb_answer4;
@@ -78,7 +80,7 @@ public class EditMultipleChoiceExerciseActivity extends Activity {
 
                         multipleChoiseExercise = new MultipleChoiceExercise(exercise.get(0).toString(), DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE, exercise.get(7).toString(), String.valueOf(Status.NEW), String.valueOf(Correction.NOT_RATED), exercise.get(1).toString(), exercise.get(2).toString(), exercise.get(3).toString(), exercise.get(4).toString(), exercise.get(5).toString(), exercise.get(6).toString());
 
-                        ArrayList<String> exercises = DataBaseProfessor.getInstance(getApplicationContext()).getActivities();
+                        List<String> exercises = DataBaseProfessor.getInstance(getApplicationContext()).getActivities();
                         for (String string : exercises) {
                             if (string.equals(multipleChoiseExercise.getJsonTextObject())) {
                                 MultipleChoiceExercise newExercise = null;
@@ -98,7 +100,7 @@ public class EditMultipleChoiceExerciseActivity extends Activity {
                                             json.getString("alternative4"),
                                             json.getString("answer"));
                                 } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    Log.e(LOG, e.getMessage());
                                 }
 
                                 editAlert(newExercise, multipleChoiseExercise, rightAnswer);

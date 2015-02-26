@@ -8,11 +8,11 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-
 import com.educa.R;
 import com.educa.validation.FieldValidation;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ImageMatchExerciseStep2Activity extends Activity {
 	private String colorCode;
@@ -40,7 +40,7 @@ public class ImageMatchExerciseStep2Activity extends Activity {
 			@Override
 			public void onClick(View v) {
 				if (checkValidation()) {
-					ArrayList<CharSequence> exerciseData = new ArrayList<CharSequence>();
+					List<CharSequence> exerciseData = new ArrayList<CharSequence>();
 					exerciseData.add(colorCode);
 					exerciseData.add(question.getText().toString());
 					exerciseData.add(answer.getText().toString());
@@ -49,7 +49,7 @@ public class ImageMatchExerciseStep2Activity extends Activity {
 							ImageMatchExerciseStep2Activity.this,
 							ImageMatchExerciseStep3Activity.class);
 					confirmAnswersIntent.putCharSequenceArrayListExtra(
-							"AnswersStep2Color", exerciseData);
+							"AnswersStep2Color", (ArrayList<CharSequence>) exerciseData);
 
 					startActivity(confirmAnswersIntent);
 				}

@@ -1,33 +1,30 @@
 package com.educa.activity;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+//import java.text.SimpleDateFormat;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
 import com.educa.R;
-import com.educa.database.DataBaseProfessor;
-import com.educa.entity.Exercise;
-import com.educa.entity.NumMatchExercise;
-import com.educa.validation.Correction;
-import com.educa.validation.FieldValidation;
-import com.educa.validation.Status;
+
+import java.util.ArrayList;
+import java.util.List;
+
+//import java.util.Date;
+//import android.widget.EditText;
+//import com.educa.database.DataBaseProfessor;
+//import com.educa.entity.Exercise;
+//import com.educa.entity.NumMatchExercise;
+//import com.educa.validation.Correction;
+//import com.educa.validation.FieldValidation;
+//import com.educa.validation.Status;
 
 public class NumMatchExerciseStep3Activity extends Activity {
     private RadioGroup radioGroup;
-    private ArrayList<CharSequence> answersList;
+    private List<CharSequence> answersList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +69,7 @@ public class NumMatchExerciseStep3Activity extends Activity {
                     answersList.add(rightAnswer);
                     Intent intent = new Intent(NumMatchExerciseStep3Activity.this,
                             NumMatchExerciseStep4Activity.class);
-                    intent.putCharSequenceArrayListExtra("AnswersStep3Color", answersList);
+                    intent.putCharSequenceArrayListExtra("AnswersStep3Color", (ArrayList<CharSequence>) answersList);
 
                     startActivity(intent);
                 } else {

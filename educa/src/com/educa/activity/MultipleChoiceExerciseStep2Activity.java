@@ -10,10 +10,11 @@ import android.widget.*;
 import com.educa.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MultipleChoiceExerciseStep2Activity extends Activity {
     private RadioGroup radioGroup;
-    private ArrayList<CharSequence> answersList;
+    private List<CharSequence> answersList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class MultipleChoiceExerciseStep2Activity extends Activity {
                     answersList.add(rightAnswer);
                     Intent intent = new Intent(MultipleChoiceExerciseStep2Activity.this,
                             MultipleChoiceExerciseStep3Activity.class);
-                    intent.putCharSequenceArrayListExtra("AnswersStep2Match", answersList);
+                    intent.putCharSequenceArrayListExtra("AnswersStep2Match", (ArrayList<CharSequence>) answersList);
 
                     startActivity(intent);
                 } else {

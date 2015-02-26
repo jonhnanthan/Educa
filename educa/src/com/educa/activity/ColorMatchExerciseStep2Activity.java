@@ -36,7 +36,7 @@ public class ColorMatchExerciseStep2Activity extends Activity {
         ImageButton bt_ok = (ImageButton) findViewById(R.id.bt_ok_match);
 
         Intent i = getIntent();
-        ArrayList<CharSequence> colorData = i.getCharSequenceArrayListExtra("ColorData");
+        List<CharSequence> colorData = i.getCharSequenceArrayListExtra("ColorData");
         colorCode = colorData.get(0).toString();
         
         
@@ -47,7 +47,7 @@ public class ColorMatchExerciseStep2Activity extends Activity {
             @Override
             public void onClick(View v) {
                 if (checkValidation() && !checkDuplication()) {
-                    ArrayList<CharSequence> exerciseData = new ArrayList<CharSequence>();
+                    List<CharSequence> exerciseData = new ArrayList<CharSequence>();
                     exerciseData.add(colorCode);
                     exerciseData.add(question.getText().toString());
                     exerciseData.add(answer1.getText().toString());
@@ -58,7 +58,7 @@ public class ColorMatchExerciseStep2Activity extends Activity {
                     Intent confirmAnswersIntent = new Intent(ColorMatchExerciseStep2Activity.this,
                             ColorMatchExerciseStep3Activity.class);
                     confirmAnswersIntent.putCharSequenceArrayListExtra("AnswersStep2Color",
-                            exerciseData);
+                            (ArrayList<CharSequence>) exerciseData);
 
                     startActivity(confirmAnswersIntent);
                 }

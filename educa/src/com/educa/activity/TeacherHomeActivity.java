@@ -10,7 +10,7 @@ import com.educa.R;
 import com.educa.adapter.ExerciseTeacherAdapterJSON;
 import com.educa.database.DataBaseProfessor;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class TeacherHomeActivity extends Activity {
 
@@ -20,7 +20,7 @@ public class TeacherHomeActivity extends Activity {
 		setContentView(R.layout.activity_teacher_home);
         ListView listView = (ListView) findViewById(R.id.lv_exercise);
 
-		ArrayList<String> exercises1 = DataBaseProfessor.getInstance(
+		List<String> exercises1 = DataBaseProfessor.getInstance(
 				TeacherHomeActivity.this).getActivities();
 		System.out.println("conta exercicios:" + exercises1.size());
 

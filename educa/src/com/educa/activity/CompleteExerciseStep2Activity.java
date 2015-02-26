@@ -15,7 +15,7 @@ import java.util.List;
 public class CompleteExerciseStep2Activity extends Activity {
     private final List<LinearLayout> letterLayouts = new ArrayList<LinearLayout>();
     private final List<TextView> letterTextViews = new ArrayList<TextView>();
-    private ArrayList<CharSequence> exerciseData;
+    private List<CharSequence> exerciseData;
     private final ArrayList<CheckBox> letterCheckBoxes = new ArrayList<CheckBox>();
 
     @Override
@@ -87,7 +87,7 @@ public class CompleteExerciseStep2Activity extends Activity {
                     exerciseData.add(hiddenIndexes);
                     Intent intent = new Intent(CompleteExerciseStep2Activity.this,
                             CompleteExerciseStep3Activity.class);
-                    intent.putCharSequenceArrayListExtra("AnswersStep2Complete", exerciseData);
+                    intent.putCharSequenceArrayListExtra("AnswersStep2Complete", (ArrayList<CharSequence>) exerciseData);
                     startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(),

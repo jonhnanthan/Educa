@@ -1,17 +1,15 @@
 package com.educa.graphics;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.educa.R;
-
 import android.content.Context;
-import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import com.educa.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ImageAdapter extends BaseAdapter {
 	private Context context;

@@ -3,22 +3,8 @@ package com.educa.robotium;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.EditText;
 import android.widget.ImageButton;
-
 import com.educa.R;
-import com.educa.activity.ChooseMatchExerciseActivity;
-import com.educa.activity.ChooseModelActivity;
-import com.educa.activity.ColorMatchExerciseStep1Activity;
-import com.educa.activity.ColorMatchExerciseStep2Activity;
-import com.educa.activity.ColorMatchExerciseStep3Activity;
-import com.educa.activity.ColorMatchExerciseStep4Activity;
-import com.educa.activity.CompleteExerciseStep1Activity;
-import com.educa.activity.CompleteExerciseStep2Activity;
-import com.educa.activity.CompleteExerciseStep3Activity;
-import com.educa.activity.MainActivity;
-import com.educa.activity.MultipleChoiceExerciseStep1Activity;
-import com.educa.activity.MultipleChoiceExerciseStep2Activity;
-import com.educa.activity.MultipleChoiceExerciseStep3Activity;
-import com.educa.activity.TeacherHomeActivity;
+import com.educa.activity.*;
 import com.robotium.solo.Solo;
 
 public class TestAll extends

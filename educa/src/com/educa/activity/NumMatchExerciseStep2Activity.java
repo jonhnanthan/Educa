@@ -1,8 +1,5 @@
 package com.educa.activity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +8,11 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-
 import com.educa.R;
 import com.educa.validation.FieldValidation;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NumMatchExerciseStep2Activity extends Activity {
 	
@@ -40,7 +39,7 @@ public class NumMatchExerciseStep2Activity extends Activity {
         ImageButton bt_ok = (ImageButton) findViewById(R.id.bt_ok_match);
 
         Intent i = getIntent();
-        ArrayList<CharSequence> colorData = i.getCharSequenceArrayListExtra("QuantidadeData");
+        List<CharSequence> colorData = i.getCharSequenceArrayListExtra("QuantidadeData");
         colorCode = colorData.get(0).toString();
         
         
@@ -51,7 +50,7 @@ public class NumMatchExerciseStep2Activity extends Activity {
         	@Override
             public void onClick(View v) {
                 if (checkValidation() && !checkDuplication()) {
-                    ArrayList<CharSequence> exerciseData = new ArrayList<CharSequence>();
+                    List<CharSequence> exerciseData = new ArrayList<CharSequence>();
                     exerciseData.add(colorCode);
                     exerciseData.add(question.getText().toString());
                     exerciseData.add(answer1.getText().toString());
@@ -62,7 +61,7 @@ public class NumMatchExerciseStep2Activity extends Activity {
                     Intent confirmAnswersIntent = new Intent(NumMatchExerciseStep2Activity.this,
                             NumMatchExerciseStep3Activity.class);
                     confirmAnswersIntent.putCharSequenceArrayListExtra("AnswersStep2Color",
-                            exerciseData);
+                            (ArrayList<CharSequence>) exerciseData);
 
                     startActivity(confirmAnswersIntent);
                 }

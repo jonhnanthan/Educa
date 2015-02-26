@@ -20,10 +20,11 @@ import com.educa.validation.Status;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class CompleteExerciseStep3Activity extends Activity {
     private EditText et_name;
-    private ArrayList<CharSequence> exerciseData;
+    private List<CharSequence> exerciseData;
     private String question, word, hiddenIndexes;
 
     @Override
@@ -94,7 +95,7 @@ public class CompleteExerciseStep3Activity extends Activity {
     }
 
     private boolean exerciseNameDontExists(Exercise exercise) {
-    	ArrayList<String> names = DataBaseProfessor.getInstance(getApplicationContext()).getActivitiesName();
+    	List<String> names = DataBaseProfessor.getInstance(getApplicationContext()).getActivitiesName();
     	
     	for (String string : names) {
     		if (string.equals(exercise.getName())) {
