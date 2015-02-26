@@ -12,10 +12,10 @@
 
     <LinearLayout
         android:id="@+id/layout_color"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
         android:alpha="0.8"
         android:background="#FF0924"
         android:orientation="vertical" >
@@ -25,7 +25,7 @@
         android:id="@+id/question_match"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="-80dp"
         android:background="@drawable/selector_et"
         android:hint="Pergunta"
         android:paddingLeft="10dp"
@@ -35,12 +35,51 @@
         android:textCursorDrawable="@drawable/cursor" />
 
     <EditText
-        android:id="@+id/answer_match"
+        android:id="@+id/answer1_match"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/selector_et"
+        android:hint="Resposta1"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:textColor="#777777"
+        android:textColorHint="#AAAAAA"
+        android:textCursorDrawable="@drawable/cursor" />
+
+    <EditText
+        android:id="@+id/answer2_match"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/selector_et"
-        android:hint="Resposta"
+        android:hint="Resposta2"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:textColor="#777777"
+        android:textColorHint="#AAAAAA"
+        android:textCursorDrawable="@drawable/cursor" />
+
+    <EditText
+        android:id="@+id/answer3_match"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_et"
+        android:hint="Resposta3"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:textColor="#777777"
+        android:textColorHint="#AAAAAA"
+        android:textCursorDrawable="@drawable/cursor" />
+
+    <EditText
+        android:id="@+id/answer4_match"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_et"
+        android:hint="Resposta4"
         android:paddingLeft="10dp"
         android:singleLine="true"
         android:textColor="#777777"

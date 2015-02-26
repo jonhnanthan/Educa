@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@android:color/transparent"
-                android:src="@drawable/selector_bt_complete" />
+                android:src="@drawable/selector_bt_match" />
 
             <TextView
                 

@@ -1,6 +1,7 @@
 package com.educa.activity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,8 +18,11 @@ import com.educa.validation.FieldValidation;
 public class NumMatchExerciseStep2Activity extends Activity {
 	
 	private String colorCode;
-	private EditText question;
-	private EditText answer;
+    private EditText question;
+    private EditText answer1;
+    private EditText answer2;
+    private EditText answer3;
+    private EditText answer4;
 	
 
 	@Override
@@ -27,61 +31,87 @@ public class NumMatchExerciseStep2Activity extends Activity {
 		setContentView(R.layout.activity_num_match_exercise_step2);
 		
 		LinearLayout layout_color = (LinearLayout) findViewById(R.id.layout_color);
+
 		question = (EditText) findViewById(R.id.question_match);
-		answer = (EditText) findViewById(R.id.answer_match);
+        answer1 = (EditText) findViewById(R.id.answer1_match);
+        answer2 = (EditText) findViewById(R.id.answer2_match);
+        answer3 = (EditText) findViewById(R.id.answer3_match);
+        answer4 = (EditText) findViewById(R.id.answer4_match);
+        ImageButton bt_ok = (ImageButton) findViewById(R.id.bt_ok_match);
 
-		
-		ImageButton bt_ok = (ImageButton) findViewById(R.id.bt_ok_match);
+        Intent i = getIntent();
+        ArrayList<CharSequence> colorData = i.getCharSequenceArrayListExtra("QuantidadeData");
+        colorCode = colorData.get(0).toString();
+        
+        
+        layout_color.setBackgroundColor(Integer.parseInt(colorCode));
 
-		Intent i = getIntent();
-		ArrayList<Integer> exerciseData = i.getIntegerArrayListExtra("ColorData");
-		colorCode = exerciseData.get(0).toString();
+        bt_ok.setOnClickListener(new OnClickListener() {
 
-		layout_color.setBackgroundResource(Integer.parseInt(colorCode));
+        	@Override
+            public void onClick(View v) {
+                if (checkValidation() && !checkDuplication()) {
+                    ArrayList<CharSequence> exerciseData = new ArrayList<CharSequence>();
+                    exerciseData.add(colorCode);
+                    exerciseData.add(question.getText().toString());
+                    exerciseData.add(answer1.getText().toString());
+                    exerciseData.add(answer2.getText().toString());
+                    exerciseData.add(answer3.getText().toString());
+                    exerciseData.add(answer4.getText().toString());
 
-		bt_ok.setOnClickListener(new OnClickListener(){
+                    Intent confirmAnswersIntent = new Intent(NumMatchExerciseStep2Activity.this,
+                            NumMatchExerciseStep3Activity.class);
+                    confirmAnswersIntent.putCharSequenceArrayListExtra("AnswersStep2Color",
+                            exerciseData);
 
-			@Override
-			public void onClick(View v) {
-				if (checkValidation()) {
-					ArrayList<CharSequence> exerciseData = new ArrayList<CharSequence>();
-					exerciseData.add(colorCode);
-					exerciseData.add(question.getText().toString());
-					exerciseData.add(answer.getText().toString());
+                    startActivity(confirmAnswersIntent);
+                }
 
-					Intent confirmAnswersIntent = new Intent(
-							NumMatchExerciseStep2Activity.this,
-							NumMatchExerciseStep3Activity.class);
-					confirmAnswersIntent.putCharSequenceArrayListExtra(
-							"AnswersStep2Color", exerciseData);
+            }
+        });
 
-					startActivity(confirmAnswersIntent);
-				}
+        ImageButton bt_previous_step = (ImageButton) findViewById(R.id.bt_previous_step);
+        bt_previous_step.setOnClickListener(new OnClickListener() {
 
-			}
-		});
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
-		ImageButton bt_previous_step = (ImageButton) findViewById(R.id.bt_previous_step);
-		bt_previous_step.setOnClickListener(new OnClickListener() {
+    }
 
-			@Override
-			public void onClick(View v) {
-				onBackPressed();
-			}
-		});
-	}
+    
 
-	private boolean checkValidation() {
-		boolean ret = true;
-		FieldValidation validation = new FieldValidation(this);
-		if (!validation.hasText(question)) {
-			ret = false;
-		}
-		if (!validation.hasText(answer)) {
-			ret = false;
-		}
+    private boolean checkValidation() {
+        boolean ret = true;
+        FieldValidation validation = new FieldValidation(this);
+        if (!validation.hasText(question)) {
+            ret = false;
+        }
+        if (!validation.hasText(answer1)) {
+            ret = false;
+        }
+        if (!validation.hasText(answer2)) {
+            ret = false;
+        }
+        if (!validation.hasText(answer3)) {
+            ret = false;
+        }
+        if (!validation.hasText(answer4)) {
+            ret = false;
+        }
+        return ret;
+    }
 
-		return ret;
-	}
+    private boolean checkDuplication() {
+        FieldValidation validation = new FieldValidation(this);
+        List<EditText> listEditText = new ArrayList<EditText>();
+        listEditText.add(answer1);
+        listEditText.add(answer2);
+        listEditText.add(answer3);
+        listEditText.add(answer4);
+        return validation.isDuplicated(listEditText);
+    }
 
 }

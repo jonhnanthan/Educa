@@ -25,10 +25,7 @@ public class NumMatchExerciseStep1Activity extends Activity{
 	ImageButton bt_next_step;
 	Integer ImageSelected;
 	TextView tv_choose;
-	int iSelected;
 	TextView bt_numselected;
-	
-	ArrayList<Integer> exerciseData = new ArrayList<Integer>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +54,6 @@ public class NumMatchExerciseStep1Activity extends Activity{
 				LinearLayout layout_choose = (LinearLayout) findViewById(R.id.layout_choose);
 
 				layout_choose.setAlpha((float) 0.8);
-				
-				exerciseData.add(ImageSelected);
 			}
 		});
 
@@ -66,18 +61,20 @@ public class NumMatchExerciseStep1Activity extends Activity{
 
 			@Override
 			public void onClick(View v) {
-				 if (ImageSelected != null) {
-	                  
-	                    Intent intent = new Intent(getApplicationContext(),
-	                            NumMatchExerciseStep2Activity.class);
-	                    intent.putIntegerArrayListExtra("ColorData", exerciseData);
+				if (ImageSelected != null) {
+				 ArrayList<CharSequence> exerciseData = new ArrayList<CharSequence>();
+                 exerciseData.add(ImageSelected.toString());
 
-	                    startActivity(intent);
-	                } else {
+                 Intent intent = new Intent(getApplicationContext(),
+                         NumMatchExerciseStep2Activity.class);
+                 intent.putCharSequenceArrayListExtra("QuantidadeData", exerciseData);
+
+                 startActivity(intent);
+             }else {
 					Toast.makeText(
 							getApplicationContext(),
 							getApplicationContext().getResources().getString(
-									R.string.choose_a_color),
+									R.string.choose_a_numero),
 							Toast.LENGTH_SHORT).show();
 				}
 			}

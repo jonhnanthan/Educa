@@ -9,8 +9,8 @@
     android:orientation="vertical"
     tools:context="com.educa.activity.MainActivity"
     tools:ignore="MergeRootFrame" >
-
-    <TextView
+    
+        <TextView
         android:id="@+id/numSelected"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -21,8 +21,8 @@
         android:id="@+id/layout_choose"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:background="#00FFFFFF"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:background="#00FFFFFF" >
     </LinearLayout>
 
     <TextView
