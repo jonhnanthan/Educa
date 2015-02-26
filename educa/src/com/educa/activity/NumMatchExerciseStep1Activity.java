@@ -18,7 +18,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout.LayoutParams;
 
 import com.educa.R;
-import com.educa.graphics.ImageAdapter;
 import com.educa.graphics.NumeroAdapter;
 
 public class NumMatchExerciseStep1Activity extends Activity{
@@ -28,6 +27,8 @@ public class NumMatchExerciseStep1Activity extends Activity{
 	TextView tv_choose;
 	int iSelected;
 	TextView bt_numselected;
+	
+	ArrayList<Integer> exerciseData = new ArrayList<Integer>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,14 +49,16 @@ public class NumMatchExerciseStep1Activity extends Activity{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
+				
 				ImageSelected = (Integer) gridViewImages.getAdapter().getItem(position);
-				tv_choose.setText("Numero Selecionado");
-				//tv_choose.setBackgroundResource(ImageSelected);		
+				tv_choose.setText("Imagem Selecionada");
+		
 				bt_numselected.setBackgroundResource(ImageSelected);
 				LinearLayout layout_choose = (LinearLayout) findViewById(R.id.layout_choose);
-				// layout_choose.setBackgroundColor(ImageSelected);
-				//layout_choose.setBackgroundResource(ImageSelected);
+
 				layout_choose.setAlpha((float) 0.8);
+				
+				exerciseData.add(ImageSelected);
 			}
 		});
 
@@ -63,17 +66,14 @@ public class NumMatchExerciseStep1Activity extends Activity{
 
 			@Override
 			public void onClick(View v) {
-				if (ImageSelected != null) {
-					ArrayList<CharSequence> exerciseData = new ArrayList<CharSequence>();
-					exerciseData.add(ImageSelected.toString());
+				 if (ImageSelected != null) {
+	                  
+	                    Intent intent = new Intent(getApplicationContext(),
+	                            NumMatchExerciseStep2Activity.class);
+	                    intent.putIntegerArrayListExtra("ColorData", exerciseData);
 
-					Intent intent = new Intent(getApplicationContext(),
-							NumMatchExerciseStep2Activity.class);
-					intent.putCharSequenceArrayListExtra("ColorData",
-							exerciseData);
-
-					startActivity(intent);
-				} else {
+	                    startActivity(intent);
+	                } else {
 					Toast.makeText(
 							getApplicationContext(),
 							getApplicationContext().getResources().getString(

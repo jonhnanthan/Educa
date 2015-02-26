@@ -117,9 +117,12 @@
             android:name="com.educa.activity.NumMatchExerciseStep1Activity"
             android:label="@string/image_num_match" >
         </activity>
-        
         <activity
             android:name="com.educa.activity.NumMatchExerciseStep2Activity"
+            android:label="@string/image_num_match" >
+        </activity>
+        <activity
+            android:name="com.educa.activity.NumMatchExerciseStep3Activity"
             android:label="@string/image_num_match" >
         </activity>
          

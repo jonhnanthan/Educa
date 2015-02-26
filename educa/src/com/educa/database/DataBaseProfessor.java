@@ -28,10 +28,12 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
 
     private static final String SQL_DELETE_PROFESSOR_TABLE = "DROP TABLE IF EXISTS Professor";
 
+
     public final String COLOR_MATCH_EXERCISE_TYPECODE = "COLOR_MATCH_EXERCISE";
     public final String MULTIPLE_CHOICE_EXERCISE_TYPECODE = "MULTIPLE_CHOICE_EXERCISE";
     public final String COMPLETE_EXERCISE_TYPECODE = "COMPLETE_EXERCISE";
     public final String IMAGE_MATCH_EXERCISE_TYPECODE = "IMAGE_MATCH_EXERCISE";
+    public final String NUM_MATCH_EXERCISE_TYPECODE = "NUM_MATCH_EXERCISE";
 
     private DataBaseProfessor(Context context) {
         super(context, "educaNew.db", null, 1);

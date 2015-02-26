@@ -9,39 +9,55 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import com.educa.R;
 import com.educa.validation.FieldValidation;
 
 public class NumMatchExerciseStep2Activity extends Activity {
+	
+	private String colorCode;
 	private EditText question;
-	private EditText word;
+	private EditText answer;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_num_match_exercise_step2);
-		question = (EditText) findViewById(R.id.question);
-		word = (EditText) findViewById(R.id.word);
-		ImageButton bt_next_step = (ImageButton) findViewById(R.id.bt_next_step);
+		
+		LinearLayout layout_color = (LinearLayout) findViewById(R.id.layout_color);
+		question = (EditText) findViewById(R.id.question_match);
+		answer = (EditText) findViewById(R.id.answer_match);
 
-		bt_next_step.setOnClickListener(new OnClickListener() {
+		
+		ImageButton bt_ok = (ImageButton) findViewById(R.id.bt_ok_match);
+
+		Intent i = getIntent();
+		ArrayList<Integer> exerciseData = i.getIntegerArrayListExtra("ColorData");
+		colorCode = exerciseData.get(0).toString();
+
+		layout_color.setBackgroundResource(Integer.parseInt(colorCode));
+
+		bt_ok.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
 				if (checkValidation()) {
 					ArrayList<CharSequence> exerciseData = new ArrayList<CharSequence>();
+					exerciseData.add(colorCode);
 					exerciseData.add(question.getText().toString());
-					exerciseData.add(word.getText().toString());
+					exerciseData.add(answer.getText().toString());
 
-					Intent intent = new Intent(
+					Intent confirmAnswersIntent = new Intent(
 							NumMatchExerciseStep2Activity.this,
-							CompleteExerciseStep2Activity.class);
-					intent.putCharSequenceArrayListExtra("ExerciseData",
-							exerciseData);
+							NumMatchExerciseStep3Activity.class);
+					confirmAnswersIntent.putCharSequenceArrayListExtra(
+							"AnswersStep2Color", exerciseData);
 
-					startActivity(intent);
+					startActivity(confirmAnswersIntent);
 				}
+
 			}
 		});
 
@@ -50,26 +66,22 @@ public class NumMatchExerciseStep2Activity extends Activity {
 
 			@Override
 			public void onClick(View v) {
+				onBackPressed();
 			}
 		});
-
 	}
 
-    private boolean checkValidation() {
-        boolean ret = true;
-        FieldValidation validation = new FieldValidation(this);
-        if (!validation.hasText(question)) {
-            ret = false;
-        }
-        if (!validation.hasText(word)) {
-            ret = false;
-        }
-        return ret;
-    }
+	private boolean checkValidation() {
+		boolean ret = true;
+		FieldValidation validation = new FieldValidation(this);
+		if (!validation.hasText(question)) {
+			ret = false;
+		}
+		if (!validation.hasText(answer)) {
+			ret = false;
+		}
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
+		return ret;
+	}
 
 }
