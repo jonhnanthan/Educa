@@ -14,6 +14,7 @@ import com.educa.activity.ColorMatchExerciseStep4Activity;
 import com.educa.activity.CompleteExerciseStep1Activity;
 import com.educa.activity.CompleteExerciseStep2Activity;
 import com.educa.activity.CompleteExerciseStep3Activity;
+import com.educa.activity.MainActivity;
 import com.educa.activity.MultipleChoiceExerciseStep1Activity;
 import com.educa.activity.MultipleChoiceExerciseStep2Activity;
 import com.educa.activity.MultipleChoiceExerciseStep3Activity;
@@ -21,12 +22,12 @@ import com.educa.activity.TeacherHomeActivity;
 import com.robotium.solo.Solo;
 
 public class TestAll extends
-		ActivityInstrumentationTestCase2<TeacherHomeActivity> {
+		ActivityInstrumentationTestCase2<MainActivity> {
 
 	private Solo solo;
 
 	public TestAll() {
-		super(TeacherHomeActivity.class);
+		super(MainActivity.class);
 	}
 
 	@Override
@@ -263,55 +264,55 @@ public class TestAll extends
 				TeacherHomeActivity.class);
 	}
 
-	public void test_D_AnswerColorExercise() throws Exception {
-
-		solo.clickOnText(getActivity().getApplicationContext().getString(
-				R.string.student));
-
-		solo.clickOnText("Exercicio de cores");
-
-		solo.clickOnRadioButton(2);
-
-		ImageButton imageButon = (ImageButton) solo.getView(R.id.bt_save);
-		solo.clickOnView(imageButon);
-		solo.waitForView(imageButon);
-
-		solo.clickOnMenuItem(getActivity().getResources()
-				.getString(R.string.ok));
-
-	}
-
-	public void test_E_AnswerCompleteExercise() throws Exception {
-
-		solo.clickOnText(getActivity().getApplicationContext().getString(
-				R.string.student));
-
-		solo.clickOnText("Exercicio de completar");
-
-		EditText et = (EditText) solo.getView(R.id.bt_letter3);
-		solo.enterText(et, "S");
-
-		ImageButton imageButton = (ImageButton) solo.getView(R.id.bt_save);
-		solo.clickOnView(imageButton);
-		solo.waitForView(imageButton);
-
-		solo.clickOnText(getActivity().getResources().getString(R.string.ok));
-
-	}
-
-	public void test_F_AnswerMultipleChoiceExercise() throws Exception {
-
-		solo.clickOnText(getActivity().getApplicationContext().getString(
-				R.string.student));
-
-		solo.clickOnText("Exercicio dos meses");
-
-		solo.clickOnRadioButton(2);
-
-		solo.clickOnMenuItem(getActivity().getResources()
-				.getString(R.string.ok));
-
-	}
+//	public void test_D_AnswerColorExercise() throws Exception {
+//
+//		solo.clickOnText(getActivity().getApplicationContext().getString(
+//				R.string.student));
+//
+//		solo.clickOnText("Exercicio de cores");
+//
+//		solo.clickOnRadioButton(2);
+//
+//		ImageButton imageButon = (ImageButton) solo.getView(R.id.bt_save);
+//		solo.clickOnView(imageButon);
+//		solo.waitForView(imageButon);
+//
+//		solo.clickOnMenuItem(getActivity().getResources()
+//				.getString(R.string.ok));
+//
+//	}
+//
+//	public void test_E_AnswerCompleteExercise() throws Exception {
+//
+//		solo.clickOnText(getActivity().getApplicationContext().getString(
+//				R.string.student));
+//
+//		solo.clickOnText("Exercicio de completar");
+//
+//		EditText et = (EditText) solo.getView(R.id.bt_letter3);
+//		solo.enterText(et, "S");
+//
+//		ImageButton imageButton = (ImageButton) solo.getView(R.id.bt_save);
+//		solo.clickOnView(imageButton);
+//		solo.waitForView(imageButton);
+//
+//		solo.clickOnText(getActivity().getResources().getString(R.string.ok));
+//
+//	}
+//
+//	public void test_F_AnswerMultipleChoiceExercise() throws Exception {
+//
+//		solo.clickOnText(getActivity().getApplicationContext().getString(
+//				R.string.student));
+//
+//		solo.clickOnText("Exercicio dos meses");
+//
+//		solo.clickOnRadioButton(2);
+//
+//		solo.clickOnMenuItem(getActivity().getResources()
+//				.getString(R.string.ok));
+//
+//	}
 
 	@Override
 	public void tearDown() throws Exception {
