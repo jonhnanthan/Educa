@@ -72,6 +72,11 @@
     <string name="send_alert_message">Você deseja enviar este exercício?</string>
     <string name="fileSent">Arquivo Enviado!</string>
     <string name="ErrorSend">Erro ao enviar o arquivo.</string>
+    <string name="new_class_hotspot">Iniciar Classe</string>
+    <string name="new_class">Nova Classe</string>
+    <string name="name">Nome da classe</string>
+    <string name="password">Senha da classe</string>
+    <string name="error_password">8 a 16 caracteres</string>
 
 
 </resources>

@@ -65,6 +65,11 @@
     <string name="ErrorSend">Error sending the file.</string>
     <string name="choose_a_image">Escolha a imagem</string>
     <string name="choose_a_numero">Escolha o numero</string>
+    <string name="new_class_hotspot">Start Class</string>
+    <string name="new_class">New Class</string>
+    <string name="name">Class name</string>
+    <string name="password">Class password</string>
+    <string name="error_password">8 to 16 characters</string>
     
 
 </resources>

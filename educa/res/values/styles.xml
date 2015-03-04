@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -23,6 +23,10 @@
 
     <style name="Theme.EducaTheme.ActionBar" parent="@android:style/Widget.Holo.ActionBar">
         <item name="android:background">@drawable/actionbar_bg</item>
+    </style>
+    <style name="Them.EducaTheme.Dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
     </style>
 
 </resources>
