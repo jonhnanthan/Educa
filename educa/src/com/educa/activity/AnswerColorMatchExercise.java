@@ -10,8 +10,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
@@ -156,7 +154,7 @@ public class AnswerColorMatchExercise extends Activity {
 
                             Intent intent = new Intent(AnswerColorMatchExercise.this, StudentHomeActivity.class);
                             startActivity(intent);
-                        } catch (Throwable e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
@@ -179,8 +177,8 @@ public class AnswerColorMatchExercise extends Activity {
                     public void onClick(DialogInterface arg0, int arg1) {
                         try {
                             finalize();
-                        } catch (Throwable e) {
-                            e.printStackTrace();
+                        } catch (Throwable t){
+                        	t.printStackTrace();
                         }
                     }
                 });
@@ -195,7 +193,7 @@ public class AnswerColorMatchExercise extends Activity {
                     Intent intent = new Intent(AnswerColorMatchExercise.this,
                             StudentHomeActivity.class);
                     startActivity(intent);
-                } catch (Throwable e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
