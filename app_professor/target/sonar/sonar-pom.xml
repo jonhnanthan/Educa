@@ -49,7 +49,7 @@
       </snapshots>
       <id>central</id>
       <name>Central Repository</name>
-      <url>http://repo.maven.apache.org/maven2</url>
+      <url>https://repo.maven.apache.org/maven2</url>
     </repository>
   </repositories>
   <pluginRepositories>
@@ -62,7 +62,7 @@
       </snapshots>
       <id>central</id>
       <name>Central Repository</name>
-      <url>http://repo.maven.apache.org/maven2</url>
+      <url>https://repo.maven.apache.org/maven2</url>
     </pluginRepository>
   </pluginRepositories>
   <build>
@@ -95,11 +95,11 @@
         </plugin>
         <plugin>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>2.1</version>
+          <version>2.8</version>
         </plugin>
         <plugin>
           <artifactId>maven-release-plugin</artifactId>
-          <version>2.0</version>
+          <version>2.3.2</version>
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -136,6 +136,57 @@
         <extensions>true</extensions>
         <executions>
           <execution>
+            <id>default-internal-integration-test</id>
+            <phase>integration-test</phase>
+            <goals>
+              <goal>internal-integration-test</goal>
+            </goals>
+            <configuration>
+              <sdk>
+                <platform>15</platform>
+                <platform>16</platform>
+                <platform>17</platform>
+                <platform>18</platform>
+                <platform>19</platform>
+                <platform>20</platform>
+              </sdk>
+            </configuration>
+          </execution>
+          <execution>
+            <id>default-generate-sources</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate-sources</goal>
+            </goals>
+            <configuration>
+              <sdk>
+                <platform>15</platform>
+                <platform>16</platform>
+                <platform>17</platform>
+                <platform>18</platform>
+                <platform>19</platform>
+                <platform>20</platform>
+              </sdk>
+            </configuration>
+          </execution>
+          <execution>
+            <id>default-internal-pre-integration-test</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>internal-pre-integration-test</goal>
+            </goals>
+            <configuration>
+              <sdk>
+                <platform>15</platform>
+                <platform>16</platform>
+                <platform>17</platform>
+                <platform>18</platform>
+                <platform>19</platform>
+                <platform>20</platform>
+              </sdk>
+            </configuration>
+          </execution>
+          <execution>
             <id>default-emma</id>
             <phase>prepare-package</phase>
             <goals>
@@ -170,57 +221,6 @@
             </configuration>
           </execution>
           <execution>
-            <id>default-apk</id>
-            <phase>package</phase>
-            <goals>
-              <goal>apk</goal>
-            </goals>
-            <configuration>
-              <sdk>
-                <platform>15</platform>
-                <platform>16</platform>
-                <platform>17</platform>
-                <platform>18</platform>
-                <platform>19</platform>
-                <platform>20</platform>
-              </sdk>
-            </configuration>
-          </execution>
-          <execution>
-            <id>default-internal-integration-test</id>
-            <phase>integration-test</phase>
-            <goals>
-              <goal>internal-integration-test</goal>
-            </goals>
-            <configuration>
-              <sdk>
-                <platform>15</platform>
-                <platform>16</platform>
-                <platform>17</platform>
-                <platform>18</platform>
-                <platform>19</platform>
-                <platform>20</platform>
-              </sdk>
-            </configuration>
-          </execution>
-          <execution>
-            <id>default-internal-pre-integration-test</id>
-            <phase>pre-integration-test</phase>
-            <goals>
-              <goal>internal-pre-integration-test</goal>
-            </goals>
-            <configuration>
-              <sdk>
-                <platform>15</platform>
-                <platform>16</platform>
-                <platform>17</platform>
-                <platform>18</platform>
-                <platform>19</platform>
-                <platform>20</platform>
-              </sdk>
-            </configuration>
-          </execution>
-          <execution>
             <id>default-proguard</id>
             <phase>process-classes</phase>
             <goals>
@@ -238,10 +238,10 @@
             </configuration>
           </execution>
           <execution>
-            <id>default-generate-sources</id>
-            <phase>generate-sources</phase>
+            <id>default-apk</id>
+            <phase>package</phase>
             <goals>
-              <goal>generate-sources</goal>
+              <goal>apk</goal>
             </goals>
             <configuration>
               <sdk>
@@ -369,13 +369,46 @@
       </plugin>
       <plugin>
         <artifactId>maven-clean-plugin</artifactId>
-        <version>2.3</version>
+        <version>2.5</version>
         <executions>
           <execution>
             <id>default-clean</id>
             <phase>clean</phase>
             <goals>
               <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>2.5.2</version>
+        <executions>
+          <execution>
+            <id>default-install</id>
+            <phase>install</phase>
+            <goals>
+              <goal>install</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.7</version>
+        <executions>
+          <execution>
+            <id>default-resources</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>resources</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>default-testResources</id>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>testResources</goal>
             </goals>
           </execution>
         </executions>
@@ -407,41 +440,8 @@
         </executions>
       </plugin>
       <plugin>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>2.7</version>
-        <executions>
-          <execution>
-            <id>default-testResources</id>
-            <phase>process-test-resources</phase>
-            <goals>
-              <goal>testResources</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>default-resources</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>resources</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-install-plugin</artifactId>
-        <version>2.5.2</version>
-        <executions>
-          <execution>
-            <id>default-install</id>
-            <phase>install</phase>
-            <goals>
-              <goal>install</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <artifactId>maven-site-plugin</artifactId>
-        <version>3.0</version>
+        <version>3.3</version>
         <executions>
           <execution>
             <id>default-site</id>

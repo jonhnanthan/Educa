@@ -6,7 +6,7 @@
   <artifactId>educa_maven</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>apk</packaging>
-  <name>educa_maven</name>
+  <name>educa_maven_aluno</name>
   <properties>
     <android.version>4.1.1.4</android.version>
     <compatibility-v4.version>19.1.0</compatibility-v4.version>
