@@ -28,7 +28,6 @@
 	
 	<string name="edit">Editar</string>
 	<string name="delete">Excluir</string>
-    <string name="send">Enviar</string>
 	<string name="answer">Responder</string>
 	<string name="about">Sobre</string>
 	<string name="help">Ajuda</string>
@@ -68,13 +67,5 @@
 	<string name="fragment_help_3">Escolha a alternativa correta.</string>
     <string name="question">Questão</string>
 	<string name="exercise_name">Nome do Exercício</string>
-<<<<<<< HEAD:src/main/res/values-pt-rBR/strings.xml
-    <string name="send_alert_title">Enviar Exercício</string>
-    <string name="send_alert_message">Você deseja enviar este exercício?</string>
-    <string name="fileSent">Arquivo Enviado!</string>
-    <string name="ErrorSend">Erro ao enviar o arquivo.</string>
-
-=======
->>>>>>> e47e20dcea95c01bf50a19f05b5a37560d001c51:app_aluno/src/main/res/values-pt-rBR/strings.xml
 
 </resources>

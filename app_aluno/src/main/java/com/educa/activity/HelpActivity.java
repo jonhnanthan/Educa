@@ -10,15 +10,17 @@ import android.support.v4.view.ViewPager;
 import com.educa.R;
 
 public class HelpActivity extends FragmentActivity {
+    private MyAdapter mAdapter;
+    private ViewPager mPager;
 
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
-        MyAdapter mAdapter = new MyAdapter(getSupportFragmentManager());
+        mAdapter = new MyAdapter(getSupportFragmentManager());
 
-        ViewPager mPager = (ViewPager) findViewById(R.id.pager);
+        mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
     }
 

@@ -10,6 +10,14 @@
     tools:context="com.educa.activity.MainActivity"
     tools:ignore="MergeRootFrame" >
 
+    <ImageButton
+        android:id="@+id/bt_student"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@android:color/transparent"
+        android:src="@drawable/selector_bt_main" />
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -17,39 +25,9 @@
         android:layout_gravity="center_horizontal|center_vertical"
         android:layout_marginTop="-70dp"
         android:gravity="center_horizontal|center_vertical"
+        android:text="@string/student"
         android:textColor="#FFFFFF"
-<<<<<<< HEAD:src/main/res/layout-land/activity_main.xml
-        android:textSize="20sp"
-        android:textStyle="normal|bold" />
-=======
         android:textStyle="normal|bold"
         android:textSize="20sp"/>
->>>>>>> e47e20dcea95c01bf50a19f05b5a37560d001c51:app_aluno/src/main/res/layout-land/activity_main.xml
 
-    <ImageButton
-        android:id="@+id/bt_teacher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/selector_bt_main" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:layout_marginTop="-70dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="@string/teacher"
-        android:textColor="#FFFFFF"
-<<<<<<< HEAD:src/main/res/layout-land/activity_main.xml
-        android:textSize="20sp"
-        android:textStyle="normal|bold" />
-
-=======
-        android:textStyle="normal|bold"
-        android:textSize="20sp"/>
->>>>>>> e47e20dcea95c01bf50a19f05b5a37560d001c51:app_aluno/src/main/res/layout-land/activity_main.xml
 </LinearLayout>

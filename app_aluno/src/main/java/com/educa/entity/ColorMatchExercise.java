@@ -1,18 +1,18 @@
 
 package com.educa.entity;
 
-import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ColorMatchExercise extends Exercise {
-    private static final String LOG = "LOGs";
+
     private String color;
     private String alternative1;
     private String alternative2;
     private String alternative3;
     private String alternative4;
     private String rightAnswer;
+    private JSONObject activityData;
 
     public ColorMatchExercise(String name, String type, String date, String status,
             String correction, String question, String alternative1, String alternative2,
@@ -28,7 +28,7 @@ public class ColorMatchExercise extends Exercise {
     }
 
 	public String getJsonTextObject() {
-        JSONObject activityData = new JSONObject();
+		activityData = new JSONObject();
         try {
 			activityData.put("name", this.getName());
 			activityData.put("type", this.getType());
@@ -44,7 +44,7 @@ public class ColorMatchExercise extends Exercise {
 			activityData.put("color", color);
 			
 		} catch (JSONException e) {
-            Log.e(LOG, e.getMessage());
+			e.printStackTrace();
 		}
 		return activityData.toString();
 	}

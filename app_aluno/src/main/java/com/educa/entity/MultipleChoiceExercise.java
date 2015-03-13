@@ -1,7 +1,6 @@
 
 package com.educa.entity;
 
-import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,7 +11,8 @@ public class MultipleChoiceExercise extends Exercise {
     private String alternative3;
     private String alternative4;
     private String rightAnswer;
-    final private String LOG = "LOGs";
+    private JSONObject activityData;
+
     public MultipleChoiceExercise(String name, String type, String date, String status,
             String correction, String question, String alternative1, String alternative2,
             String alternative3, String alternative4, String rightAnswer) {
@@ -26,7 +26,7 @@ public class MultipleChoiceExercise extends Exercise {
     }
 
 	public String getJsonTextObject() {
-        JSONObject activityData = new JSONObject();
+		activityData = new JSONObject();
         try {
 			activityData.put("name", this.getName());
 			activityData.put("type", this.getType());
@@ -41,8 +41,8 @@ public class MultipleChoiceExercise extends Exercise {
 			activityData.put("answer", rightAnswer);
 			
 		} catch (JSONException e) {
-            Log.e(LOG, e.getMessage());
-        }
+			e.printStackTrace();
+		}
 
 		return activityData.toString();
 	}

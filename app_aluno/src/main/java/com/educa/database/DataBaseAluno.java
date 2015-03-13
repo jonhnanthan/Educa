@@ -2,7 +2,9 @@ package com.educa.database;
 
 import java.util.ArrayList;
 
+import com.educa.entity.ColorMatchExercise;
 import com.educa.entity.CompleteExercise;
+import com.educa.entity.MultipleChoiceExercise;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -89,7 +91,6 @@ public class DataBaseAluno extends SQLiteOpenHelper{
     	
     }
     
-    
     public ArrayList<String> getActivities(String type){
     	ArrayList<String> activities = new ArrayList<String>();    	
     	String sql = "select * from " + TABLE_ATIVIDADES_ALUNO + " where " + COLUNA_ALUNO_TIPO_ATIVIDADE + " = '" + type + "'";
@@ -110,36 +111,29 @@ public class DataBaseAluno extends SQLiteOpenHelper{
     	return activities;
     }
     
-    
-	public ArrayList<String> getActivitiesName() {
-    	ArrayList<String> activities = new ArrayList<String>();
-    	
-    	String sql = "select " + COLUNA_ALUNO_NOME + " from " + TABLE_ATIVIDADES_ALUNO;
+	private void populateDataBase(){
+		
+    	String sql = "select * from " + TABLE_ATIVIDADES_ALUNO;
     	
     	final SQLiteDatabase db = getWritableDatabase();
     	final Cursor c = db.rawQuery(sql, null);
     	
-    	if (c.getCount() > 0 && c.moveToFirst()){
-    		for (int i = 0; i < c.getCount(); i++) {
-    			activities.add(c.getString(0));
-    			c.moveToNext();
-			}
+    	if (c.getCount() == 0){
+    		ColorMatchExercise cm = new ColorMatchExercise("Exercicio de cores", COLOR_MATCH_EXERCISE_TYPECODE, "25-02-2015", "NEW", "NOT RATED", "Que cor eh essa?", "Preta", "Cinza", "Marrom", "Amarela", "Marrom", "-11199487");
+    		addActivity("Exercicio de cores", COLOR_MATCH_EXERCISE_TYPECODE, cm.getJsonTextObject());
+    		
+    		CompleteExercise ce = new CompleteExercise("Exercicio de completar", COMPLETE_EXERCISE_TYPECODE, "25-02-2015", "NEW", "NOT_RATED", "Lugar onde voce mora", "casa", "2");
+    		addActivity("Exercicio de completar", COMPLETE_EXERCISE_TYPECODE, ce.getJsonTextObject());
+    		
+    		MultipleChoiceExercise me = new MultipleChoiceExercise("Exercicio dos meses", MULTIPLE_CHOICE_EXERCISE_TYPECODE, "25-02-2015", "NEW", "NOT RATED", "Qual o ultimo mes do ano?", "Janeiro", "Novembro", "Dezembro", "Outubro", "Dezembro");
+    		addActivity("Exercicio dos meses", MULTIPLE_CHOICE_EXERCISE_TYPECODE, me.getJsonTextObject());
     	}
-    	
+
     	c.close();
     	db.close();
-		return activities;
-	}
-
-	private void populateDataBase(){
-//		{"hiddenIndexes":"1","status":"NEW","name":"jxffk","correction":"NOT_RATED","word":"jfkfkf","question":"kfkfkd","date":"11-02-2015","type":"COMPLETE_EXERCISE"}
-		
-		CompleteExercise c = new CompleteExercise("Teste", COMPLETE_EXERCISE_TYPECODE, "11-02-2015", "NEW", "NOT_RATED", "Pergunta Teste", "Word", "1");
-		CompleteExercise c1 = new CompleteExercise("Teste1", COMPLETE_EXERCISE_TYPECODE, "11-02-2015", "NEW", "NOT_RATED", "Pergunta Teste1", "Worda", "2");
-		
-		addActivity("Teste", COMPLETE_EXERCISE_TYPECODE, c.getJsonTextObject());
-		addActivity("Teste1", COMPLETE_EXERCISE_TYPECODE, c1.getJsonTextObject());
-		
+//		addActivity: Exercicio de cores COLOR_MATCH_EXERCISE {"alternative2":"Cinza","alternative1":"Preta","alternative4":"Amarela","alternative3":"Marrom","color":"-11199487","status":"NEW","name":"Exercicio de cores","answer":"Marrom","correction":"NOT_RATED","question":"Que cor eh essa?","date":"25-02-2015","type":"COLOR_MATCH_EXERCISE"}
+//		addActivity: Exercicio de completar COMPLETE_EXERCISE {"hiddenIndexes":"2","status":"NEW","name":"Exercicio de completar","correction":"NOT_RATED","word":"casa","question":"Lugar onde voce mora","date":"25-02-2015","type":"COMPLETE_EXERCISE"}
+//		addActivity: Exercicio dos meses MULTIPLE_CHOICE_EXERCISE {"alternative2":"Novembro","alternative1":"Janeiro","alternative4":"Outubro","alternative3":"Dezembro","status":"NEW","name":"Exercicio dos meses","answer":"Dezembro","correction":"NOT_RATED","question":"Qual o ultimo mes do ano?","date":"25-02-2015","type":"MULTIPLE_CHOICE_EXERCISE"}
 	}
 	
     private final long addActivity(String name, String activityType, String activity) {
