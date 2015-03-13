@@ -66,22 +66,22 @@
     </pluginRepository>
   </pluginRepositories>
   <build>
-    <sourceDirectory>/home/leonardo/Workspace/educa_maven/app_aluno/src</sourceDirectory>
-    <scriptSourceDirectory>/home/leonardo/Workspace/educa_maven/app_aluno/src/main/scripts</scriptSourceDirectory>
-    <testSourceDirectory>/home/leonardo/Workspace/educa_maven/app_aluno/test/educa/junit</testSourceDirectory>
-    <outputDirectory>/home/leonardo/Workspace/educa_maven/app_aluno/bin/classes</outputDirectory>
-    <testOutputDirectory>/home/leonardo/Workspace/educa_maven/app_aluno/target/test-classes</testOutputDirectory>
+    <sourceDirectory>/Users/jonhnanthan/Jonhnanthan Arquivos/Aulas UFCG/2014.2/Lab Engenharia de Software/branchMaven/Educales142/app_aluno/src</sourceDirectory>
+    <scriptSourceDirectory>/Users/jonhnanthan/Jonhnanthan Arquivos/Aulas UFCG/2014.2/Lab Engenharia de Software/branchMaven/Educales142/app_aluno/src/main/scripts</scriptSourceDirectory>
+    <testSourceDirectory>/Users/jonhnanthan/Jonhnanthan Arquivos/Aulas UFCG/2014.2/Lab Engenharia de Software/branchMaven/Educales142/app_aluno/test/educa/junit</testSourceDirectory>
+    <outputDirectory>/Users/jonhnanthan/Jonhnanthan Arquivos/Aulas UFCG/2014.2/Lab Engenharia de Software/branchMaven/Educales142/app_aluno/bin/classes</outputDirectory>
+    <testOutputDirectory>/Users/jonhnanthan/Jonhnanthan Arquivos/Aulas UFCG/2014.2/Lab Engenharia de Software/branchMaven/Educales142/app_aluno/target/test-classes</testOutputDirectory>
     <resources>
       <resource>
-        <directory>/home/leonardo/Workspace/educa_maven/app_aluno/src/main/resources</directory>
+        <directory>/Users/jonhnanthan/Jonhnanthan Arquivos/Aulas UFCG/2014.2/Lab Engenharia de Software/branchMaven/Educales142/app_aluno/src/main/resources</directory>
       </resource>
     </resources>
     <testResources>
       <testResource>
-        <directory>/home/leonardo/Workspace/educa_maven/app_aluno/src/test/resources</directory>
+        <directory>/Users/jonhnanthan/Jonhnanthan Arquivos/Aulas UFCG/2014.2/Lab Engenharia de Software/branchMaven/Educales142/app_aluno/src/test/resources</directory>
       </testResource>
     </testResources>
-    <directory>/home/leonardo/Workspace/educa_maven/app_aluno/target</directory>
+    <directory>/Users/jonhnanthan/Jonhnanthan Arquivos/Aulas UFCG/2014.2/Lab Engenharia de Software/branchMaven/Educales142/app_aluno/target</directory>
     <finalName>educa_maven</finalName>
     <pluginManagement>
       <plugins>
@@ -187,40 +187,6 @@
             </configuration>
           </execution>
           <execution>
-            <id>default-emma</id>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>emma</goal>
-            </goals>
-            <configuration>
-              <sdk>
-                <platform>15</platform>
-                <platform>16</platform>
-                <platform>17</platform>
-                <platform>18</platform>
-                <platform>19</platform>
-                <platform>20</platform>
-              </sdk>
-            </configuration>
-          </execution>
-          <execution>
-            <id>default-dex</id>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>dex</goal>
-            </goals>
-            <configuration>
-              <sdk>
-                <platform>15</platform>
-                <platform>16</platform>
-                <platform>17</platform>
-                <platform>18</platform>
-                <platform>19</platform>
-                <platform>20</platform>
-              </sdk>
-            </configuration>
-          </execution>
-          <execution>
             <id>default-proguard</id>
             <phase>process-classes</phase>
             <goals>
@@ -242,6 +208,40 @@
             <phase>package</phase>
             <goals>
               <goal>apk</goal>
+            </goals>
+            <configuration>
+              <sdk>
+                <platform>15</platform>
+                <platform>16</platform>
+                <platform>17</platform>
+                <platform>18</platform>
+                <platform>19</platform>
+                <platform>20</platform>
+              </sdk>
+            </configuration>
+          </execution>
+          <execution>
+            <id>default-emma</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>emma</goal>
+            </goals>
+            <configuration>
+              <sdk>
+                <platform>15</platform>
+                <platform>16</platform>
+                <platform>17</platform>
+                <platform>18</platform>
+                <platform>19</platform>
+                <platform>20</platform>
+              </sdk>
+            </configuration>
+          </execution>
+          <execution>
+            <id>default-dex</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>dex</goal>
             </goals>
             <configuration>
               <sdk>
@@ -398,17 +398,17 @@
         <version>2.7</version>
         <executions>
           <execution>
-            <id>default-resources</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>resources</goal>
-            </goals>
-          </execution>
-          <execution>
             <id>default-testResources</id>
             <phase>process-test-resources</phase>
             <goals>
               <goal>testResources</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>default-resources</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>resources</goal>
             </goals>
           </execution>
         </executions>
@@ -450,7 +450,7 @@
               <goal>site</goal>
             </goals>
             <configuration>
-              <outputDirectory>/home/leonardo/Workspace/educa_maven/app_aluno/target/site</outputDirectory>
+              <outputDirectory>/Users/jonhnanthan/Jonhnanthan Arquivos/Aulas UFCG/2014.2/Lab Engenharia de Software/branchMaven/Educales142/app_aluno/target/site</outputDirectory>
               <reportPlugins>
                 <reportPlugin>
                   <groupId>org.apache.maven.plugins</groupId>
@@ -466,7 +466,7 @@
               <goal>deploy</goal>
             </goals>
             <configuration>
-              <outputDirectory>/home/leonardo/Workspace/educa_maven/app_aluno/target/site</outputDirectory>
+              <outputDirectory>/Users/jonhnanthan/Jonhnanthan Arquivos/Aulas UFCG/2014.2/Lab Engenharia de Software/branchMaven/Educales142/app_aluno/target/site</outputDirectory>
               <reportPlugins>
                 <reportPlugin>
                   <groupId>org.apache.maven.plugins</groupId>
@@ -477,7 +477,7 @@
           </execution>
         </executions>
         <configuration>
-          <outputDirectory>/home/leonardo/Workspace/educa_maven/app_aluno/target/site</outputDirectory>
+          <outputDirectory>/Users/jonhnanthan/Jonhnanthan Arquivos/Aulas UFCG/2014.2/Lab Engenharia de Software/branchMaven/Educales142/app_aluno/target/site</outputDirectory>
           <reportPlugins>
             <reportPlugin>
               <groupId>org.apache.maven.plugins</groupId>
@@ -489,6 +489,6 @@
     </plugins>
   </build>
   <reporting>
-    <outputDirectory>/home/leonardo/Workspace/educa_maven/app_aluno/target/site</outputDirectory>
+    <outputDirectory>/Users/jonhnanthan/Jonhnanthan Arquivos/Aulas UFCG/2014.2/Lab Engenharia de Software/branchMaven/Educales142/app_aluno/target/site</outputDirectory>
   </reporting>
 </project>
