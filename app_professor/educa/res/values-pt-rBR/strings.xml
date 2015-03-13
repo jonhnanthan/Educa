@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">educa</string>
+    
+    <string name="student_home_activity">Aluno</string>
+    <string name="teacher_home_activity">Professor</string>
+	<string name="choose_model_activity">Escolha o Modelo</string>
+	<string name="match_exercise_activity">Associar</string>
+	<string name="complete_exercise_activity">Completar</string>
+
+	<string name="action_new_exercise">Novo Exercício</string>
+        
+    <string name="student">Sou Aluno</string>
+    <string name="teacher">Sou Professor</string>
+    
+	<string name="match">Associar</string>
+	<string name="color_match">Associar Cores</string>
+	<string name="multiple_choice">Múltipla Escolha</string>
+    <string name="complete">Completar</string>
+    <string name="calligraphy">Caligrafia</string>
+    
+    <string name="hello_world">Olá</string>
+    <string name="action_settings">Configurações</string>
+
+	<string name="required">Obrigatório</string>
+	<string name="duplicated">Campo duplicado</string>
+	
+	<string name="edit">Editar</string>
+	<string name="delete">Excluir</string>
+	<string name="answer">Responder</string>
+	<string name="about">Sobre</string>
+	<string name="help">Ajuda</string>
+		
+	<string name="congratulations_alert_title">Parabéns!</string>
+	<string name="congratulations_alert_message">Você acertou!</string>
+	<string name="fail_alert_title">Você errou!</string>
+	<string name="fail_alert_message">Vamos tentar novamente?</string>
+	
+	<string name="edit_alert_title">Editar Exercício</string>
+	<string name="delete_alert_title">Excluir Exercício</string>
+	<string name="edit_alert_message">Tem certeza que deseja editar este exercício?</string>
+	<string name="delete_alert_message">Tem certeza que deseja excluir este exercício?</string>
+	<string name="cancel">Cancelar</string>
+	<string name="ok">OK</string>
+	<string name="yes">Sim</string>
+	<string name="no">Não</string>
+		
+	
+	<string name="status_new">Novo</string>   
+	<string name="status_answered">Respondido</string>
+	<string name="status_submitted">Submetido</string>
+	<string name="correction_not_rated">Sem avaliação</string>
+	<string name="correction_right">Resposta Certa</string>
+	<string name="correction_wrong">Resposta Errada</string>
+					
+	<string name="created_exercies">Exercícios Criados</string>
+	<string name="my_exercises">Meus Exercícios</string>
+	<string name="choose_the_right_answer">Escolha a alternativa correta</string>
+	<string name="choose_a_color">Escolha uma cor</string>
+	<string name="exercise_name_already_exists">Já existe um exercício com esse nome. Escolha outro nome.</string>
+	<string name="need_to_choose_letter">Precisa escolher pelo menos uma letra</string>
+	
+	<string name="developers">Desenvolvedores</string>
+	<string name="fragment_help_1">Associe cores a seus nomes em português ou em inglês.</string>
+	<string name="fragment_help_2">Complete as letras ocultas de uma palavra.</string>
+	<string name="fragment_help_3">Escolha a alternativa correta.</string>
+    <string name="question">Questão</string>
+
+</resources>
