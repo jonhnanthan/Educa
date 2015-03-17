@@ -240,7 +240,7 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
 											.getString("date"));
 
 									intent.putCharSequenceArrayListExtra(
-											"EditColorMatchExercise",
+											"EditImageMatchExercise",
 											(ArrayList<CharSequence>) listImageMatchExercise);
 									parentActivity.startActivity(intent);
 								}
