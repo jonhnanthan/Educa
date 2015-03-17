@@ -14,14 +14,10 @@ import com.educa.graphics.ImageAdapter;
 
 import java.util.ArrayList;
 
-//import org.apache.http.protocol.RequestContent;
-//import android.app.DownloadManager.Request;
-
 public class ImageMatchExerciseStep1Activity extends Activity {
 	ImageButton bt_next_step;
 	Integer ImageSelected;
 	TextView tv_choose;
-//	int iSelected;
 	TextView bt_imageselected;
 	ArrayList<Integer> exerciseData = new ArrayList<Integer>();
 
@@ -46,7 +42,6 @@ public class ImageMatchExerciseStep1Activity extends Activity {
 					int position, long id) {
 				ImageSelected = (Integer) gridViewImages.getAdapter().getItem(position);
 				tv_choose.setText("Imagem Selecionada");
-				//tv_choose.setBackgroundResource(ImageSelected);		
 				bt_imageselected.setBackgroundResource(ImageSelected);
 				LinearLayout layout_choose = (LinearLayout) findViewById(R.id.layout_choose);
 				layout_choose.setAlpha((float) 0.8);
@@ -64,14 +59,14 @@ public class ImageMatchExerciseStep1Activity extends Activity {
 
 	                    Intent intent = new Intent(getApplicationContext(),
 	                            ImageMatchExerciseStep2Activity.class);
-	                    intent.putIntegerArrayListExtra("ColorData", exerciseData);
+	                    intent.putIntegerArrayListExtra("ImageData", exerciseData);
 
 	                    startActivity(intent);
 	                } else {
 	                    Toast.makeText(
 	                            getApplicationContext(),
 	                            getApplicationContext().getResources().getString(
-	                                    R.string.choose_a_color),
+	                                    R.string.choose_a_image),
 	                            Toast.LENGTH_SHORT).show();
 	                }
 	            }

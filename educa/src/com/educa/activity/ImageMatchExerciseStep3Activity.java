@@ -24,7 +24,7 @@ import java.util.List;
 
 public class ImageMatchExerciseStep3Activity extends Activity {
     private EditText et_name;
-	private String colorCode;
+	private String imageCode;
 	private String question;
 	private String rightAnswer;
 
@@ -38,8 +38,8 @@ public class ImageMatchExerciseStep3Activity extends Activity {
        
 
         Intent i = getIntent();
-		List<CharSequence> exerciseData = i.getCharSequenceArrayListExtra("AnswersStep2Color");
-		colorCode = exerciseData.get(0).toString();
+		List<CharSequence> exerciseData = i.getCharSequenceArrayListExtra("AnswersStep2Image");
+		imageCode = exerciseData.get(0).toString();
 		question = exerciseData.get(1).toString();
 		rightAnswer = exerciseData.get(2).toString();
 		
@@ -54,13 +54,15 @@ public class ImageMatchExerciseStep3Activity extends Activity {
                     Date currentDate = new Date();
                     String fDate = new SimpleDateFormat("dd-MM-yyyy").format(currentDate);
 
-                    ImageMatchExercise exercise = new ImageMatchExercise(name, DataBaseProfessor.getInstance(getApplicationContext()).IMAGE_MATCH_EXERCISE_TYPECODE, fDate, String.valueOf(Status.NEW),
-                            String.valueOf(Correction.NOT_RATED), question, rightAnswer, colorCode);
+                    DataBaseProfessor.getInstance(getApplicationContext());
+					ImageMatchExercise exercise = new ImageMatchExercise(name, DataBaseProfessor.IMAGE_MATCH_EXERCISE_TYPECODE, fDate, String.valueOf(Status.NEW),
+                            String.valueOf(Correction.NOT_RATED), question, rightAnswer, imageCode);
 
 
                     if (exerciseNameAlreadyExists(exercise)) {
 
-                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(name, DataBaseProfessor.getInstance(getApplicationContext()).COLOR_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
+                        DataBaseProfessor.getInstance(getApplicationContext());
+						DataBaseProfessor.getInstance(getApplicationContext()).addActivity(name, DataBaseProfessor.IMAGE_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
 
                         Intent intent = new Intent(ImageMatchExerciseStep3Activity.this,
                                 TeacherHomeActivity.class);
