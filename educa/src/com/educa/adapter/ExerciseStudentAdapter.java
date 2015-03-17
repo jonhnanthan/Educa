@@ -23,7 +23,9 @@ import android.widget.TextView;
 import com.educa.R;
 import com.educa.activity.AnswerColorMatchExercise;
 import com.educa.activity.AnswerCompleteExercise;
+import com.educa.activity.AnswerImageMatchExercise;
 import com.educa.activity.AnswerMultipleChoiceExercise;
+import com.educa.activity.AnswerNumberMatchExercise;
 import com.educa.database.DataBaseAluno;
 
 public class ExerciseStudentAdapter extends BaseAdapter {
@@ -84,6 +86,10 @@ public class ExerciseStudentAdapter extends BaseAdapter {
 	        } else if (exercise.getString("type").equals(DataBaseAluno.getInstance(mcontext).MULTIPLE_CHOICE_EXERCISE_TYPECODE)) {
 	            icon.setImageResource(R.drawable.multiplethumb);
 	        } else if (exercise.getString("type").equals(DataBaseAluno.getInstance(mcontext).COMPLETE_EXERCISE_TYPECODE)) {
+	            icon.setImageResource(R.drawable.completethumb);
+	        } else if (exercise.getString("type").equals(DataBaseAluno.getInstance(mcontext).NUM_MATCH_EXERCISE_TYPECODE)) {
+	            icon.setImageResource(R.drawable.completethumb);
+	        } else if (exercise.getString("type").equals(DataBaseAluno.getInstance(mcontext).IMAGE_MATCH_EXERCISE_TYPECODE)) {
 	            icon.setImageResource(R.drawable.completethumb);
 	        }
 		} catch (JSONException e) {
@@ -159,6 +165,36 @@ public class ExerciseStudentAdapter extends BaseAdapter {
 
                             Intent i = new Intent(parentActivity, AnswerColorMatchExercise.class);
                             i.putCharSequenceArrayListExtra("QuestionToAnswerColor", listColorMatchExercise);
+                            parentActivity.startActivity(i);
+                        }
+                        if (exercise.getString("type").equals(DataBaseAluno.getInstance(mcontext).NUM_MATCH_EXERCISE_TYPECODE)) {
+                            ArrayList<CharSequence> listNumberMatchExercise = new ArrayList<CharSequence>();
+                        	
+                            listNumberMatchExercise.add(exercise.getString("name"));
+                            listNumberMatchExercise.add(exercise.getString("color"));
+                            listNumberMatchExercise.add(exercise.getString("question"));
+                            listNumberMatchExercise.add(exercise.getString("alternative1"));
+                            listNumberMatchExercise.add(exercise.getString("alternative2"));
+                            listNumberMatchExercise.add(exercise.getString("alternative3"));
+                            listNumberMatchExercise.add(exercise.getString("alternative4"));
+                            listNumberMatchExercise.add(exercise.getString("answer"));
+                            listNumberMatchExercise.add(exercise.getString("date"));
+
+                            Intent i = new Intent(parentActivity, AnswerNumberMatchExercise.class);
+                            i.putCharSequenceArrayListExtra("QuestionToAnswerNumber", listNumberMatchExercise);
+                            parentActivity.startActivity(i);
+                        }
+                        if (exercise.getString("type").equals(DataBaseAluno.getInstance(mcontext).IMAGE_MATCH_EXERCISE_TYPECODE)) {
+                            ArrayList<CharSequence> listImageMatchExercise = new ArrayList<CharSequence>();
+                        	
+                            listImageMatchExercise.add(exercise.getString("name"));
+                            listImageMatchExercise.add(exercise.getString("color"));
+                            listImageMatchExercise.add(exercise.getString("question"));
+                            listImageMatchExercise.add(exercise.getString("answer"));
+                            listImageMatchExercise.add(exercise.getString("date"));
+
+                            Intent i = new Intent(parentActivity, AnswerImageMatchExercise.class);
+                            i.putCharSequenceArrayListExtra("QuestionToAnswerImage", listImageMatchExercise);
                             parentActivity.startActivity(i);
                         }
 

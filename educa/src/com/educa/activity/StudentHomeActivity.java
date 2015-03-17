@@ -92,6 +92,37 @@ public class StudentHomeActivity extends Activity {
                     i.putCharSequenceArrayListExtra("QuestionToAnswerColor", listColorMatchExercise);
                     startActivity(i);
                 }
+                if (exercise.getString("type").equals(DataBaseAluno.getInstance(getApplicationContext()).NUM_MATCH_EXERCISE_TYPECODE)) {
+                    ArrayList<CharSequence> listNumberMatchExercise = new ArrayList<CharSequence>();
+                	
+                    listNumberMatchExercise.add(exercise.getString("name"));
+                    listNumberMatchExercise.add(exercise.getString("color"));
+                    listNumberMatchExercise.add(exercise.getString("question"));
+                    listNumberMatchExercise.add(exercise.getString("alternative1"));
+                    listNumberMatchExercise.add(exercise.getString("alternative2"));
+                    listNumberMatchExercise.add(exercise.getString("alternative3"));
+                    listNumberMatchExercise.add(exercise.getString("alternative4"));
+                    listNumberMatchExercise.add(exercise.getString("answer"));
+                    listNumberMatchExercise.add(exercise.getString("date"));
+
+                    Intent i = new Intent(getApplicationContext(), AnswerNumberMatchExercise.class);
+                    i.putCharSequenceArrayListExtra("QuestionToAnswerNumber", listNumberMatchExercise);
+                    startActivity(i);
+                }
+                if (exercise.getString("type").equals(DataBaseAluno.getInstance(getApplicationContext()).IMAGE_MATCH_EXERCISE_TYPECODE)) {
+                    ArrayList<CharSequence> listImageMatchExercise = new ArrayList<CharSequence>();
+                	
+                    listImageMatchExercise.add(exercise.getString("name"));
+                    listImageMatchExercise.add(exercise.getString("color"));
+                    listImageMatchExercise.add(exercise.getString("question"));
+                    listImageMatchExercise.add(exercise.getString("answer"));
+                    listImageMatchExercise.add(exercise.getString("date"));
+
+                    Intent i = new Intent(getApplicationContext(), AnswerImageMatchExercise.class);
+                    i.putCharSequenceArrayListExtra("QuestionToAnswerImage", listImageMatchExercise);
+                    startActivity(i);
+                }
+
                 } catch (JSONException e) {
 					Log.e("STUDENT HOME ERROR", e.getMessage());
 				}

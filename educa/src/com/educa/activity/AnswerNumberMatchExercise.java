@@ -1,5 +1,5 @@
-package com.educa.activity;
 
+package com.educa.activity;
 
 import java.util.ArrayList;
 
@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -21,13 +22,13 @@ import android.widget.Toast;
 import com.educa.R;
 import com.educa.adapter.ExerciseStudentAdapter;
 import com.educa.database.DataBaseAluno;
-import com.educa.entity.MultipleChoiceExercise;
+import com.educa.entity.NumMatchExercise;
 import com.educa.validation.Correction;
 import com.educa.validation.Status;
 
-
-public class AnswerMultipleChoiceExercise extends Activity {
+public class AnswerNumberMatchExercise extends Activity {
     private TextView name;
+    private LinearLayout color;
     private TextView question;
 
     private RadioButton answer1, answer2, answer3, answer4;
@@ -38,21 +39,14 @@ public class AnswerMultipleChoiceExercise extends Activity {
 
     private ArrayList<CharSequence> exercise;
 
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_multiplechoice_exercise_answer);
+        setContentView(R.layout.activity_number_match_exercise_answer);
         Intent i = getIntent();
-        exercise = i.getCharSequenceArrayListExtra("QuestionToAnswerMatch");
+        exercise = i.getCharSequenceArrayListExtra("QuestionToAnswerNumber");
 
         bt_save = (ImageButton) findViewById(R.id.bt_save);
         bt_back = (ImageButton) findViewById(R.id.bt_previous_step);
-
-        name = (TextView) findViewById(R.id.exercise_name);
-        name.setText(exercise.get(0));
-
-        question = (TextView) findViewById(R.id.question);
-        question.setText(exercise.get(1));
 
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         answer1 = (RadioButton) findViewById(R.id.rb_answer1);
@@ -60,34 +54,43 @@ public class AnswerMultipleChoiceExercise extends Activity {
         answer3 = (RadioButton) findViewById(R.id.rb_answer3);
         answer4 = (RadioButton) findViewById(R.id.rb_answer4);
 
-        answer1.setText(exercise.get(2));
-        answer2.setText(exercise.get(3));
-        answer3.setText(exercise.get(4));
-        answer4.setText(exercise.get(5));
+        answer1.setText(exercise.get(3));
+        answer2.setText(exercise.get(4));
+        answer3.setText(exercise.get(5));
+        answer4.setText(exercise.get(6));
+
+        name = (TextView) findViewById(R.id.exercise_name);
+        name.setText(exercise.get(0));
+
+        color = (LinearLayout) findViewById(R.id.color);
+        color.setBackgroundColor(Integer.parseInt(exercise.get(1).toString()));
+
+        question = (TextView) findViewById(R.id.question);
+        question.setText(exercise.get(2));
 
         bt_save.setOnClickListener(new OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 int id = radioGroup.getCheckedRadioButtonId();
-                
+
                 if (id != -1) {
                     View radioButton = radioGroup.findViewById(id);
                     int radioId = radioGroup.indexOfChild(radioButton);
                     RadioButton btn = (RadioButton) radioGroup.getChildAt(radioId);
+
                     String rightAnswer = (String) btn.getText();
                     
-                    String type = DataBaseAluno.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE;
+                    String type = DataBaseAluno.getInstance(getApplicationContext()).NUM_MATCH_EXERCISE_TYPECODE;
                     ArrayList<String> exercisesColor = DataBaseAluno.getInstance(getApplicationContext()).getActivities(type);
                     
                     for (String string : exercisesColor) {
                     	JSONObject exerciseJson;
-                    	MultipleChoiceExercise c;
+                    	NumMatchExercise c;
                     	try {
                     		exerciseJson = new JSONObject(string);
                     		if (exerciseJson.getString("name").equals(exercise.get(0))){
-//                    			DataBaseProfessor.getInstance(getApplicationContext()).removeActivity(exerciseJson.getString("name"));
-                    			c = new MultipleChoiceExercise(
+//                    			DataBaseAluno.getInstance(getApplicationContext()).removeActivity(exerciseJson.getString("name"));
+                    			c = new NumMatchExercise(
                     					exerciseJson.getString("name"),
                     					exerciseJson.getString("type"),
                     					exerciseJson.getString("date"),
@@ -98,17 +101,18 @@ public class AnswerMultipleChoiceExercise extends Activity {
                     					exerciseJson.getString("alternative2"),
                     					exerciseJson.getString("alternative3"),
                     					exerciseJson.getString("alternative4"),
-                    					exerciseJson.getString("answer"));
+                    					exerciseJson.getString("answer"),
+                    					exerciseJson.getString("color"));
                     			
                     			c.setStatus(String.valueOf(Status.ANSWERED));
                     			
                     			if (c.getRightAnswer().equals(rightAnswer)){
                     				c.setCorrection(String.valueOf(Correction.RIGHT));
-//                    				DataBaseProfessor.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
+//                    				DataBaseAluno.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
                     				congratulationsAlert();
                     			} else{
                     				c.setCorrection(String.valueOf(Correction.WRONG));
-//                    				DataBaseProfessor.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
+//                    				DataBaseAluno.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
                     				tryAgainAlert();
                     			}
                     		}
@@ -118,12 +122,8 @@ public class AnswerMultipleChoiceExercise extends Activity {
 						}
 					}
                 } else {
-                    Toast.makeText(
-                            getApplicationContext(),
-                            getApplicationContext().getResources().getString(
-                                    R.string.choose_the_right_answer), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.choose_the_right_answer), Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
@@ -138,7 +138,7 @@ public class AnswerMultipleChoiceExercise extends Activity {
     
 
     public void congratulationsAlert() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(AnswerMultipleChoiceExercise.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(AnswerNumberMatchExercise.this);
         builder.setTitle(getApplicationContext().getResources().getString(
                 R.string.congratulations_alert_title));
         builder.setMessage(getApplicationContext().getResources().getString(
@@ -149,13 +149,12 @@ public class AnswerMultipleChoiceExercise extends Activity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         try {
-                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerMultipleChoiceExercise.this));
+                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerNumberMatchExercise.this));
                             StudentHomeActivity.getAdapter().notifyDataSetChanged();
 
-                            Intent intent = new Intent(AnswerMultipleChoiceExercise.this,
-                                    StudentHomeActivity.class);
+                            Intent intent = new Intent(AnswerNumberMatchExercise.this, StudentHomeActivity.class);
                             startActivity(intent);
-                        } catch (Throwable e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
@@ -166,7 +165,7 @@ public class AnswerMultipleChoiceExercise extends Activity {
     }
 
     public void tryAgainAlert() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(AnswerMultipleChoiceExercise.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(AnswerNumberMatchExercise.this);
         builder.setTitle(getApplicationContext().getResources()
                 .getString(R.string.fail_alert_title));
         builder.setMessage(getApplicationContext().getResources().getString(
@@ -178,30 +177,29 @@ public class AnswerMultipleChoiceExercise extends Activity {
                     public void onClick(DialogInterface arg0, int arg1) {
                         try {
                             finalize();
-                        } catch (Throwable e) {
-                            e.printStackTrace();
+                        } catch (Throwable t){
+                        	t.printStackTrace();
                         }
                     }
                 });
 
-        builder.setNegativeButton(R.string.no,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        try {
-                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerMultipleChoiceExercise.this));
-                            StudentHomeActivity.getAdapter().notifyDataSetChanged();
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                try {
+                    StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerNumberMatchExercise.this));
+                    StudentHomeActivity.getAdapter().notifyDataSetChanged();
 
-                            Intent intent = new Intent(AnswerMultipleChoiceExercise.this,
-                                    StudentHomeActivity.class);
-                            startActivity(intent);
-                        } catch (Throwable e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+                    Intent intent = new Intent(AnswerNumberMatchExercise.this,
+                            StudentHomeActivity.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         AlertDialog alert = builder.create();
         alert.show();
     }
-
 }

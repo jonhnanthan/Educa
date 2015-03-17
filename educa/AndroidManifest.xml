@@ -49,6 +49,16 @@
             
         </activity>
         <activity
+            android:name="com.educa.activity.AnswerNumberMatchExercise"
+            android:label="@string/match_exercise_activity" >
+            
+        </activity>
+        <activity
+            android:name="com.educa.activity.AnswerImageMatchExercise"
+            android:label="@string/match_exercise_activity" >
+            
+        </activity>
+        <activity
             android:name="com.educa.activity.AboutActivity"
             android:label="@string/about" >
         </activity>
