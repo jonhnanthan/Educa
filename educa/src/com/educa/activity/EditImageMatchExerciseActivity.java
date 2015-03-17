@@ -63,9 +63,9 @@ public class EditImageMatchExerciseActivity extends Activity {
 			}
 		});
 
-		question = (EditText) findViewById(R.id.question_match);
+		question = (EditText) findViewById(R.id.question_match1);
 		question.setText(exercise.get(2));
-		answer1 = (EditText) findViewById(R.id.answer1_match);
+		answer1 = (EditText) findViewById(R.id.answer1_match1);
 		answer1.setText(exercise.get(3));
 
 		ImageButton bt_ok = (ImageButton) findViewById(R.id.bt_ok_match);
@@ -75,18 +75,19 @@ public class EditImageMatchExerciseActivity extends Activity {
 
 				if (checkValidation()) {
 
-					String rightAnswer = exercise.get(3).toString();
 					String name = exercise.get(0).toString();
 					String type = DataBaseProfessor
 							.getInstance(getApplicationContext()).IMAGE_MATCH_EXERCISE_TYPECODE;
-					String date = exercise.get(8).toString();
+					String date = exercise.get(4).toString();
 					String status = String.valueOf(Status.NEW);
 					String correction = String.valueOf(Correction.NOT_RATED);
 					String question = exercise.get(2).toString();
+					String answer = exercise.get(3).toString();
+
+					String color = exercise.get(1).toString();
 
 					colorMatchExercise = new ImageMatchExercise(name, type,
-							date, status, correction, question, rightAnswer,
-							color);
+							date, status, correction, question, answer, color);
 
 					List<String> exercises = DataBaseProfessor.getInstance(
 							getApplicationContext()).getActivities();
@@ -97,29 +98,25 @@ public class EditImageMatchExerciseActivity extends Activity {
 							JSONObject json;
 							try {
 								json = new JSONObject(string);
-								newExercise = new ImageMatchExercise(json
-										.getString("name"), json
-										.getString("type"), json
-										.getString("date"), json
-										.getString("status"), json
-										.getString("correction"), json
-										.getString("question"),
-
-								json.getString("answer"), json
-										.getString("color"));
+								newExercise = new ImageMatchExercise(
+										json.getString("name"),
+										json.getString("type"),
+										json.getString("date"),
+										json.getString("status"),
+										json.getString("correction"),
+										json.getString("question"),
+										json.getString("answer"),
+										json.getString("color"));
 							} catch (JSONException e) {
 								Log.e(LOG, e.getMessage());
 							}
 
-							editAlert(newExercise, colorMatchExercise,
-									rightAnswer);
+							editAlert(newExercise, colorMatchExercise, answer);
 						}
 					}
 				} else {
-					Toast.makeText(
-							getApplicationContext(),
-							getApplicationContext().getString(
-									R.string.choose_the_right_answer),
+					Toast.makeText(getApplicationContext(),
+							getApplicationContext().getString(R.string.answer),
 							Toast.LENGTH_SHORT).show();
 				}
 
@@ -146,14 +143,6 @@ public class EditImageMatchExerciseActivity extends Activity {
 		}
 
 		return ret;
-	}
-
-	private boolean checkDuplication() {
-		FieldValidation validation = new FieldValidation(this);
-		List<EditText> listEditText = new ArrayList<EditText>();
-		listEditText.add(answer1);
-
-		return validation.isDuplicated(listEditText);
 	}
 
 	public void editAlert(final ImageMatchExercise colorMatchExercise,

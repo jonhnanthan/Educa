@@ -23,7 +23,7 @@ public class ImageMatchExerciseStep2Activity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_image_match_exercise_step2);
-		LinearLayout layout_image = (LinearLayout) findViewById(R.id.layout_image);
+		LinearLayout layout_image = (LinearLayout) findViewById(R.id.layout_color);
 		question = (EditText) findViewById(R.id.question_match);
 		answer = (EditText) findViewById(R.id.answer_match);
 
