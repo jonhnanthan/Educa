@@ -122,7 +122,7 @@
             android:label="@string/image_match" >
         </activity>
          <activity
-            android:name="com.educa.activity.ImageMatchExerciseStep2Activity"
+            android:name="com.educaTio.activity.ImageMatchExerciseStep2Activity"
             android:label="@string/image_match" >
         </activity>
         <activity
