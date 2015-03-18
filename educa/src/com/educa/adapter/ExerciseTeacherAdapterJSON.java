@@ -16,10 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.educa.R;
-import com.educa.activity.EditColorMatchExerciseActivity;
-import com.educa.activity.EditCompleteExerciseStep1Activity;
-import com.educa.activity.EditImageMatchExerciseActivity;
-import com.educa.activity.EditMultipleChoiceExerciseActivity;
+import com.educa.activity.*;
 import com.educa.database.DataBaseProfessor;
 import org.alljoyn.bus.*;
 import org.alljoyn.bus.annotation.BusSignalHandler;
@@ -282,18 +279,6 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
 								Log.e("EDIT ERROR", e.getMessage());
 							}
 							return true;
-						case R.id.delete:
-							deleteAlert(json);
-							break;
-						case R.id.send:
-							sendAlert(json);
-							break;
-						default:
-							break;
-						}
-						return true;
-					}
-                        return true;
                     case R.id.delete:
                         deleteAlert(json);
                         break;
@@ -327,27 +312,28 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
         notifyDataSetChanged();
         
     }
-    public void sendAndNotify(final String json) {
-//        JSONObject exercise;
-
-//            exercise = new JSONObject(json);
-//            getAlbumStorageDir(mcontext,exercise.getString("name"), json);
-        String senderName = "professor";
-        String message = "SOMETHING";
-        Log.v("SEND", message);
-        Message msg = mBusHandler.obtainMessage(BusHandlerCallback.CHAT,
-                new PingInfo(senderName,message));
-
-        try {
-            mBusHandler.sendMessage(msg);
-        }catch (Exception e){
-            Log.e(LOG, e.getMessage());
-        };
-
-//            mMessageEditText.setText("");
-
-
-    }
+//
+//    public void sendAndNotify(final String json) {
+////        JSONObject exercise;
+//
+////            exercise = new JSONObject(json);
+////            getAlbumStorageDir(mcontext,exercise.getString("name"), json);
+//        String senderName = "professor";
+//        String message = "SOMETHING";
+//        Log.v("SEND", message);
+//        Message msg = mBusHandler.obtainMessage(BusHandlerCallback.CHAT,
+//                new PingInfo(senderName,message));
+//
+//        try {
+//            mBusHandler.sendMessage(msg);
+//        }catch (Exception e){
+//            Log.e(LOG, e.getMessage());
+//        };
+//
+////            mMessageEditText.setText("");
+//
+//
+//    }
 
     public void getAlbumStorageDir(Context context, String exerciseName, String json) {
 //        File file = new File(context.getFilesDir(), exerciseName);
@@ -368,29 +354,29 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
                     Toast.LENGTH_SHORT).show();
         }
     }
-    public void sendAlert(final String json){
-        AlertDialog.Builder builder = new AlertDialog.Builder(parentActivity);
-        builder.setTitle(parentActivity.getResources().getString(R.string.send_alert_title));
-        builder.setMessage(parentActivity.getResources().getString(R.string.send_alert_message));
-        builder.setPositiveButton(parentActivity.getResources().getString(R.string.ok),
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        sendAndNotify(json);
-                    }
-                });
-
-        builder.setNegativeButton(R.string.cancel,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-
-                    }
-                });
-
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
+//    public void sendAlert(final String json){
+//        AlertDialog.Builder builder = new AlertDialog.Builder(parentActivity);
+//        builder.setTitle(parentActivity.getResources().getString(R.string.send_alert_title));
+//        builder.setMessage(parentActivity.getResources().getString(R.string.send_alert_message));
+//        builder.setPositiveButton(parentActivity.getResources().getString(R.string.ok),
+//                new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface arg0, int arg1) {
+//                        sendAndNotify(json);
+//                    }
+//                });
+//
+//        builder.setNegativeButton(R.string.cancel,
+//                new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface arg0, int arg1) {
+//
+//                    }
+//                });
+//
+//        AlertDialog alert = builder.create();
+//        alert.show();
+//    }
 
     public void deleteAlert(final String json) {
         AlertDialog.Builder builder = new AlertDialog.Builder(parentActivity);
