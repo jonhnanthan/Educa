@@ -16,7 +16,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.educa.R;
+<<<<<<< HEAD
 import com.educa.activity.*;
+=======
+import com.educa.activity.EditColorMatchExerciseActivity;
+import com.educa.activity.EditCompleteExerciseStep1Activity;
+import com.educa.activity.EditImageMatchExerciseActivity;
+import com.educa.activity.EditMultipleChoiceExerciseActivity;
+import com.educa.activity.EditNumMatchExerciseActivity;
+>>>>>>> 0407e7380dd7db46a2d240bff30be9e82053afe0
 import com.educa.database.DataBaseProfessor;
 import org.alljoyn.bus.*;
 import org.alljoyn.bus.annotation.BusSignalHandler;
@@ -125,6 +133,10 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
 			} else if (exercise
 					.getString("type")
 					.equals(DataBaseProfessor.getInstance(mcontext).IMAGE_MATCH_EXERCISE_TYPECODE)) {
+				icon.setImageResource(R.drawable.colorthumb);
+			}else if (exercise
+					.getString("type")
+					.equals(DataBaseProfessor.getInstance(mcontext).NUM_MATCH_EXERCISE_TYPECODE)) {
 				icon.setImageResource(R.drawable.colorthumb);
 			}
 		} catch (JSONException e) {
@@ -273,7 +285,41 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
 											"EditImageMatchExercise",
 											(ArrayList<CharSequence>) listImageMatchExercise);
 									parentActivity.startActivity(intent);
+								}if (exercise
+										.getString("type")
+										.equals(DataBaseProfessor
+												.getInstance(mcontext).NUM_MATCH_EXERCISE_TYPECODE)) {
+									Intent intent = new Intent(
+											parentActivity,
+											EditNumMatchExerciseActivity.class);
+
+									List<CharSequence> listNumMatchExercise = new ArrayList<CharSequence>();
+
+									listNumMatchExercise.add(exercise
+											.getString("name"));
+									listNumMatchExercise.add(exercise
+											.getString("color"));
+									listNumMatchExercise.add(exercise
+											.getString("question"));
+									listNumMatchExercise.add(exercise
+											.getString("alternative1"));
+									listNumMatchExercise.add(exercise
+											.getString("alternative2"));
+									listNumMatchExercise.add(exercise
+											.getString("alternative3"));
+									listNumMatchExercise.add(exercise
+											.getString("alternative4"));
+									listNumMatchExercise.add(exercise
+											.getString("answer"));
+									listNumMatchExercise.add(exercise
+											.getString("date"));
+
+									intent.putCharSequenceArrayListExtra(
+											"EditNumMatchExercise",
+											(ArrayList<CharSequence>) listNumMatchExercise);
+									parentActivity.startActivity(intent);
 								}
+								
 
 							} catch (JSONException e) {
 								Log.e("EDIT ERROR", e.getMessage());

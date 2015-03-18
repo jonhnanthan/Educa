@@ -16,7 +16,7 @@ import java.util.List;
 
 public class NumMatchExerciseStep2Activity extends Activity {
 	
-	private String colorCode;
+	private String imageCode;
     private EditText question;
     private EditText answer1;
     private EditText answer2;
@@ -29,7 +29,7 @@ public class NumMatchExerciseStep2Activity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_num_match_exercise_step2);
 		
-		LinearLayout layout_color = (LinearLayout) findViewById(R.id.layout_color);
+		LinearLayout layout_image = (LinearLayout) findViewById(R.id.layout_image);
 
 		question = (EditText) findViewById(R.id.question_match);
         answer1 = (EditText) findViewById(R.id.answer1_match);
@@ -40,10 +40,10 @@ public class NumMatchExerciseStep2Activity extends Activity {
 
         Intent i = getIntent();
         List<CharSequence> colorData = i.getCharSequenceArrayListExtra("QuantidadeData");
-        colorCode = colorData.get(0).toString();
+        imageCode = colorData.get(0).toString();
         
         
-        layout_color.setBackgroundColor(Integer.parseInt(colorCode));
+        layout_image.setBackgroundResource(Integer.parseInt(imageCode));
 
         bt_ok.setOnClickListener(new OnClickListener() {
 
@@ -51,7 +51,7 @@ public class NumMatchExerciseStep2Activity extends Activity {
             public void onClick(View v) {
                 if (checkValidation() && !checkDuplication()) {
                     List<CharSequence> exerciseData = new ArrayList<CharSequence>();
-                    exerciseData.add(colorCode);
+                    exerciseData.add(imageCode);
                     exerciseData.add(question.getText().toString());
                     exerciseData.add(answer1.getText().toString());
                     exerciseData.add(answer2.getText().toString());

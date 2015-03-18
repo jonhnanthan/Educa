@@ -41,12 +41,12 @@ public class NumMatchExerciseStep3Activity extends Activity {
         answer2 = (RadioButton) findViewById(R.id.rb_answer2);
         answer3 = (RadioButton) findViewById(R.id.rb_answer3);
         answer4 = (RadioButton) findViewById(R.id.rb_answer4);
-        LinearLayout color = (LinearLayout) findViewById(R.id.numero);
+        LinearLayout image = (LinearLayout) findViewById(R.id.numero);
 
         Intent i = getIntent();
         answersList = i.getCharSequenceArrayListExtra("AnswersStep2Color");
 
-        color.setBackgroundColor(Integer.parseInt(answersList.get(0).toString()));
+        image.setBackgroundResource(Integer.parseInt(answersList.get(0).toString()));
         tv_question.setText(answersList.get(1));
 
         answer1.setText(answersList.get(2));

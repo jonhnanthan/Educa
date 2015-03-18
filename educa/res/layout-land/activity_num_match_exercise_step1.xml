@@ -9,84 +9,48 @@
     android:orientation="vertical"
     tools:context="com.educa.activity.MainActivity"
     tools:ignore="MergeRootFrame" >
+    
+        <TextView
+        android:id="@+id/numSelected"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:gravity="right"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <LinearLayout
-        android:id="@+id/layout_image"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp"
-        android:alpha="0.8"
-        android:background="#FF0924"
-        android:orientation="vertical" >
+        android:id="@+id/layout_choose"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:background="#00FFFFFF" >
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/question_match"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:background="@drawable/selector_et"
-        android:hint="Pergunta"
-        android:paddingLeft="10dp"
-        android:singleLine="true"
-        android:textColor="#777777"
-        android:textColorHint="#AAAAAA"
-        android:textCursorDrawable="@drawable/cursor" />
+    <TextView
+        android:id="@+id/tv_choose"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="-50dp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/choose_a_image"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
 
-    <EditText
-        android:id="@+id/answer1_match"
-        android:layout_width="250dp"
+    <GridView
+        android:id="@+id/gridViewImages"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/selector_et"
-        android:hint="Resposta1"
-        android:paddingLeft="10dp"
-        android:singleLine="true"
-        android:textColor="#777777"
-        android:textColorHint="#AAAAAA"
-        android:textCursorDrawable="@drawable/cursor" />
+        android:gravity="center"
+        android:horizontalSpacing="4dp"
+        android:layout_marginTop="5dp"
+        android:numColumns="2"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="4dp" >
+    </GridView>
 
-    <EditText
-        android:id="@+id/answer2_match"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/selector_et"
-        android:hint="Resposta2"
-        android:paddingLeft="10dp"
-        android:singleLine="true"
-        android:textColor="#777777"
-        android:textColorHint="#AAAAAA"
-        android:textCursorDrawable="@drawable/cursor" />
-
-    <EditText
-        android:id="@+id/answer3_match"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/selector_et"
-        android:hint="Resposta3"
-        android:paddingLeft="10dp"
-        android:singleLine="true"
-        android:textColor="#777777"
-        android:textColorHint="#AAAAAA"
-        android:textCursorDrawable="@drawable/cursor" />
-
-    <EditText
-        android:id="@+id/answer4_match"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/selector_et"
-        android:hint="Resposta4"
-        android:paddingLeft="10dp"
-        android:singleLine="true"
-        android:textColor="#777777"
-        android:textColorHint="#AAAAAA"
-        android:textCursorDrawable="@drawable/cursor" />
-
-   <LinearLayout
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -96,6 +60,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:alpha="0.3"
+            android:clickable="false"
             android:orientation="vertical" >
 
             <ImageButton
@@ -123,7 +89,7 @@
             android:orientation="vertical" >
 
             <ImageButton
-                android:id="@+id/bt_ok_match"
+                android:id="@+id/bt_next_step"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:layout_marginTop="10dp"
