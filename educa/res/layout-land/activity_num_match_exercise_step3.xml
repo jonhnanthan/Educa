@@ -3,52 +3,92 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center_vertical|center_horizontal"
     android:background="@drawable/bg_home"
-    android:gravity="center_vertical|center_horizontal"
     android:orientation="vertical"
     tools:context="com.educa.activity.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-    <TextView
-        android:id="@+id/numSelected"
+    <LinearLayout
+        android:id="@+id/numero"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:gravity="right"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <LinearLayout
-        android:id="@+id/layout_choose"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:background="#00FFFFFF"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:alpha="0.8"
+        android:background="#FF0924"
         android:orientation="vertical" >
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_choose"
+        android:id="@+id/tv_question"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="-50dp"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="@string/choose_a_image"
+        android:layout_height="80dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="-80dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="question"
         android:textColor="#FFFFFF"
-        android:textSize="16sp" />
+        android:textSize="15sp" />
 
-    <GridView
-        android:id="@+id/gridViewImages"
-        android:layout_width="wrap_content"
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:horizontalSpacing="4dp"
-        android:layout_marginTop="5dp"
-        android:numColumns="2"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="4dp" >
-    </GridView>
+        android:layout_gravity="left"
+        android:layout_marginTop="20dp"
+        android:gravity="left"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" >
+
+        <RadioButton
+            android:id="@+id/rb_answer1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_right_answer"
+            android:paddingLeft="20dp"
+            android:text="Answer1"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/rb_answer2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:button="@drawable/selector_right_answer"
+            android:paddingLeft="20dp"
+            android:text="Answer2"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/rb_answer3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:button="@drawable/selector_right_answer"
+            android:paddingLeft="20dp"
+            android:text="Answer3"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/rb_answer4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:button="@drawable/selector_right_answer"
+            android:paddingLeft="20dp"
+            android:text="Answer4"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+    </RadioGroup>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -60,8 +100,6 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:alpha="0.3"
-            android:clickable="false"
             android:orientation="vertical" >
 
             <ImageButton
@@ -89,7 +127,7 @@
             android:orientation="vertical" >
 
             <ImageButton
-                android:id="@+id/bt_next_step"
+                android:id="@+id/confirm"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:layout_marginTop="10dp"

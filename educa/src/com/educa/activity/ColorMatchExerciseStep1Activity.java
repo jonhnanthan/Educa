@@ -1,4 +1,3 @@
-
 package com.educa.activity;
 
 import android.app.Activity;

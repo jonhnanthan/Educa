@@ -64,14 +64,7 @@
             android:clickable="false"
             android:orientation="vertical" >
 
-            <ImageButton
-                android:id="@+id/bt_previous_step"
-                android:layout_width="wrap_content"
-                android:layout_height="70dp"
-                android:layout_marginTop="10dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/selector_bt_step" />
-
+           
             <ImageView
                 android:id="@+id/imageView1"
                 android:layout_width="wrap_content"
@@ -88,13 +81,7 @@
             android:layout_marginLeft="10dp"
             android:orientation="vertical" >
 
-            <ImageButton
-                android:id="@+id/bt_next_step"
-                android:layout_width="wrap_content"
-                android:layout_height="70dp"
-                android:layout_marginTop="10dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/selector_bt_step" />
+            
 
             <ImageView
                 android:layout_width="wrap_content"
