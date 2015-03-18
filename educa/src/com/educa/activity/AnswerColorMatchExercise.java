@@ -149,8 +149,8 @@ public class AnswerColorMatchExercise extends Activity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         try {
-                            Chat.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerColorMatchExercise.this));
-                            Chat.getAdapter().notifyDataSetChanged();
+                        	StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerColorMatchExercise.this));
+                        	StudentHomeActivity.getAdapter().notifyDataSetChanged();
 
                             Intent intent = new Intent(AnswerColorMatchExercise.this, StudentHomeActivity.class);
                             startActivity(intent);
@@ -187,8 +187,8 @@ public class AnswerColorMatchExercise extends Activity {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
                 try {
-                	Chat.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerColorMatchExercise.this));
-                	Chat.getAdapter().notifyDataSetChanged();
+                	StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerColorMatchExercise.this));
+                	StudentHomeActivity.getAdapter().notifyDataSetChanged();
 
                     Intent intent = new Intent(AnswerColorMatchExercise.this,
                             StudentHomeActivity.class);

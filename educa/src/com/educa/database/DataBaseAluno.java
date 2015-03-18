@@ -148,23 +148,40 @@ public class DataBaseAluno extends SQLiteOpenHelper{
 ////		addActivity: Exercicio dos meses MULTIPLE_CHOICE_EXERCISE {"alternative2":"Novembro","alternative1":"Janeiro","alternative4":"Outubro","alternative3":"Dezembro","status":"NEW","name":"Exercicio dos meses","answer":"Dezembro","correction":"NOT_RATED","question":"Qual o ultimo mes do ano?","date":"25-02-2015","type":"MULTIPLE_CHOICE_EXERCISE"}
 //	}
 	
-    public final long addActivity(String name, String activityType, String activity) {
+    public final void addActivity(String name, String activityType, String activity) {
+    	if (verifyData(activity)){
+            final SQLiteDatabase db = getWritableDatabase();
+            final ContentValues values = new ContentValues();
 
-        final SQLiteDatabase db = getWritableDatabase();
-        final ContentValues values = new ContentValues();
+            values.put(COLUNA_ALUNO_NOME, name);
+            values.put(COLUNA_ALUNO_TIPO_ATIVIDADE, activityType);
+            values.put(COLUNA_ALUNO_ATIVIDADE_JSON, activity);
 
-        values.put(COLUNA_ALUNO_NOME, name);
-        values.put(COLUNA_ALUNO_TIPO_ATIVIDADE, activityType);
-        values.put(COLUNA_ALUNO_ATIVIDADE_JSON, activity);
+            System.out.println("addActivity: " + name + " " + activityType + " " + activity);
+            
+            long id = db.insert(TABLE_ATIVIDADES_ALUNO, null, values);
 
-        System.out.println("addActivity: " + name + " " + activityType + " " + activity);
-        
-        long id = db.insert(TABLE_ATIVIDADES_ALUNO, null, values);
-
-        db.close();
-        
-        return id;
+            db.close();
+    	}
     }
 
+    private final boolean verifyData(String activity){
+    	String sql = "select " + COLUNA_ALUNO_ATIVIDADE_JSON + " from " + TABLE_ATIVIDADES_ALUNO;
+    	
+    	final SQLiteDatabase db = getWritableDatabase();
+    	final Cursor c = db.rawQuery(sql, null);
+    	
+    	if (c.getCount() > 0 && c.moveToFirst()){
+    		for (int i = 0; i < c.getCount(); i++) {
+    			if (c.getString(0).equalsIgnoreCase(activity)) return false;
+    			c.moveToNext();
+			}
+    	}
+    	
+    	c.close();
+    	db.close();
+    	
+    	return true;
+    }
 
 }

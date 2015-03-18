@@ -110,108 +110,6 @@ public class Chat extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_home);
-
-        listview = (ListView) findViewById(R.id.lv_exercise);
-
-        DataBaseAluno db = DataBaseAluno.getInstance(getApplicationContext());
-        ArrayList<String> exercises = db.getActivities();
-
-        adapter = new ExerciseStudentAdapter(getApplicationContext(), exercises, Chat.this);
-        listview.setAdapter(adapter);
-
-        listview.setOnItemClickListener(new OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.v("EDUCA", "ENTROU NO LISTENER");
-
-                String json = adapter.getItem(position);
-                try{
-                JSONObject exercise = new JSONObject(json);
-
-                if (exercise.getString("type").equals(DataBaseAluno.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE)) {
-					ArrayList<CharSequence> listMultipleChoiceExercise = new ArrayList<CharSequence>();
-
-					listMultipleChoiceExercise.add(exercise.getString("name"));
-					listMultipleChoiceExercise.add(exercise.getString("question"));
-					listMultipleChoiceExercise.add(exercise.getString("alternative1"));
-					listMultipleChoiceExercise.add(exercise.getString("alternative2"));
-					listMultipleChoiceExercise.add(exercise.getString("alternative3"));
-					listMultipleChoiceExercise.add(exercise.getString("alternative4"));
-					listMultipleChoiceExercise.add(exercise.getString("answer"));
-					listMultipleChoiceExercise.add(exercise.getString("date"));
-
-                    Intent i = new Intent(getApplicationContext(), AnswerMultipleChoiceExercise.class);
-                    i.putCharSequenceArrayListExtra("QuestionToAnswerMatch", listMultipleChoiceExercise);
-                    startActivity(i);
-                }
-                if (exercise.getString("type").equals(DataBaseAluno.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE)) {
-					ArrayList<CharSequence> listCompleteExercise = new ArrayList<CharSequence>();
-
-					listCompleteExercise.add(exercise.getString("name"));
-					listCompleteExercise.add(exercise.getString("word"));
-					listCompleteExercise.add(exercise.getString("question"));
-					listCompleteExercise.add(exercise.getString("hiddenIndexes"));
-					listCompleteExercise.add(exercise.getString("date"));
-
-                    Intent i = new Intent(getApplicationContext(), AnswerCompleteExercise.class);
-                    i.putCharSequenceArrayListExtra("QuestionToAnswerComplete", listCompleteExercise);
-                    startActivity(i);
-                }
-                if (exercise.getString("type").equals(DataBaseAluno.getInstance(getApplicationContext()).COLOR_MATCH_EXERCISE_TYPECODE)) {
-                    ArrayList<CharSequence> listColorMatchExercise = new ArrayList<CharSequence>();
-
-                    listColorMatchExercise.add(exercise.getString("name"));
-                    listColorMatchExercise.add(exercise.getString("color"));
-                    listColorMatchExercise.add(exercise.getString("question"));
-                    listColorMatchExercise.add(exercise.getString("alternative1"));
-                    listColorMatchExercise.add(exercise.getString("alternative2"));
-                    listColorMatchExercise.add(exercise.getString("alternative3"));
-                    listColorMatchExercise.add(exercise.getString("alternative4"));
-                    listColorMatchExercise.add(exercise.getString("answer"));
-                    listColorMatchExercise.add(exercise.getString("date"));
-
-                    Intent i = new Intent(getApplicationContext(), AnswerColorMatchExercise.class);
-                    i.putCharSequenceArrayListExtra("QuestionToAnswerColor", listColorMatchExercise);
-                    startActivity(i);
-                }
-                if (exercise.getString("type").equals(DataBaseAluno.getInstance(getApplicationContext()).NUM_MATCH_EXERCISE_TYPECODE)) {
-                    ArrayList<CharSequence> listNumberMatchExercise = new ArrayList<CharSequence>();
-
-                    listNumberMatchExercise.add(exercise.getString("name"));
-                    listNumberMatchExercise.add(exercise.getString("color"));
-                    listNumberMatchExercise.add(exercise.getString("question"));
-                    listNumberMatchExercise.add(exercise.getString("alternative1"));
-                    listNumberMatchExercise.add(exercise.getString("alternative2"));
-                    listNumberMatchExercise.add(exercise.getString("alternative3"));
-                    listNumberMatchExercise.add(exercise.getString("alternative4"));
-                    listNumberMatchExercise.add(exercise.getString("answer"));
-                    listNumberMatchExercise.add(exercise.getString("date"));
-
-                    Intent i = new Intent(getApplicationContext(), AnswerNumberMatchExercise.class);
-                    i.putCharSequenceArrayListExtra("QuestionToAnswerNumber", listNumberMatchExercise);
-                    startActivity(i);
-                }
-                if (exercise.getString("type").equals(DataBaseAluno.getInstance(getApplicationContext()).IMAGE_MATCH_EXERCISE_TYPECODE)) {
-                    ArrayList<CharSequence> listImageMatchExercise = new ArrayList<CharSequence>();
-
-                    listImageMatchExercise.add(exercise.getString("name"));
-                    listImageMatchExercise.add(exercise.getString("color"));
-                    listImageMatchExercise.add(exercise.getString("question"));
-                    listImageMatchExercise.add(exercise.getString("answer"));
-                    listImageMatchExercise.add(exercise.getString("date"));
-
-                    Intent i = new Intent(getApplicationContext(), AnswerImageMatchExercise.class);
-                    i.putCharSequenceArrayListExtra("QuestionToAnswerImage", listImageMatchExercise);
-                    startActivity(i);
-                }
-
-                } catch (JSONException e) {
-					Log.e("STUDENT HOME ERROR", e.getMessage());
-				}
-                }
-        });
 //        setContentView(R.layout.main);
 //
 //        /* Create an adapter to manage the list view of chat messages */
@@ -266,33 +164,6 @@ public class Chat extends Activity {
         mBusHandler.sendEmptyMessage(BusHandlerCallback.CONNECT);
     }
 
-    public static ExerciseStudentAdapter getAdapter() {
-        return adapter;
-    }
-
-    public static void setAdapter(ExerciseStudentAdapter adapter) {
-        Chat.adapter = adapter;
-    }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.mainmenu, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        /* Handle item selection */
-//        switch (item.getItemId()) {
-//        case R.id.quit:
-//            finish();
-//            return true;
-//        default:
-//            return super.onOptionsItemSelected(item);
-//        }
-//    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -316,22 +187,22 @@ public class Chat extends Activity {
          */
         @BusSignalHandler(iface = "org.alljoyn.bus.samples.slchat", signal = "Chat")
         public void Chat(String senderName, String message) {
-            Log.i(TAG, "Signal  : " + senderName +": "+ message);
+            Log.i(TAG, message);
             //TODO aqui que sera feito o add a interface, esse Message é o json
             if (!message.isEmpty()){
-                for (String  linha : message.split("}")) {
-                	JSONObject exercise;
-    				try {
-    					exercise = new JSONObject(linha);
-    					DataBaseAluno.getInstance(getApplicationContext()).addActivity(exercise.getString("name"), exercise.getString("type") ,linha);
-    				} catch (JSONException e) {
-    					Log.e("Erro ao processar mensagem", e.getMessage());
-    				}
-    			}
-                setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), Chat.this));
-                getAdapter().notifyDataSetChanged();
+            	JSONObject exercise;
+				try {
+					exercise = new JSONObject(message);
+					DataBaseAluno.getInstance(getApplicationContext()).addActivity(exercise.getString("name"), exercise.getString("type") , message);
+
+                    Intent intent = new Intent(Chat.this, StudentHomeActivity.class);
+                    startActivity(intent);
+                    
+				} catch (JSONException e) {
+					Log.e("Erro ao processar mensagem", e.getMessage());
+				}
             }
-            sendUiMessage(MESSAGE_CHAT, senderName + ": "+ message);
+//            sendUiMessage(MESSAGE_CHAT, senderName + ": "+ message);
         }
 
         /* Helper function to send a message to the UI thread. */
