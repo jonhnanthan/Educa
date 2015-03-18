@@ -19,7 +19,6 @@ public class ImageMatchExerciseStep1Activity extends Activity {
 	Integer ImageSelected;
 	TextView tv_choose;
 	TextView bt_imageselected;
-	ArrayList<Integer> exerciseData = new ArrayList<Integer>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +39,13 @@ public class ImageMatchExerciseStep1Activity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
-				ImageSelected = (Integer) gridViewImages.getAdapter().getItem(position);
+				ImageSelected = (Integer) gridViewImages.getAdapter().getItem(
+						position);
 				tv_choose.setText("Imagem Selecionada");
 				bt_imageselected.setBackgroundResource(ImageSelected);
 				LinearLayout layout_choose = (LinearLayout) findViewById(R.id.layout_choose);
 				layout_choose.setAlpha((float) 0.8);
-				
-                  exerciseData.add(ImageSelected);
+
 			}
 		});
 
@@ -54,22 +53,24 @@ public class ImageMatchExerciseStep1Activity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				 if (ImageSelected != null) {
-	                  
+				if (ImageSelected != null) {
+					ArrayList<Integer> exerciseData = new ArrayList<Integer>();
 
-	                    Intent intent = new Intent(getApplicationContext(),
-	                            ImageMatchExerciseStep2Activity.class);
-	                    intent.putIntegerArrayListExtra("ImageData", exerciseData);
+					exerciseData.add(ImageSelected);
 
-	                    startActivity(intent);
-	                } else {
-	                    Toast.makeText(
-	                            getApplicationContext(),
-	                            getApplicationContext().getResources().getString(
-	                                    R.string.choose_a_image),
-	                            Toast.LENGTH_SHORT).show();
-	                }
-	            }
+					Intent intent = new Intent(getApplicationContext(),
+							ImageMatchExerciseStep2Activity.class);
+					intent.putIntegerArrayListExtra("ImageData", exerciseData);
+
+					startActivity(intent);
+				} else {
+					Toast.makeText(
+							getApplicationContext(),
+							getApplicationContext().getResources().getString(
+									R.string.choose_a_image),
+							Toast.LENGTH_SHORT).show();
+				}
+			}
 		});
 	}
 
