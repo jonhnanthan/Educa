@@ -15,7 +15,6 @@ import com.educa.database.DataBaseProfessor;
 import com.educa.entity.NumMatchExercise;
 import com.educa.graphics.NumPickerDialog;
 import com.educa.graphics.NumPickerDialog.OnMyDialogResult;
-import com.educa.graphics.NumPickerDialog;
 import com.educa.validation.Correction;
 import com.educa.validation.FieldValidation;
 import com.educa.validation.Status;

@@ -16,15 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.educa.R;
-<<<<<<< HEAD
 import com.educa.activity.*;
-=======
-import com.educa.activity.EditColorMatchExerciseActivity;
-import com.educa.activity.EditCompleteExerciseStep1Activity;
-import com.educa.activity.EditImageMatchExerciseActivity;
-import com.educa.activity.EditMultipleChoiceExerciseActivity;
-import com.educa.activity.EditNumMatchExerciseActivity;
->>>>>>> 0407e7380dd7db46a2d240bff30be9e82053afe0
 import com.educa.database.DataBaseProfessor;
 import org.alljoyn.bus.*;
 import org.alljoyn.bus.annotation.BusSignalHandler;
