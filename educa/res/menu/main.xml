@@ -2,10 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.educa.MainActivity" >
 
-    <item
+<!--     <item
         android:id="@+id/new_class"
         android:showAsAction="always"
-        android:title="@string/new_class_hotspot"/>
+        android:title="@string/new_class_hotspot"/> -->
     <item
         android:id="@+id/help"
         android:title="@string/help"/>
