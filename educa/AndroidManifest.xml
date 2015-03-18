@@ -33,12 +33,18 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
->
+>
+
         </activity>
         <activity
             android:name="com.educa.activity.TeacherHomeActivity"
             android:label="@string/teacher_home_activity" >
         </activity>
+        <activity
+            android:name="com.educa.activity.Chat"
+            android:label="@string/chat" >
+        </activity>
+
         <activity
             android:name="com.educa.activity.ChooseModelActivity"
             android:label="@string/choose_model_activity" >

@@ -77,6 +77,10 @@
     <string name="name">Nome da classe</string>
     <string name="password">Senha da classe</string>
     <string name="error_password">8 a 16 caracteres</string>
+    <string name="quit">sair</string>
+    <string name="choose_a_image">Escolha uma imagem</string>
+    <string name="choose_a_numero">Escolha um número</string>
+    <string name="chat">chat</string>
 
 
 </resources>
