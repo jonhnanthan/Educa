@@ -72,7 +72,7 @@ public class DataBaseAluno extends SQLiteOpenHelper{
     }
     
     public ArrayList<String> getActivities(){
-    	populateDataBase();
+//    	populateDataBase();
     	
     	ArrayList<String> activities = new ArrayList<String>();
     	
@@ -115,40 +115,40 @@ public class DataBaseAluno extends SQLiteOpenHelper{
     	return activities;
     }
     
-	private void populateDataBase(){
-		
-    	String sql = "select * from " + TABLE_ATIVIDADES_ALUNO;
-    	
-    	final SQLiteDatabase db = getWritableDatabase();
-    	final Cursor c = db.rawQuery(sql, null);
-    	
-    	if (c.getCount() == 0){
-    		ColorMatchExercise cm = new ColorMatchExercise("Exercicio de cores", COLOR_MATCH_EXERCISE_TYPECODE, "25-02-2015", "NEW", "NOT RATED", "Que cor eh essa?", "Preta", "Cinza", "Marrom", "Amarela", "Marrom", "-11199487");
-    		addActivity("Exercicio de cores", COLOR_MATCH_EXERCISE_TYPECODE, cm.getJsonTextObject());
-    		
-    		CompleteExercise ce = new CompleteExercise("Exercicio de completar", COMPLETE_EXERCISE_TYPECODE, "25-02-2015", "NEW", "NOT_RATED", "Lugar onde voce mora", "casa", "2");
-    		addActivity("Exercicio de completar", COMPLETE_EXERCISE_TYPECODE, ce.getJsonTextObject());
-    		
-    		MultipleChoiceExercise me = new MultipleChoiceExercise("Exercicio dos meses", MULTIPLE_CHOICE_EXERCISE_TYPECODE, "25-02-2015", "NEW", "NOT RATED", "Qual o ultimo mes do ano?", "Janeiro", "Novembro", "Dezembro", "Outubro", "Dezembro");
-    		addActivity("Exercicio dos meses", MULTIPLE_CHOICE_EXERCISE_TYPECODE, me.getJsonTextObject());
-    		
-    		NumMatchExercise num = new NumMatchExercise("num", NUM_MATCH_EXERCISE_TYPECODE, "25-02-2015", "NEW", "NOT RATED", "quantos", "1", "2", "3", "4", "3", "2130837549");
-    		addActivity("num", NUM_MATCH_EXERCISE_TYPECODE, num.getJsonTextObject());
-    		
-    		ImageMatchExercise image = new ImageMatchExercise("imagens", IMAGE_MATCH_EXERCISE_TYPECODE, "25-02-2015", "NEW", "NOT RATED", "quem", "elefante", "2130837535");
-    		addActivity("imagens", IMAGE_MATCH_EXERCISE_TYPECODE, image.getJsonTextObject());
-    	}
-
-    	c.close();
-    	db.close();
-//    	num NUM_MATCH_EXERCISE {"alternative2":"2","alternative1":"1","alternative4":"4","alternative3":"3","color":"2130837549","status":"NEW","name":"num","answer":"3","correction":"NOT_RATED","question":"quantos","date":"17-03-2015","type":"NUM_MATCH_EXERCISE"}
-//    	addActivity: imagens IMAGE_MATCH_EXERCISE {"color":"2130837535","status":"NEW","name":"imagens","answer":"elefante","correction":"NOT_RATED","question":"quem","date":"17-03-2015","type":"IMAGE_MATCH_EXERCISE"}
-//		addActivity: Exercicio de cores COLOR_MATCH_EXERCISE {"alternative2":"Cinza","alternative1":"Preta","alternative4":"Amarela","alternative3":"Marrom","color":"-11199487","status":"NEW","name":"Exercicio de cores","answer":"Marrom","correction":"NOT_RATED","question":"Que cor eh essa?","date":"25-02-2015","type":"COLOR_MATCH_EXERCISE"}
-//		addActivity: Exercicio de completar COMPLETE_EXERCISE {"hiddenIndexes":"2","status":"NEW","name":"Exercicio de completar","correction":"NOT_RATED","word":"casa","question":"Lugar onde voce mora","date":"25-02-2015","type":"COMPLETE_EXERCISE"}
-//		addActivity: Exercicio dos meses MULTIPLE_CHOICE_EXERCISE {"alternative2":"Novembro","alternative1":"Janeiro","alternative4":"Outubro","alternative3":"Dezembro","status":"NEW","name":"Exercicio dos meses","answer":"Dezembro","correction":"NOT_RATED","question":"Qual o ultimo mes do ano?","date":"25-02-2015","type":"MULTIPLE_CHOICE_EXERCISE"}
-	}
+//	private void populateDataBase(){
+//		
+//    	String sql = "select * from " + TABLE_ATIVIDADES_ALUNO;
+//    	
+//    	final SQLiteDatabase db = getWritableDatabase();
+//    	final Cursor c = db.rawQuery(sql, null);
+//    	
+//    	if (c.getCount() == 0){
+//    		ColorMatchExercise cm = new ColorMatchExercise("Exercicio de cores", COLOR_MATCH_EXERCISE_TYPECODE, "25-02-2015", "NEW", "NOT RATED", "Que cor eh essa?", "Preta", "Cinza", "Marrom", "Amarela", "Marrom", "-11199487");
+//    		addActivity("Exercicio de cores", COLOR_MATCH_EXERCISE_TYPECODE, cm.getJsonTextObject());
+//    		
+//    		CompleteExercise ce = new CompleteExercise("Exercicio de completar", COMPLETE_EXERCISE_TYPECODE, "25-02-2015", "NEW", "NOT_RATED", "Lugar onde voce mora", "casa", "2");
+//    		addActivity("Exercicio de completar", COMPLETE_EXERCISE_TYPECODE, ce.getJsonTextObject());
+//    		
+//    		MultipleChoiceExercise me = new MultipleChoiceExercise("Exercicio dos meses", MULTIPLE_CHOICE_EXERCISE_TYPECODE, "25-02-2015", "NEW", "NOT RATED", "Qual o ultimo mes do ano?", "Janeiro", "Novembro", "Dezembro", "Outubro", "Dezembro");
+//    		addActivity("Exercicio dos meses", MULTIPLE_CHOICE_EXERCISE_TYPECODE, me.getJsonTextObject());
+//    		
+//    		NumMatchExercise num = new NumMatchExercise("num", NUM_MATCH_EXERCISE_TYPECODE, "25-02-2015", "NEW", "NOT RATED", "quantos", "1", "2", "3", "4", "3", "2130837549");
+//    		addActivity("num", NUM_MATCH_EXERCISE_TYPECODE, num.getJsonTextObject());
+//    		
+//    		ImageMatchExercise image = new ImageMatchExercise("imagens", IMAGE_MATCH_EXERCISE_TYPECODE, "25-02-2015", "NEW", "NOT RATED", "quem", "elefante", "2130837535");
+//    		addActivity("imagens", IMAGE_MATCH_EXERCISE_TYPECODE, image.getJsonTextObject());
+//    	}
+//
+//    	c.close();
+//    	db.close();
+////    	num NUM_MATCH_EXERCISE {"alternative2":"2","alternative1":"1","alternative4":"4","alternative3":"3","color":"2130837549","status":"NEW","name":"num","answer":"3","correction":"NOT_RATED","question":"quantos","date":"17-03-2015","type":"NUM_MATCH_EXERCISE"}
+////    	addActivity: imagens IMAGE_MATCH_EXERCISE {"color":"2130837535","status":"NEW","name":"imagens","answer":"elefante","correction":"NOT_RATED","question":"quem","date":"17-03-2015","type":"IMAGE_MATCH_EXERCISE"}
+////		addActivity: Exercicio de cores COLOR_MATCH_EXERCISE {"alternative2":"Cinza","alternative1":"Preta","alternative4":"Amarela","alternative3":"Marrom","color":"-11199487","status":"NEW","name":"Exercicio de cores","answer":"Marrom","correction":"NOT_RATED","question":"Que cor eh essa?","date":"25-02-2015","type":"COLOR_MATCH_EXERCISE"}
+////		addActivity: Exercicio de completar COMPLETE_EXERCISE {"hiddenIndexes":"2","status":"NEW","name":"Exercicio de completar","correction":"NOT_RATED","word":"casa","question":"Lugar onde voce mora","date":"25-02-2015","type":"COMPLETE_EXERCISE"}
+////		addActivity: Exercicio dos meses MULTIPLE_CHOICE_EXERCISE {"alternative2":"Novembro","alternative1":"Janeiro","alternative4":"Outubro","alternative3":"Dezembro","status":"NEW","name":"Exercicio dos meses","answer":"Dezembro","correction":"NOT_RATED","question":"Qual o ultimo mes do ano?","date":"25-02-2015","type":"MULTIPLE_CHOICE_EXERCISE"}
+//	}
 	
-    private final long addActivity(String name, String activityType, String activity) {
+    public final long addActivity(String name, String activityType, String activity) {
 
         final SQLiteDatabase db = getWritableDatabase();
         final ContentValues values = new ContentValues();

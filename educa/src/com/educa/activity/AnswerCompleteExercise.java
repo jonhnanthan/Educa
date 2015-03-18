@@ -206,8 +206,8 @@ public class AnswerCompleteExercise extends Activity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         try {
-                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerCompleteExercise.this));
-                            StudentHomeActivity.getAdapter().notifyDataSetChanged();
+                        	Chat.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerCompleteExercise.this));
+                        	Chat.getAdapter().notifyDataSetChanged();
 
                             Intent intent = new Intent(AnswerCompleteExercise.this,
                                     StudentHomeActivity.class);
@@ -246,8 +246,8 @@ public class AnswerCompleteExercise extends Activity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         try {
-                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerCompleteExercise.this));
-                            StudentHomeActivity.getAdapter().notifyDataSetChanged();
+                        	Chat.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerCompleteExercise.this));
+                        	Chat.getAdapter().notifyDataSetChanged();
 
                             Intent intent = new Intent(AnswerCompleteExercise.this,
                                     StudentHomeActivity.class);

@@ -16,7 +16,10 @@
 
 package com.educa.activity;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -26,9 +29,16 @@ import android.view.*;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.*;
+import android.widget.AdapterView.OnItemClickListener;
+
 import com.educa.R;
+import com.educa.adapter.ExerciseStudentAdapter;
+import com.educa.database.DataBaseAluno;
+
 import org.alljoyn.bus.*;
 import org.alljoyn.bus.annotation.BusSignalHandler;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Chat extends Activity {
     /* Load the native alljoyn_java library. */
@@ -93,55 +103,160 @@ public class Chat extends Activity {
 
     /* Handler used to make calls to AllJoyn methods. See onCreate(). */
     private Handler mBusHandler;
+    
+    private ListView listview;
+    private static ExerciseStudentAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.activity_student_home);
 
-        /* Create an adapter to manage the list view of chat messages */
-        mListViewArrayAdapter = new ArrayAdapter<String>(this, R.layout.message);
+        listview = (ListView) findViewById(R.id.lv_exercise);
 
-        /* Set the adapter for the list view */
-        mListView = (ListView) findViewById(R.id.ListView);
-        mListView.setAdapter(mListViewArrayAdapter);
+        DataBaseAluno db = DataBaseAluno.getInstance(getApplicationContext());
+        ArrayList<String> exercises = db.getActivities();
 
-        mNameEditText = (EditText) findViewById(R.id.NameEditText);
+        adapter = new ExerciseStudentAdapter(getApplicationContext(), exercises, Chat.this);
+        listview.setAdapter(adapter);
 
-        mButton = (Button) findViewById(R.id.Button);
-        mButton.setOnClickListener(new OnClickListener(){
+        listview.setOnItemClickListener(new OnItemClickListener() {
+
             @Override
-            public void onClick(View view) {
-                String senderName = mNameEditText.getText().toString();
-                String message = "Sample";
-                Log.v("SEND", message);
-                Message msg = mBusHandler.obtainMessage(BusHandlerCallback.CHAT,
-                        new PingInfo(senderName,message));
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.v("EDUCA", "ENTROU NO LISTENER");
 
-                mBusHandler.sendMessage(msg);
-                mMessageEditText.setText("");
-            }
-        });
-        /* Set the action to be taken when the 'Return' key is pressed in the text box */
-        mMessageEditText = (EditText) findViewById(R.id.MessageEditText);
-        mMessageEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
-                Log.v("SEND",  "button:" +event.getAction()+"excpeted: " +KeyEvent.ACTION_UP);
-                if (actionId == EditorInfo.IME_NULL
-                        && event.getAction() == KeyEvent.ACTION_UP) {
-                    /* Send a sessionless signal chat message using the mBusHandler. */
-                    String senderName = mNameEditText.getText().toString();
-                    String message = view.getText().toString();
-                    Log.v("SEND", message);
-                    Message msg = mBusHandler.obtainMessage(BusHandlerCallback.CHAT,
-                                                            new PingInfo(senderName,message));
+                String json = adapter.getItem(position);
+                try{
+                JSONObject exercise = new JSONObject(json);
 
-                    mBusHandler.sendMessage(msg);
-                    mMessageEditText.setText("");
+                if (exercise.getString("type").equals(DataBaseAluno.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE)) {
+					ArrayList<CharSequence> listMultipleChoiceExercise = new ArrayList<CharSequence>();
+
+					listMultipleChoiceExercise.add(exercise.getString("name"));
+					listMultipleChoiceExercise.add(exercise.getString("question"));
+					listMultipleChoiceExercise.add(exercise.getString("alternative1"));
+					listMultipleChoiceExercise.add(exercise.getString("alternative2"));
+					listMultipleChoiceExercise.add(exercise.getString("alternative3"));
+					listMultipleChoiceExercise.add(exercise.getString("alternative4"));
+					listMultipleChoiceExercise.add(exercise.getString("answer"));
+					listMultipleChoiceExercise.add(exercise.getString("date"));
+
+                    Intent i = new Intent(getApplicationContext(), AnswerMultipleChoiceExercise.class);
+                    i.putCharSequenceArrayListExtra("QuestionToAnswerMatch", listMultipleChoiceExercise);
+                    startActivity(i);
                 }
-                return true;
-            }
+                if (exercise.getString("type").equals(DataBaseAluno.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE)) {
+					ArrayList<CharSequence> listCompleteExercise = new ArrayList<CharSequence>();
+
+					listCompleteExercise.add(exercise.getString("name"));
+					listCompleteExercise.add(exercise.getString("word"));
+					listCompleteExercise.add(exercise.getString("question"));
+					listCompleteExercise.add(exercise.getString("hiddenIndexes"));
+					listCompleteExercise.add(exercise.getString("date"));
+
+                    Intent i = new Intent(getApplicationContext(), AnswerCompleteExercise.class);
+                    i.putCharSequenceArrayListExtra("QuestionToAnswerComplete", listCompleteExercise);
+                    startActivity(i);
+                }
+                if (exercise.getString("type").equals(DataBaseAluno.getInstance(getApplicationContext()).COLOR_MATCH_EXERCISE_TYPECODE)) {
+                    ArrayList<CharSequence> listColorMatchExercise = new ArrayList<CharSequence>();
+
+                    listColorMatchExercise.add(exercise.getString("name"));
+                    listColorMatchExercise.add(exercise.getString("color"));
+                    listColorMatchExercise.add(exercise.getString("question"));
+                    listColorMatchExercise.add(exercise.getString("alternative1"));
+                    listColorMatchExercise.add(exercise.getString("alternative2"));
+                    listColorMatchExercise.add(exercise.getString("alternative3"));
+                    listColorMatchExercise.add(exercise.getString("alternative4"));
+                    listColorMatchExercise.add(exercise.getString("answer"));
+                    listColorMatchExercise.add(exercise.getString("date"));
+
+                    Intent i = new Intent(getApplicationContext(), AnswerColorMatchExercise.class);
+                    i.putCharSequenceArrayListExtra("QuestionToAnswerColor", listColorMatchExercise);
+                    startActivity(i);
+                }
+                if (exercise.getString("type").equals(DataBaseAluno.getInstance(getApplicationContext()).NUM_MATCH_EXERCISE_TYPECODE)) {
+                    ArrayList<CharSequence> listNumberMatchExercise = new ArrayList<CharSequence>();
+
+                    listNumberMatchExercise.add(exercise.getString("name"));
+                    listNumberMatchExercise.add(exercise.getString("color"));
+                    listNumberMatchExercise.add(exercise.getString("question"));
+                    listNumberMatchExercise.add(exercise.getString("alternative1"));
+                    listNumberMatchExercise.add(exercise.getString("alternative2"));
+                    listNumberMatchExercise.add(exercise.getString("alternative3"));
+                    listNumberMatchExercise.add(exercise.getString("alternative4"));
+                    listNumberMatchExercise.add(exercise.getString("answer"));
+                    listNumberMatchExercise.add(exercise.getString("date"));
+
+                    Intent i = new Intent(getApplicationContext(), AnswerNumberMatchExercise.class);
+                    i.putCharSequenceArrayListExtra("QuestionToAnswerNumber", listNumberMatchExercise);
+                    startActivity(i);
+                }
+                if (exercise.getString("type").equals(DataBaseAluno.getInstance(getApplicationContext()).IMAGE_MATCH_EXERCISE_TYPECODE)) {
+                    ArrayList<CharSequence> listImageMatchExercise = new ArrayList<CharSequence>();
+
+                    listImageMatchExercise.add(exercise.getString("name"));
+                    listImageMatchExercise.add(exercise.getString("color"));
+                    listImageMatchExercise.add(exercise.getString("question"));
+                    listImageMatchExercise.add(exercise.getString("answer"));
+                    listImageMatchExercise.add(exercise.getString("date"));
+
+                    Intent i = new Intent(getApplicationContext(), AnswerImageMatchExercise.class);
+                    i.putCharSequenceArrayListExtra("QuestionToAnswerImage", listImageMatchExercise);
+                    startActivity(i);
+                }
+
+                } catch (JSONException e) {
+					Log.e("STUDENT HOME ERROR", e.getMessage());
+				}
+                }
         });
+//        setContentView(R.layout.main);
+//
+//        /* Create an adapter to manage the list view of chat messages */
+//        mListViewArrayAdapter = new ArrayAdapter<String>(this, R.layout.message);
+//
+//        /* Set the adapter for the list view */
+//        mListView = (ListView) findViewById(R.id.ListView);
+//        mListView.setAdapter(mListViewArrayAdapter);
+//
+//        mNameEditText = (EditText) findViewById(R.id.NameEditText);
+//
+//        mButton = (Button) findViewById(R.id.Button);
+//        mButton.setOnClickListener(new OnClickListener(){
+//            @Override
+//            public void onClick(View view) {
+//                String senderName = mNameEditText.getText().toString();
+//                String message = "Sample";
+//                Log.v("SEND", message);
+//                Message msg = mBusHandler.obtainMessage(BusHandlerCallback.CHAT,
+//                        new PingInfo(senderName,message));
+//
+//                mBusHandler.sendMessage(msg);
+//                mMessageEditText.setText("");
+//            }
+//        });
+//        /* Set the action to be taken when the 'Return' key is pressed in the text box */
+//        mMessageEditText = (EditText) findViewById(R.id.MessageEditText);
+//        mMessageEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
+//                Log.v("SEND",  "button:" +event.getAction()+"excpeted: " +KeyEvent.ACTION_UP);
+//                if (actionId == EditorInfo.IME_NULL
+//                        && event.getAction() == KeyEvent.ACTION_UP) {
+//                    /* Send a sessionless signal chat message using the mBusHandler. */
+//                    String senderName = mNameEditText.getText().toString();
+//                    String message = view.getText().toString();
+//                    Log.v("SEND", message);
+//                    Message msg = mBusHandler.obtainMessage(BusHandlerCallback.CHAT,
+//                                                            new PingInfo(senderName,message));
+//
+//                    mBusHandler.sendMessage(msg);
+//                    mMessageEditText.setText("");
+//                }
+//                return true;
+//            }
+//        });
 
         /* Make all AllJoyn calls through a separate handler thread to prevent blocking the UI. */
         HandlerThread busThread = new HandlerThread("BusHandler");
@@ -151,24 +266,32 @@ public class Chat extends Activity {
         mBusHandler.sendEmptyMessage(BusHandlerCallback.CONNECT);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.mainmenu, menu);
-        return true;
+    public static ExerciseStudentAdapter getAdapter() {
+        return adapter;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        /* Handle item selection */
-        switch (item.getItemId()) {
-        case R.id.quit:
-            finish();
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
-        }
+    public static void setAdapter(ExerciseStudentAdapter adapter) {
+        Chat.adapter = adapter;
     }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.mainmenu, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        /* Handle item selection */
+//        switch (item.getItemId()) {
+//        case R.id.quit:
+//            finish();
+//            return true;
+//        default:
+//            return super.onOptionsItemSelected(item);
+//        }
+//    }
 
     @Override
     protected void onDestroy() {
@@ -195,6 +318,19 @@ public class Chat extends Activity {
         public void Chat(String senderName, String message) {
             Log.i(TAG, "Signal  : " + senderName +": "+ message);
             //TODO aqui que sera feito o add a interface, esse Message é o json
+            if (!message.isEmpty()){
+                for (String  linha : message.split("}")) {
+                	JSONObject exercise;
+    				try {
+    					exercise = new JSONObject(linha);
+    					DataBaseAluno.getInstance(getApplicationContext()).addActivity(exercise.getString("name"), exercise.getString("type") ,linha);
+    				} catch (JSONException e) {
+    					Log.e("Erro ao processar mensagem", e.getMessage());
+    				}
+    			}
+                setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), Chat.this));
+                getAdapter().notifyDataSetChanged();
+            }
             sendUiMessage(MESSAGE_CHAT, senderName + ": "+ message);
         }
 

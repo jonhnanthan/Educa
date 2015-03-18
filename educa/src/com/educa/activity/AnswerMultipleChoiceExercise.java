@@ -149,8 +149,8 @@ public class AnswerMultipleChoiceExercise extends Activity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         try {
-                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerMultipleChoiceExercise.this));
-                            StudentHomeActivity.getAdapter().notifyDataSetChanged();
+                        	Chat.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerMultipleChoiceExercise.this));
+                        	Chat.getAdapter().notifyDataSetChanged();
 
                             Intent intent = new Intent(AnswerMultipleChoiceExercise.this,
                                     StudentHomeActivity.class);
@@ -189,8 +189,8 @@ public class AnswerMultipleChoiceExercise extends Activity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         try {
-                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerMultipleChoiceExercise.this));
-                            StudentHomeActivity.getAdapter().notifyDataSetChanged();
+                        	Chat.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerMultipleChoiceExercise.this));
+                        	Chat.getAdapter().notifyDataSetChanged();
 
                             Intent intent = new Intent(AnswerMultipleChoiceExercise.this,
                                     StudentHomeActivity.class);

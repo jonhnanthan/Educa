@@ -128,13 +128,13 @@ public class StudentHomeActivity extends Activity {
         });
     }
 
-    public static ExerciseStudentAdapter getAdapter() {
-        return adapter;
-    }
-
-    public static void setAdapter(ExerciseStudentAdapter adapter) {
-        StudentHomeActivity.adapter = adapter;
-    }
+//    public static ExerciseStudentAdapter getAdapter() {
+//        return adapter;
+//    }
+//
+//    public static void setAdapter(ExerciseStudentAdapter adapter) {
+//        StudentHomeActivity.adapter = adapter;
+//    }
 
     @Override
     public void onBackPressed() {

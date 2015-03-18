@@ -149,8 +149,8 @@ public class AnswerNumberMatchExercise extends Activity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         try {
-                            StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerNumberMatchExercise.this));
-                            StudentHomeActivity.getAdapter().notifyDataSetChanged();
+                        	Chat.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerNumberMatchExercise.this));
+                        	Chat.getAdapter().notifyDataSetChanged();
 
                             Intent intent = new Intent(AnswerNumberMatchExercise.this, StudentHomeActivity.class);
                             startActivity(intent);
@@ -187,8 +187,8 @@ public class AnswerNumberMatchExercise extends Activity {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
                 try {
-                    StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerNumberMatchExercise.this));
-                    StudentHomeActivity.getAdapter().notifyDataSetChanged();
+                	Chat.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerNumberMatchExercise.this));
+                	Chat.getAdapter().notifyDataSetChanged();
 
                     Intent intent = new Intent(AnswerNumberMatchExercise.this,
                             StudentHomeActivity.class);
