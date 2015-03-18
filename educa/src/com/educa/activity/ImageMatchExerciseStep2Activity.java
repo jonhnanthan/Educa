@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImageMatchExerciseStep2Activity extends Activity {
-	private String colorCode;
+	private String imageCode;
 	private EditText question;
 	private EditText answer;
 
@@ -23,17 +23,17 @@ public class ImageMatchExerciseStep2Activity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_image_match_exercise_step2);
-		LinearLayout layout_color = (LinearLayout) findViewById(R.id.layout_color);
+		LinearLayout layout_image = (LinearLayout) findViewById(R.id.layout_color);
 		question = (EditText) findViewById(R.id.question_match);
 		answer = (EditText) findViewById(R.id.answer_match);
 
 		ImageButton bt_ok = (ImageButton) findViewById(R.id.bt_ok_match);
 
 		Intent i = getIntent();
-		ArrayList<Integer> exerciseData = i.getIntegerArrayListExtra("ColorData");
-		colorCode = exerciseData.get(0).toString();
+		ArrayList<Integer> exerciseData = i.getIntegerArrayListExtra("ImageData");
+		imageCode = exerciseData.get(0).toString();
 
-		layout_color.setBackgroundResource(Integer.parseInt(colorCode));
+		layout_image.setBackgroundResource(Integer.parseInt(imageCode));
 
 		bt_ok.setOnClickListener(new OnClickListener() {
 
@@ -41,7 +41,7 @@ public class ImageMatchExerciseStep2Activity extends Activity {
 			public void onClick(View v) {
 				if (checkValidation()) {
 					List<CharSequence> exerciseData = new ArrayList<CharSequence>();
-					exerciseData.add(colorCode);
+					exerciseData.add(imageCode);
 					exerciseData.add(question.getText().toString());
 					exerciseData.add(answer.getText().toString());
 
@@ -49,7 +49,7 @@ public class ImageMatchExerciseStep2Activity extends Activity {
 							ImageMatchExerciseStep2Activity.this,
 							ImageMatchExerciseStep3Activity.class);
 					confirmAnswersIntent.putCharSequenceArrayListExtra(
-							"AnswersStep2Color", (ArrayList<CharSequence>) exerciseData);
+							"AnswersStep2Image", (ArrayList<CharSequence>) exerciseData);
 
 					startActivity(confirmAnswersIntent);
 				}

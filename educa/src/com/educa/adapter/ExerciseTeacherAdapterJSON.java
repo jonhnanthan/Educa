@@ -16,7 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.educa.R;
-import com.educa.activity.*;
+import com.educa.activity.EditColorMatchExerciseActivity;
+import com.educa.activity.EditCompleteExerciseStep1Activity;
+import com.educa.activity.EditImageMatchExerciseActivity;
+import com.educa.activity.EditMultipleChoiceExerciseActivity;
 import com.educa.database.DataBaseProfessor;
 import org.alljoyn.bus.*;
 import org.alljoyn.bus.annotation.BusSignalHandler;
@@ -110,13 +113,23 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
 	        tv_exercise_correction.setText(exercise.getString("correction"));
 	        tv_exercise_date.setText(exercise.getString("date"));
 
-	        if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).COLOR_MATCH_EXERCISE_TYPECODE)) {
-	            icon.setImageResource(R.drawable.colorthumb);
-	        } else if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).MULTIPLE_CHOICE_EXERCISE_TYPECODE)) {
-	            icon.setImageResource(R.drawable.multiplethumb);
-	        } else if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).COMPLETE_EXERCISE_TYPECODE)) {
-	            icon.setImageResource(R.drawable.completethumb);
-	        }
+			if (exercise
+					.getString("type")
+					.equals(DataBaseProfessor.getInstance(mcontext).COLOR_MATCH_EXERCISE_TYPECODE)) {
+				icon.setImageResource(R.drawable.colorthumb);
+			} else if (exercise
+					.getString("type")
+					.equals(DataBaseProfessor.getInstance(mcontext).MULTIPLE_CHOICE_EXERCISE_TYPECODE)) {
+				icon.setImageResource(R.drawable.multiplethumb);
+			} else if (exercise
+					.getString("type")
+					.equals(DataBaseProfessor.getInstance(mcontext).COMPLETE_EXERCISE_TYPECODE)) {
+				icon.setImageResource(R.drawable.completethumb);
+			} else if (exercise
+					.getString("type")
+					.equals(DataBaseProfessor.getInstance(mcontext).IMAGE_MATCH_EXERCISE_TYPECODE)) {
+				icon.setImageResource(R.drawable.colorthumb);
+			}
 		} catch (JSONException e) {
 			Log.e("CREATE VIEW ERROR", e.getMessage());
 		}
@@ -145,58 +158,140 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
 					JSONObject exercise;
 					try {
 								exercise = new JSONObject(json);
-								if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).MULTIPLE_CHOICE_EXERCISE_TYPECODE)) {
-									Intent intent = new Intent(parentActivity, EditMultipleChoiceExerciseActivity.class);
+								if (exercise
+										.getString("type")
+										.equals(DataBaseProfessor
+												.getInstance(mcontext).MULTIPLE_CHOICE_EXERCISE_TYPECODE)) {
+									Intent intent = new Intent(
+											parentActivity,
+											EditMultipleChoiceExerciseActivity.class);
 
 									List<CharSequence> listMultipleChoiceExercise = new ArrayList<CharSequence>();
 
-									listMultipleChoiceExercise.add(exercise.getString("name"));
-									listMultipleChoiceExercise.add(exercise.getString("question"));
-									listMultipleChoiceExercise.add(exercise.getString("alternative1"));
-									listMultipleChoiceExercise.add(exercise.getString("alternative2"));
-									listMultipleChoiceExercise.add(exercise.getString("alternative3"));
-									listMultipleChoiceExercise.add(exercise.getString("alternative4"));
-									listMultipleChoiceExercise.add(exercise.getString("answer"));
-									listMultipleChoiceExercise.add(exercise.getString("date"));
+									listMultipleChoiceExercise.add(exercise
+											.getString("name"));
+									listMultipleChoiceExercise.add(exercise
+											.getString("question"));
+									listMultipleChoiceExercise.add(exercise
+											.getString("alternative1"));
+									listMultipleChoiceExercise.add(exercise
+											.getString("alternative2"));
+									listMultipleChoiceExercise.add(exercise
+											.getString("alternative3"));
+									listMultipleChoiceExercise.add(exercise
+											.getString("alternative4"));
+									listMultipleChoiceExercise.add(exercise
+											.getString("answer"));
+									listMultipleChoiceExercise.add(exercise
+											.getString("date"));
 
-									intent.putCharSequenceArrayListExtra("EditMultipleChoiseExercise", (ArrayList<CharSequence>) listMultipleChoiceExercise);
+									intent.putCharSequenceArrayListExtra(
+											"EditMultipleChoiseExercise",
+											(ArrayList<CharSequence>) listMultipleChoiceExercise);
 									parentActivity.startActivity(intent);
 								}
-								if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).COMPLETE_EXERCISE_TYPECODE)) {
-									Intent intent = new Intent(parentActivity, EditCompleteExerciseStep1Activity.class);
+								if (exercise
+										.getString("type")
+										.equals(DataBaseProfessor
+												.getInstance(mcontext).COMPLETE_EXERCISE_TYPECODE)) {
+									Intent intent = new Intent(
+											parentActivity,
+											EditCompleteExerciseStep1Activity.class);
 
 									List<CharSequence> listCmpleteExercise = new ArrayList<CharSequence>();
 
-									listCmpleteExercise.add(exercise.getString("name"));
-									listCmpleteExercise.add(exercise.getString("word"));
-									listCmpleteExercise.add(exercise.getString("question"));
-									listCmpleteExercise.add(exercise.getString("hiddenIndexes"));
-									listCmpleteExercise.add(exercise.getString("date"));
+									listCmpleteExercise.add(exercise
+											.getString("name"));
+									listCmpleteExercise.add(exercise
+											.getString("word"));
+									listCmpleteExercise.add(exercise
+											.getString("question"));
+									listCmpleteExercise.add(exercise
+											.getString("hiddenIndexes"));
+									listCmpleteExercise.add(exercise
+											.getString("date"));
 
-									intent.putCharSequenceArrayListExtra("EditCompleteExercise", (ArrayList<CharSequence>) listCmpleteExercise);
+									intent.putCharSequenceArrayListExtra(
+											"EditCompleteExercise",
+											(ArrayList<CharSequence>) listCmpleteExercise);
 									parentActivity.startActivity(intent);
 								}
-		                        if (exercise.getString("type").equals(DataBaseProfessor.getInstance(mcontext).COLOR_MATCH_EXERCISE_TYPECODE)) {
-	                            Intent intent = new Intent(parentActivity, EditColorMatchExerciseActivity.class);
-	
-	                            List<CharSequence> listColorMatchExercise = new ArrayList<CharSequence>();
-	
-	                            listColorMatchExercise.add(exercise.getString("name"));
-	                            listColorMatchExercise.add(exercise.getString("color"));
-	                            listColorMatchExercise.add(exercise.getString("question"));
-	                            listColorMatchExercise.add(exercise.getString("alternative1"));
-	                            listColorMatchExercise.add(exercise.getString("alternative2"));
-	                            listColorMatchExercise.add(exercise.getString("alternative3"));
-	                            listColorMatchExercise.add(exercise.getString("alternative4"));
-	                            listColorMatchExercise.add(exercise.getString("answer"));
-	                            listColorMatchExercise.add(exercise.getString("date"));
-	
-	                            intent.putCharSequenceArrayListExtra("EditColorMatchExercise", (ArrayList<CharSequence>) listColorMatchExercise);
-	                            parentActivity.startActivity(intent);
-	                        }
+								if (exercise
+										.getString("type")
+										.equals(DataBaseProfessor
+												.getInstance(mcontext).COLOR_MATCH_EXERCISE_TYPECODE)) {
+									Intent intent = new Intent(
+											parentActivity,
+											EditColorMatchExerciseActivity.class);
 
-					} catch (JSONException e) {
-						Log.e("EDIT ERROR", e.getMessage());
+									List<CharSequence> listImageMatchExercise = new ArrayList<CharSequence>();
+
+									listImageMatchExercise.add(exercise
+											.getString("name"));
+									listImageMatchExercise.add(exercise
+											.getString("color"));
+									listImageMatchExercise.add(exercise
+											.getString("question"));
+									listImageMatchExercise.add(exercise
+											.getString("alternative1"));
+									listImageMatchExercise.add(exercise
+											.getString("alternative2"));
+									listImageMatchExercise.add(exercise
+											.getString("alternative3"));
+									listImageMatchExercise.add(exercise
+											.getString("alternative4"));
+									listImageMatchExercise.add(exercise
+											.getString("answer"));
+									listImageMatchExercise.add(exercise
+											.getString("date"));
+
+									intent.putCharSequenceArrayListExtra(
+											"EditColorMatchExercise",
+											(ArrayList<CharSequence>) listImageMatchExercise);
+									parentActivity.startActivity(intent);
+								}
+								if (exercise
+										.getString("type")
+										.equals(DataBaseProfessor
+												.getInstance(mcontext).IMAGE_MATCH_EXERCISE_TYPECODE)) {
+									Intent intent = new Intent(
+											parentActivity,
+											EditImageMatchExerciseActivity.class);
+
+									List<CharSequence> listImageMatchExercise = new ArrayList<CharSequence>();
+
+									listImageMatchExercise.add(exercise
+											.getString("name"));
+									listImageMatchExercise.add(exercise
+											.getString("color"));
+									listImageMatchExercise.add(exercise
+											.getString("question"));
+									
+									listImageMatchExercise.add(exercise
+											.getString("answer"));
+									listImageMatchExercise.add(exercise
+											.getString("date"));
+
+									intent.putCharSequenceArrayListExtra(
+											"EditImageMatchExercise",
+											(ArrayList<CharSequence>) listImageMatchExercise);
+									parentActivity.startActivity(intent);
+								}
+
+							} catch (JSONException e) {
+								Log.e("EDIT ERROR", e.getMessage());
+							}
+							return true;
+						case R.id.delete:
+							deleteAlert(json);
+							break;
+						case R.id.send:
+							sendAlert(json);
+							break;
+						default:
+							break;
+						}
+						return true;
 					}
                         return true;
                     case R.id.delete:

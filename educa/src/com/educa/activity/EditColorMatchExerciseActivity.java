@@ -113,6 +113,7 @@ public class EditColorMatchExerciseActivity extends Activity {
                         String alternative2 = exercise.get(4).toString();
                         String alternative3 = exercise.get(5).toString();
                         String alternative4 = exercise.get(6).toString();
+                        String color = exercise.get(1).toString();
 
                         colorMatchExercise = new ColorMatchExercise(name, type, date, status, correction, question, alternative1, alternative2, alternative3, alternative4, exercise.get(7).toString(), color);
 

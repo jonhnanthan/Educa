@@ -102,6 +102,10 @@
             android:label="@string/color_match" >
         </activity>
         <activity
+            android:name="com.educa.activity.EditImageMatchExerciseActivity"
+            android:label="@string/image_match" >
+        </activity>
+        <activity
             android:name="com.educa.activity.EditCompleteExerciseStep1Activity"
             android:label="@string/complete_exercise_activity" >
         </activity>
