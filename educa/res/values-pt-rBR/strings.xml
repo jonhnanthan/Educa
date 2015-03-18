@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">educa</string>
+    <string name="app_name">educa Professor</string>
     
     <string name="student_home_activity">Aluno</string>
     <string name="teacher_home_activity">Professor</string>

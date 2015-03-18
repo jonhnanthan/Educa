@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">educa</string>
+    <string name="app_name">educa Teacher</string>
     <string name="student_home_activity">Student - Home</string>
     <string name="teacher_home_activity">Teacher - Home</string>
     <string name="choose_model_activity">Choose Model</string>
