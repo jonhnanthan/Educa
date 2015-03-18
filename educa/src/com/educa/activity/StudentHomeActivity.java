@@ -1,11 +1,6 @@
 
 package com.educa.activity;
 
-import java.util.ArrayList;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,10 +9,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-
 import com.educa.R;
 import com.educa.adapter.ExerciseStudentAdapter;
 import com.educa.database.DataBaseAluno;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class StudentHomeActivity extends Activity {
     private ListView listview;
@@ -77,7 +75,7 @@ public class StudentHomeActivity extends Activity {
                 }
                 if (exercise.getString("type").equals(DataBaseAluno.getInstance(getApplicationContext()).COLOR_MATCH_EXERCISE_TYPECODE)) {
                     ArrayList<CharSequence> listColorMatchExercise = new ArrayList<CharSequence>();
-                	
+
                     listColorMatchExercise.add(exercise.getString("name"));
                     listColorMatchExercise.add(exercise.getString("color"));
                     listColorMatchExercise.add(exercise.getString("question"));
@@ -94,7 +92,7 @@ public class StudentHomeActivity extends Activity {
                 }
                 if (exercise.getString("type").equals(DataBaseAluno.getInstance(getApplicationContext()).NUM_MATCH_EXERCISE_TYPECODE)) {
                     ArrayList<CharSequence> listNumberMatchExercise = new ArrayList<CharSequence>();
-                	
+
                     listNumberMatchExercise.add(exercise.getString("name"));
                     listNumberMatchExercise.add(exercise.getString("color"));
                     listNumberMatchExercise.add(exercise.getString("question"));
@@ -111,7 +109,7 @@ public class StudentHomeActivity extends Activity {
                 }
                 if (exercise.getString("type").equals(DataBaseAluno.getInstance(getApplicationContext()).IMAGE_MATCH_EXERCISE_TYPECODE)) {
                     ArrayList<CharSequence> listImageMatchExercise = new ArrayList<CharSequence>();
-                	
+
                     listImageMatchExercise.add(exercise.getString("name"));
                     listImageMatchExercise.add(exercise.getString("color"));
                     listImageMatchExercise.add(exercise.getString("question"));
