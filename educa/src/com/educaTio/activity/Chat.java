@@ -100,14 +100,14 @@ public class Chat extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+//        setContentView(R.layout.main);
         Intent i = getIntent();
         exercise = i.getCharSequenceArrayListExtra("Chat");
         final String json = (String) exercise.get(0);
         /* Create an adapter to manage the list view of chat messages */
         mListViewArrayAdapter = new ArrayAdapter<String>(this, R.layout.message);
 
-        /* Set the adapter for the list view */
+        /* Set the adapter for the list view 
         mListView = (ListView) findViewById(R.id.ListView);
         mListView.setAdapter(mListViewArrayAdapter);
 
@@ -126,15 +126,15 @@ public class Chat extends Activity {
                 mBusHandler.sendMessage(msg);
                 mMessageEditText.setText("");
             }
-        });
-        /* Set the action to be taken when the 'Return' key is pressed in the text box */
+        });*/
+        /* Set the action to be taken when the 'Return' key is pressed in the text box 
         mMessageEditText = (EditText) findViewById(R.id.MessageEditText);
         mMessageEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
                 Log.v("SEND",  "button:" +event.getAction()+"excpeted: " +KeyEvent.ACTION_UP);
                 if (actionId == EditorInfo.IME_NULL
                         && event.getAction() == KeyEvent.ACTION_UP) {
-                    /* Send a sessionless signal chat message using the mBusHandler. */
+//                     Send a sessionless signal chat message using the mBusHandler.
                     String senderName = mNameEditText.getText().toString();
                     String message = view.getText().toString();
                     Log.v("SEND", message);
@@ -146,7 +146,7 @@ public class Chat extends Activity {
                 }
                 return true;
             }
-        });
+        });*/
 
         /* Make all AllJoyn calls through a separate handler thread to prevent blocking the UI. */
         HandlerThread busThread = new HandlerThread("BusHandler");
@@ -154,6 +154,18 @@ public class Chat extends Activity {
         mBusHandler = new Handler(busThread.getLooper(),new BusHandlerCallback());
 
         mBusHandler.sendEmptyMessage(BusHandlerCallback.CONNECT);
+
+        String senderName = "PROFESSOR";
+        String message = json;
+        Log.v("SEND", message);
+        Message msg = mBusHandler.obtainMessage(BusHandlerCallback.CHAT,
+                new PingInfo(senderName,message));
+
+        mBusHandler.sendMessage(msg);
+//        mMessageEditText.setText("");
+        
+        finish();
+
     }
 
     @Override
