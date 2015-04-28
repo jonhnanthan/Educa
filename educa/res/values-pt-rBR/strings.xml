@@ -3,6 +3,8 @@
 
     <string name="app_name">educa Professor</string>
     
+    <string name="confirmation_send">Tem certeza que deseja enviar o exercicio?</string>
+    
     <string name="student_home_activity">Aluno</string>
     <string name="teacher_home_activity">Professor</string>
 	<string name="choose_model_activity">Escolha o Modelo</string>

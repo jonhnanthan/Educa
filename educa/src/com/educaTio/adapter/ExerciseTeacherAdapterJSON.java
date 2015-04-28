@@ -4,6 +4,7 @@ package com.educaTio.adapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,7 +14,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.*;
 import com.educaTio.R;
 import com.educaTio.activity.*;
@@ -322,12 +325,40 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
                         break;
                     case R.id.send:
 //                        sendAlert(json);
-                            Intent chooseModelIntent = new Intent(parentActivity,
-                                    Chat.class);
-                            List<CharSequence> listColorMatchExercise = new ArrayList<CharSequence>();
-                            listColorMatchExercise.add(json);
-                            chooseModelIntent.putCharSequenceArrayListExtra("Chat", (ArrayList<CharSequence>) listColorMatchExercise);
-                            parentActivity.startActivity(chooseModelIntent);
+                    	
+                    	final Dialog dialog = new Dialog(parentActivity);
+                    	dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    	dialog.setContentView(R.layout.dialog_yes_no_sentence);
+                        TextView tvMsgToShow =
+                                (TextView) dialog.findViewById(R.id.tvYesNoAlertDialog);
+                        tvMsgToShow.setText( parentActivity.getResources().getString(R.string.confirmation_send) );
+
+                        Button btYes =
+                                (Button) dialog.findViewById(R.id.btYes);
+                        btYes.setOnClickListener(new OnClickListener() {
+
+                            @Override
+                            public void onClick(final View v) {
+                                Intent chooseModelIntent = new Intent(parentActivity,
+                                        Chat.class);
+                                List<CharSequence> listColorMatchExercise = new ArrayList<CharSequence>();
+                                listColorMatchExercise.add(json);
+                                chooseModelIntent.putCharSequenceArrayListExtra("Chat", (ArrayList<CharSequence>) listColorMatchExercise);
+                                parentActivity.startActivity(chooseModelIntent);
+                                dialog.dismiss();
+                            }
+                        });
+
+                        Button btNo =
+                                (Button) dialog.findViewById(R.id.btNo);
+                        btNo.setOnClickListener(new OnClickListener() {
+
+                            @Override
+                            public void onClick(final View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                        dialog.show();
                         break;
                     default:
                         break;

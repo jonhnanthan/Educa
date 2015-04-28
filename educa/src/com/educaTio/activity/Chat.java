@@ -162,7 +162,6 @@ public class Chat extends Activity {
                 new PingInfo(senderName,message));
 
         mBusHandler.sendMessage(msg);
-//        mMessageEditText.setText("");
         
         finish();
 

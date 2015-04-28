@@ -72,6 +72,8 @@
     <string name="error_password">8 to 16 characters</string>
     <string name="quit">quit</string>
     <string name="chat">chat</string>
+    <string name="confirmation_send">Are you sure you want to send the exercise?</string>
+    
 
 
 </resources>
