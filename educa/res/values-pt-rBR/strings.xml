@@ -3,7 +3,7 @@
 
     <string name="app_name">educa Professor</string>
     
-    <string name="confirmation_send">Tem certeza que deseja enviar o exercicio?</string>
+    <string name="confirmation_send">Tem certeza que deseja enviar o exercício?</string>
     
     <string name="student_home_activity">Aluno</string>
     <string name="teacher_home_activity">Professor</string>
@@ -72,7 +72,7 @@
 	<string name="exercise_name">Nome do Exercício</string>
     <string name="send_alert_title">Enviar Exercício</string>
     <string name="send_alert_message">Você deseja enviar este exercício?</string>
-    <string name="fileSent">Arquivo Enviado!</string>
+    <string name="fileSent">Exercício enviado!</string>
     <string name="ErrorSend">Erro ao enviar o arquivo.</string>
     <string name="new_class_hotspot">Iniciar Classe</string>
     <string name="new_class">Nova Classe</string>
@@ -83,6 +83,6 @@
     <string name="choose_a_image">Escolha uma imagem</string>
     <string name="choose_a_numero">Escolha um número</string>
     <string name="chat">chat</string>
-
+	<string name="sending">Enviando...</string>
 
 </resources>

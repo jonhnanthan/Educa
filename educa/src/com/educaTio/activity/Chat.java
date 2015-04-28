@@ -27,6 +27,7 @@ import android.view.*;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.*;
+
 import com.educaTio.R;
 import org.alljoyn.bus.*;
 import org.alljoyn.bus.annotation.BusSignalHandler;
@@ -163,6 +164,7 @@ public class Chat extends Activity {
 
         mBusHandler.sendMessage(msg);
         
+        Toast.makeText(this, getResources().getString(R.string.fileSent), Toast.LENGTH_SHORT).show();
         finish();
 
     }

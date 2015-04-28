@@ -61,7 +61,7 @@
     <string name="send">Send</string>
     <string name="send_alert_title">Send Exercise</string>
     <string name="send_alert_message">Do you want to send the Exercise?</string>
-    <string name="fileSent">File Sent!</string>
+    <string name="fileSent">Exercise sent!</string>
     <string name="ErrorSend">Error sending the file.</string>
     <string name="choose_a_image">Escolha a imagem</string>
     <string name="choose_a_numero">Escolha o numero</string>
@@ -73,7 +73,7 @@
     <string name="quit">quit</string>
     <string name="chat">chat</string>
     <string name="confirmation_send">Are you sure you want to send the exercise?</string>
-    
+    <string name="sending">Sending...</string>
 
 
 </resources>
