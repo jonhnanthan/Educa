@@ -3,6 +3,8 @@
 
     <string name="app_name">educa</string>
     
+    <string name="refresh">Refresh</string>
+    
     <string name="student_home_activity">Student - Home</string>
     <string name="teacher_home_activity">Teacher - Home</string>
 	<string name="choose_model_activity">Choose Model</string>

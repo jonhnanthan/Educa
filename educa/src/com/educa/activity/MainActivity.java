@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intentStudent = new Intent(getApplicationContext(),
-                        Chat.class);
+                       StudentHomeActivity.class);
                 startActivity(intentStudent);
             }
         });
