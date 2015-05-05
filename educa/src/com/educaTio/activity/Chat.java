@@ -165,7 +165,7 @@ public class Chat extends Activity {
         mBusHandler.sendMessage(msg);
         
         Toast.makeText(this, getResources().getString(R.string.fileSent), Toast.LENGTH_SHORT).show();
-        finish();
+//        finish();
 
     }
 
