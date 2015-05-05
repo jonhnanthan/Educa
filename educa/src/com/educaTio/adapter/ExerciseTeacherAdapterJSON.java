@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,10 +19,14 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.educaTio.R;
 import com.educaTio.activity.EditColorMatchExerciseActivity;
@@ -314,28 +319,34 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
     }
 
     public void deleteAlert(final String json) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(parentActivity);
-        builder.setTitle(parentActivity.getResources().getString(R.string.delete_alert_title));
-        builder.setMessage(parentActivity.getResources().getString(R.string.delete_alert_message));
-
-        builder.setPositiveButton(parentActivity.getResources().getString(R.string.ok),
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        removeAndNotify(json);
-                    }
-                });
-
-        builder.setNegativeButton(R.string.cancel,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-
-                    }
-                });
-
-        AlertDialog alert = builder.create();
-        alert.show();
+		final Dialog dialog = new Dialog(parentActivity);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.dialog_yes_no_sentence);
+	    TextView tvMsgToShow =
+	            (TextView) dialog.findViewById(R.id.tvYesNoAlertDialog);
+	    tvMsgToShow.setText( parentActivity.getResources().getString(R.string.delete_alert_message) );
+	
+	    Button btYes =
+	            (Button) dialog.findViewById(R.id.btYes);
+	    btYes.setOnClickListener(new OnClickListener() {
+	
+	        @Override
+	        public void onClick(final View v) {
+	        	removeAndNotify(json);
+	            dialog.dismiss();
+	        }
+	    });
+	
+	    Button btNo =
+	            (Button) dialog.findViewById(R.id.btNo);
+	    btNo.setOnClickListener(new OnClickListener() {
+	
+	        @Override
+	        public void onClick(final View v) {
+	            dialog.dismiss();
+	        }
+	    });
+	    dialog.show();
     }
 
 }

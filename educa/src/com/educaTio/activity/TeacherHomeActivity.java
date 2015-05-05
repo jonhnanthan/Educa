@@ -117,8 +117,8 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
 	        @Override
 	        public void onClick(final View v) {
 	            Toast.makeText(contx, R.string.sending, Toast.LENGTH_SHORT).show();
-	            Log.i("Teste", exercises1.get(position));
-//	            send(exercises1.get(position));
+	            Log.i("Enviando", exercises1.get(position));
+	            send(exercises1.get(position));
 	            dialog.dismiss();
 	        }
 	    });
@@ -188,7 +188,7 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
             case MESSAGE_CHAT:
                 /* Add the chat message received to the List View */
                 String ping = (String) msg.obj;
-                mListViewArrayAdapter.add(ping);
+//                mListViewArrayAdapter.add(ping);
                 break;
             case MESSAGE_POST_TOAST:
                 /* Post a toast to the UI */
