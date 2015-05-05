@@ -162,6 +162,7 @@ public class Chat extends Activity {
         mBusHandler = new Handler(busThread.getLooper(),new BusHandlerCallback());
 
         mBusHandler.sendEmptyMessage(BusHandlerCallback.CONNECT);
+        Log.i("Chat", "conectado");
     }
 
     @Override
@@ -194,15 +195,11 @@ public class Chat extends Activity {
 				try {
 					exercise = new JSONObject(message);
 					DataBaseAluno.getInstance(getApplicationContext()).addActivity(exercise.getString("name"), exercise.getString("type") , message);
-
-                    Intent intent = new Intent(Chat.this, StudentHomeActivity.class);
-                    startActivity(intent);
-                    
+					Log.i("Chat", "database atualizado");
 				} catch (JSONException e) {
-					Log.e("Erro ao processar mensagem", e.getMessage());
+					Log.e("Chat", e.getMessage());
 				}
             }
-//            sendUiMessage(MESSAGE_CHAT, senderName + ": "+ message);
         }
 
         /* Helper function to send a message to the UI thread. */
