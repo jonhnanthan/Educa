@@ -89,7 +89,7 @@
     <string name="new_user">Adicionar Usuário</string>
 	<string name="error_new_user">Este usuário já existe</string>
 	<string name="name_new_user">Nome</string>
-	<string name="login_incorrect">Login incorreto</string>
+	<string name="login_incorrect">Você não é professor!</string>
 	<string name="password_incorrect">Senha incorreta</string>
 	<string name="no_users">Não há usuários cadastrados. Deseja cadastrar agora?</string>
 </resources>
