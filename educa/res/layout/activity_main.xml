@@ -5,11 +5,24 @@
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical"
     android:background="@drawable/bg_home"
-    android:gravity="center_vertical"
+    android:gravity="center_vertical|center_horizontal"
     android:orientation="vertical"
     tools:context="com.educa.activity.MainActivity"
     tools:ignore="MergeRootFrame" >
 
+    <EditText
+        android:id="@+id/student_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/selector_et"
+        android:hint="@string/student_name"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:textColor="#777777"
+        android:textColorHint="#AAAAAA"
+        android:textCursorDrawable="@drawable/cursor" />
+    
     <ImageButton
         android:id="@+id/bt_student"
         android:layout_width="wrap_content"

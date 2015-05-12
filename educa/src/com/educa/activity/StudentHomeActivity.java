@@ -2,6 +2,7 @@
 package com.educa.activity;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import org.alljoyn.bus.BusAttachment;
 import org.alljoyn.bus.BusException;
@@ -26,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.educa.R;
@@ -40,6 +42,13 @@ public class StudentHomeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_home);
+        
+        TextView tv = (TextView) findViewById(R.id.textView1);
+        if (Locale.getDefault().toString().equalsIgnoreCase("pt_br")){
+        	tv.setText(getResources().getString(R.string.my_exercises) + " " + getSharedPreferences("Preferences", 0).getString("StudentName", ""));
+        } else{
+        	tv.setText(getSharedPreferences("Preferences", 0).getString("StudentName", "") + " " +getResources().getString(R.string.my_exercises));
+        }
 
         listview = (ListView) findViewById(R.id.lv_exercise);
 

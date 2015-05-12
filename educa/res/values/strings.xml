@@ -57,7 +57,7 @@
 	<string name="correction_wrong">Wrong Answer</string>
 					
 	<string name="created_exercises">Created Exercises</string>
-	<string name="my_exercises">My Exercises</string>
+	<string name="my_exercises">Exercises</string>
 	<string name="choose_the_right_answer">Choose the right answer</string>
 	<string name="choose_a_color">Choose a color</string>
 	<string name="exercise_name_already_exists">Exercise name already exists. Choose other name</string>
@@ -69,5 +69,6 @@
 	<string name="fragment_help_3">Choose the correct alternative.</string>
     <string name="question">Question</string>
 	<string name="exercise_name">Exercise Name</string>
+	<string name="student_name">Name</string>
 
 </resources>
