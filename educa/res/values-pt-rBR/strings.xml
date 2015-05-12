@@ -84,5 +84,7 @@
     <string name="choose_a_numero">Escolha um número</string>
     <string name="chat">chat</string>
 	<string name="sending">Enviando...</string>
-
+    <string name="login">Login</string>
+    <string name="login_password">Senha</string>
+	
 </resources>

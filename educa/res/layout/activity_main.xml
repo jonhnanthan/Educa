@@ -5,22 +5,38 @@
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical"
     android:background="@drawable/bg_home"
-    android:gravity="center_vertical"
+    android:gravity="center_vertical|center_horizontal"
     android:orientation="vertical"
     tools:context="com.educa.activity.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-    <TextView
-        android:id="@+id/textView1"
+    <EditText
+        android:id="@+id/login"
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:layout_marginTop="-70dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:textColor="#ffffffff"
-        android:textSize="20sp"
-        android:textStyle="normal|bold" />
-
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_et"
+        android:hint="@string/login"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:textColor="#777777"
+        android:textColorHint="#AAAAAA"
+        android:textCursorDrawable="@drawable/cursor" />
+    
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_et"
+        android:hint="@string/login_password"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:textColor="#777777"
+        android:textColorHint="#AAAAAA"
+        android:textCursorDrawable="@drawable/cursor" />
+    
     <ImageButton
         android:id="@+id/bt_teacher"
         android:layout_width="wrap_content"
