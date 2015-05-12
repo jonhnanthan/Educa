@@ -78,6 +78,9 @@
     <string name="login_password">Password</string>
     <string name="new_user">Add User</string>
     <string name="error_new_user">This user already exists</string>
-
+	<string name="name_new_user">Name</string>
+	<string name="login_incorrect">Incorrect login</string>
+	<string name="password_incorrect">Incorrect password</string>
+	<string name="no_users">There are registered users. Would you like to register now?</string>
 
 </resources>

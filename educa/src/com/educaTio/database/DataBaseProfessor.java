@@ -174,16 +174,16 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
 		return activities;
 	}
 	
-    public final long addUser(String login, String password) {
+    public final long addUser(String name, String login, String password) {
 
         final SQLiteDatabase db = getWritableDatabase();
         final ContentValues values = new ContentValues();
         
         JSONObject data = new JSONObject();
         try {
+        	data.put("name", name);
 			data.put("login", login);
 			data.put("password", password);
-			
 		} catch (JSONException e) {
             String LOG = "JSON DATABASE PROFESSOR";
             Log.e(LOG, e.getMessage());

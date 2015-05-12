@@ -11,6 +11,19 @@
     tools:ignore="MergeRootFrame" >
 
     <EditText
+        android:id="@+id/name_new_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_et"
+        android:hint="@string/name_new_user"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:textColor="#777777"
+        android:textColorHint="#AAAAAA"
+        android:textCursorDrawable="@drawable/cursor" />
+    
+    <EditText
         android:id="@+id/login_new_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

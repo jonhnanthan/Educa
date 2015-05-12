@@ -25,6 +25,7 @@ public class NewUser extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_user);
 		
+		final EditText name = (EditText) findViewById(R.id.name_new_user);
 		final EditText login = (EditText) findViewById(R.id.login_new_user);
 		final EditText password = (EditText) findViewById(R.id.password_new_user);
 		
@@ -34,12 +35,12 @@ public class NewUser extends Activity {
 
             @Override
             public void onClick(View v) {
-            	if (checkValidation(login) && checkValidation(password)){
+            	if (checkValidation(login) && checkValidation(password) && checkValidation(name)){
             		HashMap<String, String> users = DataBaseProfessor.getInstance(getApplicationContext()).getUsers();
             		if (users.containsKey(login.getText().toString())){
             			showDialogError();
             		} else{
-            			DataBaseProfessor.getInstance(getApplicationContext()).addUser(login.getText().toString(), password.getText().toString());
+            			DataBaseProfessor.getInstance(getApplicationContext()).addUser(name.getText().toString(), login.getText().toString(), password.getText().toString());
             			Intent i = new Intent(getApplicationContext(), MainActivity.class);
             			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             			startActivity(i);
