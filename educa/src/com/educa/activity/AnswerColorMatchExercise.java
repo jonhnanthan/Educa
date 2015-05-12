@@ -6,12 +6,13 @@ import java.util.ArrayList;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -138,68 +139,65 @@ public class AnswerColorMatchExercise extends Activity {
     
 
     public void congratulationsAlert() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(AnswerColorMatchExercise.this);
-        builder.setTitle(getApplicationContext().getResources().getString(
-                R.string.congratulations_alert_title));
-        builder.setMessage(getApplicationContext().getResources().getString(
-                R.string.congratulations_alert_message));
+		final Dialog dialog = new Dialog(this);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.dialog_notification);
+	    TextView tvMsgToShow =
+	            (TextView) dialog.findViewById(R.id.tvYesNoAlertDialog);
+	    tvMsgToShow.setText( R.string.congratulations_alert_message );
+	
+	    Button btYes =
+	            (Button) dialog.findViewById(R.id.btYes);
+	    btYes.setOnClickListener(new OnClickListener() {
+	
+	        @Override
+	        public void onClick(final View v) {
+            	StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerColorMatchExercise.this));
+            	StudentHomeActivity.getAdapter().notifyDataSetChanged();
 
-        builder.setPositiveButton(getApplicationContext().getResources().getString(R.string.ok),
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        try {
-                        	StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerColorMatchExercise.this));
-                        	StudentHomeActivity.getAdapter().notifyDataSetChanged();
+                Intent intent = new Intent(AnswerColorMatchExercise.this, StudentHomeActivity.class);
+                startActivity(intent);
 
-                            Intent intent = new Intent(AnswerColorMatchExercise.this, StudentHomeActivity.class);
-                            startActivity(intent);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
-        AlertDialog alert = builder.create();
-        alert.show();
+	            dialog.dismiss();
+	        }
+	    });
+	
+	    dialog.show();
     }
 
     public void tryAgainAlert() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(AnswerColorMatchExercise.this);
-        builder.setTitle(getApplicationContext().getResources()
-                .getString(R.string.fail_alert_title));
-        builder.setMessage(getApplicationContext().getResources().getString(
-                R.string.fail_alert_message));
+		final Dialog dialog = new Dialog(this);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.dialog_yes_no_sentence);
+	    TextView tvMsgToShow =
+	            (TextView) dialog.findViewById(R.id.tvYesNoAlertDialog);
+	    tvMsgToShow.setText( R.string.fail_alert_message );
+	
+	    Button btYes =
+	            (Button) dialog.findViewById(R.id.btYes);
+	    btYes.setOnClickListener(new OnClickListener() {
+	
+	        @Override
+	        public void onClick(final View v) {
+				dialog.dismiss();
+	        }
+	    });
+	
+	    Button btNo =
+	            (Button) dialog.findViewById(R.id.btNo);
+	    btNo.setOnClickListener(new OnClickListener() {
+	
+	        @Override
+	        public void onClick(final View v) {
+            	StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerColorMatchExercise.this));
+            	StudentHomeActivity.getAdapter().notifyDataSetChanged();
 
-        builder.setPositiveButton(getApplicationContext().getResources().getString(R.string.yes),
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        try {
-                            finalize();
-                        } catch (Throwable t){
-                        	t.printStackTrace();
-                        }
-                    }
-                });
-
-        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface arg0, int arg1) {
-                try {
-                	StudentHomeActivity.setAdapter(new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), AnswerColorMatchExercise.this));
-                	StudentHomeActivity.getAdapter().notifyDataSetChanged();
-
-                    Intent intent = new Intent(AnswerColorMatchExercise.this,
-                            StudentHomeActivity.class);
-                    startActivity(intent);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        AlertDialog alert = builder.create();
-        alert.show();
+                Intent intent = new Intent(AnswerColorMatchExercise.this,
+                        StudentHomeActivity.class);
+                startActivity(intent);
+	            dialog.dismiss();
+	        }
+	    });
+	    dialog.show();
     }
 }
