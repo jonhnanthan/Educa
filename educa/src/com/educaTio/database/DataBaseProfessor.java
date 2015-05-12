@@ -1,14 +1,19 @@
 
 package com.educaTio.database;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.util.Log;
 
 public class DataBaseProfessor extends SQLiteOpenHelper {
 
@@ -19,6 +24,15 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     private static final String COLUNA_PROFESSOR_TIPO_ATIVIDADE = "Tipo_atividade";
     private static final String COLUNA_PROFESSOR_ATIVIDADE_JSON = "Atividade";
     private static final String TABLE_ATIVIDADES_PROFESSOR = "AtividadesProfessor";
+    
+    private static final String COLUNA_LOGIN_JSON_DATA = "JSON_DATA";
+    private static final String TABLE_LOGIN = "Login";
+    private static final String SQL_CREATE_LOGIN = "CREATE TABLE " +
+    		TABLE_LOGIN + " (" +
+    		"ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
+    		COLUNA_LOGIN_JSON_DATA + " VARCHAR );";
+    
+    private static final String SQL_DELETE_PROFESSOR_LOGIN = "DROP TABLE IF EXISTS Login";
 
     private static final String SQL_CREATE_PROFESSOR = "CREATE TABLE "
             + TABLE_ATIVIDADES_PROFESSOR + "("
@@ -51,11 +65,13 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(SQL_CREATE_PROFESSOR);
+        db.execSQL(SQL_CREATE_LOGIN);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SQL_DELETE_PROFESSOR_TABLE);
+        db.execSQL(SQL_DELETE_PROFESSOR_LOGIN);
         onCreate(db);
         
     }
@@ -158,4 +174,54 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
 		return activities;
 	}
 	
+    public final long addUser(String login, String password) {
+
+        final SQLiteDatabase db = getWritableDatabase();
+        final ContentValues values = new ContentValues();
+        
+        JSONObject data = new JSONObject();
+        try {
+			data.put("login", login);
+			data.put("password", password);
+			
+		} catch (JSONException e) {
+            String LOG = "JSON DATABASE PROFESSOR";
+            Log.e(LOG, e.getMessage());
+        }
+
+        values.put(COLUNA_LOGIN_JSON_DATA, data.toString());
+        
+        long id = db.insert(TABLE_LOGIN, null, values);
+
+        db.close();
+        
+        return id;
+    }
+
+    public HashMap<String, String> getUsers(){
+    	HashMap<String, String> users = new HashMap<String, String>();
+    	
+    	String sql = "select " + COLUNA_LOGIN_JSON_DATA + " from Login";
+    	
+    	final SQLiteDatabase db = getWritableDatabase();
+    	final Cursor c = db.rawQuery(sql, null);
+    	
+    	if (c.getCount() > 0 && c.moveToFirst()){
+    		for (int i = 0; i < c.getCount(); i++) {
+    			try {
+    				JSONObject data = new JSONObject(c.getString(0));
+    				users.put(data.getString("login"), data.getString("password"));
+				} catch (Exception e) {
+		            String LOG = "JSON DATABASE PROFESSOR";
+		            Log.e(LOG, e.getMessage());
+				}
+    			c.moveToNext();
+			}
+    	}
+    	
+    	c.close();
+    	db.close();
+    	
+    	return users;
+    }
 }

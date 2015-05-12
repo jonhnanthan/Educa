@@ -44,7 +44,10 @@
             android:name="com.educaTio.activity.Chat"
             android:label="@string/chat" >
         </activity>
-
+        <activity
+            android:name="com.educaTio.activity.NewUser"
+            android:label="@string/new_user" >
+        </activity>
         <activity
             android:name="com.educaTio.activity.ChooseModelActivity"
             android:label="@string/choose_model_activity" >

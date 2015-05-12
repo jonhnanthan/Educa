@@ -86,5 +86,6 @@
 	<string name="sending">Enviando...</string>
     <string name="login">Login</string>
     <string name="login_password">Senha</string>
-	
+    <string name="new_user">Adicionar Usuário</string>
+	<string name="error_new_user">Este usuário já existe</string>
 </resources>
