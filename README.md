@@ -1,8 +1,7 @@
-les20142
+Educa
 ========
 
-Repositório para a disciplina de LES turma 20142
-<p>Repositório no Jenkins</p>
+<p>Repositório privado do projeto</p>
 
 <p>*Passos para uso do projeto caso clone pelo plugin do eclipse:</p>
 <p>1 - Botão direito no Package Explorer > Import > Git > Project from Git</p>
