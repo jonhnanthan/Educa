@@ -150,6 +150,15 @@ public class StudentHomeActivity extends Activity {
 				}
                 }
         });
+        
+        /* Make all AllJoyn calls through a separate handler thread to prevent blocking the UI. */
+        HandlerThread busThread = new HandlerThread("BusHandler");
+        busThread.start();
+        mBusHandler = new Handler(busThread.getLooper(),new BusHandlerCallback());
+
+        mBusHandler.sendEmptyMessage(BusHandlerCallback.CONNECT);
+        Log.i("Chat", "conectado");
+
     }
 
     public static ExerciseStudentAdapter getAdapter() {
@@ -184,13 +193,8 @@ public class StudentHomeActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		switch (item.getItemId()) {
 		case R.id.refresh:
-	        /* Make all AllJoyn calls through a separate handler thread to prevent blocking the UI. */
-	        HandlerThread busThread = new HandlerThread("BusHandler");
-	        busThread.start();
-	        mBusHandler = new Handler(busThread.getLooper(),new BusHandlerCallback());
-
-	        mBusHandler.sendEmptyMessage(BusHandlerCallback.CONNECT);
-	        Log.i("Chat", "conectado");
+			setAdapter(new ExerciseStudentAdapter(getApplicationContext(), 
+					DataBaseAluno.getInstance(getApplicationContext()).getActivities(), StudentHomeActivity.this));
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -261,13 +265,13 @@ public class StudentHomeActivity extends Activity {
 //    private ListView listview;
 //    private static ExerciseStudentAdapter adapter;
 
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//
-//        /* Disconnect to prevent any resource leaks. */
-//        mBusHandler.sendEmptyMessage(BusHandlerCallback.DISCONNECT);
-//    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        /* Disconnect to prevent any resource leaks. */
+        mBusHandler.sendEmptyMessage(BusHandlerCallback.DISCONNECT);
+    }
 
     /* The class that is our AllJoyn service.  It implements the ChatInterface. */
     class ChatService implements ChatInterface, BusObject {
@@ -293,11 +297,11 @@ public class StudentHomeActivity extends Activity {
 					DataBaseAluno.getInstance(getApplicationContext()).addActivity(exercise.getString("name"), exercise.getString("type") , message);
 					Log.i("Chat", "database atualizado");
 
-                	mBusHandler.sendEmptyMessage(BusHandlerCallback.DISCONNECT);
-			        
-                	/*refresh forçado para atualizar a lista*/
-                	finish();
-                	startActivity(getIntent());
+//                	mBusHandler.sendEmptyMessage(BusHandlerCallback.DISCONNECT);
+//			        
+//                	/*refresh forÔøΩado para atualizar a lista*/
+//                	finish();
+//                	startActivity(getIntent());
                 	
 			        Log.i("Chat", "NOVO ADAPTER E DISCONNECT");
 
