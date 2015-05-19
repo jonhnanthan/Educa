@@ -326,9 +326,9 @@ public class StudentHomeActivity extends Activity {
 				} catch (JSONException e) {
 					Log.e("Chat", e.getMessage());
 				}
+				Message msg = new Message();
+				hToast.sendMessage(msg);
             }
-            Message msg = new Message();
-            hToast.sendMessage(msg);
         }
 
         /* Helper function to send a message to the UI thread. */
