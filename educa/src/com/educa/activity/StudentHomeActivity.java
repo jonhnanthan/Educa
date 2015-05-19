@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -37,11 +38,14 @@ import com.educa.database.DataBaseAluno;
 public class StudentHomeActivity extends Activity {
     private ListView listview;
     private static ExerciseStudentAdapter adapter;
+    private Context ctx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_home);
+        
+        ctx = getApplicationContext();
         
         TextView tv = (TextView) findViewById(R.id.textView1);
         if (Locale.getDefault().toString().equalsIgnoreCase("pt_br")){
@@ -171,6 +175,16 @@ public class StudentHomeActivity extends Activity {
         }
 
     }
+    
+    private Handler hToast = new Handler(new Handler.Callback() {
+
+        @Override
+        public boolean handleMessage(Message msg) {
+            Toast.makeText(getApplicationContext(), R.string.att, Toast.LENGTH_LONG).show();
+            return true;
+        }
+    });
+
 
     public static ExerciseStudentAdapter getAdapter() {
         return adapter;
@@ -308,12 +322,13 @@ public class StudentHomeActivity extends Activity {
 					exercise = new JSONObject(message);
 					DataBaseAluno.getInstance(getApplicationContext()).addActivity(exercise.getString("name"), exercise.getString("type") , message);
 					Log.i("Chat", "database atualizado");
-					Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.att), Toast.LENGTH_SHORT).show();
 
 				} catch (JSONException e) {
 					Log.e("Chat", e.getMessage());
 				}
             }
+            Message msg = new Message();
+            hToast.sendMessage(msg);
         }
 
         /* Helper function to send a message to the UI thread. */
