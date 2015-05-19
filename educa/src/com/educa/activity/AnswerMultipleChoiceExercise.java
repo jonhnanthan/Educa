@@ -87,7 +87,7 @@ public class AnswerMultipleChoiceExercise extends Activity {
                     	try {
                     		exerciseJson = new JSONObject(string);
                     		if (exerciseJson.getString("name").equals(exercise.get(0))){
-//                    			DataBaseProfessor.getInstance(getApplicationContext()).removeActivity(exerciseJson.getString("name"));
+                    			DataBaseAluno.getInstance(getApplicationContext()).removeActivity(exerciseJson.getString("name"));
                     			c = new MultipleChoiceExercise(
                     					exerciseJson.getString("name"),
                     					exerciseJson.getString("type"),
@@ -105,12 +105,12 @@ public class AnswerMultipleChoiceExercise extends Activity {
                     			
                     			if (c.getRightAnswer().equals(rightAnswer)){
                     				c.setCorrection(String.valueOf(Correction.RIGHT));
-//                    				DataBaseProfessor.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
-                    				congratulationsAlert();
+                    				DataBaseAluno.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
+                    				congratulationsAlert(c.getJsonTextObject());
                     			} else{
                     				c.setCorrection(String.valueOf(Correction.WRONG));
-//                    				DataBaseProfessor.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
-                    				tryAgainAlert();
+                    				DataBaseAluno.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
+                    				tryAgainAlert(c.getJsonTextObject());
                     			}
                     		}
 							
@@ -138,7 +138,7 @@ public class AnswerMultipleChoiceExercise extends Activity {
 
     
 
-    public void congratulationsAlert() {
+    public void congratulationsAlert(final String json) {
 		final Dialog dialog = new Dialog(this);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.dialog_notification);
@@ -157,6 +157,7 @@ public class AnswerMultipleChoiceExercise extends Activity {
 
                 Intent intent = new Intent(AnswerMultipleChoiceExercise.this,
                         StudentHomeActivity.class);
+                intent.putExtra("SEND_EXERCISE", json);
                 startActivity(intent);
 
 	            dialog.dismiss();
@@ -166,7 +167,7 @@ public class AnswerMultipleChoiceExercise extends Activity {
 	    dialog.show();
     }
 
-    public void tryAgainAlert() {
+    public void tryAgainAlert(final String json) {
 		final Dialog dialog = new Dialog(this);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.dialog_yes_no_sentence);
@@ -195,6 +196,7 @@ public class AnswerMultipleChoiceExercise extends Activity {
 
                 Intent intent = new Intent(AnswerMultipleChoiceExercise.this,
                         StudentHomeActivity.class);
+                intent.putExtra("SEND_EXERCISE", json);
                 startActivity(intent);
 	            dialog.dismiss();
 	        }

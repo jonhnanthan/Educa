@@ -158,6 +158,16 @@ public class StudentHomeActivity extends Activity {
 
         mBusHandler.sendEmptyMessage(BusHandlerCallback.CONNECT);
         Log.i("Chat", "conectado");
+        
+        if (getIntent().hasExtra("SEND_EXERCISE")){
+    		String senderName = getSharedPreferences("Preferences", 0).getString("StudentName", "");
+    		String message = getIntent().getStringExtra("SEND_EXERCISE");
+    		Log.v("SEND", message);
+    		Message msg = mBusHandler.obtainMessage(BusHandlerCallback.CHAT,
+    				new PingInfo(senderName, message));
+    		
+    		mBusHandler.sendMessage(msg);
+        }
 
     }
 
@@ -193,8 +203,9 @@ public class StudentHomeActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		switch (item.getItemId()) {
 		case R.id.refresh:
-			setAdapter(new ExerciseStudentAdapter(getApplicationContext(), 
-					DataBaseAluno.getInstance(getApplicationContext()).getActivities(), StudentHomeActivity.this));
+	        adapter = new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), StudentHomeActivity.this);
+	        listview.setAdapter(adapter);
+	        adapter.notifyDataSetChanged();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -296,14 +307,7 @@ public class StudentHomeActivity extends Activity {
 					exercise = new JSONObject(message);
 					DataBaseAluno.getInstance(getApplicationContext()).addActivity(exercise.getString("name"), exercise.getString("type") , message);
 					Log.i("Chat", "database atualizado");
-
-//                	mBusHandler.sendEmptyMessage(BusHandlerCallback.DISCONNECT);
-//			        
-//                	/*refresh for�ado para atualizar a lista*/
-//                	finish();
-//                	startActivity(getIntent());
-                	
-			        Log.i("Chat", "NOVO ADAPTER E DISCONNECT");
+					Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.att), Toast.LENGTH_SHORT).show();
 
 				} catch (JSONException e) {
 					Log.e("Chat", e.getMessage());

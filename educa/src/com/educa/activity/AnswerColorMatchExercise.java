@@ -90,7 +90,7 @@ public class AnswerColorMatchExercise extends Activity {
                     	try {
                     		exerciseJson = new JSONObject(string);
                     		if (exerciseJson.getString("name").equals(exercise.get(0))){
-//                    			DataBaseAluno.getInstance(getApplicationContext()).removeActivity(exerciseJson.getString("name"));
+                    			DataBaseAluno.getInstance(getApplicationContext()).removeActivity(exerciseJson.getString("name"));
                     			c = new ColorMatchExercise(
                     					exerciseJson.getString("name"),
                     					exerciseJson.getString("type"),
@@ -109,12 +109,12 @@ public class AnswerColorMatchExercise extends Activity {
                     			
                     			if (c.getRightAnswer().equals(rightAnswer)){
                     				c.setCorrection(String.valueOf(Correction.RIGHT));
-//                    				DataBaseAluno.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
-                    				congratulationsAlert();
+                    				DataBaseAluno.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
+                    				congratulationsAlert(c.getJsonTextObject());
                     			} else{
                     				c.setCorrection(String.valueOf(Correction.WRONG));
-//                    				DataBaseAluno.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
-                    				tryAgainAlert();
+                    				DataBaseAluno.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
+                    				tryAgainAlert(c.getJsonTextObject());
                     			}
                     		}
 							
@@ -138,7 +138,7 @@ public class AnswerColorMatchExercise extends Activity {
 
     
 
-    public void congratulationsAlert() {
+    public void congratulationsAlert(final String json) {
 		final Dialog dialog = new Dialog(this);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.dialog_notification);
@@ -156,6 +156,7 @@ public class AnswerColorMatchExercise extends Activity {
             	StudentHomeActivity.getAdapter().notifyDataSetChanged();
 
                 Intent intent = new Intent(AnswerColorMatchExercise.this, StudentHomeActivity.class);
+                intent.putExtra("SEND_EXERCISE", json);
                 startActivity(intent);
 
 	            dialog.dismiss();
@@ -165,7 +166,7 @@ public class AnswerColorMatchExercise extends Activity {
 	    dialog.show();
     }
 
-    public void tryAgainAlert() {
+    public void tryAgainAlert(final String json) {
 		final Dialog dialog = new Dialog(this);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.dialog_yes_no_sentence);
@@ -194,6 +195,7 @@ public class AnswerColorMatchExercise extends Activity {
 
                 Intent intent = new Intent(AnswerColorMatchExercise.this,
                         StudentHomeActivity.class);
+                intent.putExtra("SEND_EXERCISE", json);
                 startActivity(intent);
 	            dialog.dismiss();
 	        }

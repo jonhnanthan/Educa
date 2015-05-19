@@ -70,5 +70,6 @@
     <string name="question">Question</string>
 	<string name="exercise_name">Exercise Name</string>
 	<string name="student_name">Name</string>
+	<string name="att">Refresh list. New exercises available!</string>
 
 </resources>

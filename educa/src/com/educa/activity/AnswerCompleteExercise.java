@@ -128,7 +128,7 @@ public class AnswerCompleteExercise extends Activity {
                     	try {
                     		exerciseJson = new JSONObject(string);
                     		if (exerciseJson.getString("name").equals(listExercise.get(0))){
-//                    			DataBaseProfessor.getInstance(getApplicationContext()).removeActivity(exerciseJson.getString("name"));
+                    			DataBaseAluno.getInstance(getApplicationContext()).removeActivity(exerciseJson.getString("name"));
                     			c = new CompleteExercise(
                     					exerciseJson.getString("name"),
                     					exerciseJson.getString("type"),
@@ -143,12 +143,12 @@ public class AnswerCompleteExercise extends Activity {
                     			
                     			if (isRight()){
                     				c.setCorrection(String.valueOf(Correction.RIGHT));
-//                    				DataBaseProfessor.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
-                    				congratulationsAlert();
+                    				DataBaseAluno.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
+                    				congratulationsAlert(c.getJsonTextObject());
                     			} else{
                     				c.setCorrection(String.valueOf(Correction.WRONG));
-//                    				DataBaseProfessor.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
-                    				tryAgainAlert();
+                    				DataBaseAluno.getInstance(getApplicationContext()).addActivity(c.getName(), c.getType(), c.getJsonTextObject());
+                    				tryAgainAlert(c.getJsonTextObject());
                     			}
                     		}
 							
@@ -193,7 +193,7 @@ public class AnswerCompleteExercise extends Activity {
         return true;
     }
 
-    public void congratulationsAlert() {
+    public void congratulationsAlert(final String json) {
 		final Dialog dialog = new Dialog(this);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.dialog_notification);
@@ -212,6 +212,7 @@ public class AnswerCompleteExercise extends Activity {
 
                 Intent intent = new Intent(AnswerCompleteExercise.this,
                         StudentHomeActivity.class);
+                intent.putExtra("SEND_EXERCISE", json);
                 startActivity(intent);
 
 	            dialog.dismiss();
@@ -221,7 +222,7 @@ public class AnswerCompleteExercise extends Activity {
 	    dialog.show();
     }
 
-    public void tryAgainAlert() {
+    public void tryAgainAlert(final String json) {
 		final Dialog dialog = new Dialog(this);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.dialog_yes_no_sentence);
@@ -250,6 +251,7 @@ public class AnswerCompleteExercise extends Activity {
 
                 Intent intent = new Intent(AnswerCompleteExercise.this,
                         StudentHomeActivity.class);
+                intent.putExtra("SEND_EXERCISE", json);
                 startActivity(intent);
 	            dialog.dismiss();
 	        }

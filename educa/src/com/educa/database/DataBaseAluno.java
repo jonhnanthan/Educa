@@ -2,6 +2,9 @@ package com.educa.database;
 
 import java.util.ArrayList;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -149,7 +152,7 @@ public class DataBaseAluno extends SQLiteOpenHelper{
 //	}
 	
     public final void addActivity(String name, String activityType, String activity) {
-    	if (verifyData(activity)){
+    	if (verifyData(name)){
             final SQLiteDatabase db = getWritableDatabase();
             final ContentValues values = new ContentValues();
 
@@ -160,20 +163,21 @@ public class DataBaseAluno extends SQLiteOpenHelper{
             System.out.println("addActivity: " + name + " " + activityType + " " + activity);
             
             long id = db.insert(TABLE_ATIVIDADES_ALUNO, null, values);
+            System.out.println(id);
 
             db.close();
     	}
     }
 
-    private final boolean verifyData(String activity){
-    	String sql = "select " + COLUNA_ALUNO_ATIVIDADE_JSON + " from " + TABLE_ATIVIDADES_ALUNO;
+    private final boolean verifyData(String name){
+    	String sql = "select " + COLUNA_ALUNO_NOME + " from " + TABLE_ATIVIDADES_ALUNO;
     	
     	final SQLiteDatabase db = getWritableDatabase();
     	final Cursor c = db.rawQuery(sql, null);
     	
     	if (c.getCount() > 0 && c.moveToFirst()){
     		for (int i = 0; i < c.getCount(); i++) {
-    			if (c.getString(0).equalsIgnoreCase(activity)) return false;
+    			if (c.getString(0).equalsIgnoreCase(name)) return false;
     			c.moveToNext();
 			}
     	}
@@ -182,6 +186,17 @@ public class DataBaseAluno extends SQLiteOpenHelper{
     	db.close();
     	
     	return true;
+    }
+    
+    public final void removeActivity(String name){
+		String sqlDelete = "delete from " + TABLE_ATIVIDADES_ALUNO + " where "
+				+ COLUNA_ALUNO_NOME + " = \'" + name + "\';";
+
+		final SQLiteDatabase db = getWritableDatabase();
+
+		db.execSQL(sqlDelete);
+
+		db.close();
     }
 
 }
