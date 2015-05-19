@@ -8,6 +8,8 @@ import org.alljoyn.bus.BusObject;
 import org.alljoyn.bus.SignalEmitter;
 import org.alljoyn.bus.Status;
 import org.alljoyn.bus.annotation.BusSignalHandler;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -229,8 +231,21 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
          */
         @BusSignalHandler(iface = "org.alljoyn.bus.samples.slchat", signal = "Chat")
         public void Chat(String senderName, String message) {
-            Log.i(TAG, "Signal  : " + senderName +": "+ message);
-            sendUiMessage(MESSAGE_CHAT, senderName + ": "+ message);
+            Log.i(TAG, message);
+            //TODO aqui que sera feito o add a interface, esse Message é o json
+            if (!message.isEmpty()){
+            	JSONObject exercise;
+				try {
+					exercise = new JSONObject(message);
+					Log.i("Chat Tio", "recebi do aluno");
+
+				} catch (JSONException e) {
+					Log.e("Chat", e.getMessage());
+				}
+            }
+
+//            Log.i(TAG, "Signal  : " + senderName +": "+ message);
+//            sendUiMessage(MESSAGE_CHAT, senderName + ": "+ message);
         }
 
         /* Helper function to send a message to the UI thread. */
