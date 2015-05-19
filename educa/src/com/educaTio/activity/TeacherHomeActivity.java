@@ -233,7 +233,7 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
         public void Chat(String senderName, String message) {
             Log.i(TAG, message);
             //TODO aqui que sera feito o add a interface, esse Message é o json
-            if (!message.isEmpty()){
+            if (!message.isEmpty() && !senderName.equalsIgnoreCase("Professor")){
             	JSONObject exercise;
 				try {
 					exercise = new JSONObject(message);
