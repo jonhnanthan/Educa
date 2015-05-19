@@ -160,6 +160,7 @@ public class StudentHomeActivity extends Activity {
         Log.i("Chat", "conectado");
         
         if (getIntent().hasExtra("SEND_EXERCISE")){
+        	System.out.println("envio do aluno");
     		String senderName = getSharedPreferences("Preferences", 0).getString("StudentName", "");
     		String message = getIntent().getStringExtra("SEND_EXERCISE");
     		Log.v("SEND", message);
@@ -301,7 +302,7 @@ public class StudentHomeActivity extends Activity {
         public void Chat(String senderName, String message) {
             Log.i(TAG, message);
             //TODO aqui que sera feito o add a interface, esse Message é o json
-            if (!message.isEmpty()){
+            if (!message.isEmpty() && senderName.equalsIgnoreCase("Professor")){
             	JSONObject exercise;
 				try {
 					exercise = new JSONObject(message);
