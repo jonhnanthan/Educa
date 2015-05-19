@@ -41,12 +41,12 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
 	
 	private static Context contx;
 	private List<String> exercises1;
-
+	
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_teacher_home);
-		contx = this;
+		contx = getApplicationContext();
 		
         ListView listView = (ListView) findViewById(R.id.lv_exercise);
         listView.setOnItemClickListener(this);
@@ -67,7 +67,16 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
         mBusHandler.sendEmptyMessage(BusHandlerCallback.CONNECT);
 
 	}
+    
+    private Handler hToast = new Handler(new Handler.Callback() {
 
+        @Override
+        public boolean handleMessage(Message msg) {
+            Toast.makeText(getApplicationContext(), "recebi do aluno", Toast.LENGTH_LONG).show();
+            return true;
+        }
+    });
+    
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -238,10 +247,11 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
 				try {
 					exercise = new JSONObject(message);
 					Log.i("Chat Tio", "recebi do aluno");
-
 				} catch (JSONException e) {
 					Log.e("Chat", e.getMessage());
 				}
+				Message msg = new Message();
+				hToast.sendMessage(msg);
             }
 
 //            Log.i(TAG, "Signal  : " + senderName +": "+ message);
