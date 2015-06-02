@@ -82,5 +82,6 @@
 	<string name="login_incorrect">You are not a professor!</string>
 	<string name="password_incorrect">Incorrect password</string>
 	<string name="no_users">There are registered users. Would you like to register now?</string>
+	<string name="report">Report</string>
 
 </resources>

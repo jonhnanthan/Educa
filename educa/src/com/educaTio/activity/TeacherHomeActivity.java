@@ -243,13 +243,7 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
             Log.i(TAG, message);
             //TODO aqui que sera feito o add a interface, esse Message é o json
             if (!message.isEmpty() && !senderName.equalsIgnoreCase("Professor")){
-            	JSONObject exercise;
-				try {
-					exercise = new JSONObject(message);
-					Log.i("Chat Tio", "recebi do aluno");
-				} catch (JSONException e) {
-					Log.e("Chat", e.getMessage());
-				}
+            	DataBaseProfessor.getInstance(getApplicationContext()).addReport(senderName, message);
 				Message msg = new Message();
 				hToast.sendMessage(msg);
             }

@@ -92,4 +92,5 @@
 	<string name="login_incorrect">Você não é professor!</string>
 	<string name="password_incorrect">Senha incorreta</string>
 	<string name="no_users">Não há usuários cadastrados. Deseja cadastrar agora?</string>
+	<string name="report">Relatório</string>
 </resources>

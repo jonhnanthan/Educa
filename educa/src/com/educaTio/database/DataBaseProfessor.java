@@ -24,25 +24,36 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     private static final String COLUNA_PROFESSOR_TIPO_ATIVIDADE = "Tipo_atividade";
     private static final String COLUNA_PROFESSOR_ATIVIDADE_JSON = "Atividade";
     private static final String TABLE_ATIVIDADES_PROFESSOR = "AtividadesProfessor";
+    private static final String SQL_CREATE_PROFESSOR = "CREATE TABLE "
+    		+ TABLE_ATIVIDADES_PROFESSOR + "("
+    		+ COLUNA_PROFESSOR_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
+    		+ COLUNA_PROFESSOR_TIPO_ATIVIDADE + " VARCHAR,"
+    		+ COLUNA_PROFESSOR_ATIVIDADE_JSON + " VARCHAR,"
+    		+ COLUNA_PROFESSOR_NOME + " VARCHAR );";
+    private static final String SQL_DELETE_PROFESSOR_TABLE = "DROP TABLE IF EXISTS " + TABLE_ATIVIDADES_PROFESSOR;
     
     private static final String COLUNA_LOGIN_JSON_DATA = "JSON_DATA";
     private static final String TABLE_LOGIN = "Login";
-    private static final String SQL_CREATE_LOGIN = "CREATE TABLE " +
-    		TABLE_LOGIN + " (" +
-    		"ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
-    		COLUNA_LOGIN_JSON_DATA + " VARCHAR );";
-    
-    private static final String SQL_DELETE_PROFESSOR_LOGIN = "DROP TABLE IF EXISTS Login";
+    private static final String SQL_CREATE_LOGIN = "CREATE TABLE " 
+    		+ TABLE_LOGIN + " ("
+    		+ "ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
+    		+ COLUNA_LOGIN_JSON_DATA + " VARCHAR );";
+    private static final String SQL_DELETE_PROFESSOR_LOGIN = "DROP TABLE IF EXISTS " + TABLE_LOGIN;
 
-    private static final String SQL_CREATE_PROFESSOR = "CREATE TABLE "
-            + TABLE_ATIVIDADES_PROFESSOR + "("
-            + COLUNA_PROFESSOR_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
-            + COLUNA_PROFESSOR_TIPO_ATIVIDADE + " VARCHAR,"
-            + COLUNA_PROFESSOR_ATIVIDADE_JSON + " VARCHAR,"
-            + COLUNA_PROFESSOR_NOME + " VARCHAR );";
-
-    private static final String SQL_DELETE_PROFESSOR_TABLE = "DROP TABLE IF EXISTS Professor";
-
+    private static final String TABLE_RELATORIO = "Relatorio";
+    private static final String COLUNA_RELATORIO_ID = "ID";
+    private static final String COLUNA_RELATORIO_NOME_ALUNO = "Nome_aluno";
+    private static final String COLUNA_RELATORIO_NOME_ATIVIDADE = "Nome_atividade";
+    private static final String COLUNA_RELATORIO_TIPO_ATIVIDADE = "Tipo_atividade";
+    private static final String COLUNA_RELATORIO_ATIVIDADE_JSON = "Atividade";
+    private static final String SQL_CREATE_RELATORIO = "CREATE TABLE "
+    		+ TABLE_RELATORIO + " ("
+    		+ COLUNA_RELATORIO_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
+    		+ COLUNA_RELATORIO_NOME_ALUNO + " VARCHAR,"
+    		+ COLUNA_RELATORIO_NOME_ATIVIDADE + " VARCHAR,"
+    		+ COLUNA_RELATORIO_TIPO_ATIVIDADE + " VARCHAR,"
+    		+ COLUNA_RELATORIO_ATIVIDADE_JSON + " VARCHAR );";
+    private static final String SQL_DELETE_RELATORIO = "DROP TABLE IF EXISTS " + TABLE_RELATORIO;
 
     public static final String COLOR_MATCH_EXERCISE_TYPECODE = "COLOR_MATCH_EXERCISE";
     public static final String MULTIPLE_CHOICE_EXERCISE_TYPECODE = "MULTIPLE_CHOICE_EXERCISE";
@@ -66,12 +77,14 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
 
         db.execSQL(SQL_CREATE_PROFESSOR);
         db.execSQL(SQL_CREATE_LOGIN);
+        db.execSQL(SQL_CREATE_RELATORIO);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SQL_DELETE_PROFESSOR_TABLE);
         db.execSQL(SQL_DELETE_PROFESSOR_LOGIN);
+        db.execSQL(SQL_DELETE_RELATORIO);
         onCreate(db);
         
     }
@@ -201,7 +214,7 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     public HashMap<String, String> getUsers(){
     	HashMap<String, String> users = new HashMap<String, String>();
     	
-    	String sql = "select " + COLUNA_LOGIN_JSON_DATA + " from Login";
+    	String sql = "select " + COLUNA_LOGIN_JSON_DATA + " from " + TABLE_LOGIN;
     	
     	final SQLiteDatabase db = getWritableDatabase();
     	final Cursor c = db.rawQuery(sql, null);
@@ -223,5 +236,86 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     	db.close();
     	
     	return users;
+    }
+    
+    public HashMap<String, ArrayList<String>> getReport(String json){
+    	HashMap<String, ArrayList<String>> report = new HashMap<String, ArrayList<String>>();
+    	
+    	ArrayList<String> key = new ArrayList<String>();
+    	
+    	JSONObject data;
+    	String atividadeName;
+    	try {
+    		data = new JSONObject(json);
+    		atividadeName = data.getString("name");
+		} catch (Exception e) {
+			return null;
+		}
+
+    	String sql = "select * from " + TABLE_RELATORIO + " where " + COLUNA_RELATORIO_NOME_ATIVIDADE + " = '" + atividadeName + "'";
+    	
+    	final SQLiteDatabase db = getWritableDatabase();
+    	final Cursor c = db.rawQuery(sql, null);
+    	
+    	if (c.getCount() > 0 && c.moveToFirst()){
+    		for (int i = 0; i < c.getCount(); i++) {
+    			String name = c.getString(1);
+    			if (!key.contains(name)){
+    				key.add(name);
+    			}
+    			
+    			c.moveToNext();
+			}
+    	}
+
+    	c.close();
+
+    	for (int i = 0; i < key.size(); i++) {
+    		
+    		String sqlName = "select * from " + TABLE_RELATORIO + " where " + COLUNA_RELATORIO_NOME_ATIVIDADE + " = '" + atividadeName
+    				+ "' and " + COLUNA_RELATORIO_NOME_ALUNO + " = '" + key.get(i) + "'";
+    		
+    		final Cursor c1 = db.rawQuery(sqlName, null);
+    		
+    		ArrayList<String> values = new ArrayList<String>();
+    		
+    		if (c1.getCount() > 0 && c1.moveToFirst()){
+    			for (int j = 0; j < c1.getCount(); j++) {
+    				values.add(c1.getString(4));
+    				c1.moveToNext();
+    			}
+    		}
+    		
+    		c1.close();
+			
+    		report.put(key.get(i), values);
+		}
+    	db.close();
+    	
+    	return report;
+    }
+    
+    public final long addReport(String nameAluno, String json){
+    	 final SQLiteDatabase db = getWritableDatabase();
+         final ContentValues values = new ContentValues();
+         
+         JSONObject data;
+         try {
+        	 data = new JSONObject(json);
+        	 values.put(COLUNA_RELATORIO_NOME_ALUNO, nameAluno);
+        	 values.put(COLUNA_RELATORIO_NOME_ATIVIDADE, data.getString("name"));
+        	 values.put(COLUNA_RELATORIO_TIPO_ATIVIDADE, data.getString("type"));
+        	 values.put(COLUNA_RELATORIO_ATIVIDADE_JSON, json);
+ 		} catch (JSONException e) {
+             String LOG = "DATABASE report";
+             Log.e(LOG, e.getMessage());
+         }
+
+         
+         long id = db.insert(TABLE_RELATORIO, null, values);
+
+         db.close();
+         
+         return id;
     }
 }
