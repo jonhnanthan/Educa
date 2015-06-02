@@ -83,5 +83,9 @@
 	<string name="password_incorrect">Incorrect password</string>
 	<string name="no_users">There are registered users. Would you like to register now?</string>
 	<string name="report">Report</string>
+	<string name="name_aluno">Student</string>
+	<string name="hits">Hits</string>
+	<string name="faults">Faults</string>
+	<string name="total">Total</string>
 
 </resources>

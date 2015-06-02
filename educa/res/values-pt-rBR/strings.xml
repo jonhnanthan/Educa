@@ -93,4 +93,9 @@
 	<string name="password_incorrect">Senha incorreta</string>
 	<string name="no_users">Não há usuários cadastrados. Deseja cadastrar agora?</string>
 	<string name="report">Relatório</string>
+	<string name="name_aluno">Aluno</string>
+	<string name="hits">Acertos</string>
+	<string name="faults">Erros</string>
+	<string name="total">Total</string>
+	
 </resources>
