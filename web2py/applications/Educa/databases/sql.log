@@ -90,3 +90,6 @@ CREATE TABLE recebido(
     resumo TEXT
 );
 success!
+timestamp: 2015-06-02T12:06:28.865064
+ALTER TABLE auth_user ADD username CHAR(128);
+success!

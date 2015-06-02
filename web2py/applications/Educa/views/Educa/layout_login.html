@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Simple Login Form</title>
+<meta charset="UTF-8" />
+<meta name="Designer" content="PremiumPixels.com">
+<meta name="Author" content="$hekh@r d-Ziner, CSSJUNTION.com">
+
+{{
+  response.files.insert(0,URL('static','css/web2py.css'))
+  response.files.insert(1,URL('static','css/bootstrap.min.css'))
+  response.files.insert(2,URL('static','css/bootstrap-responsive.min.css'))
+  response.files.insert(5,URL('static','css/structure.css'))
+  response.files.insert(7,URL('static','css/reset.css'))
+  response.files.insert(6,URL('static','font-awesome/css/font-awesome.min.css'))
+}}
+</head>
+
+<body>
+<form class="box login">
+	<fieldset class="boxBody">
+	  <label>Username</label>
+        {{print(form)}}
+	  <input type="text" tabindex="1" placeholder="PremiumPixel" id="username" name="username">
+	  <label><a href="{{=URL(args='request_reset_password')}}" class="rLink" tabindex="5">Forget your password?</a>Password</label>
+	  <input type="password" tabindex="2" required id="auth_user_password" name="auth_user_password">
+	</fieldset>
+	<footer>
+	  <label><input type="checkbox" tabindex="3">Keep me logged in</label>
+	  <input type="submit" class="btnLogin" value="login" tabindex="4">
+	</footer>
+</form>
+
+<footer id="main">
+  <a href="http://wwww.cssjunction.com">Simple Login Form (HTML5/CSS3 Coded) by CSS Junction</a> | <a href="http://www.premiumpixels.com">PSD by Premium Pixels</a>
+</footer>
+</body>
+</html>
