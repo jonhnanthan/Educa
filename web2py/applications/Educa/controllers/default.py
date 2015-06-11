@@ -36,16 +36,39 @@ def multi_choice():
         form.vars.nome = request.vars.Nome
         form.vars.tipo = db(db.tipo_atividade.nome == "multi-choice").select()[0].id
         form.vars.corpo = str(corpo)
-        form.vars.professor = db(db.professor.nome == "leo").select()[0].id
+        # form.vars.professor = db(db.professor.nome == "leo").select()[0].id
         id = db.atividade.insert(**dict(form.vars))
         response.flash = 'record inserted'
 
     return dict()
 
+@auth.requires_login()
+def complete():
+    print(request.vars)
+    print(auth.user.username)
+    if request.vars:
+        corpo = {'Palavra': request.vars.Pergunta,
+                 'Resposta': request.vars.Resposta}
+        print(auth.user.username)
+        form = SQLFORM(db.atividade)
+        form.vars.nome = request.vars.Nome
+        form.vars.tipo = db(db.tipo_atividade.nome == "complete").select()[0].id
+        form.vars.corpo = str(corpo)
+        # form.vars.professor = db(db.professor.nome == "leo").select()[0].id
+        print(form.vars)
+        id = db.atividade.insert(**dict(form.vars))
+        response.flash = 'record inserted'
+
+    return dict()
+
+def create_account():
+    return dict(form=auth.register(), next=URL('index'))
+
 
 @auth.requires_login()
 def reports():
     return dict()
+
 
 def user():
     """
@@ -62,6 +85,8 @@ def user():
         @auth.requires_permission('read','table name',record_id)
     to decorate functions that need access control
     """
+
+    print("here")
     return dict(form=auth.login())
 
 
@@ -117,8 +142,8 @@ def api():
 # def api():
 # """
 # this is example of API with access control
-#     WEB2PY provides Hypermedia API (Collection+JSON) Experimental
-#     """
+# WEB2PY provides Hypermedia API (Collection+JSON) Experimental
+# """
 #     from gluon.contrib.hypermedia import Collection
 #     rules = {
 #         '<tablename>': {'GET':{},'POST':{},'PUT':{},'DELETE':{}},

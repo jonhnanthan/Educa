@@ -1,30 +1,31 @@
-timestamp: 2015-05-18T21:51:05.904793
+timestamp: 2015-06-09T15:41:57.889300
 CREATE TABLE auth_user(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     first_name CHAR(128),
     last_name CHAR(128),
     email CHAR(512),
+    username CHAR(128),
     password CHAR(512),
     registration_key CHAR(512),
     reset_password_key CHAR(512),
     registration_id CHAR(512)
 );
 success!
-timestamp: 2015-05-18T21:51:06.244069
+timestamp: 2015-06-09T15:41:57.907257
 CREATE TABLE auth_group(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     role CHAR(512),
     description TEXT
 );
 success!
-timestamp: 2015-05-18T21:51:06.523633
+timestamp: 2015-06-09T15:41:57.926888
 CREATE TABLE auth_membership(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
     group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
 );
 success!
-timestamp: 2015-05-18T21:51:06.744951
+timestamp: 2015-06-09T15:41:57.948685
 CREATE TABLE auth_permission(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
@@ -33,7 +34,7 @@ CREATE TABLE auth_permission(
     record_id INTEGER
 );
 success!
-timestamp: 2015-05-18T21:51:06.891019
+timestamp: 2015-06-09T15:41:57.969291
 CREATE TABLE auth_event(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     time_stamp TIMESTAMP,
@@ -43,7 +44,7 @@ CREATE TABLE auth_event(
     description TEXT
 );
 success!
-timestamp: 2015-05-18T21:51:07.124683
+timestamp: 2015-06-09T15:41:57.988493
 CREATE TABLE auth_cas(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
@@ -53,13 +54,13 @@ CREATE TABLE auth_cas(
     renew CHAR(1)
 );
 success!
-timestamp: 2015-05-18T21:51:07.398907
+timestamp: 2015-06-09T15:41:58.011698
 CREATE TABLE aluno(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome CHAR(512)
 );
 success!
-timestamp: 2015-05-18T21:51:07.711230
+timestamp: 2015-06-09T15:41:58.035783
 CREATE TABLE professor(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome CHAR(512),
@@ -67,13 +68,13 @@ CREATE TABLE professor(
     senha CHAR(512)
 );
 success!
-timestamp: 2015-05-18T21:51:07.857519
+timestamp: 2015-06-09T15:41:58.058855
 CREATE TABLE tipo_atividade(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome CHAR(512)
 );
 success!
-timestamp: 2015-05-18T21:51:08.047353
+timestamp: 2015-06-09T15:41:58.080835
 CREATE TABLE atividade(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome CHAR(512),
@@ -82,7 +83,7 @@ CREATE TABLE atividade(
     professor INTEGER REFERENCES professor (id) ON DELETE CASCADE
 );
 success!
-timestamp: 2015-05-18T21:51:08.295842
+timestamp: 2015-06-09T15:41:58.105449
 CREATE TABLE recebido(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     atividade INTEGER REFERENCES atividade (id) ON DELETE CASCADE,
@@ -90,6 +91,412 @@ CREATE TABLE recebido(
     resumo TEXT
 );
 success!
-timestamp: 2015-06-02T12:06:28.865064
-ALTER TABLE auth_user ADD username CHAR(128);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
 success!

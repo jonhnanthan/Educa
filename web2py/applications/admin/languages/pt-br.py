@@ -187,6 +187,7 @@
 'Install': 'instalar',
 'Installed applications': 'Aplicações instaladas',
 'internal error': 'erro interno',
+'internal error: %s': 'internal error: %s',
 'Internal State': 'Estado Interno',
 'Invalid action': 'Ação inválida',
 'Invalid email': 'E-mail inválido',

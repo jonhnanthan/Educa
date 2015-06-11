@@ -1,0 +1,41 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
+{{dev_menu = globals().get('dev_menu', True)}}
+{{extend 'Educa/layout_notlogged.html'}}
+{{if auth.is_logged_in():}}
+{{block navbar}}
+
+        <li>
+            <a href="{{=URL('default','multi_choice')}}"><i class="fa fa-fw fa-power-off"></i>Multipla Escolha</a>
+        </li>
+        <li>
+            <a href="{{=URL('default','complete')}}"><i class="fa fa-fw fa-power-off"></i>Completar</a>
+        </li>
+
+{{end navbar}}
+{{block content}}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <img src="{{=URL('static','/images/logo.png')}}"
+                 class="center-block img-responsive">
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipisici eli.</p>
+            <br>
+            <br>
+            <a href="{{=URL('default/user','login')}}" class="btn btn-default btn-lg">{{=T('Log In')}}</a>
+            <a href="{{=URL('default/user','logout')}}" class="btn btn-lg btn-default">{{=T('Log Out')}}</a>
+        </div>
+    </div>
+</div>
+{{end}}
+
+{{if 'message' in globals():}}
+
+{{elif 'content' in globals():}}
+{{=content}}
+{{else:}}
+{{=BEAUTIFY(response._vars)}}
+{{pass}}
+
+{{block right_sidebar}}
+{{end}}

@@ -378,10 +378,10 @@ def _get_emf_dimensions( fin ):
     header.SizeOfDescrip = get_DWORD()   # Size of description string in WORDs
     header.OffsOfDescrip = get_DWORD()   # Offset of description string in metafile
     header.NumPalEntries = get_DWORD()   # Number of color palette entries
-    header.WidthDevPixels = get_LONG()   # Width of reference device in pixels
-    header.HeightDevPixels = get_LONG()  # Height of reference device in pixels
-    header.WidthDevMM = get_LONG()       # Width of reference device in millimeters
-    header.HeightDevMM = get_LONG()      # Height of reference device in millimeters
+    header.WidthDevPixels = get_LONG()   # Width of reference exec in pixels
+    header.HeightDevPixels = get_LONG()  # Height of reference exec in pixels
+    header.WidthDevMM = get_LONG()       # Width of reference exec in millimeters
+    header.HeightDevMM = get_LONG()      # Height of reference exec in millimeters
 
     if 0:
         klist = header.__dict__.keys()

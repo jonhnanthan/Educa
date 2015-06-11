@@ -1,0 +1,32 @@
+{{extend 'Educa/layout_notlogged.html'}}
+{{block content}}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <img src="{{=URL('static','/images/logo.png')}}"
+                 class="center-block img-responsive">
+        </div>
+        <div class="col-md-8 col-lg-push-2">
+        {{=form.custom.begin}}
+            <div class="field">{{=T('Username')}}: {{=form.custom.widget.email}}</div>
+            <div class="field"> {{=T('Password')}}: {{=form.custom.widget.password}}</div>
+        {{=form.custom.submit}}
+        {{=form.custom.end}}
+
+
+        </div>
+    </div>
+</div>
+
+{{block page_js}}
+<script>
+    jQuery("#web2py_user_form input:visible:enabled:first").focus();
+    {{if request.args(0)=='register':}}
+    web2py_validate_entropy(jQuery('#auth_user_password'), 100);
+    {{elif request.args(0)=='change_password':}}
+    web2py_validate_entropy(jQuery('#no_table_new_password'), 100);
+    {{pass}}
+</script>
+{{end page_js}}
+{{end content}}
