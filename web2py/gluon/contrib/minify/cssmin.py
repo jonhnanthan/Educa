@@ -83,7 +83,7 @@ def remove_unnecessary_whitespace(css):
     css = re.sub(r"^(\s*@charset [^;]+;\s*)+", r"\1", css)
 
     # Put the space back in for a few cases, such as `@media screen` and
-    # `(-webkit-min-device-pixel-ratio:0)`.
+    # `(-webkit-min-exec-pixel-ratio:0)`.
     css = re.sub(r"\band\(", "and (", css)
 
     # Put the colons back.

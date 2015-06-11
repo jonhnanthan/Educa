@@ -7,58 +7,58 @@ $(function() {
         element: 'morris-area-chart',
         data: [{
             period: '2010 Q1',
-            iphone: 2666,
-            ipad: null,
-            itouch: 2647
+            Aluno1: 1,
+            Aluno2: 1,
+            Aluno3: 1
         }, {
             period: '2010 Q2',
-            iphone: 2778,
-            ipad: 2294,
-            itouch: 2441
+            Aluno1: 1,
+            Aluno2: 0,
+            Aluno3: 0
         }, {
             period: '2010 Q3',
-            iphone: 4912,
-            ipad: 1969,
-            itouch: 2501
+            Aluno1: 0,
+            Aluno2: 0,
+            Aluno3: 0
         }, {
             period: '2010 Q4',
-            iphone: 3767,
-            ipad: 3597,
-            itouch: 5689
+            Aluno1: 0,
+            Aluno2: 1,
+            Aluno3: 1
         }, {
             period: '2011 Q1',
-            iphone: 6810,
-            ipad: 1914,
-            itouch: 2293
+            Aluno1: 1,
+            Aluno2: 1,
+            Aluno3: 1
         }, {
             period: '2011 Q2',
-            iphone: 5670,
-            ipad: 4293,
-            itouch: 1881
+            Aluno1: 1,
+            Aluno2: 1,
+            Aluno3: 1
         }, {
             period: '2011 Q3',
-            iphone: 4820,
-            ipad: 3795,
-            itouch: 1588
+            Aluno1: 1,
+            Aluno2: 1,
+            Aluno3: 1
         }, {
             period: '2011 Q4',
-            iphone: 15073,
-            ipad: 5967,
-            itouch: 5175
+            Aluno1: 1,
+            Aluno2: 1,
+            Aluno3: 1
         }, {
             period: '2012 Q1',
-            iphone: 10687,
-            ipad: 4460,
-            itouch: 2028
+            Aluno1: 0,
+            Aluno2: 0,
+            Aluno3: 0
         }, {
             period: '2012 Q2',
-            iphone: 8432,
-            ipad: 5713,
-            itouch: 1791
+            Aluno1: 1,
+            Aluno2: 1,
+            Aluno3: 0
         }],
         xkey: 'period',
-        ykeys: ['iphone', 'ipad', 'itouch'],
-        labels: ['iPhone', 'iPad', 'iPod Touch'],
+        ykeys: ['Aluno1', 'Aluno2', 'Aluno3'],
+        labels: ['Aluno1', 'Aluno2', 'Aluno3'],
         pointSize: 2,
         hideHover: 'auto',
         resize: true
@@ -68,13 +68,13 @@ $(function() {
     Morris.Donut({
         element: 'morris-donut-chart',
         data: [{
-            label: "Download Sales",
+            label: "Exec Responde 1",
             value: 12
         }, {
-            label: "In-Store Sales",
+            label: "Exec Responde 2",
             value: 30
         }, {
-            label: "Mail-Order Sales",
+            label: "Exec Responde 3",
             value: 20
         }],
         resize: true
@@ -88,105 +88,105 @@ $(function() {
         // the chart.
         data: [{
             d: '2012-10-01',
-            visits: 802
+            Tentativas: 802
         }, {
             d: '2012-10-02',
-            visits: 783
+            Tentativas: 783
         }, {
             d: '2012-10-03',
-            visits: 820
+            Tentativas: 820
         }, {
             d: '2012-10-04',
-            visits: 839
+            Tentativas: 839
         }, {
             d: '2012-10-05',
-            visits: 792
+            Tentativas: 792
         }, {
             d: '2012-10-06',
-            visits: 859
+            Tentativas: 859
         }, {
             d: '2012-10-07',
-            visits: 790
+            Tentativas: 790
         }, {
             d: '2012-10-08',
-            visits: 1680
+            Tentativas: 1680
         }, {
             d: '2012-10-09',
-            visits: 1592
+            Tentativas: 1592
         }, {
             d: '2012-10-10',
-            visits: 1420
+            Tentativas: 1420
         }, {
             d: '2012-10-11',
-            visits: 882
+            Tentativas: 882
         }, {
             d: '2012-10-12',
-            visits: 889
+            Tentativas: 889
         }, {
             d: '2012-10-13',
-            visits: 819
+            Tentativas: 819
         }, {
             d: '2012-10-14',
-            visits: 849
+            Tentativas: 849
         }, {
             d: '2012-10-15',
-            visits: 870
+            Tentativas: 870
         }, {
             d: '2012-10-16',
-            visits: 1063
+            Tentativas: 1063
         }, {
             d: '2012-10-17',
-            visits: 1192
+            Tentativas: 1192
         }, {
             d: '2012-10-18',
-            visits: 1224
+            Tentativas: 1224
         }, {
             d: '2012-10-19',
-            visits: 1329
+            Tentativas: 1329
         }, {
             d: '2012-10-20',
-            visits: 1329
+            Tentativas: 1329
         }, {
             d: '2012-10-21',
-            visits: 1239
+            Tentativas: 1239
         }, {
             d: '2012-10-22',
-            visits: 1190
+            Tentativas: 1190
         }, {
             d: '2012-10-23',
-            visits: 1312
+            Tentativas: 1312
         }, {
             d: '2012-10-24',
-            visits: 1293
+            Tentativas: 1293
         }, {
             d: '2012-10-25',
-            visits: 1283
+            Tentativas: 1283
         }, {
             d: '2012-10-26',
-            visits: 1248
+            Tentativas: 1248
         }, {
             d: '2012-10-27',
-            visits: 1323
+            Tentativas: 1323
         }, {
             d: '2012-10-28',
-            visits: 1390
+            Tentativas: 1390
         }, {
             d: '2012-10-29',
-            visits: 1420
+            Tentativas: 1420
         }, {
             d: '2012-10-30',
-            visits: 1529
+            Tentativas: 1529
         }, {
             d: '2012-10-31',
-            visits: 1892
+            Tentativas: 1892
         }, ],
         // The name of the data record attribute that contains x-visitss.
         xkey: 'd',
         // A list of names of data record attributes that contain y-visitss.
-        ykeys: ['visits'],
+        ykeys: ['Tentativas'],
         // Labels for the ykeys -- will be displayed when you hover over the
         // chart.
-        labels: ['Visits'],
+        labels: ['Tentativas'],
         // Disables line smoothing
         smooth: false,
         resize: true
@@ -196,26 +196,26 @@ $(function() {
     Morris.Bar({
         element: 'morris-bar-chart',
         data: [{
-            device: 'iPhone',
-            geekbench: 136
+            exec: 'exec',
+            numacertos: 20
         }, {
-            device: 'iPhone 3G',
-            geekbench: 137
+            exec: 'exec 3G',
+            numacertos: 10
         }, {
-            device: 'iPhone 3GS',
-            geekbench: 275
+            exec: 'exec 3GS',
+            numacertos: 15
         }, {
-            device: 'iPhone 4',
-            geekbench: 380
+            exec: 'exec 4',
+            numacertos: 15
         }, {
-            device: 'iPhone 4S',
-            geekbench: 655
+            exec: 'exec 4S',
+            numacertos: 54
         }, {
-            device: 'iPhone 5',
-            geekbench: 1571
+            exec: 'exec 5',
+            numacertos: 28
         }],
-        xkey: 'device',
-        ykeys: ['geekbench'],
+        xkey: 'exec',
+        ykeys: ['numacertos'],
         labels: ['Geekbench'],
         barRatio: 0.4,
         xLabelAngle: 35,

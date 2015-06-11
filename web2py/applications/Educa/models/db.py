@@ -61,6 +61,11 @@ auth.settings.registration_requires_verification = False
 auth.settings.registration_requires_approval = False
 auth.settings.reset_password_requires_verification = True
 
+auth.settings.login_next = URL('index')
+auth.settings.logout_next = URL('index')
+auth.settings.profile_next = URL('index')
+auth.settings.register_next = URL('user', args='login')
+
 ## if you need to use OpenID, Facebook, MySpace, Twitter, Linkedin, etc.
 ## register with janrain.com, write your domain:api_key in private/janrain.key
 from gluon.contrib.login_methods.janrain_account import use_janrain
@@ -95,9 +100,9 @@ db.define_table("atividade",
                 Field("nome", required=True),
                 Field("tipo", type="reference tipo_atividade",
                       required=True),
-                Field("corpo", type="text", required=True),
-                Field("professor", type="reference professor",
-                      required=True))
+                Field("corpo", type="text", required=True))
+                # Field("professor", type="reference professor",
+                #       required=True))
 
 db.define_table("recebido",
                 Field("atividade", type="reference atividade",

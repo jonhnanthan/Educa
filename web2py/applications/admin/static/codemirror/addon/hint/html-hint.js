@@ -17,8 +17,8 @@
   var methods = ["get", "post", "put", "delete"];
   var encs = ["application/x-www-form-urlencoded", "multipart/form-data", "text/plain"];
   var media = ["all", "screen", "print", "embossed", "braille", "handheld", "print", "projection", "screen", "tty", "tv", "speech",
-               "3d-glasses", "resolution [>][<][=] [X]", "device-aspect-ratio: X/Y", "orientation:portrait",
-               "orientation:landscape", "device-height: [X]", "device-width: [X]"];
+               "3d-glasses", "resolution [>][<][=] [X]", "exec-aspect-ratio: X/Y", "orientation:portrait",
+               "orientation:landscape", "exec-height: [X]", "exec-width: [X]"];
   var s = { attrs: {} }; // Simple tag, reused for a whole lot of tags
 
   var data = {

@@ -54,7 +54,7 @@ http://127.0.0.1:8000/myapp/appadmin/select/db?query=db.scheduler_worker.id>0
 ## running as <user>, with app <myapp>, on network interface eth0.)
 
 description "web2py task scheduler"
-start on (local-filesystems and net-device-up IFACE=eth0)
+start on (local-filesystems and net-exec-up IFACE=eth0)
 stop on shutdown
 respawn limit 8 60 # Give up if restart occurs 8 times in 60 seconds.
 exec sudo -u <user> python /home/<user>/web2py/web2py.py -K <myapp>
