@@ -69,6 +69,7 @@ public class NumMatchExerciseStep4Activity extends Activity {
                         // ExerciseStorage.getListExercise().add(exercise);
                         Intent intent = new Intent(NumMatchExerciseStep4Activity.this,
                                 TeacherHomeActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     } else {
                         Toast.makeText(

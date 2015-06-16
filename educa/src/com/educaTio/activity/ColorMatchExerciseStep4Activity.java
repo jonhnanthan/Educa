@@ -70,6 +70,7 @@ public class ColorMatchExerciseStep4Activity extends Activity {
                         // ExerciseStorage.getListExercise().add(exercise);
                         Intent intent = new Intent(ColorMatchExerciseStep4Activity.this,
                                 TeacherHomeActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     } else {
                         Toast.makeText(

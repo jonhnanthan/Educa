@@ -63,6 +63,7 @@ public class MultipleChoiceExerciseStep3Activity extends Activity {
 
                         // ExerciseStorage.getListExercise().add(exercise);
                         Intent intent = new Intent(MultipleChoiceExerciseStep3Activity.this, TeacherHomeActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     } else {
                         Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.exercise_name_already_exists), Toast.LENGTH_SHORT).show();

@@ -57,6 +57,7 @@ public class CompleteExerciseStep3Activity extends Activity {
                         DataBaseProfessor.getInstance(CompleteExerciseStep3Activity.this).addActivity(name, DataBaseProfessor.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE, exercise.getJsonTextObject());
 
                         Intent intent = new Intent(CompleteExerciseStep3Activity.this, TeacherHomeActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     } else {
                         Toast.makeText(

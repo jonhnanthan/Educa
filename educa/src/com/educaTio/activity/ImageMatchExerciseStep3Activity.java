@@ -66,6 +66,7 @@ public class ImageMatchExerciseStep3Activity extends Activity {
 
                         Intent intent = new Intent(ImageMatchExerciseStep3Activity.this,
                                 TeacherHomeActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     } else {
                         Toast.makeText(
