@@ -1,1 +1,16 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
+{{dev_menu = globals().get('dev_menu', True)}}
 {{extend "Educa/index_notlogged.html"}}
+
+
+
+{{if 'message' in globals():}}
+
+{{elif 'content' in globals():}}
+{{=content}}
+{{else:}}
+{{=BEAUTIFY(response._vars)}}
+{{pass}}
+
+{{block right_sidebar}}
+{{end}}

@@ -6539,6 +6539,7 @@
 127.0.0.1, 2015-06-11 17:08:05, GET, /, HTTP/1.1, 303, 0.750340
 127.0.0.1, 2015-06-11 17:08:15, GET, /Educa2, HTTP/1.1, 200, 5.048293
 127.0.0.1, 2015-06-11 17:08:20, GET, /welcome/default/index, HTTP/1.1, 200, 15.163107
+<<<<<<< HEAD
 127.0.0.1, 2015-06-15 15:59:14, GET, /, HTTP/1.1, 303, 0.003672
 127.0.0.1, 2015-06-15 15:59:15, GET, /welcome/default/index, HTTP/1.1, 200, 1.390748
 127.0.0.1, 2015-06-15 15:59:16, GET, /welcome/static/css/bootstrap.min.css, HTTP/1.1, 200, 0.001521
@@ -8055,3 +8056,37 @@
 127.0.0.1, 2015-06-15 23:48:40, GET, /admin/default/ticket/Educa2/127.0.0.1.2015-06-15.23-48-30.3596bc04-aea1-4adb-b6ae-e64ec5910ddb, HTTP/1.1, 200, 0.497619
 127.0.0.1, 2015-06-15 23:48:42, GET, /favicon.ico, HTTP/1.1, 400, 0.002394
 127.0.0.1, 2015-06-15 23:48:45, GET, /favicon.ico, HTTP/1.1, 400, 0.002302
+=======
+>>>>>>> 3dff194bcf8419b70837aa9f317d74f4c517bb45
+127.0.0.1, 2015-06-16 00:04:31, GET, /Educa2/, HTTP/1.1, 200, 3.649449
+127.0.0.1, 2015-06-16 00:05:41, GET, /Educa2/, HTTP/1.1, 200, 0.392886
+127.0.0.1, 2015-06-16 00:05:42, GET, /Educa2/static/css/bootstrap.min.css, HTTP/1.1, 304, 0.001621
+127.0.0.1, 2015-06-16 00:05:42, GET, /Educa2/static/css/bootstrap-theme.min.css, HTTP/1.1, 304, 0.003811
+127.0.0.1, 2015-06-16 00:05:42, GET, /Educa2/static/css/web2py-bootstrap3.css, HTTP/1.1, 304, 0.001345
+127.0.0.1, 2015-06-16 00:05:42, GET, /Educa2/static/js/jquery.js, HTTP/1.1, 304, 0.002363
+127.0.0.1, 2015-06-16 00:05:42, GET, /Educa2/static/css/calendar.css, HTTP/1.1, 304, 0.148401
+127.0.0.1, 2015-06-16 00:05:42, GET, /Educa2/static/js/web2py-bootstrap3.js, HTTP/1.1, 304, 0.001200
+127.0.0.1, 2015-06-16 00:05:42, GET, /Educa2/static/js/share.js, HTTP/1.1, 304, 0.001395
+127.0.0.1, 2015-06-16 00:05:42, GET, /Educa2/static/js/web2py.js, HTTP/1.1, 304, 0.198483
+127.0.0.1, 2015-06-16 00:05:42, GET, /Educa2/static/js/calendar.js, HTTP/1.1, 304, 0.042895
+127.0.0.1, 2015-06-16 00:05:42, GET, /Educa2/static/js/modernizr-2.8.3.min.js, HTTP/1.1, 304, 0.012968
+127.0.0.1, 2015-06-16 00:05:42, GET, /Educa2/static/js/bootstrap.min.js, HTTP/1.1, 304, 0.019359
+127.0.0.1, 2015-06-16 00:05:43, GET, /Educa2/static/images/logo.png, HTTP/1.1, 304, 0.001277
+127.0.0.1, 2015-06-16 00:05:45, GET, /Educa2/static/images/twitter.png, HTTP/1.1, 304, 0.002697
+127.0.0.1, 2015-06-16 00:05:45, GET, /Educa2/static/images/facebook.png, HTTP/1.1, 304, 0.001462
+127.0.0.1, 2015-06-16 00:05:45, GET, /Educa2/static/images/gplus-32.png, HTTP/1.1, 304, 0.007119
+127.0.0.1, 2015-06-16 00:05:48, GET, /Educa2/static/images/favicon.ico, HTTP/1.1, 200, 0.027218
+127.0.0.1, 2015-06-16 00:05:54, GET, /Educa2/default/user/logout, HTTP/1.1, 303, 1.105483
+127.0.0.1, 2015-06-16 00:05:54, GET, /Educa2/default/index, HTTP/1.1, 200, 0.161646
+127.0.0.1, 2015-06-16 00:06:07, GET, /Educa2/default/multi_choice, HTTP/1.1, 303, 0.138477
+127.0.0.1, 2015-06-16 00:06:07, GET, /Educa2/default/user/login, HTTP/1.1, 200, 0.182720
+127.0.0.1, 2015-06-16 00:06:14, POST, /Educa2/default/user/login, HTTP/1.1, 303, 1.216952
+127.0.0.1, 2015-06-16 00:06:15, GET, /Educa2/default/multi_choice, HTTP/1.1, 500, 1.249175
+127.0.0.1, 2015-06-16 00:06:16, GET, /favicon.ico, HTTP/1.1, 400, 0.002035
+127.0.0.1, 2015-06-16 00:06:20, GET, /Educa2/default/user/login, HTTP/1.1, 200, 0.168142
+127.0.0.1, 2015-06-16 00:06:26, POST, /Educa2/default/user/login, HTTP/1.1, 303, 0.511526
+127.0.0.1, 2015-06-16 00:06:27, GET, /Educa2/default/multi_choice, HTTP/1.1, 500, 0.608383
+127.0.0.1, 2015-06-16 00:06:28, GET, /favicon.ico, HTTP/1.1, 400, 0.001157
+127.0.0.1, 2015-06-16 00:06:31, GET, /Educa2/default, HTTP/1.1, 200, 0.329418
+127.0.0.1, 2015-06-16 00:06:37, GET, /Educa2/default/user/logout, HTTP/1.1, 303, 0.405352
+127.0.0.1, 2015-06-16 00:06:37, GET, /Educa2/default/index, HTTP/1.1, 200, 0.204672
