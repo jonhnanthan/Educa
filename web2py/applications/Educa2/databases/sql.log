@@ -53,3 +53,39 @@ CREATE TABLE auth_cas(
     renew CHAR(1)
 );
 success!
+timestamp: 2015-06-16T09:11:49.866404
+CREATE TABLE aluno(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome CHAR(512)
+);
+success!
+timestamp: 2015-06-16T09:11:49.997800
+CREATE TABLE professor(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome CHAR(512),
+    username CHAR(512) UNIQUE,
+    senha CHAR(512)
+);
+success!
+timestamp: 2015-06-16T09:11:50.141296
+CREATE TABLE tipo_atividade(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome CHAR(512)
+);
+success!
+timestamp: 2015-06-16T09:11:50.286155
+CREATE TABLE atividade(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome CHAR(512),
+    tipo INTEGER REFERENCES tipo_atividade (id) ON DELETE CASCADE,
+    corpo TEXT
+);
+success!
+timestamp: 2015-06-16T09:11:50.454670
+CREATE TABLE recebido(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    atividade INTEGER REFERENCES atividade (id) ON DELETE CASCADE,
+    aluno INTEGER REFERENCES aluno (id) ON DELETE CASCADE,
+    resumo TEXT
+);
+success!

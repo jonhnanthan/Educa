@@ -87,6 +87,29 @@ auth.settings.reset_password_requires_verification = True
 ## >>> rows=db(db.mytable.myfield=='value').select(db.mytable.ALL)
 ## >>> for row in rows: print row.id, row.myfield
 #########################################################################
+db.define_table("aluno", Field("nome"))
 
+db.define_table("professor",
+                Field("nome", required=True),
+                Field("username", required=True, unique=True),
+                Field("senha", type="password", required=True))
+
+db.define_table("tipo_atividade", Field("nome", required=True))
+
+db.define_table("atividade",
+                Field("nome", required=True),
+                Field("tipo", type="reference tipo_atividade",
+                      required=True),
+                Field("corpo", type="text", required=True))
+                # Field("professor", type="reference professor",
+                #       required=True))
+
+db.define_table("recebido",
+                Field("atividade", type="reference atividade",
+                      required=True),
+                Field("aluno", type="reference aluno",
+                      required=True),
+                Field("resumo", type="text",
+                      required=True))
 ## after defining tables, uncomment below to enable auditing
-# auth.enable_record_versioning(db)
+auth.enable_record_versioning(db)

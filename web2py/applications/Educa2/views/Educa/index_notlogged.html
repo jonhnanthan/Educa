@@ -4,14 +4,15 @@
 {{if auth.is_logged_in():}}
 {{block navbar}}
 
-        <li>
-            <a href="{{=URL('default','multi_choice')}}"><i class="fa fa-fw fa-power-off"></i>Multipla Escolha</a>
-        </li>
-        <li>
-            <a href="{{=URL('default','complete')}}"><i class="fa fa-fw fa-power-off"></i>Completar</a>
-        </li>
+<li>
+    <a href="{{=URL('default','multi_choice')}}"><i class="fa fa-fw fa-power-off"></i>Multipla Escolha</a>
+</li>
+<li>
+    <a href="{{=URL('default','complete')}}"><i class="fa fa-fw fa-power-off"></i>Completar</a>
+</li>
 
 {{end navbar}}
+{{pass}}
 {{block content}}
 <div class="container">
     <div class="row">

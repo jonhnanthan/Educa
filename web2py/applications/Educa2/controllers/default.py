@@ -29,14 +29,14 @@ def login():
 @auth.requires_login()
 def multi_choice():
     print(request.vars)
-    print(auth.user.username)
+    # print(auth.user.username)
     if request.vars:
         corpo = {'Alternativa3': request.vars.Alternativa3,
                  'Alternativa2': request.vars.Alternativa2,
                  'Alternativa1': request.vars.Alternativa1,
                  'Resposta': request.vars.Resposta,
                  'Pergunta': request.vars.Pergunta}
-        print(auth.user.username)
+        # print(auth.user.username)
         form = SQLFORM(db.atividade)
         form.vars.nome = request.vars.Nome
         form.vars.tipo = db(db.tipo_atividade.nome == "multi-choice").select()[0].id
@@ -50,11 +50,11 @@ def multi_choice():
 @auth.requires_login()
 def complete():
     print(request.vars)
-    print(auth.user.username)
+    # print(auth.user.username)
     if request.vars:
         corpo = {'Palavra': request.vars.Pergunta,
                  'Resposta': request.vars.Resposta}
-        print(auth.user.username)
+        # print(auth.user.username)
         form = SQLFORM(db.atividade)
         form.vars.nome = request.vars.Nome
         form.vars.tipo = db(db.tipo_atividade.nome == "complete").select()[0].id
