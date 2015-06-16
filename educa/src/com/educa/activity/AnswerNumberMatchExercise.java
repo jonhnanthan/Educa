@@ -157,6 +157,7 @@ public class AnswerNumberMatchExercise extends Activity {
 
                 Intent intent = new Intent(AnswerNumberMatchExercise.this, StudentHomeActivity.class);
                 intent.putExtra("SEND_EXERCISE", json);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
 
 	            dialog.dismiss();
@@ -196,6 +197,7 @@ public class AnswerNumberMatchExercise extends Activity {
                 Intent intent = new Intent(AnswerNumberMatchExercise.this,
                         StudentHomeActivity.class);
                 intent.putExtra("SEND_EXERCISE", json);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
 	            dialog.dismiss();
 	        }

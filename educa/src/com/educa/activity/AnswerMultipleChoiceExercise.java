@@ -158,6 +158,7 @@ public class AnswerMultipleChoiceExercise extends Activity {
                 Intent intent = new Intent(AnswerMultipleChoiceExercise.this,
                         StudentHomeActivity.class);
                 intent.putExtra("SEND_EXERCISE", json);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
 
 	            dialog.dismiss();
@@ -197,6 +198,7 @@ public class AnswerMultipleChoiceExercise extends Activity {
                 Intent intent = new Intent(AnswerMultipleChoiceExercise.this,
                         StudentHomeActivity.class);
                 intent.putExtra("SEND_EXERCISE", json);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
 	            dialog.dismiss();
 	        }

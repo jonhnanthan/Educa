@@ -218,7 +218,8 @@ public class StudentHomeActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		switch (item.getItemId()) {
 		case R.id.refresh:
-	        adapter = new ExerciseStudentAdapter(getApplicationContext(), DataBaseAluno.getInstance(getApplicationContext()).getActivities(), StudentHomeActivity.this);
+	        adapter = new ExerciseStudentAdapter(getApplicationContext(),
+	        		DataBaseAluno.getInstance(getApplicationContext()).getActivities(), StudentHomeActivity.this);
 	        listview.setAdapter(adapter);
 	        adapter.notifyDataSetChanged();
 			return true;
