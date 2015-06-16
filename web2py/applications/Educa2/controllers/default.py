@@ -16,8 +16,55 @@ def index():
     if you need a simple wiki simply replace the two lines below with:
     return auth.wiki()
     """
-    response.flash = T("Hello World")
+    response.flash = "%r" % auth.is_logged_in()
+
+    return dict()
+
+
+def login():
+    response.flash = T("Hello ")
     return dict(message=T('Welcome to web2py!'))
+
+
+@auth.requires_login()
+def multi_choice():
+    print(request.vars)
+    print(auth.user.username)
+    if request.vars:
+        corpo = {'Alternativa3': request.vars.Alternativa3,
+                 'Alternativa2': request.vars.Alternativa2,
+                 'Alternativa1': request.vars.Alternativa1,
+                 'Resposta': request.vars.Resposta,
+                 'Pergunta': request.vars.Pergunta}
+        print(auth.user.username)
+        form = SQLFORM(db.atividade)
+        form.vars.nome = request.vars.Nome
+        form.vars.tipo = db(db.tipo_atividade.nome == "multi-choice").select()[0].id
+        form.vars.corpo = str(corpo)
+        # form.vars.professor = db(db.professor.nome == "leo").select()[0].id
+        id = db.atividade.insert(**dict(form.vars))
+        response.flash = 'record inserted'
+
+    return dict()
+
+@auth.requires_login()
+def complete():
+    print(request.vars)
+    print(auth.user.username)
+    if request.vars:
+        corpo = {'Palavra': request.vars.Pergunta,
+                 'Resposta': request.vars.Resposta}
+        print(auth.user.username)
+        form = SQLFORM(db.atividade)
+        form.vars.nome = request.vars.Nome
+        form.vars.tipo = db(db.tipo_atividade.nome == "complete").select()[0].id
+        form.vars.corpo = str(corpo)
+        # form.vars.professor = db(db.professor.nome == "leo").select()[0].id
+        print(form.vars)
+        id = db.atividade.insert(**dict(form.vars))
+        response.flash = 'record inserted'
+
+    return dict()
 
 
 def user():
