@@ -1,0 +1,65 @@
+{{extend 'Educa/index_logged.html'}}
+
+{{block content}}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal">
+                <fieldset>
+
+                    <!-- Form Name -->
+                    <legend>Atividade Completar</legend>
+
+                    <!-- Text input-->
+                    <div class="control-group">
+                        <label class="control-label" for="Nome">Nome</label>
+
+                        <div class="controls">
+                            <input id="Pergunta" name="Nome" type="text" placeholder="" class="input-xlarge"
+                                   required="">
+
+                            <p class="help-block">Digite um nome para a sua atividade</p>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="control-group">
+                        <label class="control-label" for="Palavra">Palavra</label>
+
+                        <div class="controls">
+                            <input id="Pergunta" name="Pergunta" type="text" placeholder="" class="input-xlarge"
+                                   required="">
+
+                            <p class="help-block">Digite aqui a sua pergunta</p>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="control-group">
+                        <label class="control-label" for="Resposta">Resposta</label>
+
+                        <div class="controls">
+                            <input id="Resposta" name="Resposta" type="text" placeholder="" class="input-xlarge"
+                                   required="">
+
+                            <p class="help-block">Digite a palavra sem os caracteres que você deseja ocultar</p>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Button -->
+                    <div class="control-group">
+                        <label class="control-label" for="enviar"></label>
+
+                        <div class="controls">
+                            <button id="enviar" name="enviar" class="btn btn-success">Enviar</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+{{end content}}

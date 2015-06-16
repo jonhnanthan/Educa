@@ -1,4 +1,4 @@
-timestamp: 2015-06-11T14:41:47.818186
+timestamp: 2015-06-16T12:30:41.939971
 CREATE TABLE auth_user(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     first_name CHAR(128),
@@ -10,21 +10,21 @@ CREATE TABLE auth_user(
     registration_id CHAR(512)
 );
 success!
-timestamp: 2015-06-11T14:41:47.832904
+timestamp: 2015-06-16T12:30:41.961214
 CREATE TABLE auth_group(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     role CHAR(512),
     description TEXT
 );
 success!
-timestamp: 2015-06-11T14:41:47.845962
+timestamp: 2015-06-16T12:30:41.982603
 CREATE TABLE auth_membership(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
     group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
 );
 success!
-timestamp: 2015-06-11T14:41:47.857942
+timestamp: 2015-06-16T12:30:42.003598
 CREATE TABLE auth_permission(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
@@ -33,7 +33,7 @@ CREATE TABLE auth_permission(
     record_id INTEGER
 );
 success!
-timestamp: 2015-06-11T14:41:47.870450
+timestamp: 2015-06-16T12:30:42.025346
 CREATE TABLE auth_event(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     time_stamp TIMESTAMP,
@@ -43,7 +43,7 @@ CREATE TABLE auth_event(
     description TEXT
 );
 success!
-timestamp: 2015-06-11T14:41:47.883691
+timestamp: 2015-06-16T12:30:42.047443
 CREATE TABLE auth_cas(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
@@ -53,13 +53,13 @@ CREATE TABLE auth_cas(
     renew CHAR(1)
 );
 success!
-timestamp: 2015-06-16T09:11:49.866404
+timestamp: 2015-06-16T12:30:42.067994
 CREATE TABLE aluno(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome CHAR(512)
 );
 success!
-timestamp: 2015-06-16T09:11:49.997800
+timestamp: 2015-06-16T12:30:42.090132
 CREATE TABLE professor(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome CHAR(512),
@@ -67,13 +67,13 @@ CREATE TABLE professor(
     senha CHAR(512)
 );
 success!
-timestamp: 2015-06-16T09:11:50.141296
+timestamp: 2015-06-16T12:30:42.110368
 CREATE TABLE tipo_atividade(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome CHAR(512)
 );
 success!
-timestamp: 2015-06-16T09:11:50.286155
+timestamp: 2015-06-16T12:30:42.134772
 CREATE TABLE atividade(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome CHAR(512),
@@ -81,7 +81,7 @@ CREATE TABLE atividade(
     corpo TEXT
 );
 success!
-timestamp: 2015-06-16T09:11:50.454670
+timestamp: 2015-06-16T12:30:42.160520
 CREATE TABLE recebido(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     atividade INTEGER REFERENCES atividade (id) ON DELETE CASCADE,
