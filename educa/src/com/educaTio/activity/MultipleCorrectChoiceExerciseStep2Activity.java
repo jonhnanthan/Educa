@@ -13,23 +13,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MultipleCorrectChoiceExerciseStep2Activity extends Activity {
-    private RadioGroup radioGroup;
     private List<CharSequence> answersList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_multiplechoice_exercise_step2);
+        setContentView(R.layout.activity_multiple_correct_choice_step2);
         ImageButton bt_ok = (ImageButton) findViewById(R.id.confirm);
         ImageButton bt_back = (ImageButton) findViewById(R.id.bt_previous_step);
 
         TextView tv_question = (TextView) findViewById(R.id.tv_question);
 
-        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-        RadioButton answer1 = (RadioButton) findViewById(R.id.rb_answer1);
-        RadioButton answer2 = (RadioButton) findViewById(R.id.rb_answer2);
-        RadioButton answer3 = (RadioButton) findViewById(R.id.rb_answer3);
-        RadioButton answer4 = (RadioButton) findViewById(R.id.rb_answer4);
+        final CheckedTextView answer1 = (CheckedTextView) findViewById(R.id.ct_answer1);
+        final CheckedTextView answer2 = (CheckedTextView) findViewById(R.id.ct_answer2);
+        final CheckedTextView answer3 = (CheckedTextView) findViewById(R.id.ct_answer3);
+        final CheckedTextView answer4 = (CheckedTextView) findViewById(R.id.ct_answer4);
+        
+        answer1.setOnClickListener(new View.OnClickListener() {
+        	@Override
+        	public void onClick(View v) {
+        		if (answer1.isChecked())
+        			answer1.setChecked(false);
+        		else
+        			answer1.setChecked(true);
+        	}
+        });
+        answer2.setOnClickListener(new View.OnClickListener() {
+        	@Override
+        	public void onClick(View v) {
+        		if (answer2.isChecked())
+        			answer2.setChecked(false);
+        		else
+        			answer2.setChecked(true);
+        	}
+        });
+        answer3.setOnClickListener(new View.OnClickListener() {
+        	@Override
+        	public void onClick(View v) {
+        		if (answer3.isChecked())
+        			answer3.setChecked(false);
+        		else
+        			answer3.setChecked(true);
+        	}
+        });
+        answer4.setOnClickListener(new View.OnClickListener() {
+        	@Override
+        	public void onClick(View v) {
+        		if (answer4.isChecked())
+        			answer4.setChecked(false);
+        		else
+        			answer4.setChecked(true);
+        	}
+        });
 
         Intent i = getIntent();
         answersList = i.getCharSequenceArrayListExtra("AnswersStep1Match");
@@ -44,20 +79,17 @@ public class MultipleCorrectChoiceExerciseStep2Activity extends Activity {
 
             @Override
             public void onClick(View v) {
-                int id = radioGroup.getCheckedRadioButtonId();
+            	if (answer1.isChecked() || answer2.isChecked() || answer3.isChecked() || answer4.isChecked()){
+            		if (answer1.isChecked()) answersList.add(answer1.getText());
+            		if (answer2.isChecked()) answersList.add(answer2.getText());
+            		if (answer3.isChecked()) answersList.add(answer3.getText());
+            		if (answer4.isChecked()) answersList.add(answer4.getText());
 
-                if (id != -1) {
-                    View radioButton = radioGroup.findViewById(id);
-                    int radioId = radioGroup.indexOfChild(radioButton);
-                    RadioButton btn = (RadioButton) radioGroup.getChildAt(radioId);
-                    String rightAnswer = (String) btn.getText();
-
-                    answersList.add(rightAnswer);
-                    Intent intent = new Intent(MultipleCorrectChoiceExerciseStep2Activity.this,
-                            MultipleCorrectChoiceExerciseStep3Activity.class);
-                    intent.putCharSequenceArrayListExtra("AnswersStep2Match", (ArrayList<CharSequence>) answersList);
-
-                    startActivity(intent);
+            		Intent intent = new Intent(MultipleCorrectChoiceExerciseStep2Activity.this,
+            				MultipleCorrectChoiceExerciseStep3Activity.class);
+            		intent.putCharSequenceArrayListExtra("AnswersStep2Match", (ArrayList<CharSequence>) answersList);
+            		
+            		startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(),
                             getApplicationContext().getString(R.string.choose_the_right_answer),

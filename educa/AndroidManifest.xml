@@ -138,6 +138,11 @@
             android:label="@string/multiple_choice" >
         </activity>
         <activity
+            android:name="com.educaTio.activity.EditMultipleCorrectChoiceExercise"
+            android:screenOrientation="portrait"
+            android:label="@string/multiple_choice" >
+        </activity>
+        <activity
             android:name="com.educaTio.activity.EditColorMatchExerciseActivity"
             android:screenOrientation="portrait"
             android:label="@string/color_match" >

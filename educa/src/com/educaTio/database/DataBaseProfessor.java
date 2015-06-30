@@ -57,6 +57,7 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
 
     public static final String COLOR_MATCH_EXERCISE_TYPECODE = "COLOR_MATCH_EXERCISE";
     public static final String MULTIPLE_CHOICE_EXERCISE_TYPECODE = "MULTIPLE_CHOICE_EXERCISE";
+    public static final String MULTIPLE_CORRECT_CHOICE_EXERCISE_TYPECODE = "MULTIPLE_CORRECT_CHOICE_EXERCISE";
     public static final String COMPLETE_EXERCISE_TYPECODE = "COMPLETE_EXERCISE";
     public static final String IMAGE_MATCH_EXERCISE_TYPECODE = "IMAGE_MATCH_EXERCISE";
     public static final String NUM_MATCH_EXERCISE_TYPECODE = "NUM_MATCH_EXERCISE";

@@ -9,30 +9,28 @@ import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.educaTio.R;
 import com.educaTio.activity.EditColorMatchExerciseActivity;
 import com.educaTio.activity.EditCompleteExerciseStep1Activity;
 import com.educaTio.activity.EditImageMatchExerciseActivity;
 import com.educaTio.activity.EditMultipleChoiceExerciseActivity;
+import com.educaTio.activity.EditMultipleCorrectChoiceExercise;
 import com.educaTio.activity.EditNumMatchExerciseActivity;
 import com.educaTio.activity.ReportActivity;
 import com.educaTio.database.DataBaseProfessor;
@@ -94,6 +92,10 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
 			} else if (exercise
 					.getString("type")
 					.equals(DataBaseProfessor.getInstance(mcontext).MULTIPLE_CHOICE_EXERCISE_TYPECODE)) {
+				icon.setImageResource(R.drawable.multiplethumb);
+			} else if (exercise
+					.getString("type")
+					.equals(DataBaseProfessor.getInstance(mcontext).MULTIPLE_CORRECT_CHOICE_EXERCISE_TYPECODE)) {
 				icon.setImageResource(R.drawable.multiplethumb);
 			} else if (exercise
 					.getString("type")
@@ -161,6 +163,32 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
 					.equals(DataBaseProfessor.getInstance(mcontext).MULTIPLE_CHOICE_EXERCISE_TYPECODE)) {
 				Intent intent = new Intent(parentActivity,
 						EditMultipleChoiceExerciseActivity.class);
+
+				List<CharSequence> listMultipleChoiceExercise = new ArrayList<CharSequence>();
+
+				listMultipleChoiceExercise.add(exercise.getString("name"));
+				listMultipleChoiceExercise.add(exercise.getString("question"));
+				listMultipleChoiceExercise.add(exercise
+						.getString("alternative1"));
+				listMultipleChoiceExercise.add(exercise
+						.getString("alternative2"));
+				listMultipleChoiceExercise.add(exercise
+						.getString("alternative3"));
+				listMultipleChoiceExercise.add(exercise
+						.getString("alternative4"));
+				listMultipleChoiceExercise.add(exercise.getString("answer"));
+				listMultipleChoiceExercise.add(exercise.getString("date"));
+
+				intent.putCharSequenceArrayListExtra(
+						"EditMultipleChoiseExercise",
+						(ArrayList<CharSequence>) listMultipleChoiceExercise);
+				parentActivity.startActivity(intent);
+			}
+			if (exercise
+					.getString("type")
+					.equals(DataBaseProfessor.getInstance(mcontext).MULTIPLE_CORRECT_CHOICE_EXERCISE_TYPECODE)) {
+				Intent intent = new Intent(parentActivity,
+						EditMultipleCorrectChoiceExercise.class);
 
 				List<CharSequence> listMultipleChoiceExercise = new ArrayList<CharSequence>();
 
