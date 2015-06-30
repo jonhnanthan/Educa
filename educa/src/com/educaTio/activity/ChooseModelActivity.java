@@ -35,7 +35,7 @@ public class ChooseModelActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),
-                        MultipleChoiceExerciseStep1Activity.class);
+                		ChooseMultipleChoiceExercise.class);
                 startActivity(intent);
             }
         });

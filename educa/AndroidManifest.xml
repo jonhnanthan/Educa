@@ -58,6 +58,11 @@
             android:label="@string/choose_model_activity" >
         </activity>
         <activity
+            android:name="com.educaTio.activity.ChooseMultipleChoiceExercise"
+            android:screenOrientation="portrait"
+            android:label="@string/choose_model_activity" >
+        </activity>
+        <activity
             android:name="com.educaTio.activity.CompleteExerciseStep1Activity"
             android:screenOrientation="portrait"
             android:label="@string/complete_exercise_activity" >
@@ -84,6 +89,21 @@
         </activity>
         <activity
             android:name="com.educaTio.activity.MultipleChoiceExerciseStep3Activity"
+            android:screenOrientation="portrait"
+            android:label="@string/multiple_choice" >
+        </activity>
+        <activity
+            android:name="com.educaTio.activity.MultipleCorrectChoiceExerciseStep1Activity"
+            android:screenOrientation="portrait"
+            android:label="@string/multiple_choice" >
+        </activity>
+        <activity
+            android:name="com.educaTio.activity.MultipleCorrectChoiceExerciseStep2Activity"
+            android:screenOrientation="portrait"
+            android:label="@string/multiple_choice" >
+        </activity>
+        <activity
+            android:name="com.educaTio.activity.MultipleCorrectChoiceExerciseStep3Activity"
             android:screenOrientation="portrait"
             android:label="@string/multiple_choice" >
         </activity>

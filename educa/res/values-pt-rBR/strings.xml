@@ -19,6 +19,7 @@
 	<string name="match">Associar</string>
 	<string name="color_match">Associar Cores</string>
 	<string name="multiple_choice">Múltipla Escolha</string>
+	<string name="multiple_correct">Múltiplas Corretas</string>
     <string name="complete">Completar</string>
     <string name="calligraphy">Caligrafia</string>
     
