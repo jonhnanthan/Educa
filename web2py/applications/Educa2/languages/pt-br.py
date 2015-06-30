@@ -124,6 +124,7 @@
 'Other Recipes': 'Outras Receitas',
 'Overview': 'Visão Geral',
 'Password': 'Senha',
+"Password fields don't match": "Password fields don't match",
 'Plugins': 'Plugins',
 'Powered by': 'Desenvolvido com',
 'Preface': 'Prefácio',

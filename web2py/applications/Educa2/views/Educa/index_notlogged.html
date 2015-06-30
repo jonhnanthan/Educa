@@ -10,7 +10,9 @@
 <li>
     <a href="{{=URL('default','complete')}}"><i class="fa fa-fw fa-power-off"></i>Completar</a>
 </li>
-
+<li>
+    <a href="{{=URL('default','reports')}}"><i class="fa fa-fw fa-power-off"></i>Relatórios</a>
+</li>
 {{end navbar}}
 {{pass}}
 {{block content}}
@@ -24,7 +26,7 @@
             <br>
             <br>
             <a href="{{=URL('default/user','login')}}" class="btn btn-default btn-lg">{{=T('Log In')}}</a>
-            <a href="{{=URL('default/user','logout')}}" class="btn btn-lg btn-default">{{=T('Log Out')}}</a>
+            <a href="{{=URL('default','create_account')}}" class="btn btn-lg btn-default">{{=T('Register')}}</a>
         </div>
     </div>
 </div>

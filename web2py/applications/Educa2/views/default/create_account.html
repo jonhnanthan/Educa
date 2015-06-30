@@ -1,0 +1,113 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
+{{dev_menu = globals().get('dev_menu', True)}}
+{{extend "Educa/index_notlogged.html"}}
+
+{{block content}}
+ <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <img src="{{=URL('static','/images/logo.png')}}"
+                 class="center-block img-responsive">
+        </div>
+        <div class="col-md-8 col-lg-push-2">
+        {{=form}}
+        </div>
+    </div>
+</div>
+        <!---
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" role="form">
+                 <fieldset>
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <label class="control-label">Nome</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-keyboard-o"></i>
+                                                </span>
+                            <input type="text" required="" name="nome" class="form-control" placeholder="Digite Seu Nome">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <label class="control-label">Sobrenome</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-keyboard-o"></i>
+                                                </span>
+                            <input required="" name="sobrenome" type="text" class="form-control" placeholder="Digite Seu Sobrenome">
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="form-group">
+                    <div class="col-sm-2">
+                        <label class="control-label">Username</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-user"></i>
+                                                </span>
+                            <input required="" name="username" type="text" class="form-control" placeholder="Username">
+                        </div>
+                    </div>
+                </div> -->
+                <!---<div class="form-group">
+                    <div class="col-sm-2">
+                        <label class="control-label" contenteditable="true">Email</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                                                <span class="input-group-addon" contenteditable="true">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                            <input required="" name="email" type="email" class="form-control" placeholder="Digite Seu Email">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <label class="control-label">Senha</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-lock"></i>
+                                                </span>
+                            <input required="" name="senha" type="password" class="form-control" placeholder="Senha">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <label class="control-label" contenteditable="true">Confirme a Senha</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                                                <span class="input-group-addon" contenteditable="true">
+                                                    <i class="fa fa-lock"></i>
+                                                </span>
+                            <input required="" name="confirme_senha" type="password" class="form-control" placeholder="Confirme Sua Senha">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input type="submit" value='Submit'>
+                        <button type="submit" class="btn btn-default">Cadastre-se</button>
+                    </div>
+                </div>
+                     </fieldset>
+            </form>
+        </div>
+    </div>
+</div> -->
+
+{{end content}}

@@ -65,6 +65,43 @@ def complete():
         response.flash = 'record inserted'
 
     return dict()
+# @auth.requires_membership('bercario_admin')
+# def cadastro_responsavel():
+#     form = SQLFORM(db.pais)
+#     if form.validate():
+#         form.vars.p_senha = "".join([chr(randrange(48, 122)) for x in xrange(10)])
+#         form.vars.id = db.pais.insert(**dict(form.vars))
+#         user_id =db.auth_user.insert(**dict(first_name=form.vars.p_nome, last_name="outrem", email='a@gg.com', username = form.vars.p_cpf, password=form.vars.p_senha))
+#         auth.add_membership(auth.id_group('bercario_admin'), user_id)
+#         response.flash = 'record inserted'
+#     return dict(form=form)
+
+@auth.requires_login()
+def reports():
+    return dict()
+
+def create_account():
+    # if request.vars:
+    #     if len(db(db.auth_user.email == request.vars.email).select()) > 0:
+    #         response.flash = 'Email Já Cadastrado'
+    #         return dict()
+    #     if request.vars.senha != request.vars.confirme_senha:
+    #         response.flash = 'Senhas não conferem'
+    #         return dict()
+    #         print(":DDDDD")
+    #     form = SQLFORM.factory(
+    #     Field('password', type='password', requires=CRYPT())
+    #     )
+    #     form.vars.password = request.vars.senha
+    #     user_id =db.auth_user.insert(**dict(
+    #          first_name=request.vars.nome,
+    #          last_name=request.vars.sobrenome,
+    #          email=request.vars.email,
+    #          password=form.vars.password))
+    #     response.flash = 'User Cadastrado'
+    #     return redirect(URL('default','index'))
+    return dict(form=auth.register())
+
 
 
 def user():
