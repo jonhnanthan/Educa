@@ -25,6 +25,7 @@ import com.educa.activity.AnswerColorMatchExercise;
 import com.educa.activity.AnswerCompleteExercise;
 import com.educa.activity.AnswerImageMatchExercise;
 import com.educa.activity.AnswerMultipleChoiceExercise;
+import com.educa.activity.AnswerMultipleCorrectChoiceExercise;
 import com.educa.activity.AnswerNumberMatchExercise;
 import com.educa.database.DataBaseAluno;
 
@@ -85,6 +86,8 @@ public class ExerciseStudentAdapter extends BaseAdapter {
 	            icon.setImageResource(R.drawable.colorthumb);
 	        } else if (exercise.getString("type").equals(DataBaseAluno.getInstance(mcontext).MULTIPLE_CHOICE_EXERCISE_TYPECODE)) {
 	            icon.setImageResource(R.drawable.multiplethumb);
+	        } else if (exercise.getString("type").equals(DataBaseAluno.getInstance(mcontext).MULTIPLE_CORRECT_CHOICE_EXERCISE_TYPECODE)) {
+	            icon.setImageResource(R.drawable.multiplethumb);
 	        } else if (exercise.getString("type").equals(DataBaseAluno.getInstance(mcontext).COMPLETE_EXERCISE_TYPECODE)) {
 	            icon.setImageResource(R.drawable.completethumb);
 	        } else if (exercise.getString("type").equals(DataBaseAluno.getInstance(mcontext).NUM_MATCH_EXERCISE_TYPECODE)) {
@@ -134,6 +137,22 @@ public class ExerciseStudentAdapter extends BaseAdapter {
 								listMultipleChoiceExercise.add(exercise.getString("date"));
 
                             Intent i = new Intent(parentActivity, AnswerMultipleChoiceExercise.class);
+                            i.putCharSequenceArrayListExtra("QuestionToAnswerMatch", listMultipleChoiceExercise);
+                            parentActivity.startActivity(i);
+                        }
+							if (exercise.getString("type").equals(DataBaseAluno.getInstance(mcontext).MULTIPLE_CORRECT_CHOICE_EXERCISE_TYPECODE)) {
+								ArrayList<CharSequence> listMultipleChoiceExercise = new ArrayList<CharSequence>();
+
+								listMultipleChoiceExercise.add(exercise.getString("name"));
+								listMultipleChoiceExercise.add(exercise.getString("question"));
+								listMultipleChoiceExercise.add(exercise.getString("alternative1"));
+								listMultipleChoiceExercise.add(exercise.getString("alternative2"));
+								listMultipleChoiceExercise.add(exercise.getString("alternative3"));
+								listMultipleChoiceExercise.add(exercise.getString("alternative4"));
+								listMultipleChoiceExercise.add(exercise.getString("answer"));
+								listMultipleChoiceExercise.add(exercise.getString("date"));
+
+                            Intent i = new Intent(parentActivity, AnswerMultipleCorrectChoiceExercise.class);
                             i.putCharSequenceArrayListExtra("QuestionToAnswerMatch", listMultipleChoiceExercise);
                             parentActivity.startActivity(i);
                         }

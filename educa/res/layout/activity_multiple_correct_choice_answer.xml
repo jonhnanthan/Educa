@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_home_land"
+    android:background="@drawable/bg_home"
     android:orientation="vertical" >
 
     <TextView
@@ -11,10 +11,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginTop="10dp"
-        android:textSize="18sp"
         android:gravity="center_vertical|center_horizontal"
         android:text="exercise_name"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/question"
@@ -30,53 +30,57 @@
         android:textColor="#FFFFFF"
         android:textSize="15sp" />
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
+    <CheckBox
+        android:id="@+id/cb_answer1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="false"
+        android:clickable="true"
+        android:paddingLeft="50dp"
+        android:text="Answer1"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+    <CheckBox
+        android:id="@+id/cb_answer2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="false"
+        android:clickable="true"
+        android:paddingLeft="50dp"
+        android:text="Answer2"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+    <CheckBox
+        android:id="@+id/cb_answer3"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <RadioButton
-            android:id="@+id/rb_answer1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:button="@drawable/selector_right_answer"
-            android:paddingLeft="50dp"
-            android:layout_marginBottom="5dp"
-            android:text="Answer1"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="false"
+        android:clickable="true"
+        android:paddingLeft="50dp"
+        android:text="Answer3"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
 
-        <RadioButton
-            android:id="@+id/rb_answer2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:button="@drawable/selector_right_answer"
-            android:paddingLeft="50dp"
-            android:layout_marginBottom="5dp"
-            android:text="Answer2"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp" />
-
-        <RadioButton
-            android:id="@+id/rb_answer3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:button="@drawable/selector_right_answer"
-            android:paddingLeft="50dp"
-            android:layout_marginBottom="5dp"
-            android:text="Answer3"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp" />
-
-        <RadioButton
-            android:id="@+id/rb_answer4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:button="@drawable/selector_right_answer"
-            android:paddingLeft="50dp"
-            android:text="Answer4"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp" />
-    </RadioGroup>
+    <CheckBox
+        android:id="@+id/cb_answer4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="false"
+        android:clickable="true"
+        android:paddingLeft="50dp"
+        android:text="Answer4"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -95,7 +99,7 @@
                 android:id="@+id/bt_previous_step"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
-                android:layout_marginTop="-5dp"
+                android:layout_marginTop="10dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/selector_bt_step" />
 
@@ -119,7 +123,7 @@
                 android:id="@+id/bt_save"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
-                android:layout_marginTop="-5dp"
+                android:layout_marginTop="10dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/selector_bt_step" />
 

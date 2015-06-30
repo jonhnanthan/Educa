@@ -26,6 +26,7 @@
 
         <activity
             android:name="com.educa.activity.MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,43 +36,59 @@
         </activity>
         <activity
             android:name="com.educa.activity.StudentHomeActivity"
+            android:screenOrientation="portrait"
             android:label="@string/student_home_activity" >
              
-        </activity><activity
+        </activity>
+        <activity
             android:name="com.educa.activity.Chat"
+            android:screenOrientation="portrait"
             android:label="@string/student_home_activity" >
 
         </activity>
         <activity
             android:name="com.educa.activity.AnswerMultipleChoiceExercise"
+            android:screenOrientation="portrait"
+            android:label="@string/multiple_choice" >
+            
+        </activity>
+        <activity
+            android:name="com.educa.activity.AnswerMultipleCorrectChoiceExercise"
+            android:screenOrientation="portrait"
             android:label="@string/multiple_choice" >
             
         </activity>
         <activity
             android:name="com.educa.activity.AnswerCompleteExercise"
+            android:screenOrientation="portrait"
             android:label="@string/match_exercise_activity" >
         </activity>
         <activity
             android:name="com.educa.activity.AnswerColorMatchExercise"
+            android:screenOrientation="portrait"
             android:label="@string/match_exercise_activity" >
             
         </activity>
         <activity
             android:name="com.educa.activity.AnswerNumberMatchExercise"
+            android:screenOrientation="portrait"
             android:label="@string/match_exercise_activity" >
             
         </activity>
         <activity
             android:name="com.educa.activity.AnswerImageMatchExercise"
+            android:screenOrientation="portrait"
             android:label="@string/match_exercise_activity" >
             
         </activity>
         <activity
             android:name="com.educa.activity.AboutActivity"
+            android:screenOrientation="portrait"
             android:label="@string/about" >
         </activity>
         <activity
             android:name="com.educa.activity.HelpActivity"
+            android:screenOrientation="portrait"
             android:label="@string/help" >
         </activity>
     </application>
