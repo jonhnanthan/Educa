@@ -91,8 +91,7 @@ db.define_table("aluno", Field("nome"))
 
 db.define_table("professor",
                 Field("nome", required=True),
-                Field("username", required=True, unique=True),
-                Field("senha", type="password", required=True))
+                Field("username", required=True, unique=True))
 
 db.define_table("tipo_atividade", Field("nome", required=True))
 
@@ -100,9 +99,9 @@ db.define_table("atividade",
                 Field("nome", required=True),
                 Field("tipo", type="reference tipo_atividade",
                       required=True),
-                Field("corpo", type="text", required=True))
-                # Field("professor", type="reference professor",
-                #       required=True))
+                Field("corpo", type="text", required=True),
+                Field("professor", type="reference auth_user",
+                      required=True))
 
 db.define_table("recebido",
                 Field("atividade", type="reference atividade",

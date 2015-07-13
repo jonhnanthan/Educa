@@ -47,6 +47,7 @@ def multi_choice():
 
     return dict()
 
+
 @auth.requires_login()
 def complete():
     print(request.vars)
@@ -59,50 +60,44 @@ def complete():
         form.vars.nome = request.vars.Nome
         form.vars.tipo = db(db.tipo_atividade.nome == "complete").select()[0].id
         form.vars.corpo = str(corpo)
-        # form.vars.professor = db(db.professor.nome == "leo").select()[0].id
+        form.vars.professor = db(db.auth_user.email == auth.user.email).select()[0].id
         print(form.vars)
         id = db.atividade.insert(**dict(form.vars))
         response.flash = 'record inserted'
 
     return dict()
-# @auth.requires_membership('bercario_admin')
-# def cadastro_responsavel():
-#     form = SQLFORM(db.pais)
-#     if form.validate():
-#         form.vars.p_senha = "".join([chr(randrange(48, 122)) for x in xrange(10)])
-#         form.vars.id = db.pais.insert(**dict(form.vars))
-#         user_id =db.auth_user.insert(**dict(first_name=form.vars.p_nome, last_name="outrem", email='a@gg.com', username = form.vars.p_cpf, password=form.vars.p_senha))
-#         auth.add_membership(auth.id_group('bercario_admin'), user_id)
-#         response.flash = 'record inserted'
-#     return dict(form=form)
+
 
 @auth.requires_login()
 def reports():
     return dict()
 
+
 def create_account():
-    # if request.vars:
-    #     if len(db(db.auth_user.email == request.vars.email).select()) > 0:
-    #         response.flash = 'Email Já Cadastrado'
-    #         return dict()
-    #     if request.vars.senha != request.vars.confirme_senha:
-    #         response.flash = 'Senhas não conferem'
-    #         return dict()
-    #         print(":DDDDD")
-    #     form = SQLFORM.factory(
-    #     Field('password', type='password', requires=CRYPT())
-    #     )
-    #     form.vars.password = request.vars.senha
-    #     user_id =db.auth_user.insert(**dict(
-    #          first_name=request.vars.nome,
-    #          last_name=request.vars.sobrenome,
-    #          email=request.vars.email,
-    #          password=form.vars.password))
-    #     response.flash = 'User Cadastrado'
-    #     return redirect(URL('default','index'))
-    return dict(form=auth.register())
+    form = auth.register()
+    # print("request", request.vars)
+    # create_professor(form.validate(), form)
+
+    return dict(form=form)
 
 
+def create_professor(create, form):
+    if create:
+        print("vars")
+        print(form.vars)
+
+        form_professor = SQLFORM(db.professor)
+        form_professor.vars.nome = form.vars.first_name+form.vars.last_name
+        form_professor.vars.username = form.vars.email
+        print(form_professor.vars)
+        # form.drop("password_two")
+        user_id =db.auth_user.insert(**dict(first_name=form.vars.first_name,
+                                            last_name=form.vars.last_name,
+                                            email=form.vars.email,
+                                            password=form.vars.password))
+
+        id = db.professor.insert(**dict(form_professor.vars))
+        response.flash = "form accepted"
 
 def user():
     """
@@ -139,5 +134,32 @@ def call():
     supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv
     """
     return service()
+
+
+@request.restful()
+# @auth.requires_login()
+def api():
+    response.view = 'generic.' + request.extension
+    print(response.view)
+
+    def GET(*args, **vars):
+        patterns = 'auto'
+        parser = db.parse_as_rest(patterns, args, vars)
+        if parser.status == 200:
+            return dict(content=parser.response)
+        else:
+            raise HTTP(parser.status, parser.error)
+
+    def POST(table_name, **vars):
+        print(vars, db[table_name])
+        return db[table_name].validate_and_insert(**vars)
+
+    def PUT(table_name, record_id, **vars):
+        return db(db[table_name]._id == record_id).update(**vars)
+
+    def DELETE(table_name, record_id):
+        return db(db[table_name]._id == record_id).delete()
+
+    return dict(GET=GET, POST=POST, PUT=PUT, DELETE=DELETE)
 
 
