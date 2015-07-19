@@ -48,6 +48,27 @@ def multi_choice():
     return dict()
 
 @auth.requires_login()
+def multi_choice2():
+    print(request.vars)
+    # print(auth.user.username)
+    if request.vars:
+        corpo = {'Alternativa3': {request.vars.Alternativa3: request.vars.Correta3 or "0"},
+                 'Alternativa2': {request.vars.Alternativa2: request.vars.Correta2 or "0"},
+                 'Alternativa1': {request.vars.Alternativa1: request.vars.Correta1 or "0"},
+                 'Alternativa0': {request.vars.Alternativa0: request.vars.Correta0 or "0"},
+                 'Pergunta': request.vars.Pergunta}
+        # print(auth.user.username)
+        form = SQLFORM(db.atividade)
+        form.vars.nome = request.vars.Nome
+        form.vars.tipo = db(db.tipo_atividade.nome == "multi-choice").select()[0].id
+        form.vars.corpo = str(corpo)
+        # form.vars.professor = db(db.professor.nome == "leo").select()[0].id
+        id = db.atividade.insert(**dict(form.vars))
+        response.flash = 'Atividade Salva com Sucesso'
+
+    return dict()
+
+@auth.requires_login()
 def complete():
     print(request.vars)
     # print(auth.user.username)
