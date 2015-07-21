@@ -43,11 +43,6 @@
             android:label="@string/teacher_home_activity" >
         </activity>
         <activity
-            android:name="com.educaTio.activity.Sync"
-            android:screenOrientation="portrait"
-            android:label="@string/teacher_home_activity" >
-        </activity>
-        <activity
             android:name="com.educaTio.activity.Chat"
             android:screenOrientation="portrait"
             android:label="@string/chat" >

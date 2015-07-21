@@ -41,14 +41,18 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
 	
 	private static Context contx;
 	private List<String> exercises1;
+	private static ListView listView;
+	private static Activity activity;
+	private static final String URL_JSON = "https://leonardoads.pythonanywhere.com/Educa/default/api/atividade.json";
 	
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_teacher_home);
 		contx = getApplicationContext();
+		activity = TeacherHomeActivity.this;
 		
-        ListView listView = (ListView) findViewById(R.id.lv_exercise);
+        listView = (ListView) findViewById(R.id.lv_exercise);
         listView.setOnItemClickListener(this);
 
 		exercises1 = DataBaseProfessor.getInstance(
@@ -67,6 +71,13 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
         mBusHandler.sendEmptyMessage(BusHandlerCallback.CONNECT);
 
 	}
+    
+    public static void updateAdapter(){
+        ExerciseTeacherAdapterJSON adapter = new ExerciseTeacherAdapterJSON(contx,
+        		DataBaseProfessor.getInstance(
+        				contx).getActivities(), activity);
+		listView.setAdapter(adapter);
+    }
     
     private Handler hToast = new Handler(new Handler.Callback() {
 
@@ -95,6 +106,11 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
 			Intent chooseModelIntent = new Intent(getApplicationContext(),
 					ChooseModelActivity.class);
 			startActivity(chooseModelIntent);
+			break;
+		case R.id.web_sync:
+        	Sync s = new Sync();
+        	s.setContext(getApplicationContext());
+        	s.execute(URL_JSON);
 			break;
 		default:
 			return super.onOptionsItemSelected(item);

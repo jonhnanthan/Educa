@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -122,27 +123,26 @@ public class Sync extends AsyncTask<String, Integer, String> {
 
 				for (int i = 0; i < array.length(); i++) {
 					JSONObject obj = array.getJSONObject(i);
-
-					switch (obj.getInt("tipo")) {
-					case 1:
+					String tipo = (new JSONObject(obj.getString("corpo"))).getString("Tipo");
+					
+					if (tipo.equalsIgnoreCase(DataBaseProfessor.getInstance(c).MULTIPLE_CORRECT_CHOICE_EXERCISE_TYPECODE)){
 						// multipla varias
 						multipleCorrect(obj);
-						break;
-					case 3:
+					}
+
+					if (tipo.equalsIgnoreCase(DataBaseProfessor.getInstance(c).MULTIPLE_CHOICE_EXERCISE_TYPECODE)){
 						// multipla com uma certa
 						multipleChoice(obj);
-						break;
-					case 2:
+					}
+					if (tipo.equalsIgnoreCase(DataBaseProfessor.getInstance(c).COMPLETE_EXERCISE_TYPECODE)){
 						// completar
 						complete(obj);
-						break;
-					default:
-						break;
 					}
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
+			TeacherHomeActivity.updateAdapter();
 		}
 	}
 
@@ -150,7 +150,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 		// {"id":1,"corpo":"{'Resposta': 'aa', 'Palavra': 'aa'}","nome":"aa","tipo":2}
 		try {
 			String question = obj.getString("nome");
-			String word = obj.getJSONObject("corpo").getString("Palavra");
+			String word = (new JSONObject(obj.getString("corpo"))).getString("Palavra");
 			String hiddenIndexes = "1";
 			String name = obj.getString("nome");
 			Date currentDate = new Date();
@@ -187,16 +187,17 @@ public class Sync extends AsyncTask<String, Integer, String> {
 
 	private void multipleChoice(JSONObject obj) {
 		try {
-			String question = obj.getJSONObject("corpo").getString("Pergunta");
-			String alternative1 = obj.getJSONObject("corpo").getString(
+			JSONObject corpo = new JSONObject(obj.getString("corpo"));
+			String question = corpo.getString("Pergunta");
+			String alternative1 = corpo.getString(
 					"Alternativa1");
-			String alternative2 = obj.getJSONObject("corpo").getString(
+			String alternative2 = corpo.getString(
 					"Alternativa2");
-			String alternative3 = obj.getJSONObject("corpo").getString(
+			String alternative3 = corpo.getString(
 					"Alternativa3");
-			String alternative4 = obj.getJSONObject("corpo").getString(
+			String alternative4 = corpo.getString(
 					"Resposta");
-			String rightAnswer = obj.getJSONObject("corpo").getString(
+			String rightAnswer = corpo.getString(
 					"Resposta");
 
 			String name = obj.getString("nome");
@@ -234,22 +235,50 @@ public class Sync extends AsyncTask<String, Integer, String> {
 	}
 
 	private void multipleCorrect(JSONObject obj) {
-		// {"tipo": 1, "nome": "asdfasdf",
-		// "corpo":
-		// "{'Alternativa3': 'asfdaf', 'Alternativa2': 'asfdasfd', 'Alternativa1': 'asfdasdf', 'Pergunta': 'sdfasdfas', 'Resposta': 'asfdasfd'}",
-		// "id": 2}
+//		{"content": [
+//		{"tipo": 5, "nome": "asdfasdf", "professor": null,
+//		"corpo": "{'Alternativa3': {'asdfasdf': '1'}, 'Alternativa2': {'asdfasdf': '1'}, 'Alternativa1': {'fdhgdfg': '1'}, 'Alternativa0': {'asdfasfd': '0'},
+//		'Tipo': 'MULTIPLE_CORRECT_CHOICE_EXERCISE',
+//		'Pergunta': 'asdasd'}",
+//		"id": 3}
+//		]
+//				}
 		try {
-			String question = obj.getJSONObject("corpo").getString("Pergunta");
-			String alternative1 = obj.getJSONObject("corpo").getString(
-					"Alternativa1");
-			String alternative2 = obj.getJSONObject("corpo").getString(
-					"Alternativa2");
-			String alternative3 = obj.getJSONObject("corpo").getString(
-					"Alternativa3");
-			String alternative4 = obj.getJSONObject("corpo").getString(
-					"Resposta");
-			String rightAnswer[] = { obj.getJSONObject("corpo").getString(
-					"Resposta") };
+			JSONObject corpo = new JSONObject(obj.getString("corpo"));
+			String question = corpo.getString("Pergunta");
+			
+			int length = 0;
+			Iterator it = corpo.keys();
+			while (it.hasNext()) {
+				String key = (String) it.next();
+				if (key.contains("Alternativa")){
+					String value = corpo.getString(key).split("\"")[3];
+					if (value.equalsIgnoreCase("1")){
+						length++;
+					}
+				}
+			}
+			
+			String rightAnswer[] = new String[length];
+			Iterator it2 = corpo.keys();
+			while (it2.hasNext()) {
+				String key = (String) it2.next();
+				if (key.contains("Alternativa")){
+					String value = corpo.getString(key).split("\"")[3];
+					if (value.equalsIgnoreCase("1")){
+						rightAnswer[length-1] = corpo.getString(key).split("\"")[1];
+						length--;
+					}
+				}
+			}
+			String alternative1 = corpo.getString(
+					"Alternativa0").split("\"")[1];
+			String alternative2 = corpo.getString(
+					"Alternativa1").split("\"")[1];
+			String alternative3 = corpo.getString(
+					"Alternativa2").split("\"")[1];
+			String alternative4 = corpo.getString(
+					"Alternativa3").split("\"")[1];
 
 			String name = obj.getString("nome");
 			Date currentDate = new Date();

@@ -22,8 +22,6 @@ import com.educaTio.validation.FieldValidation;
 
 public class MainActivity extends Activity {
 
-	private static final String URL_JSON = "https://leonardoads.pythonanywhere.com/Educa/default/api/atividade.json";
-	
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,9 +35,6 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-//            	Sync s = new Sync();
-//            	s.setContext(getApplicationContext());
-//            	s.execute(URL_JSON);
             	if (checkValidation(login) && checkValidation(password)){
             		HashMap<String, String> users = DataBaseProfessor.getInstance(getApplicationContext()).getUsers();
             		

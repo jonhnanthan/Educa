@@ -98,5 +98,5 @@
 	<string name="hits">Acertos</string>
 	<string name="faults">Erros</string>
 	<string name="total">Total</string>
-	
+	<string name="sync_with_web">Sincronizar</string>
 </resources>
