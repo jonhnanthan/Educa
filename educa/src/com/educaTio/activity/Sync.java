@@ -16,14 +16,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.educaTio.R;
 import com.educaTio.database.DataBaseProfessor;
+import com.educaTio.entity.ColorMatchExercise;
 import com.educaTio.entity.CompleteExercise;
 import com.educaTio.entity.Exercise;
+import com.educaTio.entity.ImageMatchExercise;
 import com.educaTio.entity.MultipleChoiceExercise;
 import com.educaTio.entity.MultipleCorrectChoiceExercise;
 import com.educaTio.validation.Correction;
@@ -59,7 +61,9 @@ public class Sync extends AsyncTask<String, Integer, String> {
 			br.close();
 
 		} catch (final Exception e) {
+			TeacherHomeActivity.updateDialogMessage(c.getResources().getString(R.string.sync_no_net));
 			Log.d("Exception while downloading url", e.toString());
+			cancel(true);
 		} finally {
 			if (iStream != null) {
 				iStream.close();
@@ -89,6 +93,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 	protected String doInBackground(final String... url) {
 
 		try {
+			TeacherHomeActivity.updateDialogMessage(c.getResources().getString(R.string.sync_init));
 			data = downloadUrl(url[0]);
 		} catch (final Exception e) {
 			Log.d("Background Task", e.toString());
@@ -112,6 +117,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 		try {
 			json = new JSONObject(result);
 		} catch (JSONException e) {
+			TeacherHomeActivity.updateDialogMessage(c.getResources().getString(R.string.sync_error));
 			e.printStackTrace();
 		}
 
@@ -120,6 +126,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 				System.out.println(json.getJSONArray("content")
 						.getJSONObject(0).toString());
 				JSONArray array = json.getJSONArray("content");
+				TeacherHomeActivity.updateDialogMessage(c.getResources().getString(R.string.sync_activities));
 
 				for (int i = 0; i < array.length(); i++) {
 					JSONObject obj = array.getJSONObject(i);
@@ -127,18 +134,26 @@ public class Sync extends AsyncTask<String, Integer, String> {
 					
 					if (tipo.equalsIgnoreCase(DataBaseProfessor.getInstance(c).MULTIPLE_CORRECT_CHOICE_EXERCISE_TYPECODE)){
 						// multipla varias
-						multipleCorrect(obj);
+						multipleCorrect(obj); //OK
 					}
 
 					if (tipo.equalsIgnoreCase(DataBaseProfessor.getInstance(c).MULTIPLE_CHOICE_EXERCISE_TYPECODE)){
 						// multipla com uma certa
-						multipleChoice(obj);
+						multipleChoice(obj); //OK
 					}
 					if (tipo.equalsIgnoreCase(DataBaseProfessor.getInstance(c).COMPLETE_EXERCISE_TYPECODE)){
 						// completar
 						complete(obj);
 					}
-				}
+					if (tipo.equalsIgnoreCase(DataBaseProfessor.getInstance(c).COLOR_MATCH_EXERCISE_TYPECODE)){
+						// cores
+						colorMatch(obj); //OK
+					}
+					if (tipo.equalsIgnoreCase(DataBaseProfessor.getInstance(c).IMAGE_MATCH_EXERCISE_TYPECODE)){
+						// imagem
+						imageMatch(obj); //OK
+					}
+}
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -173,19 +188,120 @@ public class Sync extends AsyncTask<String, Integer, String> {
 										.getInstance(c).COMPLETE_EXERCISE_TYPECODE,
 								exercise.getJsonTextObject());
 
-			} else {
-				Toast.makeText(
-						c,
-						c.getResources().getString(
-								R.string.exercise_name_already_exists),
-						Toast.LENGTH_SHORT).show();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+	private void imageMatch(JSONObject obj) { //OK
+		/*
+		 * {"tipo": 4,
+		 *  "nome": "ADASD",
+		 *   "professor": null,
+		 *    "corpo": "{'Tipo': 'IMAGE_MATCH_EXERCISE', 'Resposta': '2015-02-26.jpg', 'Pergunta': 'DFASDFASDF'}",
+		 *     "id": 11}
+		 */
 
-	private void multipleChoice(JSONObject obj) {
+		try {
+			JSONObject corpo = new JSONObject(obj.getString("corpo"));
+			String question = corpo.getString("Pergunta");
+			String rightAnswer = corpo.getString(
+					"Resposta");
+
+			String name = obj.getString("nome");
+			Date currentDate = new Date();
+			String fDate = new SimpleDateFormat("dd-MM-yyyy")
+					.format(currentDate);
+
+			ImageMatchExercise exercise = new ImageMatchExercise(name, 
+					DataBaseProfessor.getInstance(c).IMAGE_MATCH_EXERCISE_TYPECODE, fDate, String.valueOf(com.educaTio.validation.Status.NEW),
+                    String.valueOf(Correction.NOT_RATED), question, rightAnswer, String.valueOf(R.drawable.abelha) );
+
+
+            if (exerciseNameDontExists(exercise)) {
+
+				DataBaseProfessor.getInstance(c).addActivity(name, 
+						DataBaseProfessor.getInstance(c).IMAGE_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
+            }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void colorMatch(JSONObject obj) { //OK
+		/*
+		 * {"tipo": 4,
+		 *  "nome": "LEONARDO ALVES DOS SANTOS",
+		 *   "professor": null,
+		 *    "corpo": "{'Alternativa3': 'asdadfasdf', 'Alternativa2': 'ksdafs', 'Alternativa1': 'ladsasd', 'Tipo': 'COLOR_MATCH_EXERCISE', 'Resposta': '#ffaadd', 'Pergunta': 'lkasdk'}",
+		 *     "id": 5},
+		 */
+		String colors[] = { "#551C01", "#AC2B16", "#FF9A00", "#FFE600", "#0B804B", "#20E66F", "#00207A", "#00A2FF", "#653E9B", "#B694E8", "#B65775", "#FF89C8", "#000000", "#EEEEEE"};
+
+		try {
+			JSONObject corpo = new JSONObject(obj.getString("corpo"));
+			String question = corpo.getString("Pergunta");
+			String alternative1 = corpo.getString(
+					"Alternativa1");
+			String alternative2 = corpo.getString(
+					"Alternativa2");
+			String alternative3 = corpo.getString(
+					"Alternativa3");
+			String alternative4 = corpo.getString(
+					"Resposta");
+			String rightAnswer = corpo.getString(
+					"Resposta");
+
+			String name = obj.getString("nome");
+			Date currentDate = new Date();
+			String fDate = new SimpleDateFormat("dd-MM-yyyy")
+					.format(currentDate);
+
+			int values[] = new int[14];
+			int value = 0;
+			int max = 0;
+			for (String string : colors) {
+				int soma = 0;
+				for (int i = 1; i < string.split("").length; i++) {
+					if (string.split("")[i] == rightAnswer.split("")[i]){
+						soma++;
+					}
+				}
+				values[value] = soma;
+				if (values[max] > soma) max = value;
+				value++;
+			}
+			
+            String color = String.valueOf(Color.parseColor(colors[max]));
+
+            ColorMatchExercise exercise = new ColorMatchExercise(name, 
+            		DataBaseProfessor.getInstance(c).COLOR_MATCH_EXERCISE_TYPECODE, 
+            		fDate, 
+            		String.valueOf(com.educaTio.validation.Status.NEW),
+                    String.valueOf(Correction.NOT_RATED), question, alternative1,
+                    alternative2,
+                    alternative3, alternative4, rightAnswer, color);
+
+
+            if (exerciseNameDontExists(exercise)) {
+
+                DataBaseProfessor.getInstance(c).addActivity(name, 
+                		DataBaseProfessor.getInstance(c).COLOR_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
+            }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void multipleChoice(JSONObject obj) { //OK
+		/*
+		 * {"tipo": 4,
+		 *  "nome": "hdfghfdg",
+		 *   "professor": null,
+		 *    "corpo": "{'Alternativa3': 'dfhdf', 'Alternativa2': 'dfghdfgh', 'Alternativa1': 'hdfghdfhg', 'Tipo': 'MULTIPLE_CHOICE_EXERCISE', 'Resposta': 'fhfdghdfg', 'Pergunta': 'fghdfgh'}",
+		 *  "id": 4},
+		 */
 		try {
 			JSONObject corpo = new JSONObject(obj.getString("corpo"));
 			String question = corpo.getString("Pergunta");
@@ -222,63 +338,51 @@ public class Sync extends AsyncTask<String, Integer, String> {
 								DataBaseProfessor
 										.getInstance(c).MULTIPLE_CHOICE_EXERCISE_TYPECODE,
 								exercise.getJsonTextObject());
-			} else {
-				Toast.makeText(
-						c,
-						c.getResources().getString(
-								R.string.exercise_name_already_exists),
-						Toast.LENGTH_SHORT).show();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void multipleCorrect(JSONObject obj) {
-//		{"content": [
-//		{"tipo": 5, "nome": "asdfasdf", "professor": null,
-//		"corpo": "{'Alternativa3': {'asdfasdf': '1'}, 'Alternativa2': {'asdfasdf': '1'}, 'Alternativa1': {'fdhgdfg': '1'}, 'Alternativa0': {'asdfasfd': '0'},
-//		'Tipo': 'MULTIPLE_CORRECT_CHOICE_EXERCISE',
-//		'Pergunta': 'asdasd'}",
-//		"id": 3}
-//		]
-//				}
+	private void multipleCorrect(JSONObject obj) { // OK
+//		{"tipo": 5,
+//			"nome": "asdfasdf",
+//			"professor": null,
+//			"corpo": "{'Alternativa3': {'asdfasdf': '1'}, 'Alternativa2': {'asdfasdf': '1'}, 'Alternativa1': {'fdhgdfg': '1'}, 'Alternativa0': {'asdfasfd': '0'}, 'Tipo': 'MULTIPLE_CORRECT_CHOICE_EXERCISE', 'Pergunta': 'asdasd'}",
+//		"id": 3},
 		try {
 			JSONObject corpo = new JSONObject(obj.getString("corpo"));
 			String question = corpo.getString("Pergunta");
-			
+
 			int length = 0;
 			Iterator it = corpo.keys();
 			while (it.hasNext()) {
 				String key = (String) it.next();
-				if (key.contains("Alternativa")){
+				if (key.contains("Alternativa")) {
 					String value = corpo.getString(key).split("\"")[3];
-					if (value.equalsIgnoreCase("1")){
+					if (value.equalsIgnoreCase("1")) {
 						length++;
 					}
 				}
 			}
-			
+
 			String rightAnswer[] = new String[length];
 			Iterator it2 = corpo.keys();
 			while (it2.hasNext()) {
 				String key = (String) it2.next();
-				if (key.contains("Alternativa")){
+				if (key.contains("Alternativa")) {
 					String value = corpo.getString(key).split("\"")[3];
-					if (value.equalsIgnoreCase("1")){
-						rightAnswer[length-1] = corpo.getString(key).split("\"")[1];
+					if (value.equalsIgnoreCase("1")) {
+						rightAnswer[length - 1] = corpo.getString(key).split(
+								"\"")[1];
 						length--;
 					}
 				}
 			}
-			String alternative1 = corpo.getString(
-					"Alternativa0").split("\"")[1];
-			String alternative2 = corpo.getString(
-					"Alternativa1").split("\"")[1];
-			String alternative3 = corpo.getString(
-					"Alternativa2").split("\"")[1];
-			String alternative4 = corpo.getString(
-					"Alternativa3").split("\"")[1];
+			String alternative1 = corpo.getString("Alternativa0").split("\"")[1];
+			String alternative2 = corpo.getString("Alternativa1").split("\"")[1];
+			String alternative3 = corpo.getString("Alternativa2").split("\"")[1];
+			String alternative4 = corpo.getString("Alternativa3").split("\"")[1];
 
 			String name = obj.getString("nome");
 			Date currentDate = new Date();
@@ -288,30 +392,20 @@ public class Sync extends AsyncTask<String, Integer, String> {
 			MultipleCorrectChoiceExercise exercise = new MultipleCorrectChoiceExercise(
 					name,
 					DataBaseProfessor.getInstance(c).MULTIPLE_CORRECT_CHOICE_EXERCISE_TYPECODE,
-					fDate, String.valueOf(com.educaTio.validation.Status.NEW), String
-							.valueOf(Correction.NOT_RATED), question,
+					fDate, String.valueOf(com.educaTio.validation.Status.NEW),
+					String.valueOf(Correction.NOT_RATED), question,
 					alternative1, alternative2, alternative3, alternative4,
 					rightAnswer);
-			// exercise.getStatus().setStatus(getApplicationContext().getResources().getString(R.string.status_new));
-			// exercise.getCorrection().setCorrection(getApplicationContext().getResources().getString(R.string.correction_not_rated));
 
 			if (exerciseNameDontExists(exercise)) {
-				// MainActivity.teacherDataBaseHelper.addExercise(exercise);
 
 				DataBaseProfessor
 						.getInstance(c)
 						.addActivity(
 								name,
-								DataBaseProfessor
-										.getInstance(c).MULTIPLE_CORRECT_CHOICE_EXERCISE_TYPECODE,
+								DataBaseProfessor.getInstance(c).MULTIPLE_CORRECT_CHOICE_EXERCISE_TYPECODE,
 								exercise.getJsonTextObject());
 
-			} else {
-				Toast.makeText(
-						c,
-						c.getResources().getString(
-								R.string.exercise_name_already_exists),
-						Toast.LENGTH_SHORT).show();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

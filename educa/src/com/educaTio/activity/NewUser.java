@@ -41,9 +41,10 @@ public class NewUser extends Activity {
             			showDialogError();
             		} else{
             			DataBaseProfessor.getInstance(getApplicationContext()).addUser(name.getText().toString(), login.getText().toString(), password.getText().toString());
-            			Intent i = new Intent(getApplicationContext(), MainActivity.class);
-            			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            			startActivity(i);
+    					Intent intentTeacher = new Intent(getApplicationContext(),
+    							TeacherHomeActivity.class);
+    					intentTeacher.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    					startActivity(intentTeacher);
             			finish();
             		}
             	}

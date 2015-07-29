@@ -99,4 +99,9 @@
 	<string name="faults">Erros</string>
 	<string name="total">Total</string>
 	<string name="sync_with_web">Sincronizar</string>
+	
+	<string name="sync_init">Iniciando...</string>
+	<string name="sync_no_net">Sem internet!</string>
+	<string name="sync_error">Erro</string>
+	<string name="sync_activities">Adicionando atividades.</string>
 </resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/popup"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:weightSum="4"
+    tools:ignore="Overdraw" >
+
+    <TextView
+        android:id="@+id/tvYesNoAlertDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/confirmation_send"
+        android:textSize="23sp" />
+
+</LinearLayout>

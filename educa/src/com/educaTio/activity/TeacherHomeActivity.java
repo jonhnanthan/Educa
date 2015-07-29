@@ -41,6 +41,8 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
 	
 	private static Context contx;
 	private List<String> exercises1;
+	private static Dialog dialog;
+	private static TextView tvMsgToShow;
 	private static ListView listView;
 	private static Activity activity;
 	private static final String URL_JSON = "https://leonardoads.pythonanywhere.com/Educa/default/api/atividade.json";
@@ -63,6 +65,14 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
                 exercises1, TeacherHomeActivity.this);
 		listView.setAdapter(adapter);
 		
+		dialog = new Dialog(this);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.dialog_sync);
+	    tvMsgToShow =
+	            (TextView) dialog.findViewById(R.id.tvYesNoAlertDialog);
+	    tvMsgToShow.setText( "iniciando" );
+
+		
         /* Make all AllJoyn calls through a separate handler thread to prevent blocking the UI. */
         HandlerThread busThread = new HandlerThread("BusHandler");
         busThread.start();
@@ -77,6 +87,16 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
         		DataBaseProfessor.getInstance(
         				contx).getActivities(), activity);
 		listView.setAdapter(adapter);
+		
+		if (dialog.isShowing()){
+			dialog.dismiss();
+		}
+    }
+    
+    public static void updateDialogMessage(String message){
+	    tvMsgToShow =
+	            (TextView) dialog.findViewById(R.id.tvYesNoAlertDialog);
+	    tvMsgToShow.setText( message );
     }
     
     private Handler hToast = new Handler(new Handler.Callback() {
@@ -111,6 +131,7 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
         	Sync s = new Sync();
         	s.setContext(getApplicationContext());
         	s.execute(URL_JSON);
+        	dialog.show();
 			break;
 		default:
 			return super.onOptionsItemSelected(item);

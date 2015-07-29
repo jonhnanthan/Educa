@@ -21,6 +21,8 @@ import com.educaTio.database.DataBaseProfessor;
 import com.educaTio.validation.FieldValidation;
 
 public class MainActivity extends Activity {
+	
+	private HashMap<String, String> users;
 
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,20 +33,18 @@ public class MainActivity extends Activity {
 		final EditText password = (EditText) findViewById(R.id.password);
         ImageButton bt_teacher = (ImageButton) findViewById(R.id.bt_teacher);
 
+        users = DataBaseProfessor.getInstance(getApplicationContext()).getUsers();
+		
 		bt_teacher.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
             	if (checkValidation(login) && checkValidation(password)){
-            		HashMap<String, String> users = DataBaseProfessor.getInstance(getApplicationContext()).getUsers();
-            		
-            		if (users.isEmpty()){
-            			showDialogNewUser();
-            		} else{
             			if (users.containsKey(login.getText().toString())){
             				if (users.get(login.getText().toString()).equals(password.getText().toString())){
             					Intent intentTeacher = new Intent(getApplicationContext(),
             							TeacherHomeActivity.class);
+            					intentTeacher.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             					startActivity(intentTeacher);
             				} else {
             					showDialogError(R.string.password_incorrect);
@@ -54,8 +54,14 @@ public class MainActivity extends Activity {
             			}
             		}
             	}
-            }
         });
+
+		if (users.isEmpty()){
+			Intent intentNewUser = new Intent(getApplicationContext(),
+					NewUser.class);
+			intentNewUser.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(intentNewUser);
+		}
 
 	}
 
@@ -112,38 +118,4 @@ public class MainActivity extends Activity {
 	    dialog.show();
 	}
 	
-	private void showDialogNewUser(){
-		final Dialog dialog = new Dialog(this);
-		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		dialog.setContentView(R.layout.dialog_yes_no_sentence);
-	    TextView tvMsgToShow =
-	            (TextView) dialog.findViewById(R.id.tvYesNoAlertDialog);
-	    tvMsgToShow.setText( R.string.no_users );
-	
-	    Button btYes =
-	            (Button) dialog.findViewById(R.id.btYes);
-	    btYes.setOnClickListener(new OnClickListener() {
-	
-	        @Override
-	        public void onClick(final View v) {
-				Intent intentNewUser = new Intent(getApplicationContext(),
-						NewUser.class);
-				startActivity(intentNewUser);
-				dialog.dismiss();
-	        }
-	    });
-	
-	    Button btNo =
-	            (Button) dialog.findViewById(R.id.btNo);
-	    btNo.setOnClickListener(new OnClickListener() {
-	
-	        @Override
-	        public void onClick(final View v) {
-	            dialog.dismiss();
-	        }
-	    });
-	    dialog.show();
-
-	}
-
 }
