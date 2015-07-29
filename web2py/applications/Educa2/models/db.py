@@ -101,7 +101,7 @@ db.define_table("atividade",
                       required=True),
                 Field("corpo", type="text", required=True),
                 Field("professor", type="reference auth_user",
-                      required=True))
+                      required=False))
 
 db.define_table("recebido",
                 Field("atividade", type="reference atividade",

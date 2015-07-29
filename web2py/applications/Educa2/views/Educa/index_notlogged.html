@@ -1,20 +1,7 @@
 {{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
 {{dev_menu = globals().get('dev_menu', True)}}
 {{extend 'Educa/layout_notlogged.html'}}
-{{if auth.is_logged_in():}}
-{{block navbar}}
 
-<li>
-    <a href="{{=URL('default','multi_choice')}}"><i class="fa fa-fw fa-power-off"></i>Multipla Escolha</a>
-</li>
-<li>
-    <a href="{{=URL('default','complete')}}"><i class="fa fa-fw fa-power-off"></i>Completar</a>
-</li>
-<li>
-    <a href="{{=URL('default','reports')}}"><i class="fa fa-fw fa-power-off"></i>Relatórios</a>
-</li>
-{{end navbar}}
-{{pass}}
 {{block content}}
 <div class="container">
     <div class="row">
