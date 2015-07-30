@@ -76,9 +76,6 @@ def image_match():
     # print(auth.user.username)
     if request.vars:
         corpo = {'Tipo': 'IMAGE_MATCH_EXERCISE',
-                 'Alternativa3': request.vars.Alternativa3,
-                 'Alternativa2': request.vars.Alternativa2,
-                 'Alternativa1': request.vars.Alternativa1,
                  'Resposta': request.vars.Image,
                  'Pergunta': request.vars.Pergunta}
         # print(auth.user.username)
