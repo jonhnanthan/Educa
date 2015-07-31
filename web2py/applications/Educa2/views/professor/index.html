@@ -1,6 +1,6 @@
 {{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
 {{dev_menu = globals().get('dev_menu', True)}}
-    {{extend "Educa/index_notlogged.html"}}
+{{extend 'Educa/layout_logged.html'}}
 
 {{if 'message' in globals():}}
 
@@ -12,3 +12,7 @@
 
 {{block right_sidebar}}
 {{end}}
+
+{{if auth.is_logged_in():}}
+
+{{pass}}

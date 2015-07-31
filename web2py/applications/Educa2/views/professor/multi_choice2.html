@@ -1,4 +1,4 @@
-{{extend 'Educa/index_logged.html'}}
+{{extend 'professor/layout_professor.html'}}
 
 {{block content}}
 <div class="container">
@@ -6,8 +6,6 @@
         <div class="col-md-12">
 
             <form class="form-horizontal" role="form">
-
-
                 <!-- Text input-->
                 <div class="form-group">
                     <div class="col-sm-2">
@@ -18,7 +16,6 @@
                                required="">
                     </div>
                 </div>
-
                 <!-- Text input-->
                 <div class="form-group">
                     <div class="col-sm-2">
@@ -33,11 +30,14 @@
                 <!-- Text input-->
                 <div class="form-group">
                     <div class="col-sm-2">
-                        <label class="control-label" for="Resposta">Resposta</label>
+                        <label class="control-label" for="Alternativa0">Alternativa 0</label>
 
                     </div>
                     <div class="col-sm-10">
-                        <input id="Resposta" name="Resposta" type="text" placeholder="Digite a resposta correta para a pergunta" class="form-control"
+                        <input type="checkbox" value="1" id="Alternativa0" name="Correta0"/>
+                        <input id="Alternativa0" name="Alternativa0" type="text"
+                               placeholder="Digite uma alternativa para a pergunta e marque o checkbox casos ela seja correta"
+                               class="form-control"
                                required="">
                     </div>
                 </div>
@@ -46,9 +46,13 @@
                 <div class="form-group">
                     <div class="col-sm-2">
                         <label class="control-label" for="Alternativa1">Alternativa 1</label>
+
                     </div>
                     <div class="col-sm-10">
-                        <input id="Alternativa1" name="Alternativa1" type="text" placeholder="Digite uma alternativa errada para a pergunta" class="form-control"
+                        <input type="checkbox" value="1" id="Alternativa1" name="Correta1"/>
+                        <input id="Alternativa1" name="Alternativa1" type="text"
+                               placeholder="Digite uma alternativa para a pergunta e marque o checkbox casos ela seja correta"
+                               class="form-control"
                                required="">
                     </div>
                 </div>
@@ -57,9 +61,13 @@
                 <div class="form-group">
                     <div class="col-sm-2">
                         <label class="control-label" for="Alternativa2">Alternativa 2</label>
+
                     </div>
                     <div class="col-sm-10">
-                        <input id="Alternativa2" name="Alternativa2" type="text" placeholder="Digite uma alternativa errada para a pergunta" class="form-control"
+                        <input type="checkbox" value="1" id="Alternativa2" name="Correta2"/>
+                        <input id="Alternativa2" name="Alternativa2" type="text"
+                               placeholder="Digite uma alternativa para a pergunta e marque o checkbox casos ela seja correta"
+                               class="form-control"
                                required="">
                     </div>
                 </div>
@@ -70,7 +78,10 @@
                         <label class="control-label" for="Alternativa3">Alternativa 3</label>
                     </div>
                     <div class="col-sm-10">
-                        <input id="Alternativa3" name="Alternativa3" type="text" placeholder="Digite uma alternativa errada para a pergunta" class="form-control"
+                        <input type="checkbox" value="1" id="Alternativa3" name="Correta3"/>
+                        <input id="Alternativa3" name="Alternativa3" type="text"
+                               placeholder="Digite uma alternativa para a pergunta e marque o checkbox casos ela seja correta"
+                               class="form-control"
                                required="">
                     </div>
                 </div>
