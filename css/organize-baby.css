@@ -1,0 +1,43 @@
+
+.ob-header {
+    text-align: center;
+    text-justify: auto;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    color:#ffffff;
+    background-color: #4afeaa;
+}
+
+.ob-main {
+    text-justify: auto;
+    text-align: justify;
+    min-font-size: 16;
+    font-size: 18px;
+    padding-top: 2%;
+}
+#equipe{
+    text-justify: auto;
+    text-align: center;
+}
+#containner1 {
+    padding-bottom: 5%;
+}
+#containner2 {
+    padding-bottom: 5%;
+    padding-top: 5%;
+}
+
+#containner3 {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    text-justify: auto;
+}
+
+.ob-footer {
+    text-align: center;
+    text-justify: auto;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: #b9fed7;
+
+}
