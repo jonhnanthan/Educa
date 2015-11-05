@@ -1,0 +1,12 @@
+*.pyc
+*.log
+*.idea
+*__pychache__*
+*.orig
+web2py/applications/admin/sessions/*
+web2py/applications/Educa2/databases/
+exporteds/*
+web2py/applications/Educa/sessions/
+web2py/applications/Educa2/sessions/
+web2py/deposit/*
+

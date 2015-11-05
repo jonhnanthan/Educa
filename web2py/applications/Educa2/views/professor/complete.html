@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <form class="form-horizontal">
-                <fieldset>
+                <fieldset class="form-complete">
 
                     <!-- Form Name -->
                     <legend>Atividade Completar</legend>
@@ -15,7 +15,7 @@
                         <label class="control-label" for="Nome">Nome</label>
 
                         <div class="controls">
-                            <input id="Pergunta" name="Nome" type="text" placeholder="" class="input-xlarge"
+                            <input id="Nome" name="Nome" type="text" placeholder="" class="input-xlarge"
                                    required="">
 
                             <p class="help-block">Digite um nome para a sua atividade</p>
@@ -27,7 +27,7 @@
                         <label class="control-label" for="Palavra">Palavra</label>
 
                         <div class="controls">
-                            <input id="Pergunta" name="Pergunta" type="text" placeholder="" class="input-xlarge"
+                            <input id="Palavra" name="Palavra" type="text" placeholder="" class="input-xlarge"
                                    required="">
 
                             <p class="help-block">Digite aqui a sua pergunta</p>
@@ -38,7 +38,7 @@
                     <div class="control-group">
                         <label class="control-label" for="Resposta">Resposta</label>
 
-                        <div class="controls">
+                        <div class="controls resposta">
                             <input id="Resposta" name="Resposta" type="text" placeholder="" class="input-xlarge"
                                    required="">
 
@@ -63,3 +63,7 @@
     </div>
 </div>
 {{end content}}
+
+{{block page_js}}
+    <script src="{{=URL('static','js/complete.js')}}"></script>
+{{end page_js}}
