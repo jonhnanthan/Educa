@@ -105,7 +105,7 @@ def complete():
     # print(auth.user.username)
     if request.vars:
         corpo = {'Tipo': 'COMPLETE_EXERCISE',
-                 'Palavra': request.vars.Pergunta,
+                 'Palavra': request.vars.Palavra,
                  'Resposta': request.vars.Resposta}
         # print(auth.user.username)
         form = SQLFORM(db.atividade)
