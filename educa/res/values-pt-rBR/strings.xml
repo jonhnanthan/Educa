@@ -27,6 +27,7 @@
     <string name="action_settings">Configurações</string>
 
 	<string name="required">Obrigatório</string>
+	<string name="invalid_email">Email inválido</string>
 	<string name="duplicated">Campo duplicado</string>
 	
 	<string name="edit">Editar</string>

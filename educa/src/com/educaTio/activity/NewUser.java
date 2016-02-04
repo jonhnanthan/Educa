@@ -35,7 +35,7 @@ public class NewUser extends Activity {
 
             @Override
             public void onClick(View v) {
-            	if (checkValidation(login) && checkValidation(password) && checkValidation(name)){
+            	if (checkEmailValidation(login) && checkValidation(password) && checkValidation(name)){
             		HashMap<String, String> users = DataBaseProfessor.getInstance(getApplicationContext()).getUsers();
             		if (users.containsKey(login.getText().toString())){
             			showDialogError();
@@ -53,6 +53,10 @@ public class NewUser extends Activity {
         });
 
 	}
+    
+    private boolean checkEmailValidation(EditText et) {
+    	return (new FieldValidation(this).isValidEmail(et));
+    }
     
     private boolean checkValidation(EditText et) {
         boolean ret = true;

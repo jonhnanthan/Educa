@@ -44,6 +44,25 @@ public class FieldValidation {
         }
         return true;
     }
+    
+    public boolean isValidEmail(EditText editText) {
+    	String text = editText.getText().toString().trim();
+    	
+    	editText.setError(null);
+    	
+    	if (text.length() == 0) {
+            editText.setError(context.getString(R.string.required));
+            return false;
+    	}
+    	
+    	if (!Pattern.matches(EMAIL_REGEX, text)) {
+            editText.setError(context.getString(R.string.invalid_email));
+            return false;
+    	}
+    	
+    	return true;
+    	
+    }
 
     // check the input field has any text or not
     // return true if it contains text otherwise false
