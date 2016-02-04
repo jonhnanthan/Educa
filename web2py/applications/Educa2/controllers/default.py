@@ -102,25 +102,6 @@ def reports():
     return dict()
 
 def create_account():
-    # if request.vars:
-    #     if len(db(db.auth_user.email == request.vars.email).select()) > 0:
-    #         response.flash = 'Email Já Cadastrado'
-    #         return dict()
-    #     if request.vars.senha != request.vars.confirme_senha:
-    #         response.flash = 'Senhas não conferem'
-    #         return dict()
-    #         print(":DDDDD")
-    #     form = SQLFORM.factory(
-    #     Field('password', type='password', requires=CRYPT())
-    #     )
-    #     form.vars.password = request.vars.senha
-    #     user_id =db.auth_user.insert(**dict(
-    #          first_name=request.vars.nome,
-    #          last_name=request.vars.sobrenome,
-    #          email=request.vars.email,
-    #          password=form.vars.password))
-    #     response.flash = 'User Cadastrado'
-    #     return redirect(URL('default','index'))
     return dict(form=auth.register())
 
 
