@@ -127,12 +127,12 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
 					ChooseModelActivity.class);
 			startActivity(chooseModelIntent);
 			break;
-//		case R.id.web_sync:
-//        	Sync s = new Sync();
-//        	s.setContext(getApplicationContext());
-//        	s.execute(URL_JSON);
-//        	dialog.show();
-//			break;
+		case R.id.web_sync:
+        	Sync s = new Sync();
+        	s.setContext(getApplicationContext());
+        	s.execute(URL_JSON);
+        	dialog.show();
+			break;
 		default:
 			return super.onOptionsItemSelected(item);
 		}

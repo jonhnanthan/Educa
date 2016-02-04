@@ -3,7 +3,7 @@
           android:icon="@drawable/ic_action_new"
           android:showAsAction="always"
           android:title="@string/action_new_exercise"/>
-<!--     <item android:id="@+id/web_sync"
+     <item android:id="@+id/web_sync"
           android:showAsAction="never"
-          android:title="@string/sync_with_web"/> -->
+          android:title="@string/sync_with_web"/>
 </menu>	 
