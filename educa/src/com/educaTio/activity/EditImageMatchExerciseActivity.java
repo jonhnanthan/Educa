@@ -14,6 +14,7 @@ import com.educaTio.database.DataBaseProfessor;
 import com.educaTio.entity.ImageMatchExercise;
 import com.educaTio.graphics.ImagePickerDialog;
 import com.educaTio.graphics.ImagePickerDialog.OnMyDialogResult;
+import com.educaTio.utils.ActiveSession;
 import com.educaTio.validation.Correction;
 import com.educaTio.validation.FieldValidation;
 import com.educaTio.validation.Status;
@@ -90,7 +91,7 @@ public class EditImageMatchExerciseActivity extends Activity {
 							date, status, correction, question, answer, color);
 
 					List<String> exercises = DataBaseProfessor.getInstance(
-							getApplicationContext()).getActivities();
+							getApplicationContext()).getActivities(ActiveSession.getActiveLogin());
 					for (String string : exercises) {
 						if (string.equals(colorMatchExercise
 								.getJsonTextObject())) {
@@ -175,6 +176,7 @@ public class EditImageMatchExerciseActivity extends Activity {
 						DataBaseProfessor
 								.getInstance(getApplicationContext())
 								.addActivity(
+										ActiveSession.getActiveLogin(), 
 										colorMatchExercise.getName(),
 										DataBaseProfessor
 												.getInstance(getApplicationContext()).IMAGE_MATCH_EXERCISE_TYPECODE,

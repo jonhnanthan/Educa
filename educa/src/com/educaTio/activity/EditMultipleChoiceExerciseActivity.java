@@ -13,6 +13,7 @@ import android.widget.*;
 import com.educaTio.R;
 import com.educaTio.database.DataBaseProfessor;
 import com.educaTio.entity.MultipleChoiceExercise;
+import com.educaTio.utils.ActiveSession;
 import com.educaTio.validation.Correction;
 import com.educaTio.validation.FieldValidation;
 import com.educaTio.validation.Status;
@@ -80,7 +81,7 @@ public class EditMultipleChoiceExerciseActivity extends Activity {
 
                         multipleChoiseExercise = new MultipleChoiceExercise(exercise.get(0).toString(), DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE, exercise.get(7).toString(), String.valueOf(Status.NEW), String.valueOf(Correction.NOT_RATED), exercise.get(1).toString(), exercise.get(2).toString(), exercise.get(3).toString(), exercise.get(4).toString(), exercise.get(5).toString(), exercise.get(6).toString());
 
-                        List<String> exercises = DataBaseProfessor.getInstance(getApplicationContext()).getActivities();
+                        List<String> exercises = DataBaseProfessor.getInstance(getApplicationContext()).getActivities(ActiveSession.getActiveLogin());
                         for (String string : exercises) {
                             if (string.equals(multipleChoiseExercise.getJsonTextObject())) {
                                 MultipleChoiceExercise newExercise = null;
@@ -181,7 +182,7 @@ public class EditMultipleChoiceExerciseActivity extends Activity {
                         multipleChoiseExercise.setDate(fDate);
                         multipleChoiseExercise.setRightAnswer(rightAnswer);
 
-                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(multipleChoiseExercise.getName(), DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE, multipleChoiseExercise.getJsonTextObject());
+                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(ActiveSession.getActiveLogin(), multipleChoiseExercise.getName(), DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE, multipleChoiseExercise.getJsonTextObject());
 
                         Intent intent = new Intent(
                                 EditMultipleChoiceExerciseActivity.this,

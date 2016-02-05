@@ -13,6 +13,7 @@ import com.educaTio.R;
 import com.educaTio.database.DataBaseProfessor;
 import com.educaTio.entity.Exercise;
 import com.educaTio.entity.ImageMatchExercise;
+import com.educaTio.utils.ActiveSession;
 import com.educaTio.validation.Correction;
 import com.educaTio.validation.FieldValidation;
 import com.educaTio.validation.Status;
@@ -60,7 +61,7 @@ public class ImageMatchExerciseStep3Activity extends Activity {
 
                     if (exerciseNameAlreadyExists(exercise)) {
 
-						DataBaseProfessor.getInstance(getApplicationContext()).addActivity(name, DataBaseProfessor.getInstance(getApplicationContext()).IMAGE_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
+						DataBaseProfessor.getInstance(getApplicationContext()).addActivity(ActiveSession.getActiveLogin(), name, DataBaseProfessor.getInstance(getApplicationContext()).IMAGE_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
 
                         Intent intent = new Intent(ImageMatchExerciseStep3Activity.this,
                                 TeacherHomeActivity.class);

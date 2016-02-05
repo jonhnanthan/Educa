@@ -15,6 +15,7 @@ import com.educaTio.database.DataBaseProfessor;
 import com.educaTio.entity.NumMatchExercise;
 import com.educaTio.graphics.NumPickerDialog;
 import com.educaTio.graphics.NumPickerDialog.OnMyDialogResult;
+import com.educaTio.utils.ActiveSession;
 import com.educaTio.validation.Correction;
 import com.educaTio.validation.FieldValidation;
 import com.educaTio.validation.Status;
@@ -117,7 +118,7 @@ public class EditNumMatchExerciseActivity extends Activity {
 
                         numMatchExercise = new NumMatchExercise(name, type, date, status, correction, question, alternative1, alternative2, alternative3, alternative4, exercise.get(7).toString(), image);
 
-                        List<String> exercises = DataBaseProfessor.getInstance(getApplicationContext()).getActivities();
+                        List<String> exercises = DataBaseProfessor.getInstance(getApplicationContext()).getActivities(ActiveSession.getActiveLogin());
                         for (String string : exercises) {
                             if (string.equals(numMatchExercise.getJsonTextObject())) {
                                 NumMatchExercise newExercise = null;
@@ -219,7 +220,7 @@ public class EditNumMatchExerciseActivity extends Activity {
                         numMatchExercise.setDate(fDate);
                         numMatchExercise.setRightAnswer(rightAnswer);
 
-                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(numMatchExercise.getName(), DataBaseProfessor.getInstance(getApplicationContext()).NUM_MATCH_EXERCISE_TYPECODE, numMatchExercise.getJsonTextObject());
+                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(ActiveSession.getActiveLogin(), numMatchExercise.getName(), DataBaseProfessor.getInstance(getApplicationContext()).NUM_MATCH_EXERCISE_TYPECODE, numMatchExercise.getJsonTextObject());
                         
                         Intent intent = new Intent(EditNumMatchExerciseActivity.this, TeacherHomeActivity.class);
                         startActivity(intent);

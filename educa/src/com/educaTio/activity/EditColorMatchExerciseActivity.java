@@ -15,6 +15,7 @@ import com.educaTio.database.DataBaseProfessor;
 import com.educaTio.entity.ColorMatchExercise;
 import com.educaTio.graphics.ColorPickerDialog;
 import com.educaTio.graphics.ColorPickerDialog.OnMyDialogResult;
+import com.educaTio.utils.ActiveSession;
 import com.educaTio.validation.Correction;
 import com.educaTio.validation.FieldValidation;
 import com.educaTio.validation.Status;
@@ -117,7 +118,7 @@ public class EditColorMatchExerciseActivity extends Activity {
 
                         colorMatchExercise = new ColorMatchExercise(name, type, date, status, correction, question, alternative1, alternative2, alternative3, alternative4, exercise.get(7).toString(), color);
 
-                        List<String> exercises = DataBaseProfessor.getInstance(getApplicationContext()).getActivities();
+                        List<String> exercises = DataBaseProfessor.getInstance(getApplicationContext()).getActivities(ActiveSession.getActiveLogin());
                         for (String string : exercises) {
                             if (string.equals(colorMatchExercise.getJsonTextObject())) {
                                 ColorMatchExercise newExercise = null;
@@ -219,7 +220,7 @@ public class EditColorMatchExerciseActivity extends Activity {
                         colorMatchExercise.setDate(fDate);
                         colorMatchExercise.setRightAnswer(rightAnswer);
 
-                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(colorMatchExercise.getName(), DataBaseProfessor.getInstance(getApplicationContext()).COLOR_MATCH_EXERCISE_TYPECODE, colorMatchExercise.getJsonTextObject());
+                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(ActiveSession.getActiveLogin(), colorMatchExercise.getName(), DataBaseProfessor.getInstance(getApplicationContext()).COLOR_MATCH_EXERCISE_TYPECODE, colorMatchExercise.getJsonTextObject());
                         
                         Intent intent = new Intent(EditColorMatchExerciseActivity.this, TeacherHomeActivity.class);
                         startActivity(intent);

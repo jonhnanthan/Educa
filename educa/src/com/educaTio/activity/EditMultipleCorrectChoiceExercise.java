@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.educaTio.R;
 import com.educaTio.database.DataBaseProfessor;
 import com.educaTio.entity.MultipleCorrectChoiceExercise;
+import com.educaTio.utils.ActiveSession;
 import com.educaTio.validation.Correction;
 import com.educaTio.validation.FieldValidation;
 import com.educaTio.validation.Status;
@@ -107,7 +108,7 @@ public class EditMultipleCorrectChoiceExercise extends Activity {
 								exercise.get(5).toString(), rightAnswer);
 
 						List<String> exercises = DataBaseProfessor.getInstance(
-								getApplicationContext()).getActivities();
+								getApplicationContext()).getActivities(ActiveSession.getActiveLogin());
 						for (String string : exercises) {
 							if (string.equals(multipleCorrectChoiseExercise
 									.getJsonTextObject())) {
@@ -225,6 +226,7 @@ public class EditMultipleCorrectChoiceExercise extends Activity {
 						DataBaseProfessor
 								.getInstance(getApplicationContext())
 								.addActivity(
+										ActiveSession.getActiveLogin(), 
 										multipleCorrectChoiseExercise.getName(),
 										DataBaseProfessor
 												.getInstance(getApplicationContext()).MULTIPLE_CORRECT_CHOICE_EXERCISE_TYPECODE,

@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.educaTio.R;
 import com.educaTio.database.DataBaseProfessor;
+import com.educaTio.utils.ActiveSession;
 import com.educaTio.validation.FieldValidation;
 
 public class NewUser extends Activity {
@@ -41,6 +42,7 @@ public class NewUser extends Activity {
             			showDialogError();
             		} else{
             			DataBaseProfessor.getInstance(getApplicationContext()).addUser(name.getText().toString(), login.getText().toString(), password.getText().toString());
+            			ActiveSession.setActiveLogin(login.getText().toString().trim());
     					Intent intentTeacher = new Intent(getApplicationContext(),
     							TeacherHomeActivity.class);
     					intentTeacher.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

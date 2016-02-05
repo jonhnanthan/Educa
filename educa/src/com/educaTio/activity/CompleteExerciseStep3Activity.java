@@ -13,6 +13,7 @@ import com.educaTio.R;
 import com.educaTio.database.DataBaseProfessor;
 import com.educaTio.entity.CompleteExercise;
 import com.educaTio.entity.Exercise;
+import com.educaTio.utils.ActiveSession;
 import com.educaTio.validation.Correction;
 import com.educaTio.validation.FieldValidation;
 import com.educaTio.validation.Status;
@@ -54,7 +55,7 @@ public class CompleteExerciseStep3Activity extends Activity {
 
                     if (exerciseNameDontExists(exercise)) {
 
-                        DataBaseProfessor.getInstance(CompleteExerciseStep3Activity.this).addActivity(name, DataBaseProfessor.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE, exercise.getJsonTextObject());
+                        DataBaseProfessor.getInstance(CompleteExerciseStep3Activity.this).addActivity(ActiveSession.getActiveLogin(), name, DataBaseProfessor.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE, exercise.getJsonTextObject());
 
                         Intent intent = new Intent(CompleteExerciseStep3Activity.this, TeacherHomeActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

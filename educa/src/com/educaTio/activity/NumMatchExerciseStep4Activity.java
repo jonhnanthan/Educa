@@ -12,6 +12,7 @@ import com.educaTio.R;
 import com.educaTio.database.DataBaseProfessor;
 import com.educaTio.entity.Exercise;
 import com.educaTio.entity.NumMatchExercise;
+import com.educaTio.utils.ActiveSession;
 import com.educaTio.validation.Correction;
 import com.educaTio.validation.FieldValidation;
 import com.educaTio.validation.Status;
@@ -64,7 +65,7 @@ public class NumMatchExerciseStep4Activity extends Activity {
 //                        MainActivity.teacherDataBaseHelper.addExercise(exercise);
                         // StudentHomeActivity.studentDataBaseHelper.addExercise(exercise);
 
-                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(name, DataBaseProfessor.getInstance(getApplicationContext()).NUM_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
+                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(ActiveSession.getActiveLogin(), name, DataBaseProfessor.getInstance(getApplicationContext()).NUM_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
 
                         // ExerciseStorage.getListExercise().add(exercise);
                         Intent intent = new Intent(NumMatchExerciseStep4Activity.this,

@@ -20,6 +20,7 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
 	private static DataBaseProfessor instance;
 
     private static final String COLUNA_PROFESSOR_ID = "ID";
+    private static final String COLUNA_PROFESSOR_OWNER = "Dono_da_atividade";
     private static final String COLUNA_PROFESSOR_NOME = "Nome";
     private static final String COLUNA_PROFESSOR_TIPO_ATIVIDADE = "Tipo_atividade";
     private static final String COLUNA_PROFESSOR_ATIVIDADE_JSON = "Atividade";
@@ -27,6 +28,7 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     private static final String SQL_CREATE_PROFESSOR = "CREATE TABLE "
     		+ TABLE_ATIVIDADES_PROFESSOR + "("
     		+ COLUNA_PROFESSOR_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
+    		+ COLUNA_PROFESSOR_OWNER + " VARCHAR,"
     		+ COLUNA_PROFESSOR_TIPO_ATIVIDADE + " VARCHAR,"
     		+ COLUNA_PROFESSOR_ATIVIDADE_JSON + " VARCHAR,"
     		+ COLUNA_PROFESSOR_NOME + " VARCHAR );";
@@ -97,12 +99,13 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
         
     }
     
-    public final long addActivity(String name, String activityType, String activity) {
+    public final long addActivity(String owner, String name, String activityType, String activity) {
 
         final SQLiteDatabase db = getWritableDatabase();
         final ContentValues values = new ContentValues();
 
         values.put(COLUNA_PROFESSOR_NOME, name);
+        values.put(COLUNA_PROFESSOR_OWNER, owner);
         values.put(COLUNA_PROFESSOR_TIPO_ATIVIDADE, activityType);
         values.put(COLUNA_PROFESSOR_ATIVIDADE_JSON, activity);
 
@@ -115,10 +118,10 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
         return id;
     }
     
-    public List<String> getActivities(){
+    public List<String> getActivities(String owner){
     	List<String> activities = new ArrayList<String>();
     	
-    	String sql = "select * from " + TABLE_ATIVIDADES_PROFESSOR;
+    	String sql = "select * from " + TABLE_ATIVIDADES_PROFESSOR + " where " + COLUNA_PROFESSOR_OWNER + " = '" + owner + "'";;
     	
     	final SQLiteDatabase db = getWritableDatabase();
     	final Cursor c = db.rawQuery(sql, null);
@@ -136,26 +139,26 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     	return activities;
     }
     
-    public List<String> getActivities(String type){
-    	List<String> activities = new ArrayList<String>();
-    	
-    	String sql = "select * from " + TABLE_ATIVIDADES_PROFESSOR + " where " + COLUNA_PROFESSOR_TIPO_ATIVIDADE + " = '" + type + "'";
-    	
-    	final SQLiteDatabase db = getWritableDatabase();
-    	final Cursor c = db.rawQuery(sql, null);
-    	
-    	if (c.getCount() > 0 && c.moveToFirst()){
-    		for (int i = 0; i < c.getCount(); i++) {
-    			activities.add(c.getString(2));
-    			c.moveToNext();
-			}
-    	}
-    	
-    	c.close();
-    	db.close();
-    	
-    	return activities;
-    }
+//    public List<String> getActivities(String owner, String type){
+//    	List<String> activities = new ArrayList<String>();
+//    	
+//    	String sql = "select * from " + TABLE_ATIVIDADES_PROFESSOR + " where " + COLUNA_PROFESSOR_TIPO_ATIVIDADE + " = '" + type + "'";
+//    	
+//    	final SQLiteDatabase db = getWritableDatabase();
+//    	final Cursor c = db.rawQuery(sql, null);
+//    	
+//    	if (c.getCount() > 0 && c.moveToFirst()){
+//    		for (int i = 0; i < c.getCount(); i++) {
+//    			activities.add(c.getString(2));
+//    			c.moveToNext();
+//			}
+//    	}
+//    	
+//    	c.close();
+//    	db.close();
+//    	
+//    	return activities;
+//    }
 
     public void removeActivity(String name){
     	

@@ -13,6 +13,7 @@ import android.widget.*;
 import com.educaTio.R;
 import com.educaTio.database.DataBaseProfessor;
 import com.educaTio.entity.CompleteExercise;
+import com.educaTio.utils.ActiveSession;
 import com.educaTio.validation.Correction;
 import com.educaTio.validation.Status;
 import org.json.JSONException;
@@ -105,7 +106,7 @@ public class EditCompleteExerciseStep2Activity extends Activity {
 
                     CompleteExercise completeExercise = new CompleteExercise(name, DataBaseProfessor.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE, exerciseData.get(4).toString(), String.valueOf(Status.NEW), String.valueOf(Correction.NOT_RATED), question, word, hiddenIndexesOld);
                     System.out.println(completeExercise.getJsonTextObject());
-                    List<String> exercises = DataBaseProfessor.getInstance(getApplicationContext()).getActivities();
+                    List<String> exercises = DataBaseProfessor.getInstance(getApplicationContext()).getActivities(ActiveSession.getActiveLogin());
                     for (String string : exercises) {
                         if (string.equals(completeExercise.getJsonTextObject())) {
                             CompleteExercise newExercise = null;
@@ -173,7 +174,7 @@ public class EditCompleteExerciseStep2Activity extends Activity {
                         completeExercise.setDate(fDate);
                         completeExercise.setHiddenIndexes(hiddenIndexes);                    
 
-                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(completeExercise.getName(), DataBaseProfessor.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE, completeExercise.getJsonTextObject());
+                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(ActiveSession.getActiveLogin(), completeExercise.getName(), DataBaseProfessor.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE, completeExercise.getJsonTextObject());
  
                         Intent intent = new Intent(EditCompleteExerciseStep2Activity.this, TeacherHomeActivity.class);
                         startActivity(intent);

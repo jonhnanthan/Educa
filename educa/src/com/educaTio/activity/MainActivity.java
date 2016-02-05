@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.educaTio.R;
 import com.educaTio.database.DataBaseProfessor;
+import com.educaTio.utils.ActiveSession;
 import com.educaTio.validation.FieldValidation;
 
 public class MainActivity extends Activity {
@@ -42,6 +43,7 @@ public class MainActivity extends Activity {
             	if (checkValidation(login) && checkValidation(password)){
             			if (users.containsKey(login.getText().toString())){
             				if (users.get(login.getText().toString()).equals(password.getText().toString())){
+            					ActiveSession.setActiveLogin(login.getText().toString().trim());
             					Intent intentTeacher = new Intent(getApplicationContext(),
             							TeacherHomeActivity.class);
             					intentTeacher.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

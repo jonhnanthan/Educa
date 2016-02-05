@@ -28,6 +28,7 @@ import com.educaTio.entity.Exercise;
 import com.educaTio.entity.ImageMatchExercise;
 import com.educaTio.entity.MultipleChoiceExercise;
 import com.educaTio.entity.MultipleCorrectChoiceExercise;
+import com.educaTio.utils.ActiveSession;
 import com.educaTio.validation.Correction;
 
 public class Sync extends AsyncTask<String, Integer, String> {
@@ -183,6 +184,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 				DataBaseProfessor
 						.getInstance(c)
 						.addActivity(
+								ActiveSession.getActiveLogin(), 
 								name,
 								DataBaseProfessor
 										.getInstance(c).COMPLETE_EXERCISE_TYPECODE,
@@ -221,7 +223,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 
             if (exerciseNameDontExists(exercise)) {
 
-				DataBaseProfessor.getInstance(c).addActivity(name, 
+				DataBaseProfessor.getInstance(c).addActivity(ActiveSession.getActiveLogin(), name, 
 						DataBaseProfessor.getInstance(c).IMAGE_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
             }
 		} catch (Exception e) {
@@ -286,7 +288,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 
             if (exerciseNameDontExists(exercise)) {
 
-                DataBaseProfessor.getInstance(c).addActivity(name, 
+                DataBaseProfessor.getInstance(c).addActivity(ActiveSession.getActiveLogin(), name, 
                 		DataBaseProfessor.getInstance(c).COLOR_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
             }
 		} catch (Exception e) {
@@ -334,6 +336,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 				DataBaseProfessor
 						.getInstance(c)
 						.addActivity(
+								ActiveSession.getActiveLogin(), 
 								name,
 								DataBaseProfessor
 										.getInstance(c).MULTIPLE_CHOICE_EXERCISE_TYPECODE,
@@ -402,6 +405,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 				DataBaseProfessor
 						.getInstance(c)
 						.addActivity(
+								ActiveSession.getActiveLogin(), 
 								name,
 								DataBaseProfessor.getInstance(c).MULTIPLE_CORRECT_CHOICE_EXERCISE_TYPECODE,
 								exercise.getJsonTextObject());

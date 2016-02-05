@@ -17,6 +17,7 @@ import com.educaTio.R;
 import com.educaTio.database.DataBaseProfessor;
 import com.educaTio.entity.Exercise;
 import com.educaTio.entity.MultipleCorrectChoiceExercise;
+import com.educaTio.utils.ActiveSession;
 import com.educaTio.validation.Correction;
 import com.educaTio.validation.FieldValidation;
 import com.educaTio.validation.Status;
@@ -73,6 +74,7 @@ public class MultipleCorrectChoiceExerciseStep3Activity extends Activity {
 								.getInstance(
 										MultipleCorrectChoiceExerciseStep3Activity.this)
 								.addActivity(
+										ActiveSession.getActiveLogin(), 
 										name,
 										DataBaseProfessor
 												.getInstance(getApplicationContext()).MULTIPLE_CORRECT_CHOICE_EXERCISE_TYPECODE,

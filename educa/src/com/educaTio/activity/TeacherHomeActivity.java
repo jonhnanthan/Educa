@@ -36,6 +36,7 @@ import android.widget.Toast;
 import com.educaTio.R;
 import com.educaTio.adapter.ExerciseTeacherAdapterJSON;
 import com.educaTio.database.DataBaseProfessor;
+import com.educaTio.utils.ActiveSession;
 
 public class TeacherHomeActivity extends Activity implements OnItemClickListener{
 	
@@ -58,7 +59,7 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
         listView.setOnItemClickListener(this);
 
 		exercises1 = DataBaseProfessor.getInstance(
-				TeacherHomeActivity.this).getActivities();
+				TeacherHomeActivity.this).getActivities(ActiveSession.getActiveLogin());
 		System.out.println("conta exercicios:" + exercises1.size());
 
         ExerciseTeacherAdapterJSON adapter = new ExerciseTeacherAdapterJSON(getApplicationContext(),
@@ -85,7 +86,7 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
     public static void updateAdapter(){
         ExerciseTeacherAdapterJSON adapter = new ExerciseTeacherAdapterJSON(contx,
         		DataBaseProfessor.getInstance(
-        				contx).getActivities(), activity);
+        				contx).getActivities(ActiveSession.getActiveLogin()), activity);
 		listView.setAdapter(adapter);
 		
 		if (dialog.isShowing()){

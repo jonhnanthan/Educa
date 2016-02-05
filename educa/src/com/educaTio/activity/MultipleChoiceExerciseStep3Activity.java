@@ -13,6 +13,7 @@ import com.educaTio.R;
 import com.educaTio.database.DataBaseProfessor;
 import com.educaTio.entity.Exercise;
 import com.educaTio.entity.MultipleChoiceExercise;
+import com.educaTio.utils.ActiveSession;
 import com.educaTio.validation.Correction;
 import com.educaTio.validation.FieldValidation;
 import com.educaTio.validation.Status;
@@ -59,7 +60,7 @@ public class MultipleChoiceExerciseStep3Activity extends Activity {
                     if (exerciseNameDontExists(exercise)) {
 //                        MainActivity.teacherDataBaseHelper.addExercise(exercise);
 
-                        DataBaseProfessor.getInstance(MultipleChoiceExerciseStep3Activity.this).addActivity(name, DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE, exercise.getJsonTextObject());
+                        DataBaseProfessor.getInstance(MultipleChoiceExerciseStep3Activity.this).addActivity(ActiveSession.getActiveLogin(), name, DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE, exercise.getJsonTextObject());
 
                         // ExerciseStorage.getListExercise().add(exercise);
                         Intent intent = new Intent(MultipleChoiceExerciseStep3Activity.this, TeacherHomeActivity.class);
