@@ -46,7 +46,7 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
 	private static TextView tvMsgToShow;
 	private static ListView listView;
 	private static Activity activity;
-	private static final String URL_JSON = "https://leonardoads.pythonanywhere.com/Educa/default/api/atividade.json";
+	private static final String URL_JSON = "https://jonhnanthan.pythonanywhere.com/Educa/default/api/atividade.json";
 	
     @Override
 	protected void onCreate(Bundle savedInstanceState) {

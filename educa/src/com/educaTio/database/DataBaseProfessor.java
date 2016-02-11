@@ -28,7 +28,7 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     private static final String SQL_CREATE_PROFESSOR = "CREATE TABLE "
     		+ TABLE_ATIVIDADES_PROFESSOR + "("
     		+ COLUNA_PROFESSOR_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
-    		+ COLUNA_PROFESSOR_OWNER + " VARCHAR,"
+//    		+ COLUNA_PROFESSOR_OWNER + " VARCHAR,"
     		+ COLUNA_PROFESSOR_TIPO_ATIVIDADE + " VARCHAR,"
     		+ COLUNA_PROFESSOR_ATIVIDADE_JSON + " VARCHAR,"
     		+ COLUNA_PROFESSOR_NOME + " VARCHAR );";
@@ -105,7 +105,7 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
         final ContentValues values = new ContentValues();
 
         values.put(COLUNA_PROFESSOR_NOME, name);
-        values.put(COLUNA_PROFESSOR_OWNER, owner);
+//        values.put(COLUNA_PROFESSOR_OWNER, owner);
         values.put(COLUNA_PROFESSOR_TIPO_ATIVIDADE, activityType);
         values.put(COLUNA_PROFESSOR_ATIVIDADE_JSON, activity);
 
@@ -121,7 +121,7 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     public List<String> getActivities(String owner){
     	List<String> activities = new ArrayList<String>();
     	
-    	String sql = "select * from " + TABLE_ATIVIDADES_PROFESSOR + " where " + COLUNA_PROFESSOR_OWNER + " = '" + owner + "'";;
+    	String sql = "select * from " + TABLE_ATIVIDADES_PROFESSOR/* + " where " + COLUNA_PROFESSOR_OWNER + " = '" + owner + "'"*/;
     	
     	final SQLiteDatabase db = getWritableDatabase();
     	final Cursor c = db.rawQuery(sql, null);

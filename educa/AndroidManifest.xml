@@ -27,7 +27,7 @@
 
         <activity
             android:name="com.educaTio.activity.MainActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,183 +39,183 @@
         </activity>
         <activity
             android:name="com.educaTio.activity.TeacherHomeActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/teacher_home_activity" >
         </activity>
         <activity
             android:name="com.educaTio.activity.Chat"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/chat" >
         </activity>
         <activity
             android:name="com.educaTio.activity.NewUser"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/new_user" >
         </activity>
         <activity
             android:name="com.educaTio.activity.ChooseModelActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/choose_model_activity" >
         </activity>
         <activity
             android:name="com.educaTio.activity.ChooseMultipleChoiceExercise"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/choose_model_activity" >
         </activity>
         <activity
             android:name="com.educaTio.activity.CompleteExerciseStep1Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/complete_exercise_activity" >
         </activity>
         <activity
             android:name="com.educaTio.activity.CompleteExerciseStep2Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/complete_exercise_activity" >
         </activity>
         <activity
             android:name="com.educaTio.activity.CompleteExerciseStep3Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/complete_exercise_activity" >
         </activity>
         <activity
             android:name="com.educaTio.activity.MultipleChoiceExerciseStep1Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/multiple_choice" >
         </activity>
         <activity
             android:name="com.educaTio.activity.MultipleChoiceExerciseStep2Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/multiple_choice" >
         </activity>
         <activity
             android:name="com.educaTio.activity.MultipleChoiceExerciseStep3Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/multiple_choice" >
         </activity>
         <activity
             android:name="com.educaTio.activity.MultipleCorrectChoiceExerciseStep1Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/multiple_choice" >
         </activity>
         <activity
             android:name="com.educaTio.activity.MultipleCorrectChoiceExerciseStep2Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/multiple_choice" >
         </activity>
         <activity
             android:name="com.educaTio.activity.MultipleCorrectChoiceExerciseStep3Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/multiple_choice" >
         </activity>
         <activity
             android:name="com.educaTio.activity.ColorMatchExerciseStep1Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/match_exercise_activity" >
         </activity>
         <activity
             android:name="com.educaTio.activity.ChooseMatchExerciseActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/match_exercise_activity" >
         </activity>
         <activity
             android:name="com.educaTio.activity.ColorMatchExerciseStep2Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/match_exercise_activity" >
         </activity>
         <activity
             android:name="com.educaTio.activity.ColorMatchExerciseStep3Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/match_exercise_activity" >
         </activity>
         <activity
             android:name="com.educaTio.activity.ColorMatchExerciseStep4Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/match_exercise_activity" >
         </activity>
         <activity
             android:name="com.educaTio.activity.EditMultipleChoiceExerciseActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/multiple_choice" >
         </activity>
         <activity
             android:name="com.educaTio.activity.EditMultipleCorrectChoiceExercise"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/multiple_choice" >
         </activity>
         <activity
             android:name="com.educaTio.activity.EditColorMatchExerciseActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/color_match" >
         </activity>
         <activity
             android:name="com.educaTio.activity.EditImageMatchExerciseActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/image_match" >
         </activity>
         <activity
             android:name="com.educaTio.activity.EditCompleteExerciseStep1Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/complete_exercise_activity" >
         </activity>
         <activity
             android:name="com.educaTio.activity.EditCompleteExerciseStep2Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/complete_exercise_activity" >
         </activity>
                 <activity
             android:name="com.educaTio.activity.EditNumMatchExerciseActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/image_num_match" >
         </activity>
         <activity
             android:name="com.educaTio.activity.ImageMatchExerciseStep1Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/image_match" >
         </activity>
          <activity
             android:name="com.educaTio.activity.ImageMatchExerciseStep2Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/image_match" >
         </activity>
         <activity
             android:name="com.educaTio.activity.ImageMatchExerciseStep3Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/image_match" >
         </activity>
         
         <activity
             android:name="com.educaTio.activity.NumMatchExerciseStep1Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/image_num_match" >
         </activity>
         <activity
             android:name="com.educaTio.activity.NumMatchExerciseStep2Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/image_num_match" >
         </activity>
         <activity
             android:name="com.educaTio.activity.NumMatchExerciseStep3Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/image_num_match" >
         </activity>
         <activity
             android:name="com.educaTio.activity.NumMatchExerciseStep4Activity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/image_num_match" >
         </activity>
     	<activity
             android:name="com.educaTio.activity.AboutActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/about" >
         </activity>
         <activity
             android:name="com.educaTio.activity.HelpActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/help" >
         </activity>
         <activity
             android:name="com.educaTio.activity.ReportActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/report" >
         </activity>
         

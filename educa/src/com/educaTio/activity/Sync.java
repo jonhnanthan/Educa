@@ -117,9 +117,8 @@ public class Sync extends AsyncTask<String, Integer, String> {
 
 		try {
 			json = new JSONObject(result);
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			TeacherHomeActivity.updateDialogMessage(c.getResources().getString(R.string.sync_error));
-			e.printStackTrace();
 		}
 
 		if (json != null) {
