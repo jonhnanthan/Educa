@@ -63,7 +63,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 
 		} catch (final Exception e) {
 			TeacherHomeActivity.updateDialogMessage(c.getResources().getString(R.string.sync_no_net));
-			Log.d("Exception while downloading url", e.toString());
+			Log.d("SYNC", String.format("Exception while downloading url: %s", e.toString()));
 			cancel(true);
 		} finally {
 			if (iStream != null) {
@@ -119,6 +119,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 			json = new JSONObject(result);
 		} catch (Exception e) {
 			TeacherHomeActivity.updateDialogMessage(c.getResources().getString(R.string.sync_error));
+			cancel(true);
 		}
 
 		if (json != null) {
@@ -183,7 +184,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 				DataBaseProfessor
 						.getInstance(c)
 						.addActivity(
-								ActiveSession.getActiveLogin(), 
+								ActiveSession.getActiveLogin(), /*Verificar o dono e comparar antes de add*/
 								name,
 								DataBaseProfessor
 										.getInstance(c).COMPLETE_EXERCISE_TYPECODE,
