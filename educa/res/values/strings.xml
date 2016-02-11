@@ -76,7 +76,7 @@
     <string name="chat">chat</string>
     <string name="confirmation_send">Are you sure you want to send the exercise?</string>
     <string name="sending">Sending...</string>
-    <string name="login">Login</string>
+    <string name="login">Email</string>
     <string name="login_password">Password</string>
     <string name="new_user">Add User</string>
     <string name="error_new_user">This user already exists</string>
