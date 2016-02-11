@@ -1,8 +1,6 @@
 Educa
 ========
 
-<p>Repositório privado do projeto</p>
-
 <p>*Passos para uso do projeto caso clone pelo plugin do eclipse:</p>
 <p>1 - Botão direito no Package Explorer > Import > Git > Project from Git</p>
 <p>2 - Siga todos os passos para a importação</p>
