@@ -142,26 +142,26 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     	return activities;
     }
     
-//    public List<String> getActivities(String owner, String type){
-//    	List<String> activities = new ArrayList<String>();
-//    	
-//    	String sql = "select * from " + TABLE_ATIVIDADES_PROFESSOR + " where " + COLUNA_PROFESSOR_TIPO_ATIVIDADE + " = '" + type + "'";
-//    	
-//    	final SQLiteDatabase db = getWritableDatabase();
-//    	final Cursor c = db.rawQuery(sql, null);
-//    	
-//    	if (c.getCount() > 0 && c.moveToFirst()){
-//    		for (int i = 0; i < c.getCount(); i++) {
-//    			activities.add(c.getString(2));
-//    			c.moveToNext();
-//			}
-//    	}
-//    	
-//    	c.close();
-//    	db.close();
-//    	
-//    	return activities;
-//    }
+    public List<String> getActivitiesByFolder(String owner, String folder){
+    	List<String> activities = new ArrayList<String>();
+    	
+    	String sql = "select * from " + TABLE_ATIVIDADES_PROFESSOR + " where " + COLUNA_PROFESSOR_PASTA + " = '" + folder + "'";
+    	
+    	final SQLiteDatabase db = getWritableDatabase();
+    	final Cursor c = db.rawQuery(sql, null);
+    	
+    	if (c.getCount() > 0 && c.moveToFirst()){
+    		for (int i = 0; i < c.getCount(); i++) {
+    			activities.add(c.getString(4));
+    			c.moveToNext();
+			}
+    	}
+    	
+    	c.close();
+    	db.close();
+    	
+    	return activities;
+    }
 
     public void removeActivity(String name){
     	
@@ -351,5 +351,28 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
 		}
     	
 		return result;
+	}
+
+	public List<String> getFoldersList(String owner) {
+		ArrayList<String> folders = new ArrayList<String>();
+		
+		String sql = "select * from " + TABLE_ATIVIDADES_PROFESSOR + " where " + COLUNA_PROFESSOR_OWNER + " = '" + owner + "'";
+    	
+    	final SQLiteDatabase db = getWritableDatabase();
+    	final Cursor c = db.rawQuery(sql, null);
+    	
+    	if (c.getCount() > 0 && c.moveToFirst()){
+    		for (int i = 0; i < c.getCount(); i++) {
+    			if (!folders.contains(c.getString(2))) folders.add(c.getString(2));
+    			c.moveToNext();
+			}
+    	}
+    	
+    	c.close();
+    	db.close();
+    	
+    	folders.add("default");
+    	
+		return folders;
 	}
 }

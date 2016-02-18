@@ -35,10 +35,11 @@ import android.widget.Toast;
 
 import com.educaTio.R;
 import com.educaTio.adapter.ExerciseTeacherAdapterJSON;
+import com.educaTio.adapter.FoldersTeacherAdapter;
 import com.educaTio.database.DataBaseProfessor;
 import com.educaTio.utils.ActiveSession;
 
-public class TeacherHomeActivity extends Activity implements OnItemClickListener{
+public class TeacherHomeActivity extends Activity {
 	
 	private static Context contx;
 	private List<String> exercises1;
@@ -46,6 +47,7 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
 	private static TextView tvMsgToShow;
 	private static ListView listView;
 	private static Activity activity;
+	private boolean intoFolder;
 	private static final String URL_JSON = "https://jonhnanthan.pythonanywhere.com/Educa/default/api/atividade.json";
 	
     @Override
@@ -54,17 +56,64 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
 		setContentView(R.layout.activity_teacher_home);
 		contx = getApplicationContext();
 		activity = TeacherHomeActivity.this;
+		intoFolder = false;
 		
         listView = (ListView) findViewById(R.id.lv_exercise);
-        listView.setOnItemClickListener(this);
+        listView.setOnItemClickListener(new OnItemClickListener() {
 
-		exercises1 = DataBaseProfessor.getInstance(
-				TeacherHomeActivity.this).getActivities(ActiveSession.getActiveLogin());
-		System.out.println("conta exercicios:" + exercises1.size());
+        	@Override
+        	public final void onItemClick(final AdapterView<?> parent, final View view,
+        			final int position, final long id) {
+        		
+        		if (parent.getAdapter() instanceof FoldersTeacherAdapter) {
+        			intoFolder = true;
+        			String folder = ((TextView) view.findViewById(R.id.folder_name)).getText().toString();
+        			exercises1 = DataBaseProfessor.getInstance(
+        					TeacherHomeActivity.this).getActivitiesByFolder(ActiveSession.getActiveLogin(), folder);
 
-        ExerciseTeacherAdapterJSON adapter = new ExerciseTeacherAdapterJSON(getApplicationContext(),
-                exercises1, TeacherHomeActivity.this);
-		listView.setAdapter(adapter);
+        	        ExerciseTeacherAdapterJSON adapter = new ExerciseTeacherAdapterJSON(getApplicationContext(),
+        	                exercises1, TeacherHomeActivity.this);
+        	        
+        			listView.setAdapter(adapter);
+
+        		} else {
+            		final Dialog dialog = new Dialog(TeacherHomeActivity.this);
+            		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            		dialog.setContentView(R.layout.dialog_yes_no_sentence);
+            	    TextView tvMsgToShow =
+            	            (TextView) dialog.findViewById(R.id.tvYesNoAlertDialog);
+            	    tvMsgToShow.setText( R.string.confirmation_send );
+            	
+            	    Button btYes =
+            	            (Button) dialog.findViewById(R.id.btYes);
+            	    btYes.setOnClickListener(new OnClickListener() {
+            	
+            	        @Override
+            	        public void onClick(final View v) {
+            	            Toast.makeText(contx, R.string.sending, Toast.LENGTH_SHORT).show();
+            	            Log.i("Enviando", exercises1.get(position));
+            	            send(exercises1.get(position));
+            	            dialog.dismiss();
+            	        }
+            	    });
+            	
+            	    Button btNo =
+            	            (Button) dialog.findViewById(R.id.btNo);
+            	    btNo.setOnClickListener(new OnClickListener() {
+            	
+            	        @Override
+            	        public void onClick(final View v) {
+            	            dialog.dismiss();
+            	        }
+            	    });
+            	    dialog.show();
+            	}
+    		}
+		});
+
+        FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(getApplicationContext(), DataBaseProfessor.getInstance(getApplicationContext()).getFoldersList(ActiveSession.getActiveLogin()));
+        
+		listView.setAdapter(folderAdapter);
 		
 		dialog = new Dialog(this);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -143,46 +192,15 @@ public class TeacherHomeActivity extends Activity implements OnItemClickListener
 
 	@Override
 	public void onBackPressed() {
-		Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		startActivity(intent);
-	}
-	
-	@Override
-	public final void onItemClick(final AdapterView<?> parent, final View view,
-			final int position, final long id) {
-		
-		final Dialog dialog = new Dialog(this);
-		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		dialog.setContentView(R.layout.dialog_yes_no_sentence);
-	    TextView tvMsgToShow =
-	            (TextView) dialog.findViewById(R.id.tvYesNoAlertDialog);
-	    tvMsgToShow.setText( R.string.confirmation_send );
-	
-	    Button btYes =
-	            (Button) dialog.findViewById(R.id.btYes);
-	    btYes.setOnClickListener(new OnClickListener() {
-	
-	        @Override
-	        public void onClick(final View v) {
-	            Toast.makeText(contx, R.string.sending, Toast.LENGTH_SHORT).show();
-	            Log.i("Enviando", exercises1.get(position));
-	            send(exercises1.get(position));
-	            dialog.dismiss();
-	        }
-	    });
-	
-	    Button btNo =
-	            (Button) dialog.findViewById(R.id.btNo);
-	    btNo.setOnClickListener(new OnClickListener() {
-	
-	        @Override
-	        public void onClick(final View v) {
-	            dialog.dismiss();
-	        }
-	    });
-	    dialog.show();
-		
+		if (intoFolder) {
+	        FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(getApplicationContext(), DataBaseProfessor.getInstance(getApplicationContext()).getFoldersList(ActiveSession.getActiveLogin()));
+			listView.setAdapter(folderAdapter);
+
+		} else {
+			Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(intent);
+		}
 	}
 	
 	private void send(String json) {
