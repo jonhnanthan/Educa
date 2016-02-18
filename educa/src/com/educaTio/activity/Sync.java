@@ -93,12 +93,13 @@ public class Sync extends AsyncTask<String, Integer, String> {
 	@Override
 	protected String doInBackground(final String... url) {
 
+		TeacherHomeActivity.updateDialogMessage(c.getResources().getString(R.string.sync_activities));
 		try {
-			TeacherHomeActivity.updateDialogMessage(c.getResources().getString(R.string.sync_init));
 			data = downloadUrl(url[0]);
 		} catch (final Exception e) {
-			Log.d("Background Task", e.toString());
+			Log.d("SYNC", e.toString());
 		}
+		
 		return data;
 	}
 
@@ -118,6 +119,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 		try {
 			json = new JSONObject(result);
 		} catch (Exception e) {
+			Log.d("SYNC", result);
 			TeacherHomeActivity.updateDialogMessage(c.getResources().getString(R.string.sync_error));
 			cancel(true);
 		}
@@ -127,7 +129,6 @@ public class Sync extends AsyncTask<String, Integer, String> {
 				System.out.println(json.getJSONArray("content")
 						.getJSONObject(0).toString());
 				JSONArray array = json.getJSONArray("content");
-				TeacherHomeActivity.updateDialogMessage(c.getResources().getString(R.string.sync_activities));
 
 				for (int i = 0; i < array.length(); i++) {
 					JSONObject obj = array.getJSONObject(i);

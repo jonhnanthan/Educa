@@ -124,7 +124,7 @@ public class TeacherHomeActivity extends Activity {
 		dialog.setContentView(R.layout.dialog_sync);
 	    tvMsgToShow =
 	            (TextView) dialog.findViewById(R.id.tvYesNoAlertDialog);
-	    tvMsgToShow.setText( "iniciando" );
+	    tvMsgToShow.setText(getResources().getString(R.string.sync_init));
 
 		
         /* Make all AllJoyn calls through a separate handler thread to prevent blocking the UI. */
@@ -137,10 +137,8 @@ public class TeacherHomeActivity extends Activity {
 	}
     
     public static void updateAdapter(){
-        ExerciseTeacherAdapterJSON adapter = new ExerciseTeacherAdapterJSON(contx,
-        		DataBaseProfessor.getInstance(
-        				contx).getActivities(ActiveSession.getActiveLogin()), activity);
-		listView.setAdapter(adapter);
+        FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(contx, DataBaseProfessor.getInstance(contx).getFoldersList(ActiveSession.getActiveLogin()));
+		listView.setAdapter(folderAdapter);
 		
 		if (dialog.isShowing()){
 			dialog.dismiss();
@@ -233,6 +231,7 @@ public class TeacherHomeActivity extends Activity {
 			listView.setAdapter(folderAdapter);
 			menu.findItem(R.id.web_sync).setVisible(true);
 			menu.findItem(R.id.new_folder).setVisible(true);
+			intoFolder = false;
 		} else {
 			Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

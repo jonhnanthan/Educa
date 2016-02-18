@@ -95,7 +95,7 @@
 	<string name="sync_init">Starting...</string>
 	<string name="sync_no_net">Without internet!</string>
 	<string name="sync_error">Error</string>
-	<string name="sync_activities">Adding activities.</string>
+	<string name="sync_activities">Adding activities, wait!</string>
 	<string name="new_folder">New folder</string>
 	<string name="new_folder_hint">Folder name</string>
 	
