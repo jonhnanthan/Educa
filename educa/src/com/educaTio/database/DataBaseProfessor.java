@@ -21,6 +21,7 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
 
     private static final String COLUNA_PROFESSOR_ID = "ID";
     private static final String COLUNA_PROFESSOR_OWNER = "Dono_da_atividade";
+    private static final String COLUNA_PROFESSOR_PASTA = "Pasta";
     private static final String COLUNA_PROFESSOR_NOME = "Nome";
     private static final String COLUNA_PROFESSOR_TIPO_ATIVIDADE = "Tipo_atividade";
     private static final String COLUNA_PROFESSOR_ATIVIDADE_JSON = "Atividade";
@@ -29,6 +30,7 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     		+ TABLE_ATIVIDADES_PROFESSOR + "("
     		+ COLUNA_PROFESSOR_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
     		+ COLUNA_PROFESSOR_OWNER + " VARCHAR,"
+    		+ COLUNA_PROFESSOR_PASTA + " VARCHAR,"
     		+ COLUNA_PROFESSOR_TIPO_ATIVIDADE + " VARCHAR,"
     		+ COLUNA_PROFESSOR_ATIVIDADE_JSON + " VARCHAR,"
     		+ COLUNA_PROFESSOR_NOME + " VARCHAR );";
@@ -99,13 +101,14 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
         
     }
     
-    public final long addActivity(String owner, String name, String activityType, String activity) {
+    public final long addActivity(String owner, String pasta, String name, String activityType, String activity) {
 
         final SQLiteDatabase db = getWritableDatabase();
         final ContentValues values = new ContentValues();
 
         values.put(COLUNA_PROFESSOR_NOME, name);
         values.put(COLUNA_PROFESSOR_OWNER, owner);
+        values.put(COLUNA_PROFESSOR_PASTA, pasta);
         values.put(COLUNA_PROFESSOR_TIPO_ATIVIDADE, activityType);
         values.put(COLUNA_PROFESSOR_ATIVIDADE_JSON, activity);
 
@@ -128,7 +131,7 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     	
     	if (c.getCount() > 0 && c.moveToFirst()){
     		for (int i = 0; i < c.getCount(); i++) {
-    			activities.add(c.getString(3));
+    			activities.add(c.getString(4)); //sempre +1 ao adicionar colunas a tabela
     			c.moveToNext();
 			}
     	}
@@ -322,4 +325,31 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
          
          return id;
     }
+
+	public String[] getFolders(String owner) {
+		ArrayList<String> folders = new ArrayList<String>();
+		
+		String sql = "select * from " + TABLE_ATIVIDADES_PROFESSOR + " where " + COLUNA_PROFESSOR_OWNER + " = '" + owner + "'";
+    	
+    	final SQLiteDatabase db = getWritableDatabase();
+    	final Cursor c = db.rawQuery(sql, null);
+    	
+    	if (c.getCount() > 0 && c.moveToFirst()){
+    		for (int i = 0; i < c.getCount(); i++) {
+    			folders.add(c.getString(2));
+    			c.moveToNext();
+			}
+    	}
+    	
+    	c.close();
+    	db.close();
+    	
+    	String[] result = new String[folders.size() + 1];
+    	result[0] = "default";
+    	for (int i = 0; i < folders.size(); i++) {
+			result[i+1] = folders.get(i);
+		}
+    	
+		return result;
+	}
 }
