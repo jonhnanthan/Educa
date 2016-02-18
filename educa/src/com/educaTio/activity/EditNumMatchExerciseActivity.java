@@ -220,7 +220,7 @@ public class EditNumMatchExerciseActivity extends Activity {
                         numMatchExercise.setDate(fDate);
                         numMatchExercise.setRightAnswer(rightAnswer);
 
-                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(ActiveSession.getActiveLogin(), numMatchExercise.getName(), DataBaseProfessor.getInstance(getApplicationContext()).NUM_MATCH_EXERCISE_TYPECODE, numMatchExercise.getJsonTextObject());
+                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(ActiveSession.getActiveLogin(), ActiveSession.getDefaultFolder(), numMatchExercise.getName(), DataBaseProfessor.getInstance(getApplicationContext()).NUM_MATCH_EXERCISE_TYPECODE, numMatchExercise.getJsonTextObject());
                         
                         Intent intent = new Intent(EditNumMatchExerciseActivity.this, TeacherHomeActivity.class);
                         startActivity(intent);

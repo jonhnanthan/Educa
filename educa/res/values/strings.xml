@@ -8,6 +8,7 @@
     <string name="match_exercise_activity">Match Exercise</string>
     <string name="complete_exercise_activity">Complete Exercise</string>
     <string name="action_new_exercise">New Exercise</string>
+    <string name="action_new_folder">New folder</string>
     <string name="student">I\'m a Student</string>
     <string name="teacher">I\'m a Teacher</string>
     <string name="match">Match</string>
@@ -95,5 +96,7 @@
 	<string name="sync_no_net">Without internet!</string>
 	<string name="sync_error">Error</string>
 	<string name="sync_activities">Adding activities.</string>
+	<string name="new_folder">New folder</string>
+	<string name="new_folder_hint">Folder name</string>
 	
 </resources>

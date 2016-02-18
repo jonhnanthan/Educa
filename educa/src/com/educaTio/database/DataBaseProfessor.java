@@ -152,7 +152,7 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     	
     	if (c.getCount() > 0 && c.moveToFirst()){
     		for (int i = 0; i < c.getCount(); i++) {
-    			activities.add(c.getString(4));
+    			if (c.getString(4) != null) activities.add(c.getString(4));
     			c.moveToNext();
 			}
     	}

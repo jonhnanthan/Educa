@@ -29,6 +29,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,6 +70,7 @@ public class TeacherHomeActivity extends Activity {
         		if (parent.getAdapter() instanceof FoldersTeacherAdapter) {
         			intoFolder = true;
         			menu.findItem(R.id.web_sync).setVisible(false);
+        			menu.findItem(R.id.new_folder).setVisible(false);
         			String folder = ((TextView) view.findViewById(R.id.folder_name)).getText().toString();
         			exercises1 = DataBaseProfessor.getInstance(
         					TeacherHomeActivity.this).getActivitiesByFolder(ActiveSession.getActiveLogin(), folder);
@@ -186,6 +188,37 @@ public class TeacherHomeActivity extends Activity {
         	s.execute(URL_JSON);
         	dialog.show();
 			break;
+		case R.id.new_folder:
+    		final Dialog dialog = new Dialog(TeacherHomeActivity.this);
+    		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+    		dialog.setContentView(R.layout.dialog_new_folder);
+    		final EditText folderName = (EditText) dialog.findViewById(R.id.etNewFolderName);
+    	
+    	    Button btYes =
+    	            (Button) dialog.findViewById(R.id.btOk);
+    	    btYes.setOnClickListener(new OnClickListener() {
+    	
+    	        @Override
+    	        public void onClick(final View v) {
+    				DataBaseProfessor.getInstance(getApplicationContext()).addActivity(ActiveSession.getActiveLogin(), folderName.getText().toString(), 
+    						null, null, null);
+    		        FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(getApplicationContext(), DataBaseProfessor.getInstance(getApplicationContext()).getFoldersList(ActiveSession.getActiveLogin()));
+    				listView.setAdapter(folderAdapter);
+    				dialog.dismiss();
+    	        }
+    	    });
+    	
+    	    Button btNo =
+    	            (Button) dialog.findViewById(R.id.btCancel);
+    	    btNo.setOnClickListener(new OnClickListener() {
+    	
+    	        @Override
+    	        public void onClick(final View v) {
+    	            dialog.dismiss();
+    	        }
+    	    });
+    	    dialog.show();
+			break;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -199,6 +232,7 @@ public class TeacherHomeActivity extends Activity {
 	        FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(getApplicationContext(), DataBaseProfessor.getInstance(getApplicationContext()).getFoldersList(ActiveSession.getActiveLogin()));
 			listView.setAdapter(folderAdapter);
 			menu.findItem(R.id.web_sync).setVisible(true);
+			menu.findItem(R.id.new_folder).setVisible(true);
 		} else {
 			Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

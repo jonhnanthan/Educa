@@ -227,6 +227,7 @@ public class EditMultipleCorrectChoiceExercise extends Activity {
 								.getInstance(getApplicationContext())
 								.addActivity(
 										ActiveSession.getActiveLogin(), 
+										 ActiveSession.getDefaultFolder(),
 										multipleCorrectChoiseExercise.getName(),
 										DataBaseProfessor
 												.getInstance(getApplicationContext()).MULTIPLE_CORRECT_CHOICE_EXERCISE_TYPECODE,

@@ -174,7 +174,7 @@ public class EditCompleteExerciseStep2Activity extends Activity {
                         completeExercise.setDate(fDate);
                         completeExercise.setHiddenIndexes(hiddenIndexes);                    
 
-                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(ActiveSession.getActiveLogin(), completeExercise.getName(), DataBaseProfessor.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE, completeExercise.getJsonTextObject());
+                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(ActiveSession.getActiveLogin(), ActiveSession.getDefaultFolder(), completeExercise.getName(), DataBaseProfessor.getInstance(getApplicationContext()).COMPLETE_EXERCISE_TYPECODE, completeExercise.getJsonTextObject());
  
                         Intent intent = new Intent(EditCompleteExerciseStep2Activity.this, TeacherHomeActivity.class);
                         startActivity(intent);

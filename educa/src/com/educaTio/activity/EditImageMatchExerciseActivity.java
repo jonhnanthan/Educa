@@ -176,7 +176,8 @@ public class EditImageMatchExerciseActivity extends Activity {
 						DataBaseProfessor
 								.getInstance(getApplicationContext())
 								.addActivity(
-										ActiveSession.getActiveLogin(), 
+										ActiveSession.getActiveLogin(),
+										 ActiveSession.getDefaultFolder(),
 										colorMatchExercise.getName(),
 										DataBaseProfessor
 												.getInstance(getApplicationContext()).IMAGE_MATCH_EXERCISE_TYPECODE,

@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 import com.educaTio.R;
 import com.educaTio.database.DataBaseProfessor;
@@ -25,14 +27,19 @@ import java.util.List;
 public class NumMatchExerciseStep4Activity extends Activity {
     private EditText et_name;
     private List<CharSequence> exerciseData;
+	private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_multiplechoice_exercise_step3);
+        setContentView(R.layout.activity_finish_add_activity);
         ImageButton bt_save = (ImageButton) findViewById(R.id.bt_save);
         ImageButton bt_back = (ImageButton) findViewById(R.id.bt_previous_step);
         et_name = (EditText) findViewById(R.id.et_name);
+        spinner = (Spinner) findViewById(R.id.folders_spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, DataBaseProfessor.getInstance(getApplicationContext()).getFolders(ActiveSession.getActiveLogin()));
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
 
         Intent i = getIntent();
         exerciseData = i.getCharSequenceArrayListExtra("AnswersStep3Color");
@@ -65,7 +72,7 @@ public class NumMatchExerciseStep4Activity extends Activity {
 //                        MainActivity.teacherDataBaseHelper.addExercise(exercise);
                         // StudentHomeActivity.studentDataBaseHelper.addExercise(exercise);
 
-                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(ActiveSession.getActiveLogin(), name, DataBaseProfessor.getInstance(getApplicationContext()).NUM_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
+                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(ActiveSession.getActiveLogin(), spinner.getSelectedItem().toString(), name, DataBaseProfessor.getInstance(getApplicationContext()).NUM_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
 
                         // ExerciseStorage.getListExercise().add(exercise);
                         Intent intent = new Intent(NumMatchExerciseStep4Activity.this,
@@ -113,7 +120,7 @@ public class NumMatchExerciseStep4Activity extends Activity {
     	List<String> names = DataBaseProfessor.getInstance(getApplicationContext()).getActivitiesName();
     	
     	for (String string : names) {
-    		if (string.equals(exercise.getName())) {
+    		if (string != null && string.equals(exercise.getName())) {
     			return false;
     		}
 		}

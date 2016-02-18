@@ -9,8 +9,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.educaTio.R;
@@ -25,14 +27,19 @@ import com.educaTio.validation.Status;
 public class MultipleCorrectChoiceExerciseStep3Activity extends Activity {
 	private EditText et_name;
 	private List<CharSequence> exerciseData;
+	private Spinner spinner;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_multiplechoice_exercise_step3);
+		setContentView(R.layout.activity_finish_add_activity);
 		ImageButton bt_save = (ImageButton) findViewById(R.id.bt_save);
 		ImageButton bt_back = (ImageButton) findViewById(R.id.bt_previous_step);
 		et_name = (EditText) findViewById(R.id.et_name);
+        spinner = (Spinner) findViewById(R.id.folders_spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, DataBaseProfessor.getInstance(getApplicationContext()).getFolders(ActiveSession.getActiveLogin()));
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
 
 		Intent i = getIntent();
 		exerciseData = i.getCharSequenceArrayListExtra("AnswersStep2Match");
@@ -74,7 +81,8 @@ public class MultipleCorrectChoiceExerciseStep3Activity extends Activity {
 								.getInstance(
 										MultipleCorrectChoiceExerciseStep3Activity.this)
 								.addActivity(
-										ActiveSession.getActiveLogin(), 
+										ActiveSession.getActiveLogin(),
+										spinner.getSelectedItem().toString(),
 										name,
 										DataBaseProfessor
 												.getInstance(getApplicationContext()).MULTIPLE_CORRECT_CHOICE_EXERCISE_TYPECODE,
@@ -128,7 +136,7 @@ public class MultipleCorrectChoiceExerciseStep3Activity extends Activity {
 				getApplicationContext()).getActivitiesName();
 
 		for (String string : names) {
-			if (string.equals(exercise.getName())) {
+			if (string != null && string.equals(exercise.getName())) {
 				return false;
 			}
 		}

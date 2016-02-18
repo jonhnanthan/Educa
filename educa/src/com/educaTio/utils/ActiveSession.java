@@ -8,6 +8,10 @@ public class ActiveSession {
 		return activeLogin;
 	}
 
+	public static String getDefaultFolder() {
+		return "teste";
+	}
+	
 	public static void setActiveLogin(String activeLogin) {
 		ActiveSession.activeLogin = activeLogin;
 	}

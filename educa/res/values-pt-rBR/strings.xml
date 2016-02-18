@@ -12,6 +12,7 @@
 	<string name="complete_exercise_activity">Completar</string>
 
 	<string name="action_new_exercise">Novo Exercício</string>
+	<string name="action_new_folder">Nova pasta</string>
         
     <string name="student">Sou Aluno</string>
     <string name="teacher">Sou Professor</string>
@@ -105,4 +106,7 @@
 	<string name="sync_no_net">Sem internet!</string>
 	<string name="sync_error">Erro</string>
 	<string name="sync_activities">Adicionando atividades.</string>
+	
+	<string name="new_folder">Nova pasta</string>
+	<string name="new_folder_hint">Nome da pasta</string>
 </resources>

@@ -182,7 +182,7 @@ public class EditMultipleChoiceExerciseActivity extends Activity {
                         multipleChoiseExercise.setDate(fDate);
                         multipleChoiseExercise.setRightAnswer(rightAnswer);
 
-                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(ActiveSession.getActiveLogin(), multipleChoiseExercise.getName(), DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE, multipleChoiseExercise.getJsonTextObject());
+                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(ActiveSession.getActiveLogin(), ActiveSession.getDefaultFolder(), multipleChoiseExercise.getName(), DataBaseProfessor.getInstance(getApplicationContext()).MULTIPLE_CHOICE_EXERCISE_TYPECODE, multipleChoiseExercise.getJsonTextObject());
 
                         Intent intent = new Intent(
                                 EditMultipleChoiceExerciseActivity.this,

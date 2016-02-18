@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 import com.educaTio.R;
 import com.educaTio.database.DataBaseProfessor;
@@ -28,15 +30,20 @@ public class ImageMatchExerciseStep3Activity extends Activity {
 	private String imageCode;
 	private String question;
 	private String rightAnswer;
+	private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_multiplechoice_exercise_step3);
+        setContentView(R.layout.activity_finish_add_activity);
         ImageButton bt_save = (ImageButton) findViewById(R.id.bt_save);
         ImageButton bt_back = (ImageButton) findViewById(R.id.bt_previous_step);
         et_name = (EditText) findViewById(R.id.et_name);
-       
+        spinner = (Spinner) findViewById(R.id.folders_spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, DataBaseProfessor.getInstance(getApplicationContext()).getFolders(ActiveSession.getActiveLogin()));
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
 
         Intent i = getIntent();
 		List<CharSequence> exerciseData = i.getCharSequenceArrayListExtra("AnswersStep2Image");
@@ -61,7 +68,7 @@ public class ImageMatchExerciseStep3Activity extends Activity {
 
                     if (exerciseNameAlreadyExists(exercise)) {
 
-						DataBaseProfessor.getInstance(getApplicationContext()).addActivity(ActiveSession.getActiveLogin(), name, DataBaseProfessor.getInstance(getApplicationContext()).IMAGE_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
+						DataBaseProfessor.getInstance(getApplicationContext()).addActivity(ActiveSession.getActiveLogin(), spinner.getSelectedItem().toString(), name, DataBaseProfessor.getInstance(getApplicationContext()).IMAGE_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
 
                         Intent intent = new Intent(ImageMatchExerciseStep3Activity.this,
                                 TeacherHomeActivity.class);
@@ -108,7 +115,7 @@ public class ImageMatchExerciseStep3Activity extends Activity {
     	List<String> names = DataBaseProfessor.getInstance(getApplicationContext()).getActivitiesName();
     	
     	for (String string : names) {
-    		if (string.equals(exercise.getName())) {
+    		if (string != null && string.equals(exercise.getName())) {
     			return false;
     		}
 		}

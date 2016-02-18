@@ -110,8 +110,8 @@ public class ExerciseTeacherAdapterJSON extends BaseAdapter {
 					.equals(DataBaseProfessor.getInstance(mcontext).NUM_MATCH_EXERCISE_TYPECODE)) {
 				icon.setImageResource(R.drawable.colorthumb);
 			}
-		} catch (JSONException e) {
-			Log.e("CREATE VIEW ERROR", e.getMessage());
+		} catch (Exception e) {
+			Log.e("CREATE VIEW ERROR", "CREATE VIEW ERROR");
 		}
 
         ImageView bt_options = (ImageView)

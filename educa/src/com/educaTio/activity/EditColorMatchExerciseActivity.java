@@ -220,7 +220,7 @@ public class EditColorMatchExerciseActivity extends Activity {
                         colorMatchExercise.setDate(fDate);
                         colorMatchExercise.setRightAnswer(rightAnswer);
 
-                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(ActiveSession.getActiveLogin(), colorMatchExercise.getName(), DataBaseProfessor.getInstance(getApplicationContext()).COLOR_MATCH_EXERCISE_TYPECODE, colorMatchExercise.getJsonTextObject());
+                        DataBaseProfessor.getInstance(getApplicationContext()).addActivity(ActiveSession.getActiveLogin(), ActiveSession.getDefaultFolder(), colorMatchExercise.getName(), DataBaseProfessor.getInstance(getApplicationContext()).COLOR_MATCH_EXERCISE_TYPECODE, colorMatchExercise.getJsonTextObject());
                         
                         Intent intent = new Intent(EditColorMatchExerciseActivity.this, TeacherHomeActivity.class);
                         startActivity(intent);

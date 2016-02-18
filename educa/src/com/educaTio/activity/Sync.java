@@ -185,7 +185,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 						.getInstance(c)
 						.addActivity(
 								ActiveSession.getActiveLogin(), /*Verificar o dono e comparar antes de add*/
-								name,
+								"WEB", name,
 								DataBaseProfessor
 										.getInstance(c).COMPLETE_EXERCISE_TYPECODE,
 								exercise.getJsonTextObject());
@@ -223,7 +223,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 
             if (exerciseNameDontExists(exercise)) {
 
-				DataBaseProfessor.getInstance(c).addActivity(ActiveSession.getActiveLogin(), name, 
+				DataBaseProfessor.getInstance(c).addActivity(ActiveSession.getActiveLogin(), "WEB", name, 
 						DataBaseProfessor.getInstance(c).IMAGE_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
             }
 		} catch (Exception e) {
@@ -288,7 +288,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 
             if (exerciseNameDontExists(exercise)) {
 
-                DataBaseProfessor.getInstance(c).addActivity(ActiveSession.getActiveLogin(), name, 
+                DataBaseProfessor.getInstance(c).addActivity(ActiveSession.getActiveLogin(), "WEB", name, 
                 		DataBaseProfessor.getInstance(c).COLOR_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
             }
 		} catch (Exception e) {
@@ -337,7 +337,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 						.getInstance(c)
 						.addActivity(
 								ActiveSession.getActiveLogin(), 
-								name,
+								"WEB", name,
 								DataBaseProfessor
 										.getInstance(c).MULTIPLE_CHOICE_EXERCISE_TYPECODE,
 								exercise.getJsonTextObject());
@@ -406,7 +406,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 						.getInstance(c)
 						.addActivity(
 								ActiveSession.getActiveLogin(), 
-								name,
+								"WEB", name,
 								DataBaseProfessor.getInstance(c).MULTIPLE_CORRECT_CHOICE_EXERCISE_TYPECODE,
 								exercise.getJsonTextObject());
 
@@ -421,7 +421,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 				c).getActivitiesName();
 
 		for (String string : names) {
-			if (string.equals(exercise.getName())) {
+			if (string != null && string.equals(exercise.getName())) {
 				return false;
 			}
 		}
