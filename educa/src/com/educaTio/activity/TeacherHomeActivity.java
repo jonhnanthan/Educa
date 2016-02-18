@@ -48,6 +48,7 @@ public class TeacherHomeActivity extends Activity {
 	private static ListView listView;
 	private static Activity activity;
 	private boolean intoFolder;
+	private Menu menu;
 	private static final String URL_JSON = "https://jonhnanthan.pythonanywhere.com/Educa/default/api/atividade.json";
 	
     @Override
@@ -67,6 +68,7 @@ public class TeacherHomeActivity extends Activity {
         		
         		if (parent.getAdapter() instanceof FoldersTeacherAdapter) {
         			intoFolder = true;
+        			menu.findItem(R.id.web_sync).setVisible(false);
         			String folder = ((TextView) view.findViewById(R.id.folder_name)).getText().toString();
         			exercises1 = DataBaseProfessor.getInstance(
         					TeacherHomeActivity.this).getActivitiesByFolder(ActiveSession.getActiveLogin(), folder);
@@ -163,6 +165,7 @@ public class TeacherHomeActivity extends Activity {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.teacher_actions, menu);
+		this.menu = menu;
 		return true;
 	}
 
@@ -195,7 +198,7 @@ public class TeacherHomeActivity extends Activity {
 		if (intoFolder) {
 	        FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(getApplicationContext(), DataBaseProfessor.getInstance(getApplicationContext()).getFoldersList(ActiveSession.getActiveLogin()));
 			listView.setAdapter(folderAdapter);
-
+			menu.findItem(R.id.web_sync).setVisible(true);
 		} else {
 			Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
