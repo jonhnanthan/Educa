@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
-import android.util.Log;
 
 import com.educaTio.utils.ActiveSession;
 import com.google.android.gms.ads.AdListener;
@@ -84,7 +83,6 @@ public class AdsService extends Service {
                 if (!isApplicationBroughtToBackground() && mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
                 }
-                Log.d("service", "to aqui oh");
                 alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 30000, pendingIntent);
             }
 
