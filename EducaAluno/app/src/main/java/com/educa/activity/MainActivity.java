@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.educa.R;
+import com.educa.services.AdsService;
+import com.educa.utils.ActiveSession;
 import com.educa.validation.FieldValidation;
 
 public class MainActivity extends Activity {
@@ -20,6 +22,9 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActiveSession.setContext(this);
+
+        startService(new Intent(this, AdsService.class));
 
         final EditText studentName = (EditText) findViewById(R.id.student_name);
         ImageButton bt_student = (ImageButton) findViewById(R.id.bt_student);
