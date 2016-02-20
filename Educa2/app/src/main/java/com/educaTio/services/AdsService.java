@@ -1,18 +1,23 @@
 package com.educaTio.services;
 
+import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
+import android.util.Log;
 
 import com.educaTio.utils.ActiveSession;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+
+import java.util.List;
 
 public class AdsService extends Service {
 
@@ -76,13 +81,26 @@ public class AdsService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equalsIgnoreCase("show_ads")){
-                if (mInterstitialAd.isLoaded()) {
+                if (!isApplicationBroughtToBackground() && mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
                 }
+                Log.d("service", "to aqui oh");
                 alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 30000, pendingIntent);
             }
 
         }
     };
 
+    private boolean isApplicationBroughtToBackground() {
+        ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(1);
+        if (!tasks.isEmpty()) {
+            ComponentName topActivity = tasks.get(0).topActivity;
+            if (!topActivity.getPackageName().equals(getPackageName())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
