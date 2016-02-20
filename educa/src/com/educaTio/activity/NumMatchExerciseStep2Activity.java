@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import com.educaTio.R;
 import com.educaTio.validation.FieldValidation;
@@ -29,7 +30,7 @@ public class NumMatchExerciseStep2Activity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_num_match_exercise_step2);
 		
-		LinearLayout layout_image = (LinearLayout) findViewById(R.id.layout_image);
+		ImageView layout_image = (ImageView) findViewById(R.id.layout_image);
 
 		question = (EditText) findViewById(R.id.question_match);
         answer1 = (EditText) findViewById(R.id.answer1_match);
@@ -41,9 +42,7 @@ public class NumMatchExerciseStep2Activity extends Activity {
         Intent i = getIntent();
         List<CharSequence> colorData = i.getCharSequenceArrayListExtra("QuantidadeData");
         imageCode = colorData.get(0).toString();
-        
-        
-        layout_image.setBackgroundResource(Integer.parseInt(imageCode));
+        layout_image.setImageResource(Integer.parseInt(imageCode));
 
         bt_ok.setOnClickListener(new OnClickListener() {
 

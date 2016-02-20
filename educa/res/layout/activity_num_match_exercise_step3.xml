@@ -4,32 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_home"
+    android:layout_gravity="center_vertical|center_horizontal"
+    android:gravity="center_vertical|center_horizontal"
     android:orientation="vertical"
     tools:context="com.educa.activity.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-    <LinearLayout
+    <ImageView
         android:id="@+id/numero"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
-        android:alpha="0.8"
-        android:background="#FF0924"
-        android:orientation="vertical" >
-    </LinearLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/num9" >
+    </ImageView>
 
     <TextView
         android:id="@+id/tv_question"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="-80dp"
-        android:gravity="center_vertical|center_horizontal"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="question"
         android:textColor="#FFFFFF"
         android:textSize="15sp" />

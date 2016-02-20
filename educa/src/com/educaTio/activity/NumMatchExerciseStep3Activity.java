@@ -1,7 +1,5 @@
 package com.educaTio.activity;
 
-//import java.text.SimpleDateFormat;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,15 +10,6 @@ import com.educaTio.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-//import java.util.Date;
-//import android.widget.EditText;
-//import com.educa.database.DataBaseProfessor;
-//import com.educa.entity.Exercise;
-//import com.educa.entity.NumMatchExercise;
-//import com.educa.validation.Correction;
-//import com.educa.validation.FieldValidation;
-//import com.educa.validation.Status;
 
 public class NumMatchExerciseStep3Activity extends Activity {
     private RadioGroup radioGroup;
@@ -41,12 +30,12 @@ public class NumMatchExerciseStep3Activity extends Activity {
         answer2 = (RadioButton) findViewById(R.id.rb_answer2);
         answer3 = (RadioButton) findViewById(R.id.rb_answer3);
         answer4 = (RadioButton) findViewById(R.id.rb_answer4);
-        LinearLayout image = (LinearLayout) findViewById(R.id.numero);
+        ImageView image = (ImageView) findViewById(R.id.numero);
 
         Intent i = getIntent();
         answersList = i.getCharSequenceArrayListExtra("AnswersStep2Color");
 
-        image.setBackgroundResource(Integer.parseInt(answersList.get(0).toString()));
+        image.setImageResource(Integer.parseInt(answersList.get(0).toString()));
         tv_question.setText(answersList.get(1));
 
         answer1.setText(answersList.get(2));

@@ -10,22 +10,18 @@
     tools:context="com.educa.activity.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-    <LinearLayout
+    <ImageView
         android:id="@+id/layout_image"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp"
-        android:alpha="0.8"
-        android:background="#FF0924"
-        android:orientation="vertical" >
-    </LinearLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/num9" >
+    </ImageView>
 
     <EditText
         android:id="@+id/question_match"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/selector_et"
         android:hint="Pergunta"
         android:paddingLeft="10dp"
