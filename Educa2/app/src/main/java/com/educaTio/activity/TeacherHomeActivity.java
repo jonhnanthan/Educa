@@ -1,16 +1,5 @@
 package com.educaTio.activity;
 
-import java.util.List;
-
-import org.alljoyn.bus.BusAttachment;
-import org.alljoyn.bus.BusException;
-import org.alljoyn.bus.BusObject;
-import org.alljoyn.bus.SignalEmitter;
-import org.alljoyn.bus.Status;
-import org.alljoyn.bus.annotation.BusSignalHandler;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -25,9 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -39,6 +28,17 @@ import com.educaTio.adapter.ExerciseTeacherAdapterJSON;
 import com.educaTio.adapter.FoldersTeacherAdapter;
 import com.educaTio.database.DataBaseProfessor;
 import com.educaTio.utils.ActiveSession;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
+import org.alljoyn.bus.BusAttachment;
+import org.alljoyn.bus.BusException;
+import org.alljoyn.bus.BusObject;
+import org.alljoyn.bus.SignalEmitter;
+import org.alljoyn.bus.Status;
+import org.alljoyn.bus.annotation.BusSignalHandler;
+
+import java.util.List;
 
 public class TeacherHomeActivity extends Activity {
 	
@@ -50,6 +50,7 @@ public class TeacherHomeActivity extends Activity {
 	private static Activity activity;
 	private boolean intoFolder;
 	private Menu menu;
+    private AdView mAdView;
 	private static final String URL_JSON = "https://jonhnanthan.pythonanywhere.com/Educa/default/api/atividade.json";
 	
     @Override
@@ -59,6 +60,20 @@ public class TeacherHomeActivity extends Activity {
 		contx = getApplicationContext();
 		activity = TeacherHomeActivity.this;
 		intoFolder = false;
+
+        // Gets the ad view defined in layout/ad_fragment.xml with ad unit ID set in
+        // values/strings.xml.
+        mAdView = (AdView) findViewById(R.id.ad_view);
+
+        // Create an ad request. Check your logcat output for the hashed device ID to
+        // get test ads on a physical device. e.g.
+        // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+
+        // Start loading the ad in the background.
+        mAdView.loadAd(adRequest);
 		
         listView = (ListView) findViewById(R.id.lv_exercise);
         listView.setOnItemClickListener(new OnItemClickListener() {
@@ -308,9 +323,27 @@ public class TeacherHomeActivity extends Activity {
     /* Handler used to make calls to AllJoyn methods. See onCreate(). */
     private Handler mBusHandler;
 
+    @Override
+    public void onPause() {
+        if (mAdView != null) {
+            mAdView.pause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAdView != null) {
+            mAdView.resume();
+        }
+    }
 
     @Override
     protected void onDestroy() {
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
         super.onDestroy();
 
         /* Disconnect to prevent any resource leaks. */
