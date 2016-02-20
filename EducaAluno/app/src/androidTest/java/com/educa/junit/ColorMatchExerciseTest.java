@@ -4,7 +4,9 @@ import com.educa.entity.ColorMatchExercise;
 import com.educa.entity.Exercise;
 import com.educa.validation.Correction;
 import com.educa.validation.Status;
+
 import junit.framework.Assert;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,7 +15,7 @@ public class ColorMatchExerciseTest {
 	private ColorMatchExercise colorMatchExercise1;
 	private ColorMatchExercise colorMatchExercise2;
 
-	@Before 
+	@Before
     public void inicializa() {
 		colorMatchExercise1 = new ColorMatchExercise("Associa��o de cor", "Color Match", "13/08/14", Status.NEW.getValue(), Correction.NOT_RATED.getValue(), "Qual o nome dessa cor em ingl�s?", "Red", "Blue", "Green", "Yellow", "Red", "Red");
 		colorMatchExercise2 = new ColorMatchExercise("Exerc�cio de cores", "Color Match", "13/08/14", Status.NEW.getValue(), Correction.NOT_RATED.getValue(), "Que cor � essa?", "Cinza", "Branco", "Preto", "Rosa", "Cinza", "Cinza");
