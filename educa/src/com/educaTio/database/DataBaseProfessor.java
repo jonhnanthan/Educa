@@ -2,6 +2,7 @@
 package com.educaTio.database;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -336,7 +337,7 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     	
     	if (c.getCount() > 0 && c.moveToFirst()){
     		for (int i = 0; i < c.getCount(); i++) {
-    			folders.add(c.getString(2));
+    			if (!folders.contains(c.getString(2)) && !c.getString(2).equals("default")) folders.add(c.getString(2));
     			c.moveToNext();
 			}
     	}
@@ -354,7 +355,7 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
 	}
 
 	public List<String> getFoldersList(String owner) {
-		ArrayList<String> folders = new ArrayList<String>();
+		List<String> folders = new ArrayList<String>();
 		
 		String sql = "select * from " + TABLE_ATIVIDADES_PROFESSOR + " where " + COLUNA_PROFESSOR_OWNER + " = '" + owner + "'";
     	
@@ -371,8 +372,20 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     	c.close();
     	db.close();
     	
-    	folders.add("default");
+    	if (!folders.contains("default")) folders.add("default");
+    	Collections.sort(folders);
     	
 		return folders;
 	}
+	
+    public void removeFolder(String name){
+    	
+    	final SQLiteDatabase db = getWritableDatabase();
+    	
+    	String whereClause = COLUNA_PROFESSOR_PASTA + " = '" + name + "'";
+
+    	db.delete(TABLE_ATIVIDADES_PROFESSOR, whereClause, null);
+    	
+    	db.close();
+    }
 }

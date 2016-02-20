@@ -98,5 +98,7 @@
 	<string name="sync_activities">Adding activities, wait!</string>
 	<string name="new_folder">New folder</string>
 	<string name="new_folder_hint">Folder name</string>
+	<string name="confirmation_folder_delete">The entire contents of the folder will be deleted. Continue?</string>
+	<string name="confirmation_folder_delete_default">Only contents of the folder will be deleted. Continue?</string>
 	
 </resources>

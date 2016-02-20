@@ -76,7 +76,7 @@ public class TeacherHomeActivity extends Activity {
         					TeacherHomeActivity.this).getActivitiesByFolder(ActiveSession.getActiveLogin(), folder);
 
         	        ExerciseTeacherAdapterJSON adapter = new ExerciseTeacherAdapterJSON(getApplicationContext(),
-        	                exercises1, TeacherHomeActivity.this);
+        	                exercises1, activity);
         	        
         			listView.setAdapter(adapter);
 
@@ -115,7 +115,7 @@ public class TeacherHomeActivity extends Activity {
     		}
 		});
 
-        FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(getApplicationContext(), DataBaseProfessor.getInstance(getApplicationContext()).getFoldersList(ActiveSession.getActiveLogin()));
+        FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(getApplicationContext(), TeacherHomeActivity.this,DataBaseProfessor.getInstance(getApplicationContext()).getFoldersList(ActiveSession.getActiveLogin()));
         
 		listView.setAdapter(folderAdapter);
 		
@@ -137,7 +137,7 @@ public class TeacherHomeActivity extends Activity {
 	}
     
     public static void updateAdapter(){
-        FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(contx, DataBaseProfessor.getInstance(contx).getFoldersList(ActiveSession.getActiveLogin()));
+        FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(contx, activity, DataBaseProfessor.getInstance(contx).getFoldersList(ActiveSession.getActiveLogin()));
 		listView.setAdapter(folderAdapter);
 		
 		if (dialog.isShowing()){
@@ -200,7 +200,7 @@ public class TeacherHomeActivity extends Activity {
     	        public void onClick(final View v) {
     				DataBaseProfessor.getInstance(getApplicationContext()).addActivity(ActiveSession.getActiveLogin(), folderName.getText().toString(), 
     						null, null, null);
-    		        FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(getApplicationContext(), DataBaseProfessor.getInstance(getApplicationContext()).getFoldersList(ActiveSession.getActiveLogin()));
+    		        FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(getApplicationContext(), activity, DataBaseProfessor.getInstance(getApplicationContext()).getFoldersList(ActiveSession.getActiveLogin()));
     				listView.setAdapter(folderAdapter);
     				dialog.dismiss();
     	        }
@@ -227,7 +227,7 @@ public class TeacherHomeActivity extends Activity {
 	@Override
 	public void onBackPressed() {
 		if (intoFolder) {
-	        FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(getApplicationContext(), DataBaseProfessor.getInstance(getApplicationContext()).getFoldersList(ActiveSession.getActiveLogin()));
+	        FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(getApplicationContext(), activity, DataBaseProfessor.getInstance(getApplicationContext()).getFoldersList(ActiveSession.getActiveLogin()));
 			listView.setAdapter(folderAdapter);
 			menu.findItem(R.id.web_sync).setVisible(true);
 			menu.findItem(R.id.new_folder).setVisible(true);

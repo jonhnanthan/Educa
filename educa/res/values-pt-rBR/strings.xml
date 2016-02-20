@@ -109,4 +109,6 @@
 	
 	<string name="new_folder">Nova pasta</string>
 	<string name="new_folder_hint">Nome da pasta</string>
+	<string name="confirmation_folder_delete">Todo o conteúdo também será apagado. Continuar?</string>
+	<string name="confirmation_folder_delete_default">Apenas o conteúdo será apagado. Continuar?</string>
 </resources>
