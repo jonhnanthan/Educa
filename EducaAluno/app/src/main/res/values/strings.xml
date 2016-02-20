@@ -71,5 +71,12 @@
 	<string name="exercise_name">Exercise Name</string>
 	<string name="student_name">Name</string>
 	<string name="att">Refresh list. New exercises available!</string>
-
+	<string name="about_desc">\t\t\tNo contexto da educação infantil, as ferramentas educativas precisam ser desenvolvidas para,
+		não somente atrair a atenção da criança e a divertir, mas contribuir com sua formação educacional.\n\t\t\tPensando nisso, desenvolvemos o
+		Educa: um aplicativo para auxílio ao professor na elaboração de atividades a partir de templates com
+		conteúdo pré-definido.\n\n\t\t\tEste projeto vem sendo desenvolvido a algum tempo e por isso não poderíamos esquecer de todos que ajudaram
+		o Educa a caminhar:\n\n\tJonhnanthan Victor Pereira Oliveira\n\tLeonardo Alves dos Santos\n\tLuis Henrique da Silva II
+		\n\tAna Lúcia Tonel da Silva\n\tDiego Tavares Pereira\n\tJúlio Andherson de Oliveira Silva\n\tRodolfo de Lima Viana\n\n\t\t\tTodos, alunos
+		do curso de Ciência da Computação da Universidade Federal de Campina Grande.
+		</string>
 </resources>
