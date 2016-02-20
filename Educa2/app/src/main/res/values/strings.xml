@@ -100,7 +100,12 @@
 	<string name="new_folder_hint">Folder name</string>
 	<string name="confirmation_folder_delete">The entire contents of the folder will be deleted. Continue?</string>
 	<string name="confirmation_folder_delete_default">Only contents of the folder will be deleted. Continue?</string>
-
-    <!-- This is an ad unit ID for a test ad. Replace with your own banner ad unit id. -->
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+	<string name="about_desc">\t\t\tNo contexto da educação infantil, as ferramentas educativas precisam ser desenvolvidas para,
+		não somente atrair a atenção da criança e a divertir, mas contribuir com sua formação educacional.\n\t\t\tPensando nisso, desenvolvemos o
+		Educa: um aplicativo para auxílio ao professor na elaboração de atividades a partir de templates com
+		conteúdo pré-definido.\n\n\t\t\tEste projeto vem sendo desenvolvido a algum tempo e por isso não poderíamos esquecer de todos que ajudaram
+		o Educa a caminhar:\n\n\tJonhnanthan Victor Pereira Oliveira\n\tLeonardo Alves dos Santos\n\tLuis Henrique da Silva II
+		\n\tAna Lúcia Tonel da Silva\n\tDiego Tavares Pereira\n\tJúlio Andherson de Oliveira Silva\n\tRodolfo de Lima Viana\n\n\t\t\tTodos, alunos
+		do curso de Ciência da Computação da Universidade Federal de Campina Grande.
+		</string>
 </resources>

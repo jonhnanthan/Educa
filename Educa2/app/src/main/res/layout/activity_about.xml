@@ -1,65 +1,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/container"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:layout_gravity="top"
-              android:background="@drawable/bg_home"
-              android:gravity="top"
-              android:orientation="vertical"
-              tools:context="com.educa.activity.MainActivity"
-              tools:ignore="MergeRootFrame" >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="top"
+    android:background="@drawable/bg_home"
+    android:gravity="top"
+    android:orientation="vertical"
+    tools:context="com.educa.activity.MainActivity"
+    tools:ignore="MergeRootFrame" >
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_margin="10dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/developers"
-            android:textColor="#ff636363"
-            android:textStyle="normal"
-            android:textSize="25sp" />
 
-    <TextView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:gravity="center_horizontal"
-            android:text="Ana Lúcia"
-            android:textColor="#ffffffff"
-            android:textStyle="normal"
-            android:textSize="25sp" />
-
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:text="Jonhnanthan Oliveira"
-            android:textColor="#ffffffff"
-            android:textStyle="normal"
-            android:textSize="25sp" />
-
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:text="Leonardo Alves"
-            android:textColor="#ffffffff"
-            android:textStyle="normal"
-            android:textSize="25sp" />
-
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:text="Luis Henrique II"
-            android:textColor="#ffffffff"
-            android:textStyle="normal"
-            android:textSize="25sp" />
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/White"
+            android:text="@string/about_desc"/>
+    </ScrollView>
 
 </LinearLayout>
