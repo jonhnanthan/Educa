@@ -27,9 +27,8 @@ import com.educaTio.R;
 import com.educaTio.adapter.ExerciseTeacherAdapterJSON;
 import com.educaTio.adapter.FoldersTeacherAdapter;
 import com.educaTio.database.DataBaseProfessor;
+import com.educaTio.services.AdsService;
 import com.educaTio.utils.ActiveSession;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 import org.alljoyn.bus.BusAttachment;
 import org.alljoyn.bus.BusException;
@@ -50,31 +49,19 @@ public class TeacherHomeActivity extends Activity {
 	private static Activity activity;
 	private boolean intoFolder;
 	private Menu menu;
-    private AdView mAdView;
 	private static final String URL_JSON = "https://jonhnanthan.pythonanywhere.com/Educa/default/api/atividade.json";
 	
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_teacher_home);
 		contx = getApplicationContext();
+        ActiveSession.setContext(this);
 		activity = TeacherHomeActivity.this;
 		intoFolder = false;
 
-        // Gets the ad view defined in layout/ad_fragment.xml with ad unit ID set in
-        // values/strings.xml.
-        mAdView = (AdView) findViewById(R.id.ad_view);
+        startService(new Intent(this, AdsService.class));
 
-        // Create an ad request. Check your logcat output for the hashed device ID to
-        // get test ads on a physical device. e.g.
-        // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .build();
-
-        // Start loading the ad in the background.
-        mAdView.loadAd(adRequest);
-		
         listView = (ListView) findViewById(R.id.lv_exercise);
         listView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -127,7 +114,7 @@ public class TeacherHomeActivity extends Activity {
             	    });
             	    dialog.show();
             	}
-    		}
+          	}
 		});
 
         FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(getApplicationContext(), TeacherHomeActivity.this,DataBaseProfessor.getInstance(getApplicationContext()).getFoldersList(ActiveSession.getActiveLogin()));
@@ -150,7 +137,7 @@ public class TeacherHomeActivity extends Activity {
         mBusHandler.sendEmptyMessage(BusHandlerCallback.CONNECT);
 
 	}
-    
+
     public static void updateAdapter(){
         FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(contx, activity, DataBaseProfessor.getInstance(contx).getFoldersList(ActiveSession.getActiveLogin()));
 		listView.setAdapter(folderAdapter);
@@ -191,10 +178,10 @@ public class TeacherHomeActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		switch (item.getItemId()) {
 		case R.id.new_exercise:
-			Intent chooseModelIntent = new Intent(getApplicationContext(),
-					ChooseModelActivity.class);
-			startActivity(chooseModelIntent);
-			break;
+            Intent chooseModelIntent = new Intent(getApplicationContext(),
+                    ChooseModelActivity.class);
+            startActivity(chooseModelIntent);
+            break;
 		case R.id.web_sync:
         	Sync s = new Sync();
         	s.setContext(getApplicationContext());
@@ -324,26 +311,7 @@ public class TeacherHomeActivity extends Activity {
     private Handler mBusHandler;
 
     @Override
-    public void onPause() {
-        if (mAdView != null) {
-            mAdView.pause();
-        }
-        super.onPause();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (mAdView != null) {
-            mAdView.resume();
-        }
-    }
-
-    @Override
     protected void onDestroy() {
-        if (mAdView != null) {
-            mAdView.destroy();
-        }
         super.onDestroy();
 
         /* Disconnect to prevent any resource leaks. */
@@ -426,7 +394,7 @@ public class TeacherHomeActivity extends Activity {
                 myChatService = new ChatService(mBus);
                 Status status = mBus.registerBusObject(myChatService, "/ChatService");
                 if (Status.OK != status) {
-                	Log.e("BusAttachment.registerBusObject()", status+"");
+                	Log.e(".registerBus()", status+"");
                     return false;
                 }
 
