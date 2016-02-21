@@ -1,10 +1,6 @@
 
 package com.educa.activity;
 
-import java.util.ArrayList;
-
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -14,7 +10,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -27,9 +23,13 @@ import com.educa.entity.NumMatchExercise;
 import com.educa.validation.Correction;
 import com.educa.validation.Status;
 
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public class AnswerNumberMatchExercise extends Activity {
     private TextView name;
-    private LinearLayout color;
+    private ImageView imageView;
     private TextView question;
 
     private RadioButton answer1, answer2, answer3, answer4;
@@ -63,8 +63,29 @@ public class AnswerNumberMatchExercise extends Activity {
         name = (TextView) findViewById(R.id.exercise_name);
         name.setText(exercise.get(0));
 
-        color = (LinearLayout) findViewById(R.id.color);
-        color.setBackgroundColor(Integer.parseInt(exercise.get(1).toString()));
+        imageView = (ImageView) findViewById(R.id.image);
+		String image = exercise.get(1).toString();
+		if (image.equalsIgnoreCase("num1")) {
+			imageView.setImageResource(R.drawable.num1);
+		} else if (image.equalsIgnoreCase("num2")) {
+			imageView.setImageResource(R.drawable.num2);
+		} else if (image.equalsIgnoreCase("num3")) {
+			imageView.setImageResource(R.drawable.num3);
+		} else if (image.equalsIgnoreCase("num4")) {
+			imageView.setImageResource(R.drawable.num4);
+		} else if (image.equalsIgnoreCase("num5")) {
+			imageView.setImageResource(R.drawable.num5);
+		} else if (image.equalsIgnoreCase("num6")) {
+			imageView.setImageResource(R.drawable.num6);
+		} else if (image.equalsIgnoreCase("num7")) {
+			imageView.setImageResource(R.drawable.num7);
+		} else if (image.equalsIgnoreCase("num8")) {
+			imageView.setImageResource(R.drawable.num8);
+		} else if (image.equalsIgnoreCase("num9")) {
+			imageView.setImageResource(R.drawable.num9);
+		} else {
+			imageView.setImageResource(R.drawable.num9);
+		}
 
         question = (TextView) findViewById(R.id.question);
         question.setText(exercise.get(2));

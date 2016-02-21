@@ -2,30 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center_vertical|center_horizontal"
     android:background="@drawable/bg_home"
-    android:orientation="vertical" >
+    android:gravity="center_vertical|center_horizontal"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/color"
-        android:layout_width="fill_parent"
-        android:layout_height="80dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
-        android:alpha="0.8"
-        android:background="#FF0924"
-        android:orientation="vertical" >
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:src="@drawable/bt_letter_selected">
+    </ImageView>
 
     <TextView
         android:id="@+id/question"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="-80dp"
         android:gravity="center_vertical|center_horizontal"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"

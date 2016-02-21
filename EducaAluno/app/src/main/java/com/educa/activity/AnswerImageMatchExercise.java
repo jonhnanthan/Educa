@@ -1,10 +1,6 @@
 
 package com.educa.activity;
 
-import java.util.ArrayList;
-
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -24,6 +20,10 @@ import com.educa.database.DataBaseAluno;
 import com.educa.entity.ImageMatchExercise;
 import com.educa.validation.Correction;
 import com.educa.validation.Status;
+
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class AnswerImageMatchExercise extends Activity {
     private TextView name;
@@ -48,7 +48,38 @@ public class AnswerImageMatchExercise extends Activity {
         name.setText(exercise.get(0));
 
         color = (LinearLayout) findViewById(R.id.color);
-        color.setBackgroundColor(Integer.parseInt(exercise.get(1).toString()));
+		String image = exercise.get(1).toString();
+		if (image.equalsIgnoreCase("abelha")) {
+			color.setBackgroundResource(R.drawable.abelha);
+		} else if (image.equalsIgnoreCase("abacaxi")) {
+			color.setBackgroundResource(R.drawable.abacaxi);
+		} else if (image.equalsIgnoreCase("arvore")) {
+			color.setBackgroundResource(R.drawable.arvore);
+		} else if (image.equalsIgnoreCase("elefante")) {
+			color.setBackgroundResource(R.drawable.elefante);
+		} else if (image.equalsIgnoreCase("escada")) {
+			color.setBackgroundResource(R.drawable.escada);
+		} else if (image.equalsIgnoreCase("estrela")) {
+			color.setBackgroundResource(R.drawable.estrela);
+		} else if (image.equalsIgnoreCase("igreja")) {
+			color.setBackgroundResource(R.drawable.igreja);
+		} else if (image.equalsIgnoreCase("ima")) {
+			color.setBackgroundResource(R.drawable.ima);
+		} else if (image.equalsIgnoreCase("olho")) {
+			color.setBackgroundResource(R.drawable.olho);
+		} else if (image.equalsIgnoreCase("osso")) {
+			color.setBackgroundResource(R.drawable.osso);
+		} else if (image.equalsIgnoreCase("ovo")) {
+			color.setBackgroundResource(R.drawable.ovo);
+		} else if (image.equalsIgnoreCase("um")) {
+			color.setBackgroundResource(R.drawable.um);
+		} else if (image.equalsIgnoreCase("urso")) {
+			color.setBackgroundResource(R.drawable.urso);
+		} else if (image.equalsIgnoreCase("uva")) {
+			color.setBackgroundResource(R.drawable.uva);
+		} else {
+			color.setBackgroundResource(R.drawable.arvore);
+		}
 
         question = (TextView) findViewById(R.id.question);
         question.setText(exercise.get(2));
