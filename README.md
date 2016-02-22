@@ -1,16 +1,22 @@
 Educa
 ========
 
-<p>*Passos para uso do projeto caso clone pelo plugin do eclipse:</p>
-<p>1 - Botão direito no Package Explorer > Import > Git > Project from Git</p>
-<p>2 - Siga todos os passos para a importação</p>
-<p>3 - Ao fim da importação o eclipse acusa um erro de Build, aperte ok</p>
-<p>4 - Aperte com o botão direito do mouse no nome do projeto > Build Path > Remove from Build Path</p>
-<p>5 - Selecione a pasta gen e a pasta src > aperte com o botão direito em alguma das duas > Build Path > Use as source <p>folder</p>
-<p>6 - Aperte com o botão direito do mouse no nome do projeto > Propriedades</p>
-<p>7 - Vá em Java Build Path > Add Jars > Expanda a pasta do projeto > expanda libs > selecione os dois jars e aperte ok</p>
-<p>8 - Agora aperte em Add Library > Junit > Junit 4 > aperte ok</p>
-<p>9 - O projeto está pronto para uso.</p>
+<pre>
+  No contexto da educação infantil, as ferramentas educativas precisam ser desenvolvidas para,
+  não somente atrair a atenção da criança e a divertir, mas contribuir com sua formação educacional.
+  Pensando nisso, desenvolvemos o Educa: um aplicativo para auxílio ao professor na elaboração de
+  atividades a partir de templates com conteúdo pré-definido.
+  Este projeto vem sendo desenvolvido a algum tempo e por isso não poderíamos esquecer
+  de todos que ajudaram o Educa a caminhar:
 
-<p>*Caso baixe pela linha de comando:</p>
-<p>1 - Importe o projeto do eclipse e siga os passos anteriores a partir do passo 6.</p>
+  Jonhnanthan Victor Pereira Oliveira
+  Leonardo Alves dos Santos
+  Luis Henrique da Silva II
+  Ana Lúcia Tonel da Silva
+  Diego Tavares Pereira
+  Júlio Andherson de Oliveira Silva
+  Rodolfo de Lima Viana.
+
+  Todos, alunos do curso de Ciência da Computação da Universidade Federal de Campina Grande.
+
+</pre>
