@@ -26,7 +26,7 @@ def multi_choice():
         form.vars.corpo = str(corpo)
         form.vars.professor = db(db.auth_user.email == auth.user.email).select()[0].id
         id = db.atividade.insert(**dict(form.vars))
-        response.flash = 'record inserted'
+        response.flash = 'Atividade Salva com Sucesso'
 
     return dict()
 
@@ -47,37 +47,35 @@ def color_match():
         form = SQLFORM(db.atividade)
         form.vars.nome = request.vars.Nome
         form.vars.tipo = db(db.tipo_atividade.nome == "MULTIPLE_CHOICE_EXERCISE").select()[0].id
+        form.vars.pasta = request.vars.Pasta
         form.vars.corpo = str(corpo)
         form.vars.professor = db(db.auth_user.email == auth.user.email).select()[0].id
         id = db.atividade.insert(**dict(form.vars))
-        response.flash = 'record inserted'
+        response.flash = 'Atividade Salva com Sucesso'
 
     return dict()
 
 
 @auth.requires_login()
 def image_match():
-    # print(request.vars)
-    # print(auth.user.username)
-    image_field = SQLFORM.factory(
-        Field('image', 'upload', uploadfolder=URL('static/uploaded')))
-    if image_field.process().accepted:
-        response.flash = 'form accepted'
+
     if request.vars:
         corpo = {'Tipo': 'IMAGE_MATCH_EXERCISE',
-                 'Resposta': request.vars.Image,
+                 'Resposta': request.vars.Resposta,
+                 'Imagem':request.vars.Image,
                  'Pergunta': request.vars.Pergunta,
                  'Professor':auth.user.email}
         # print(auth.user.username)
         form = SQLFORM(db.atividade)
         form.vars.nome = request.vars.Nome
         form.vars.tipo = db(db.tipo_atividade.nome == "MULTIPLE_CHOICE_EXERCISE").select()[0].id
+        form.vars.pasta = request.vars.Pasta
         form.vars.corpo = str(corpo)
         form.vars.professor = db(db.auth_user.email == auth.user.email).select()[0].id
         id = db.atividade.insert(**dict(form.vars))
-        response.flash = 'record inserted'
+        response.flash = 'Atividade Salva com Sucesso'
 
-    return dict(image_field=image_field)
+    return dict()
 
 
 @auth.requires_login()
@@ -96,6 +94,7 @@ def multi_choice2():
         form = SQLFORM(db.atividade)
         form.vars.nome = request.vars.Nome
         form.vars.tipo = db(db.tipo_atividade.nome == "MULTIPLE_CORRECT_CHOICE_EXERCISE").select()[0].id
+        form.vars.pasta = request.vars.Pasta
         form.vars.corpo = str(corpo)
         form.vars.professor = db(db.auth_user.email == auth.user.email).select()[0].id
         id = db.atividade.insert(**dict(form.vars))
@@ -117,11 +116,12 @@ def complete():
         form = SQLFORM(db.atividade)
         form.vars.nome = request.vars.Nome
         form.vars.tipo = db(db.tipo_atividade.nome == "COMPLETE_EXERCISE").select()[0].id
+        form.vars.pasta = request.vars.Pasta
         form.vars.corpo = str(corpo)
         form.vars.professor = db(db.auth_user.email == auth.user.email).select()[0].id
         print(form.vars)
         id = db.atividade.insert(**dict(form.vars))
-        response.flash = 'record inserted'
+        response.flash = 'Atividade Salva com Sucesso'
 
     return dict()
 

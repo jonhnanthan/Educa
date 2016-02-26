@@ -1,0 +1,8 @@
+atividade.id,atividade.nome,atividade.tipo,atividade.corpo,atividade.professor,atividade.pasta
+1,Tarefa de Completar,1,"{'Resposta': ['e', 's', 'e'], 'Palavra': 'Teste', 'Tipo': 'COMPLETE_EXERCISE'}",1,<NULL>
+2,Teset,2,"{'Alternativa3': {'f': '0'}, 'Alternativa2': {'D': '1'}, 'Alternativa1': {'B': '0'}, 'Alternativa0': {'A': '1'}, 'Tipo': 'MULTIPLE_CORRECT_CHOICE_EXERCISE', 'Professor': 'u1@mail.com', 'Pergunta': 'Alguma pergunta'}",1,<NULL>
+3,Teste ,4,"{'Alternativa3': 'd', 'Alternativa2': 'c', 'Alternativa1': 'b', 'Tipo': 'MULTIPLE_CHOICE_EXERCISE', 'Resposta': 'a', 'Professor': 'u1@mail.com', 'Pergunta': 'P\xc3\x87ergunta'}",1,Pasta
+4,Leonar,4,"{'Resposta': 'num6.png', 'Professor': 'u1@mail.com', 'Pergunta': 'Alguma', 'Tipo': 'IMAGE_MATCH_EXERCISE'}",1,Pasta
+5,Leonar,4,"{'Resposta': 'num6.png', 'Professor': 'u1@mail.com', 'Pergunta': 'Alguma', 'Tipo': 'IMAGE_MATCH_EXERCISE'}",1,Pasta
+6,asdfasdf,4,"{'Resposta': 'adfasdf', 'Professor': 'u1@mail.com', 'Pergunta': 'asdfasdf', 'Imagem': 'num6.png', 'Tipo': 'IMAGE_MATCH_EXERCISE'}",1,asdfasdfasdfasdfa
+7,sfgsd,4,"{'Resposta': 'sdgfsdfgsdfgsdfg', 'Professor': 'u1@mail.com', 'Pergunta': 'fgsdfgsdfg', 'Imagem': 'num9.png', 'Tipo': 'IMAGE_MATCH_EXERCISE'}",1,sdfgsdfgsdgf

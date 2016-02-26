@@ -1,18 +1,35 @@
-{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
-{{dev_menu = globals().get('dev_menu', True)}}
 {{extend 'professor/layout_professor.html'}}
 
-{{if 'message' in globals():}}
-
-{{elif 'content' in globals():}}
-{{=content}}
-{{else:}}
-{{=BEAUTIFY(response._vars)}}
-{{pass}}
-
-{{block right_sidebar}}
-{{end}}
 
 {{if auth.is_logged_in():}}
+{{block content}}
+<div class="col-md-12">
+    <h1>Crie uma nova Atividade</h1>
+</div>
+<div class="col-md-4">
+    <a href="{{=URL('professor','multi_choice')}}">
+        <img width="30%" src="{{=URL('static','/images/atividades/multiplethumb.png')}}">
+        Multipla Escolha</a>
+</div>
+<div class="col-md-4">
+    <a href="{{=URL('professor','multi_choice2')}}">
+        <img width="30%" src="{{=URL('static','/images/atividades/multiplethumb.png')}}">
+        Multiplas Corretas</a>
+</div>
+<div class="col-md-4">
+    <a href="{{=URL('professor','color_match')}}">
+        <img width="30%" src="{{=URL('static','/images/atividades/colorthumb.png')}}">
+        Color Match</a>
+</div>
+<div class="col-md-4"><a href="{{=URL('professor','image_match')}}">
+    <img width="30%" src="{{=URL('static','/images/atividades/colorthumb.png')}}">
+    Image Match</a>
+</div>
+<div class="col-md-4"><a href="{{=URL('professor','complete')}}">
+    <img width="30%" src="{{=URL('static','/images/atividades/completethumb.png')}}">
+    Completar</a>
+</div>
 
+
+{{end content}}
 {{pass}}
