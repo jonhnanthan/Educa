@@ -1,70 +1,108 @@
 {{extend 'professor/layout_professor.html'}}
 
 {{block content}}
-        {{=image_field.custom.begin}}
+{{=image_field.custom.begin}}
 <div class="container">
     <div class="col-lg-12">
         <form class="form-horizontal" role="form">
-
-            <!-- Text input-->
-            <div class="form-group">
-                <div class="col-sm-2">
-                    <label class="control-label" for="Nome">Nome</label>
+            <fieldset class="form-complete">
+                <!-- Text input-->
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <label class="control-label" for="Nome">Nome</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <input id="Nome" name="Nome" type="text" placeholder="Digite um nome para a sua atividade" class="form-control"
+                               required="">
+                    </div>
                 </div>
-                <div class="col-sm-10">
-                    <input id="Nome" name="Nome" type="text" placeholder="Digite um nome para a sua atividade" class="form-control"
-                           required="">
+                <!-- Text input-->
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <label class="control-label" for="Pergunta">Pergunta</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <input id="Pergunta" name="Pergunta" type="text" placeholder="Digite aqui a sua pergunta" class="form-control"
+                               required="">
+                    </div>
                 </div>
-            </div>
-            <!-- Text input-->
-            <div class="form-group">
-                <div class="col-sm-2">
-                    <label class="control-label" for="Pergunta">Pergunta</label>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <label class="control-label" for="Pasta">Pasta</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <input id="Pasta" name="Pasta" type="text" placeholder="Digite o Nome da Pasta" class="form-control"
+                               required="">
+                    </div>
                 </div>
-                <div class="col-sm-10">
-                    <input id="Pergunta" name="Pergunta" type="text" placeholder="Digite aqui a sua pergunta" class="form-control"
-                           required="">
+
+                <!-- Color input-->
+
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <label class="control-label" for="image">Escolha a Imagem</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="radio" id="image" class="radio-inline no_indent form-control" name="gender"
+                               value="male" checked> <img width="30%" src="{{=URL('static','/images/logo.png')}}">
+                        <br>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="radio" id="image" class="radio-inline no_indent form-control" name="gender" value="female">
+                        <img width="30%" src="{{=URL('static','/images/logo.png')}}">
+                        <br>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="radio" id="image" class="radio-inline no_indent form-control" name="gender" value="other">
+                        <img width="30%" src="{{=URL('static','/images/logo.png')}}">
+                        <br>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="radio" id="image" class="radio-inline no_indent form-control" name="gender" value="other">
+                        <img width="30%" src="{{=URL('static','/images/logo.png')}}">
+                        <br>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="radio" id="image" class="radio-inline no_indent form-control" name="gender" value="other">
+                        <img width="30%" src="{{=URL('static','/images/logo.png')}}">
+                        <br>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="radio" id="image" class="radio-inline no_indent form-control" name="gender" value="other">
+                        <img width="30%" src="{{=URL('static','/images/logo.png')}}">
+                        <br>
+                    </div>
                 </div>
-            </div>
-            <!-- Color input-->
 
-            <div class="form-group">
-                <div class="col-sm-2">
-                    <label class="control-label" for="image">Escolha a Imagem</label>
+                <!-- Text input-->
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <label class="control-label" for="Resposta">Resposta</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <input id="Resposta" name="Resposta" type="text" placeholder="Digite a resposta correta para a pergunta" class="form-control"
+                               required="">
+
+                    </div>
                 </div>
-                <div class="col-sm-10 form-control">
-                    {{=image_field.custom.widget.image}}
+
+
+
+
+                <!-- Button -->
+                <div class="control-group">
+                    <label class="control-label" for="enviar"></label>
+
+                    <div class="controls">
+                        <button id="enviar" name="enviar" class="btn btn-success">Enviar</button>
+                    </div>
                 </div>
-            </div>
-
-
-            <!-- Text input-->
-            <div class="form-group">
-                <div class="col-sm-2">
-                    <label class="control-label" for="Resposta">Resposta</label>
-                </div>
-                <div class="col-sm-10">
-                    <input id="Resposta" name="Resposta" type="text" placeholder="Digite a resposta correta para a pergunta" class="form-control"
-                           required="">
-
-                </div>
-            </div>
-
-
-
-
-            <!-- Button -->
-            <div class="control-group">
-                <label class="control-label" for="enviar"></label>
-
-                <div class="controls">
-                    {{=image_field.custom.submit}}
-                </div>
-            </div>
-
+            </fieldset>
         </form>
     </div>
 </div>
 
-                    {{=image_field.custom.end}}
+{{=image_field.custom.end}}
 {{end content}}
