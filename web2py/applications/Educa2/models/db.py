@@ -111,5 +111,6 @@ db.define_table("recebido",
                       required=True),
                 Field("resumo", type="text",
                       required=True))
+
 ## after defining tables, uncomment below to enable auditing
 auth.enable_record_versioning(db)
