@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -164,12 +166,34 @@ public class Sync extends AsyncTask<String, Integer, String> {
 	}
 
 	private void complete(JSONObject obj) {
-		// {"id":1,"corpo":"{'Resposta': 'aa', 'Palavra': 'aa'}","nome":"aa","tipo":2}
+//		{
+//			tipo: 1,
+//					nome: "Completar",
+//				professor: 2,
+//				pasta: "web",
+//				corpo: "{'Resposta': ['t', 'e'], 'Palavra': 'teste', 'Professor': 't@t.com', 'Tipo': 'COMPLETE_EXERCISE'}",
+//				id: 14
+//		}
 		try {
 			String question = obj.getString("nome");
 			String word = (new JSONObject(obj.getString("corpo"))).getString("Palavra");
-			String hiddenIndexes = "1";
+
+			char[] answer = (new JSONObject(obj.getString("corpo"))).getString("Resposta").toCharArray();
+			StringBuffer hiddenIndexes = new StringBuffer();
+			for (int i = 0; i < answer.length; i++) {
+				if (Character.isLetter(answer[i])) {
+					for (int j = 0; j < word.length(); j++) {
+						if (word.toCharArray()[j] == answer[i]) {
+							hiddenIndexes.append(j);
+							break;
+						}
+					}
+				}
+			}
+			Log.d("john", hiddenIndexes.toString());
+
 			String name = obj.getString("nome");
+
 			Date currentDate = new Date();
 			String fDate = new SimpleDateFormat("dd-MM-yyyy")
 					.format(currentDate);
@@ -178,14 +202,14 @@ public class Sync extends AsyncTask<String, Integer, String> {
 					DataBaseProfessor.getInstance(c).COMPLETE_EXERCISE_TYPECODE,
 					fDate, String.valueOf(com.educaTio.validation.Status.NEW), String
 							.valueOf(Correction.NOT_RATED), question, word,
-					hiddenIndexes);
+					hiddenIndexes.toString());
 
 			if (exerciseNameDontExists(exercise)) {
 
 				DataBaseProfessor
 						.getInstance(c)
 						.addActivity(
-								ActiveSession.getActiveLogin(), /*Verificar o dono e comparar antes de add*/
+								(new JSONObject(obj.getString("corpo"))).getString("Professor"),
 								"WEB", name,
 								DataBaseProfessor
 										.getInstance(c).COMPLETE_EXERCISE_TYPECODE,
@@ -198,6 +222,14 @@ public class Sync extends AsyncTask<String, Integer, String> {
 	}
 	
 	private void imageMatch(JSONObject obj) { //OK
+//		{
+//			tipo: 4,
+//					nome: "Image Match",
+//				professor: 2,
+//				pasta: "web",
+//				corpo: "{'Resposta': 'dois', 'Professor': 't@t.com', 'Pergunta': 'imagem', 'Imagem': 'num5.png', 'Tipo': 'IMAGE_MATCH_EXERCISE'}",
+//				id: 13
+//		}
 		/*
 		 * {"tipo": 4,
 		 *  "nome": "ADASD",
@@ -217,14 +249,48 @@ public class Sync extends AsyncTask<String, Integer, String> {
 			String fDate = new SimpleDateFormat("dd-MM-yyyy")
 					.format(currentDate);
 
+			String image = corpo.getString("Imagem");
+			String imageCode = "";
+			if (image.equalsIgnoreCase("abelha")) {
+				imageCode = String.valueOf(R.drawable.abelha);
+			} else if (image.equalsIgnoreCase("abacaxi")) {
+				imageCode = String.valueOf(R.drawable.abacaxi);
+			} else if (image.equalsIgnoreCase("arvore")) {
+				imageCode = String.valueOf(R.drawable.arvore);
+			} else if (image.equalsIgnoreCase("elefante")) {
+				imageCode = String.valueOf(R.drawable.elefante);
+			} else if (image.equalsIgnoreCase("escada")) {
+				imageCode = String.valueOf(R.drawable.escada);
+			} else if (image.equalsIgnoreCase("estrela")) {
+				imageCode = String.valueOf(R.drawable.estrela);
+			} else if (image.equalsIgnoreCase("igreja")) {
+				imageCode = String.valueOf(R.drawable.igreja);
+			} else if (image.equalsIgnoreCase("ima")) {
+				imageCode = String.valueOf(R.drawable.ima);
+			} else if (image.equalsIgnoreCase("olho")) {
+				imageCode = String.valueOf(R.drawable.olho);
+			} else if (image.equalsIgnoreCase("osso")) {
+				imageCode = String.valueOf(R.drawable.osso);
+			} else if (image.equalsIgnoreCase("ovo")) {
+				imageCode = String.valueOf(R.drawable.ovo);
+			} else if (image.equalsIgnoreCase("um")) {
+				imageCode = String.valueOf(R.drawable.um);
+			} else if (image.equalsIgnoreCase("urso")) {
+				imageCode = String.valueOf(R.drawable.urso);
+			} else if (image.equalsIgnoreCase("uva")) {
+				imageCode = String.valueOf(R.drawable.uva);
+			} else {
+				imageCode = String.valueOf(R.drawable.abelha);
+			}
+
 			ImageMatchExercise exercise = new ImageMatchExercise(name, 
 					DataBaseProfessor.getInstance(c).IMAGE_MATCH_EXERCISE_TYPECODE, fDate, String.valueOf(com.educaTio.validation.Status.NEW),
-                    String.valueOf(Correction.NOT_RATED), question, rightAnswer, String.valueOf(R.drawable.abelha) );
+                    String.valueOf(Correction.NOT_RATED), question, rightAnswer, imageCode );
 
 
             if (exerciseNameDontExists(exercise)) {
 
-				DataBaseProfessor.getInstance(c).addActivity(ActiveSession.getActiveLogin(), "WEB", name, 
+				DataBaseProfessor.getInstance(c).addActivity((new JSONObject(obj.getString("corpo"))).getString("Professor"), "WEB", name,
 						DataBaseProfessor.getInstance(c).IMAGE_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
             }
 		} catch (Exception e) {
@@ -233,6 +299,14 @@ public class Sync extends AsyncTask<String, Integer, String> {
 	}
 	
 	private void colorMatch(JSONObject obj) { //OK
+//		{
+//			tipo: 4,
+//					nome: "Color Match",
+//				professor: 2,
+//				pasta: "web",
+//				corpo: "{'Alternativa3': 'amarelo', 'Alternativa2': 'azul', 'Alternativa1': 'branco', 'Tipo': 'COLOR_MATCH_EXERCISE', 'Resposta': '#000000', 'Professor': 't@t.com', 'Pergunta': 'teste'}",
+//				id: 12
+//		}
 		/*
 		 * {"tipo": 4,
 		 *  "nome": "LEONARDO ALVES DOS SANTOS",
@@ -289,7 +363,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 
             if (exerciseNameDontExists(exercise)) {
 
-                DataBaseProfessor.getInstance(c).addActivity(ActiveSession.getActiveLogin(), "WEB", name, 
+                DataBaseProfessor.getInstance(c).addActivity((new JSONObject(obj.getString("corpo"))).getString("Professor"), "WEB", name,
                 		DataBaseProfessor.getInstance(c).COLOR_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
             }
 		} catch (Exception e) {
@@ -298,6 +372,14 @@ public class Sync extends AsyncTask<String, Integer, String> {
 	}
 	
 	private void multipleChoice(JSONObject obj) { //OK
+//		{
+//			tipo: 4,
+//					nome: "Multipla Escolha",
+//				professor: 2,
+//				pasta: "web",
+//				corpo: "{'Alternativa3': '4', 'Alternativa2': '3', 'Alternativa1': '2', 'Tipo': 'MULTIPLE_CHOICE_EXERCISE', 'Resposta': '1', 'Professor': 't@t.com', 'Pergunta': 'teste'}",
+//				id: 10
+//		}
 		/*
 		 * {"tipo": 4,
 		 *  "nome": "hdfghfdg",
@@ -337,7 +419,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 				DataBaseProfessor
 						.getInstance(c)
 						.addActivity(
-								ActiveSession.getActiveLogin(), 
+								(new JSONObject(obj.getString("corpo"))).getString("Professor"),
 								"WEB", name,
 								DataBaseProfessor
 										.getInstance(c).MULTIPLE_CHOICE_EXERCISE_TYPECODE,
@@ -349,6 +431,14 @@ public class Sync extends AsyncTask<String, Integer, String> {
 	}
 
 	private void multipleCorrect(JSONObject obj) { // OK
+//		{
+//			tipo: 2,
+//					nome: "Multipla Correta",
+//				professor: 2,
+//				pasta: "web",
+//				corpo: "{'Alternativa3': {'4': '0'}, 'Alternativa2': {'3': '1'}, 'Alternativa1': {'2': '1'}, 'Alternativa0': {'1': '0'}, 'Tipo': 'MULTIPLE_CORRECT_CHOICE_EXERCISE', 'Professor': 't@t.com', 'Pergunta': 'teste'}",
+//				id: 11
+//		}
 //		{"tipo": 5,
 //			"nome": "asdfasdf",
 //			"professor": null,
@@ -406,7 +496,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 				DataBaseProfessor
 						.getInstance(c)
 						.addActivity(
-								ActiveSession.getActiveLogin(), 
+								(new JSONObject(obj.getString("corpo"))).getString("Professor"),
 								"WEB", name,
 								DataBaseProfessor.getInstance(c).MULTIPLE_CORRECT_CHOICE_EXERCISE_TYPECODE,
 								exercise.getJsonTextObject());
