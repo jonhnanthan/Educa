@@ -73,7 +73,7 @@ public class DataBaseAluno extends SQLiteOpenHelper{
     }
     
     public ArrayList<String> getActivities(){
-    	populateDataBase();
+//    	populateDataBase();
     	
     	ArrayList<String> activities = new ArrayList<String>();
     	
