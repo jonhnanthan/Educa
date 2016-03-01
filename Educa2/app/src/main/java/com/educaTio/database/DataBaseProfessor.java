@@ -1,20 +1,20 @@
 
 package com.educaTio.database;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 public class DataBaseProfessor extends SQLiteOpenHelper {
 
@@ -364,8 +364,8 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     	
     	if (c.getCount() > 0 && c.moveToFirst()){
     		for (int i = 0; i < c.getCount(); i++) {
-				if (c.getString(2).contains("WEB") && !folders.contains("WEB")) {
-					folders.add("WEB");
+				if (c.getString(2).contains("WEB")) {
+					if (!folders.contains("WEB")) folders.add("WEB");
 				} else if (!folders.contains(c.getString(2))) folders.add(c.getString(2));
     			c.moveToNext();
 			}
@@ -415,24 +415,31 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
 		return folders;
 	}
 
-	public List<String> getActivitiesByFolder(String activeLogin, String folder, boolean isWeb) {
-		List<String> activities = new ArrayList<String>();
+	public void removeWebFolder(String owner) {
+		ArrayList<String> foldersToRemove = new ArrayList<String>();
 
-		String sql = "select * from " + TABLE_ATIVIDADES_PROFESSOR + " where " + COLUNA_PROFESSOR_PASTA + " = '" + folder + "'";
+		String sql = "select * from " + TABLE_ATIVIDADES_PROFESSOR + " where " + COLUNA_PROFESSOR_OWNER + " = '" + owner + "'";
 
 		final SQLiteDatabase db = getWritableDatabase();
 		final Cursor c = db.rawQuery(sql, null);
 
 		if (c.getCount() > 0 && c.moveToFirst()){
 			for (int i = 0; i < c.getCount(); i++) {
-				if (c.getString(4) != null) activities.add(c.getString(4));
+				if (c.getString(2).contains("WEB")) {
+					foldersToRemove.add(c.getString(2));
+				}
 				c.moveToNext();
 			}
+		}
+
+		for (String folder: foldersToRemove) {
+			String whereClause = COLUNA_PROFESSOR_PASTA + " = '" + folder + "'";
+
+			db.delete(TABLE_ATIVIDADES_PROFESSOR, whereClause, null);
 		}
 
 		c.close();
 		db.close();
 
-		return activities;
 	}
 }

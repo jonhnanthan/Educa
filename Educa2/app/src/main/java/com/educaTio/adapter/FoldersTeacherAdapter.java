@@ -1,30 +1,27 @@
 package com.educaTio.adapter;
 
-import java.util.List;
-
-import com.educaTio.R;
-import com.educaTio.activity.ReportActivity;
-import com.educaTio.activity.TeacherHomeActivity;
-import com.educaTio.database.DataBaseProfessor;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.educaTio.R;
+import com.educaTio.activity.TeacherHomeActivity;
+import com.educaTio.database.DataBaseProfessor;
+import com.educaTio.utils.ActiveSession;
+
+import java.util.List;
 
 public class FoldersTeacherAdapter extends BaseAdapter {
 
@@ -32,12 +29,14 @@ public class FoldersTeacherAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
 	private Context mContext;
 	private Activity activity;
+	private boolean webFolder;
 
 	public FoldersTeacherAdapter(Context context, Activity activity, List<String> folders) {
 		this.folders = folders;
 		this.mContext = context;
 		this.activity = activity;
 		mInflater = LayoutInflater.from(context);
+		this.webFolder = false;
 	}
 	
 	@Override
@@ -69,7 +68,11 @@ public class FoldersTeacherAdapter extends BaseAdapter {
                 View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showPopupMenu(v, folderName);
+						if (webFolder) {
+							showPopupMenu(v, "WEB/"+folderName);
+						} else {
+							showPopupMenu(v, folderName);
+						}
                     }
                 });
 
@@ -80,54 +83,61 @@ public class FoldersTeacherAdapter extends BaseAdapter {
         PopupMenu popupMenu = new PopupMenu(mContext, v);
         popupMenu.getMenuInflater().inflate(R.menu.folder_options, popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.delete:
-                		final Dialog dialog = new Dialog(activity);
-                		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                		dialog.setContentView(R.layout.dialog_yes_no_sentence);
-                	    TextView tvMsgToShow =
-                	            (TextView) dialog.findViewById(R.id.tvYesNoAlertDialog);
-                	    if (folder.equals("default")) {
-                	    	tvMsgToShow.setText( R.string.confirmation_folder_delete_default );
-                	    } else {
-                	    	tvMsgToShow.setText( R.string.confirmation_folder_delete );
-                	    }
-                	
-                	    Button btYes =
-                	            (Button) dialog.findViewById(R.id.btYes);
-                	    btYes.setOnClickListener(new OnClickListener() {
-                	
-                	        @Override
-                	        public void onClick(final View v) {
-                	        	DataBaseProfessor.getInstance(mContext).removeFolder(folder);
-                	        	notifyDataSetChanged();
-                	        	TeacherHomeActivity.updateAdapter();
-                	            dialog.dismiss();
-                	        }
-                	    });
-                	
-                	    Button btNo =
-                	            (Button) dialog.findViewById(R.id.btNo);
-                	    btNo.setOnClickListener(new OnClickListener() {
-                	
-                	        @Override
-                	        public void onClick(final View v) {
-                	            dialog.dismiss();
-                	        }
-                	    });
-                	    dialog.show();
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				switch (item.getItemId()) {
+					case R.id.delete:
+						final Dialog dialog = new Dialog(activity);
+						dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+						dialog.setContentView(R.layout.dialog_yes_no_sentence);
+						TextView tvMsgToShow =
+								(TextView) dialog.findViewById(R.id.tvYesNoAlertDialog);
+						if (folder.equals("default")) {
+							tvMsgToShow.setText(R.string.confirmation_folder_delete_default);
+						} else {
+							tvMsgToShow.setText(R.string.confirmation_folder_delete);
+						}
 
-                    	break;
-                    default:
-                        break;
-                }
-                return true;
-            }
-        });
+						Button btYes =
+								(Button) dialog.findViewById(R.id.btYes);
+						btYes.setOnClickListener(new OnClickListener() {
+
+							@Override
+							public void onClick(final View v) {
+								if (folder.equalsIgnoreCase("WEB")) {
+									DataBaseProfessor.getInstance(mContext).removeWebFolder(ActiveSession.getActiveLogin());
+								} else {
+									DataBaseProfessor.getInstance(mContext).removeFolder(folder);
+								}
+								notifyDataSetChanged();
+								TeacherHomeActivity.updateAdapter();
+								dialog.dismiss();
+							}
+						});
+
+						Button btNo =
+								(Button) dialog.findViewById(R.id.btNo);
+						btNo.setOnClickListener(new OnClickListener() {
+
+							@Override
+							public void onClick(final View v) {
+								dialog.dismiss();
+							}
+						});
+						dialog.show();
+
+						break;
+					default:
+						break;
+				}
+				return true;
+			}
+		});
         popupMenu.show();
     }
 
 
+	public void setWebFolder(boolean webFolder) {
+		this.webFolder = webFolder;
+	}
 }
