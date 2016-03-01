@@ -364,7 +364,9 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     	
     	if (c.getCount() > 0 && c.moveToFirst()){
     		for (int i = 0; i < c.getCount(); i++) {
-    			if (!folders.contains(c.getString(2))) folders.add(c.getString(2));
+				if (c.getString(2).contains("WEB") && !folders.contains("WEB")) {
+					folders.add("WEB");
+				} else if (!folders.contains(c.getString(2))) folders.add(c.getString(2));
     			c.moveToNext();
 			}
     	}
@@ -388,4 +390,49 @@ public class DataBaseProfessor extends SQLiteOpenHelper {
     	
     	db.close();
     }
+
+	public List<String> getWebFoldersList(String owner) {
+		List<String> folders = new ArrayList<String>();
+
+		String sql = "select * from " + TABLE_ATIVIDADES_PROFESSOR + " where " + COLUNA_PROFESSOR_OWNER + " = '" + owner + "'";
+
+		final SQLiteDatabase db = getWritableDatabase();
+		final Cursor c = db.rawQuery(sql, null);
+
+		if (c.getCount() > 0 && c.moveToFirst()){
+			for (int i = 0; i < c.getCount(); i++) {
+				if (c.getString(2).contains("WEB")) {
+					String folderName = c.getString(2).substring(c.getString(2).indexOf("/") + 1);
+					if (!folders.contains(folderName)) folders.add(folderName);
+				}
+				c.moveToNext();
+			}
+		}
+
+		c.close();
+		db.close();
+
+		return folders;
+	}
+
+	public List<String> getActivitiesByFolder(String activeLogin, String folder, boolean isWeb) {
+		List<String> activities = new ArrayList<String>();
+
+		String sql = "select * from " + TABLE_ATIVIDADES_PROFESSOR + " where " + COLUNA_PROFESSOR_PASTA + " = '" + folder + "'";
+
+		final SQLiteDatabase db = getWritableDatabase();
+		final Cursor c = db.rawQuery(sql, null);
+
+		if (c.getCount() > 0 && c.moveToFirst()){
+			for (int i = 0; i < c.getCount(); i++) {
+				if (c.getString(4) != null) activities.add(c.getString(4));
+				c.moveToNext();
+			}
+		}
+
+		c.close();
+		db.close();
+
+		return activities;
+	}
 }

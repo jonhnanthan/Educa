@@ -210,7 +210,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 						.getInstance(c)
 						.addActivity(
 								(new JSONObject(obj.getString("corpo"))).getString("Professor"),
-								"WEB", name,
+								"WEB/" + obj.getString("pasta"), name,
 								DataBaseProfessor
 										.getInstance(c).COMPLETE_EXERCISE_TYPECODE,
 								exercise.getJsonTextObject());
@@ -290,7 +290,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 
             if (exerciseNameDontExists(exercise)) {
 
-				DataBaseProfessor.getInstance(c).addActivity((new JSONObject(obj.getString("corpo"))).getString("Professor"), "WEB", name,
+				DataBaseProfessor.getInstance(c).addActivity((new JSONObject(obj.getString("corpo"))).getString("Professor"), "WEB/" + obj.getString("pasta"), name,
 						DataBaseProfessor.getInstance(c).IMAGE_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
             }
 		} catch (Exception e) {
@@ -363,7 +363,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 
             if (exerciseNameDontExists(exercise)) {
 
-                DataBaseProfessor.getInstance(c).addActivity((new JSONObject(obj.getString("corpo"))).getString("Professor"), "WEB", name,
+                DataBaseProfessor.getInstance(c).addActivity((new JSONObject(obj.getString("corpo"))).getString("Professor"), "WEB/" + obj.getString("pasta"), name,
                 		DataBaseProfessor.getInstance(c).COLOR_MATCH_EXERCISE_TYPECODE, exercise.getJsonTextObject());
             }
 		} catch (Exception e) {
@@ -420,7 +420,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 						.getInstance(c)
 						.addActivity(
 								(new JSONObject(obj.getString("corpo"))).getString("Professor"),
-								"WEB", name,
+								"WEB/" + obj.getString("pasta"), name,
 								DataBaseProfessor
 										.getInstance(c).MULTIPLE_CHOICE_EXERCISE_TYPECODE,
 								exercise.getJsonTextObject());
@@ -497,7 +497,7 @@ public class Sync extends AsyncTask<String, Integer, String> {
 						.getInstance(c)
 						.addActivity(
 								(new JSONObject(obj.getString("corpo"))).getString("Professor"),
-								"WEB", name,
+								"WEB/" + obj.getString("pasta"), name,
 								DataBaseProfessor.getInstance(c).MULTIPLE_CORRECT_CHOICE_EXERCISE_TYPECODE,
 								exercise.getJsonTextObject());
 

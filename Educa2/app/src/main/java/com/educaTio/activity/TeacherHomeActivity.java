@@ -48,9 +48,11 @@ public class TeacherHomeActivity extends Activity {
 	private static ListView listView;
 	private static Activity activity;
 	private boolean intoFolder;
-	private Menu menu;
-	private static final String URL_JSON = "https://jonhnanthan.pythonanywhere.com/Educa/default/api/atividade.json";
-	
+    private boolean intoWebFolder;
+    private boolean intoFolderFromWeb;
+    private Menu menu;
+    private static final String URL_JSON = "https://jonhnanthan.pythonanywhere.com/Educa/default/api/atividade.json";
+
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,17 +72,39 @@ public class TeacherHomeActivity extends Activity {
         			final int position, final long id) {
         		
         		if (parent.getAdapter() instanceof FoldersTeacherAdapter) {
-        			intoFolder = true;
-        			menu.findItem(R.id.web_sync).setVisible(false);
-        			menu.findItem(R.id.new_folder).setVisible(false);
-        			String folder = ((TextView) view.findViewById(R.id.folder_name)).getText().toString();
-        			exercises1 = DataBaseProfessor.getInstance(
-        					TeacherHomeActivity.this).getActivitiesByFolder(ActiveSession.getActiveLogin(), folder);
+                    if (((String) parent.getAdapter().getItem(position)).equalsIgnoreCase("WEB")) {
+                        intoWebFolder = true;
+                        menu.findItem(R.id.web_sync).setVisible(false);
+                        menu.findItem(R.id.new_folder).setVisible(false);
+                        FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(getApplicationContext(),
+                                TeacherHomeActivity.this, DataBaseProfessor.getInstance(getApplicationContext()).getWebFoldersList(ActiveSession.getActiveLogin()));
 
-        	        ExerciseTeacherAdapterJSON adapter = new ExerciseTeacherAdapterJSON(getApplicationContext(),
-        	                exercises1, activity);
-        	        
-        			listView.setAdapter(adapter);
+                        listView.setAdapter(folderAdapter);
+                    } else if (intoWebFolder) {
+                        intoFolderFromWeb = true;
+                        menu.findItem(R.id.web_sync).setVisible(false);
+                        menu.findItem(R.id.new_folder).setVisible(false);
+                        String folder = ((TextView) view.findViewById(R.id.folder_name)).getText().toString();
+                        exercises1 = DataBaseProfessor.getInstance(
+                                TeacherHomeActivity.this).getActivitiesByFolder(ActiveSession.getActiveLogin(), folder, true);
+
+                        ExerciseTeacherAdapterJSON adapter = new ExerciseTeacherAdapterJSON(getApplicationContext(),
+                                exercises1, activity);
+
+                        listView.setAdapter(adapter);
+                    } else {
+                        intoFolder = true;
+                        menu.findItem(R.id.web_sync).setVisible(false);
+                        menu.findItem(R.id.new_folder).setVisible(false);
+                        String folder = ((TextView) view.findViewById(R.id.folder_name)).getText().toString();
+                        exercises1 = DataBaseProfessor.getInstance(
+                                TeacherHomeActivity.this).getActivitiesByFolder(ActiveSession.getActiveLogin(), folder);
+
+                        ExerciseTeacherAdapterJSON adapter = new ExerciseTeacherAdapterJSON(getApplicationContext(),
+                                exercises1, activity);
+
+                        listView.setAdapter(adapter);
+                    }
 
         		} else {
             		final Dialog dialog = new Dialog(TeacherHomeActivity.this);
@@ -228,17 +252,24 @@ public class TeacherHomeActivity extends Activity {
 
 	@Override
 	public void onBackPressed() {
-		if (intoFolder) {
+		if (intoFolder || intoWebFolder) {
 	        FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(getApplicationContext(), activity, DataBaseProfessor.getInstance(getApplicationContext()).getFoldersList(ActiveSession.getActiveLogin()));
 			listView.setAdapter(folderAdapter);
 			menu.findItem(R.id.web_sync).setVisible(true);
 			menu.findItem(R.id.new_folder).setVisible(true);
 			intoFolder = false;
+            intoWebFolder = false;
+		} else if (intoFolderFromWeb) {
+            FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(getApplicationContext(),
+                    TeacherHomeActivity.this, DataBaseProfessor.getInstance(getApplicationContext()).getWebFoldersList(ActiveSession.getActiveLogin()));
+
+            listView.setAdapter(folderAdapter);
+            intoFolderFromWeb = false;
 		} else {
-			Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			startActivity(intent);
-		}
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
 	}
 	
 	private void send(String json) {

@@ -32,7 +32,7 @@ public class FoldersTeacherAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
 	private Context mContext;
 	private Activity activity;
-	
+
 	public FoldersTeacherAdapter(Context context, Activity activity, List<String> folders) {
 		this.folders = folders;
 		this.mContext = context;
@@ -75,7 +75,7 @@ public class FoldersTeacherAdapter extends BaseAdapter {
 
 		return convertView;
 	}
-	
+
     private void showPopupMenu(View v, final String folder) {
         PopupMenu popupMenu = new PopupMenu(mContext, v);
         popupMenu.getMenuInflater().inflate(R.menu.folder_options, popupMenu.getMenu());
