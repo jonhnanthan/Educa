@@ -252,19 +252,19 @@ public class TeacherHomeActivity extends Activity {
 
 	@Override
 	public void onBackPressed() {
-		if (intoFolder || intoWebFolder) {
-	        FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(getApplicationContext(), activity, DataBaseProfessor.getInstance(getApplicationContext()).getFoldersList(ActiveSession.getActiveLogin()));
-			listView.setAdapter(folderAdapter);
-			menu.findItem(R.id.web_sync).setVisible(true);
-			menu.findItem(R.id.new_folder).setVisible(true);
-			intoFolder = false;
-            intoWebFolder = false;
-		} else if (intoFolderFromWeb) {
+        if (intoFolderFromWeb) {
             FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(getApplicationContext(),
                     TeacherHomeActivity.this, DataBaseProfessor.getInstance(getApplicationContext()).getWebFoldersList(ActiveSession.getActiveLogin()));
 
             listView.setAdapter(folderAdapter);
             intoFolderFromWeb = false;
+		} else if (intoFolder || intoWebFolder) {
+            FoldersTeacherAdapter folderAdapter = new FoldersTeacherAdapter(getApplicationContext(), activity, DataBaseProfessor.getInstance(getApplicationContext()).getFoldersList(ActiveSession.getActiveLogin()));
+            listView.setAdapter(folderAdapter);
+            menu.findItem(R.id.web_sync).setVisible(true);
+            menu.findItem(R.id.new_folder).setVisible(true);
+            intoFolder = false;
+            intoWebFolder = false;
 		} else {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
